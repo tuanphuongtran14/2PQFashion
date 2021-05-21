@@ -33,10 +33,10 @@
 
 # Category API
 - Để lấy toàn bộ category: GET http://localhost:8080/api/categories
-- Để lấy category theo SKU: GET http://localhost:8080/api/categories/<id của category>
+- Để lấy category theo ID: GET http://localhost:8080/api/categories/<id của category>
 - Để tạo một category mới: POST http://localhost:8080/api/categories
-- Để chỉnh sửa một category theo SKU: PUT http://localhost:8080/api/categories/<id của category>
-- Để xóa một category theo SKU: DELETE http://localhost:8080/api/categories/<id của category>
+- Để chỉnh sửa một category theo ID: PUT http://localhost:8080/api/categories/<id của category>
+- Để xóa một category theo ID: DELETE http://localhost:8080/api/categories/<id của category>
 
 |Thuộc tính| Kiểu dữ liệu |Chú thích|
 |--|--|--|
