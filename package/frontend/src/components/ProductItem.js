@@ -27,12 +27,13 @@ class ProductItem extends Component {
     }
     componentDidMount(){
        
-        const object=document.getElementsByClassName("set-bg");
-        Array.prototype.forEach.call(object,(element,index)=>{
-            var bg =element.getAttribute('data-setbg')
-            element.style.backgroundImage= '(url(' + bg + ')';
-        })
-      
+        // const object=document.getElementsByClassName("set-bg");
+        // Array.prototype.forEach.call(object,(element,index)=>{
+        //     var bg =element.getAttribute('data-setbg')
+        //     element.style.backgroundImage= '(url(' + bg + ')';
+        // })
+        // console.log(this.state.images[0]);
+        
     }
     render(){
         const{images,name,price}=this.state;
@@ -41,7 +42,7 @@ class ProductItem extends Component {
             <Fragment>
                 <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div className="product__item">
-                        <div className="product__item__pic set-bg" data-setbg={images[0]}>
+                        <div className="product__item__pic set-bg" style={{ backgroundImage: `url(${images[0]})` }}> 
                             <ul className="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""/></a></li>
                                 <li><a href="#"><img src="img/icon/compare.png" alt=""/> <span>Compare</span></a></li>
