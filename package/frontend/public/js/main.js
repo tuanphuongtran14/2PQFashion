@@ -15,7 +15,6 @@
         Preloader
     --------------------*/
     $(window).on('load', function () {
-        console.log(1);
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
 

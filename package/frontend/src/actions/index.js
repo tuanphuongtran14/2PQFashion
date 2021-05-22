@@ -20,3 +20,19 @@ export const fetchProductsRequest=()=>{
                         })
     }
 }
+
+//xử lý trang index đang gọi product
+export const getDataPage=(data)=>{
+    return {
+        type:types.PAGE_INDEX,
+        data,//products=products
+    }
+}
+
+//xử lý tìm kiếm
+export const onSearch=(keyword)=>{
+    return {
+        type:types.SEARCH,
+        keyword,//products=products
+    }
+}

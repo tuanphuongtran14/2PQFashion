@@ -1,5 +1,4 @@
 import React,{Component,Fragment} from 'react';
-
 class ProductItem extends Component {
     constructor(props){
         super(props);
@@ -10,38 +9,52 @@ class ProductItem extends Component {
             images:[],
             price:0,
             color:[],
-            rating:0,
+            rating:{},
                 }
     }
-    componentWillMount(){
-        const{images,name,price,id,color,rating,status}=this.props.product;
-        console.log(this.props.product);
-        this.setState({
-            id:id,
-            name:name,
-            status:status,
-            images:images,
-            price:price,
-            color:color,
-            rating:rating,        })
+    renderClass=(status)=>{
+        var result='';
+        if(status==2){
+            result="hot-sales";
+        }else if(status==1){
+            result="new-arrivals";
+        }
+        return result;
     }
-    componentDidMount(){
-       
-        const object=document.getElementsByClassName("set-bg");
-        Array.prototype.forEach.call(object,(element,index)=>{
-            var bg =element.getAttribute('data-setbg')
-            element.style.backgroundImage= '(url(' + bg + ')';
-        })
-      
+    renderStarRate(star){
+        var result=[];
+        for(var i=1;i<=star;i++){
+            result.push(<i key={i} className="fa fa-star"></i>);
+        }
+        for(var i=1;i<=5-star;i++){
+            result.push(<i key={i+5} className="fa fa-star-o"></i>);
+        }
+        return result;
+    }
+    renderOption(status,onChange){
+        var result="";
+        if(onChange===3){
+            result="";
+        }else {
+            if(status===onChange){
+            result="";
+            }else{
+                result="hideProduct"
+            }
+        }
+        return result;
     }
     render(){
-        const{images,name,price}=this.state;
-
+        const{images,name,price,status,rating}=this.props.product;
+        const {onChange,onPage}=this.props;
+        const addClass=this.renderClass(status);
+        const result=onPage===1?` ${addClass} ${this.renderOption(status,onChange)}`:'';
+        
         return (
             <Fragment>
-                <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                <div className={`col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
                     <div className="product__item">
-                        <div className="product__item__pic set-bg" data-setbg={images[0]}>
+                        <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`}} >
                             <ul className="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""/></a></li>
                                 <li><a href="#"><img src="img/icon/compare.png" alt=""/> <span>Compare</span></a></li>
@@ -52,11 +65,7 @@ class ProductItem extends Component {
                             <h6>{name}</h6>
                             <a href="#" className="add-cart">+ Add To Cart</a>
                             <div className="rating">
-                                <i className="fa fa-star-o"></i>
-                                <i className="fa fa-star-o"></i>
-                                <i className="fa fa-star-o"></i>
-                                <i className="fa fa-star-o"></i>
-                                <i className="fa fa-star-o"></i>
+                                {this.renderStarRate(rating.grade)}
                             </div>
                             <h5>{price}</h5>
                             <div className="product__color__select">
