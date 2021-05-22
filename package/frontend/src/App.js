@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import IndexPage from './pages/IndexPage';
+import IndexPage from './pages/HomePage/IndexPage';
 
 
 class App extends Component {

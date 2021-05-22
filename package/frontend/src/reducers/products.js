@@ -15,6 +15,8 @@ const products=(state=initialState,action)=>{
     var index;
     var replaceState;
     switch(action.type){
+        case types.FETCH_PRODUCTS:
+             return Object.assign([],[...state], action.products);
         default:
             return [...state];
 }}
