@@ -125,26 +125,3 @@ exports.updateOne = async (req, res) => {
         });
     }
 }
-// const updateOne = (req, res) => {
-//     // If req.body is empty
-//     if (!req.body) {
-//         return res.status(400).json({
-//             message: 'Can\' create an empty product'
-//         });
-//     }
-
-//     let productInput = req.body;
-//     try {
-//         await createNew(productInput)
-//         return res.status(200).json({
-//             message: 'Create new product successfully'
-//         });
-//     } catch(err) {
-//         return res.status(500).json({
-//             message: 'Error',
-//             error: err.message
-//         });
-//     }  
-// };
-
-

@@ -3,12 +3,12 @@ const Category = require('../models').category;
 
 exports.create = categoryInput => {
     // Creat new category document
-    let newcategory = new Category({
+    let newCategory = new Category({
         ...categoryInput
     })
 
     // Save new category to database
-    return newcategory.save();
+    return newCategory.save();
 }
 
 exports.findAll = () => {

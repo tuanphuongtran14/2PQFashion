@@ -1,4 +1,7 @@
 # Hướng dẫn chạy API
+- docker-compose up
+- docker ps -a
+- docker container start <ID>
 - Bật terminal tại thư mục backend.
 - Gõ vào: npm start
 - Server chạy trên: http://localhost:8080
