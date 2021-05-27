@@ -7,29 +7,19 @@ import Header from './../../components/Header';
 import {connect} from 'react-redux';
 import * as actions from './../../actions/index'
 class IndexPage extends Component {
-
-    componentWillMount(){
-        this.props.fetchProductsRequest();
-    }
-    renderProductItems(products){
-        var result=null;
-        if(products.length>0){
-            result=products.map((product,index)=>{
-                if(product.status!=0){
-                    return (<ProductItem
-                        key={index}
-                        index={index}
-                        product={product}
-                    />)
-                }          
-            })
+    constructor(props) {
+        super(props);
+        this.state={
+            page:1,
         }
-        return result;
-        
+        ;
     }
+    componentDidMount(){
+        this.props.fetchProductsRequest();
+        this.props.getDataPage(1);
+    }
+    
     render(){
-        const {products}=this.props;
-        console.log(products);
         return (
             <Fragment>
                 <Header/>
@@ -119,22 +109,8 @@ class IndexPage extends Component {
                     </div>
                 </section>
                 <section className="product spad">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <ul className="filter__controls">
-                                    <li className="active" data-filter="*">Best Sellers</li>
-                                    <li data-filter=".new-arrivals">New Arrivals</li>
-                                    <li data-filter=".hot-sales">Hot Sales</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="row product__filter">
-                            <ProductListContainer >
-                                {this.renderProductItems(products)}
-                            </ProductListContainer>
-                        </div>
-                    </div>
+                <ProductListContainer pro/>
+                    
                 </section>     
                 
                 {/* <!-- Categories Section Begin --> */}
@@ -267,12 +243,16 @@ class IndexPage extends Component {
 const mapStateToProps=(state)=>{
     return {
         products:state.products,
+        page:state.page
     }
 }
 const mapDispatchToProps=(dispatch)=>{
     return {
         fetchProductsRequest:()=>{
             dispatch(actions.fetchProductsRequest());
+        },
+        getDataPage:(data)=>{
+            dispatch(actions.getDataPage(data));
         }
     }
 }
