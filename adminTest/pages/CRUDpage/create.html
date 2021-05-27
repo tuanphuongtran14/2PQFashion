@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Thêm sản phẩm</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="../../index.html"><img src="../../images/logo.svg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav navbar-nav-right"> 
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="../../images/faces/face28.jpg" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="fas fa-user-tie text-primary"></i>
+                Lê Văn Luyện
+              </a>
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li> 
+        </ul>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">
+              <i class="fas fa-clipboard-list"></i>
+              <span class="menu-title">&nbsp Quản lý danh mục</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
+              <i class="fas fa-archive"></i>
+              <span class="menu-title">&nbspQuản lý sản phẩm</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="product">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="./listProduct.html">Danh sách sản phẩm </a></li>
+                <li class="nav-item"> <a class="nav-link" href="./create.html">Thêm sản phẩm </a></li>
+                <li class="nav-item"> <a class="nav-link" href="./update.html">Sửa sản phẩm </a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#bill" aria-expanded="false" aria-controls="bill">
+              <i class="fas fa-shipping-fast"></i>
+              <span class="menu-title">&nbsp Quản lý đơn hàng</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="bill">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../billManagePage/billManage.html">Danh sách đơn hàng</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../billManagePage/billDetail.html">Chi tiết đơn hàng</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="menu-title">&nbsp Đăng xuất</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">        
+        <div class="content-wrapper">
+          <div class="row">
+            
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Thêm sản phẩm</h4>  
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputName1">Tên sản phẩm</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPrice">Giá sản phẩm</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">0.00</span>
+                            </div>
+                            <input type="number" min="1" class="form-control" id="exampleInputPrice" aria-label="Amount (to the nearest dollar)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputRating">Sao đánh giá</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">1 - 5</span>
+                            </div>
+                            <input type="number" min="1" max="5" class="form-control" id="exampleInputRating" aria-label="Rating (from 1 to 5)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mô tả ngắn</label>
+                        <textarea class="form-control" id="" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kích thước</label>
+                        <select class="js-example-basic-single form-control">
+                            <option value="AL">S</option>
+                            <option value="WY">M</option>
+                            <option value="AM">L</option>
+                            <option value="CA">XL</option>
+                            <option value="RU">2XL</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="exampleSelectColor">Màu</label>
+                            <select class="form-control" id="exampleSelectColor">
+                                <option>Đen</option>
+                                <option>Xanh dương</option>
+                                <option>Vàng</option>
+                                <option>Đỏ</option>
+                                <option>Trắng</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Số lượng</label>
+                        <input type="number" min="1" class="form-control" id="" placeholder="Số lượng">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mã hàng hoá</label>
+                        <input type="text" class="form-control" id="" placeholder="Mã hàng hoá">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Loại sản phẩm</label>
+                        <input type="text" class="form-control" id="" placeholder="Loại sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nhãn</label>
+                        <input type="text" class="form-control" id="" placeholder="Nhãn">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mô tả chi tiết</label>
+                        <textarea class="form-control" id="" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Bình luận</label>
+                        <input type="text" class="form-control" id="" placeholder="Bình luận">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Thông tin thêm</label>
+                        <textarea class="form-control" id="" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Tải hình ảnh</label>
+                      <input type="file" name="img[]" class="file-upload-default">
+                      <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled>
+                        <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-info" type="button">Đăng tải</button>
+                        </span>
+                      </div>
+                    </div> 
+                    <button type="submit" class="btn btn-success mr-2">Thêm sản phẩm</button>
+                    <button class="btn btn-light">Hủy</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html --> 
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="../../vendors/select2/select2.min.js"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/hoverable-collapse.js"></script>
+  <script src="../../js/template.js"></script>
+  <script src="../../js/settings.js"></script>
+  <script src="../../js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="../../js/file-upload.js"></script>
+  <script src="../../js/typeahead.js"></script>
+  <script src="../../js/select2.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
