@@ -1,7 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import SearchContainer from '../../containers/SearchContainer';
 import ProductListContainer from './../../containers/ProductListContainer';
-import ProductItem from './../../components/ProductItem';
 import {connect} from 'react-redux';
 import * as actions from './../../actions/index'
 class IndexPage extends Component {

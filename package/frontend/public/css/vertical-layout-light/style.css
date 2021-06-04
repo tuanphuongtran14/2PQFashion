@@ -28651,6 +28651,7 @@ div.tagsinput span.tag a {
 
 .sidebar .nav.sub-menu .nav-item {
   padding: 0;
+  position: relative;
 }
 
 .sidebar .nav.sub-menu .nav-item::before {
