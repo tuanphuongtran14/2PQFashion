@@ -423,13 +423,13 @@ ol {
 	position: relative;
 }
 
-.header__menu ul li.active a:after {
+.header__menu ul a.active:after {
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
 }
 
-.header__menu ul li:hover a:after {
+.header__menu ul a:hover:after {
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
