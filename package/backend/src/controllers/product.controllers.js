@@ -1,33 +1,57 @@
 const productServices = require('../services/product.services');
 const {validateProduct} = require('../models/product.models');
-
-exports.create = async (req, res) => {
-    let productInput = req.body;
-
-    // If req.body is empty, return 400 Error
-    if (!productInput) {
-        return res.status(400).json({
-            message: 'Can\' create an empty product'
-        });
+const multer = require('multer');
+const path = require('path');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'src/public/images/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-'  + Date.now()+ path.extname(file.originalname))
     }
-    
-    
-    // If req.body is not empty, start creating new product
-    try {
-        // Validate product input
-        validateProduct(productInput);
+  })
+   
+  var upload = multer({ storage: storage }).array('images');
 
-        // Create new product
-        let newProduct = await productServices.create(productInput);
+exports.create = (req, res) => {
+    upload(req, res, async function (err) {
+        if(err) {
+            console.log("err: " + err)
+            return res.status(500).json({
+                message: err.message || 'Can\' upload product images'
+            });
+        } else {
+            let productInput = req.body;
+
+            // If req.body is empty, return 400 Error
+            if (!productInput) {
+                return res.status(400).json({
+                    message: 'Can\' create an empty product'
+                });
+            }
+            
+            
+            // If req.body is not empty, start creating new product
+            try {
+                productInput.size = [...productInput.size];
+                productInput.color = [...productInput.color];
+
+                // Validate product input
+                validateProduct(productInput);
         
-        return res.status(200).json(newProduct);
-
-    } catch(err) {
-        // If errors occur, return 500 Error
-        return res.status(500).json({
-            message: err.message || "Some error occurred while creating the Product."
-        });
-    }  
+                // Create new product
+                let newProduct = await productServices.create(req, productInput);
+                
+                return res.status(200).json(newProduct);
+        
+            } catch(err) {
+                // If errors occur, return 500 Error
+                return res.status(500).json({
+                    message: err.message || "Some error occurred while creating the Product."
+                });
+            } 
+        }
+    }); 
 }
 
 exports.getAll = async (req, res) => {

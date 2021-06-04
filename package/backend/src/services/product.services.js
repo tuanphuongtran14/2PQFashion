@@ -7,19 +7,24 @@ const convertToSlug = (slug) => {
 
 
 
-exports.create = productInput => {
+exports.create = (req, productInput) => {
+    // Convert some infomation
+    productInput.tags = productInput.tags.replace(/ *, */g, ',').split(',');
+
     // Add other infomation for product input
-    
-    // let slug = productInput.name + '';
-    // productInput.slug = convertToSlug(slug);
-    // productInput.rating = {
-    //     grade: 0,
-    //     votes: 0
-    // };
-    // productInput.remaining = 0;
+    let slug = productInput.name + '';
+    productInput.slug = convertToSlug(slug);
+    productInput.rating = {
+        grade: 0,
+        votes: 0
+    };
+    productInput.remaining = productInput.quantity;
     productInput.sku = generateSKU(productInput);
-    // productInput.postOn = new Date();
-    console.log("product: " + productInput);
+    productInput.images = req.files.map(file => {
+        return `/images/upload/${file.filename}`
+    })
+    productInput.postOn = new Date();
+
     // Calling creating repositoty
     return productRepo.create(productInput);
 }

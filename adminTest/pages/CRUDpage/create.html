@@ -112,11 +112,11 @@
                   <h4 class="card-title">Thêm sản phẩm</h4>  
                   <form class="forms-sample">
                     <div class="form-group">
-                      <label for="exampleInputName1">Tên sản phẩm</label>
-                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                      <label for="name">Tên sản phẩm</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPrice">Giá sản phẩm</label>
+                        <label for="price">Giá sản phẩm</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
@@ -124,41 +124,34 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">0.00</span>
                             </div>
-                            <input type="number" min="1" class="form-control" id="exampleInputPrice" aria-label="Amount (to the nearest dollar)">
+                            <input type="number" min="1" class="form-control" name="price" id="price" aria-label="Amount (to the nearest dollar)">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="exampleInputRating">Sao đánh giá</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">1 - 5</span>
-                            </div>
-                            <input type="number" min="1" max="5" class="form-control" id="exampleInputRating" aria-label="Rating (from 1 to 5)">
-                        </div>
+                      <label for="brand">Hãng hiệu</label>
+                      <input type="text" class="form-control" id="brand" name="brand" placeholder="Bình luận">
+                  </div>
+
+                    <div class="form-group">
+                        <label for="shortDesc">Mô tả ngắn</label>
+                        <textarea class="form-control" id="shortDesc" name="shortDesc" rows="4"></textarea>
                     </div>
+
                     <div class="form-group">
-                        <label for="">Mô tả ngắn</label>
-                        <textarea class="form-control" id="" rows="4"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword4">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Kích thước</label>
-                        <select class="js-example-basic-single form-control">
-                            <option value="AL">S</option>
-                            <option value="WY">M</option>
-                            <option value="AM">L</option>
-                            <option value="CA">XL</option>
-                            <option value="RU">2XL</option>
+                        <label for="size">Kích thước</label>
+                        <select class="js-example-basic-single form-control" id="size" name="size" multiple>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="2XL">2XL</option>
                         </select>
                     </div>
                 
                     <div class="form-group">
-                        <label for="exampleSelectColor">Màu</label>
-                            <select class="form-control" id="exampleSelectColor">
+                        <label for="color">Màu</label>
+                            <select class="form-control" id="color" name="color">
                                 <option>Đen</option>
                                 <option>Xanh dương</option>
                                 <option>Vàng</option>
@@ -167,41 +160,30 @@
                             </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Số lượng</label>
-                        <input type="number" min="1" class="form-control" id="" placeholder="Số lượng">
+                        <label for="quantity">Số lượng</label>
+                        <input type="number" min="1" class="form-control" id="quantity" name="quantity" placeholder="Số lượng">
                     </div>
                     <div class="form-group">
-                        <label for="">Mã hàng hoá</label>
-                        <input type="text" class="form-control" id="" placeholder="Mã hàng hoá">
+                        <label for="category">Danh mục</label>
+                        <input type="text" class="form-control" id="category" name="category" placeholder="Loại sản phẩm">
                     </div>
                     <div class="form-group">
-                        <label for="">Loại sản phẩm</label>
-                        <input type="text" class="form-control" id="" placeholder="Loại sản phẩm">
+                        <label for="tags">Tags</label>
+                        <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags">
                     </div>
                     <div class="form-group">
-                        <label for="">Nhãn</label>
-                        <input type="text" class="form-control" id="" placeholder="Nhãn">
+                        <label for="fullDesc">Mô tả chi tiết</label>
+                        <textarea class="form-control" id="fullDesc" name="fullDesc" rows="5"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="">Mô tả chi tiết</label>
-                        <textarea class="form-control" id="" rows="4"></textarea>
+                        <label for="additionalInfo">Thông tin thêm</label>
+                        <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="5"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="">Bình luận</label>
-                        <input type="text" class="form-control" id="" placeholder="Bình luận">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Thông tin thêm</label>
-                        <textarea class="form-control" id="" rows="4"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>Tải hình ảnh</label>
-                      <input type="file" name="img[]" class="file-upload-default">
+                      <label for="images">Tải hình ảnh</label>
+                      <input type="file" id="images" name="images" class="file-upload-default">
                       <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled>
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-info" type="button">Đăng tải</button>
-                        </span>
+                        <input type="text" class="form-control file-upload-info">
                       </div>
                     </div> 
                     <button type="submit" class="btn btn-success mr-2">Thêm sản phẩm</button>
