@@ -11,6 +11,7 @@ exports.create = async (req, res) => {
         });
     }
     
+    
     // If req.body is not empty, start creating new product
     try {
         // Validate product input
@@ -18,6 +19,7 @@ exports.create = async (req, res) => {
 
         // Create new product
         let newProduct = await productServices.create(productInput);
+        
         return res.status(200).json(newProduct);
 
     } catch(err) {
