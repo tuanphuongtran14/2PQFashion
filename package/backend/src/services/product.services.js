@@ -9,16 +9,17 @@ const convertToSlug = (slug) => {
 
 exports.create = productInput => {
     // Add other infomation for product input
-    let slug = productInput.name + '';
-    productInput.slug = convertToSlug(slug);
-    productInput.rating = {
-        grade: 0,
-        votes: 0
-    };
-    productInput.remaining = 0;
+    
+    // let slug = productInput.name + '';
+    // productInput.slug = convertToSlug(slug);
+    // productInput.rating = {
+    //     grade: 0,
+    //     votes: 0
+    // };
+    // productInput.remaining = 0;
     productInput.sku = generateSKU(productInput);
-    productInput.postOn = new Date();
-
+    // productInput.postOn = new Date();
+    console.log("product: " + productInput);
     // Calling creating repositoty
     return productRepo.create(productInput);
 }
