@@ -36,3 +36,11 @@ export const onSearch=(keyword)=>{
         keyword,//products=products
     }
 }
+
+//xử lý sort theo giá
+export const onSort=(status)=>{
+    return {
+        type:types.SORT,
+        status,//products=products
+    }
+}

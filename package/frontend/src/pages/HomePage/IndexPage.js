@@ -16,7 +16,7 @@ class IndexPage extends Component {
     }
     componentDidMount(){
         this.props.fetchProductsRequest();
-        this.props.getDataPage(1);
+        this.props.getDataPage(this.state.page);
     }
     
     render(){
@@ -109,8 +109,8 @@ class IndexPage extends Component {
                     </div>
                 </section>
                 <section className="product spad">
-                <ProductListContainer pro/>
-                    
+                <ProductListContainer />
+ 
                 </section>     
                 
                 {/* <!-- Categories Section Begin --> */}

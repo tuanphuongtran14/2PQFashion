@@ -6,3 +6,6 @@ export const PAGE_INDEX="PAGE_INDEX"
 
 //search 
 export const SEARCH="SEARCH"
+
+//sort 
+export const SORT="SORT"
