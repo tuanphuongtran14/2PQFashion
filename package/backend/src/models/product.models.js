@@ -38,7 +38,8 @@ exports.Product = function(mongoose) {
 }
 
 exports.validateProduct = function(product) {
-    const Joi = require('joi');
+    const Joi = require('joi').extend(require("joi-file-extensions"));
+    
     let schema = Joi.object({
         name: Joi.string().min(1).max(100).required(),
         price: Joi.number().integer().min(0),
@@ -49,10 +50,10 @@ exports.validateProduct = function(product) {
         size: Joi.array(),
         color: Joi.array(),
         sku: Joi.string(),
-        tags: Joi.array(),
+        tags: Joi.string(),
         fullDesc: Joi.string(),
         additionalInfo: Joi.string(),
-        images: Joi.array(),
+        images: Joi.file().contents(),
         status: Joi.number().min(0).max(3)
     });
 

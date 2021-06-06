@@ -29,18 +29,16 @@
             var containerEl = document.querySelector('.product__filter');
             var mixer = mixitup(containerEl);
         }
+    });
 
-        /*------------------
-            Background Set
-        --------------------*/
-        $('.set-bg').each(function () {
-            
-            var bg = $(this).data('setbg');
-            $(this).css('background-image', 'url(' + bg + ')');
-        });
-    
-
-    
+    /*------------------
+        Background Set
+    --------------------*/
+    $('.set-bg').each(function () {
+        var bg = $(this).data('setbg');
+        console.log(bg);
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
 
     //Search Switch
     $('.search-switch').on('click', function () {
@@ -215,6 +213,5 @@
             }
         });
     });
-});
 
 })(jQuery);

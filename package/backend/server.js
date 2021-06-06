@@ -4,9 +4,13 @@ const app = express();
 const logger = require('morgan');
 const db = require('./src/models');
 const PORT = process.env.PORT || 3000;
+const path = require('path');
 
 // Configure logger
 app.use(logger('dev'));
+
+// Set public folder path
+app.use(express.static(path.join(__dirname + 'src/public')));
 
 // Configure body parser
 app.use(express.json());

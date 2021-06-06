@@ -1,9 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import SearchContainer from '../../containers/SearchContainer';
 import ProductListContainer from './../../containers/ProductListContainer';
-import ProductItem from './../../components/ProductItem';
-import Footer from './../../components/Footer';
-import Header from './../../components/Header';
 import {connect} from 'react-redux';
 import * as actions from './../../actions/index'
 class IndexPage extends Component {
@@ -21,8 +18,7 @@ class IndexPage extends Component {
     
     render(){
         return (
-            <Fragment>
-                <Header/>
+            <Fragment> 
                 <section className="hero">
                     <div className="hero__slider owl-carousel">
                         <div className="hero__items set-bg" data-setbg="img/hero/hero-1.jpg" >
@@ -34,12 +30,12 @@ class IndexPage extends Component {
                                             <h2>Fall - Winter Collections 2030</h2>
                                             <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
                                             commitment to exceptional quality.</p>
-                                            <a href="#" className="primary-btn">Shop now <span className="arrow_right"></span></a>
+                                            <a href="/" className="primary-btn">Shop now <span className="arrow_right"></span></a>
                                             <div className="hero__social">
-                                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                                <a href="#"><i className="fa fa-pinterest"></i></a>
-                                                <a href="#"><i className="fa fa-instagram"></i></a>
+                                                <a href="/"><i className="fa fa-facebook"></i></a>
+                                                <a href="/"><i className="fa fa-twitter"></i></a>
+                                                <a href="/"><i className="fa fa-pinterest"></i></a>
+                                                <a href="/"><i className="fa fa-instagram"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -55,12 +51,12 @@ class IndexPage extends Component {
                                             <h2>Fall - Winter Collections 2030</h2>
                                             <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
                                             commitment to exceptional quality.</p>
-                                            <a href="#" className="primary-btn">Shop now <span className="arrow_right"></span></a>
+                                            <a href="/" className="primary-btn">Shop now <span className="arrow_right"></span></a>
                                             <div className="hero__social">
-                                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                                <a href="#"><i className="fa fa-pinterest"></i></a>
-                                                <a href="#"><i className="fa fa-instagram"></i></a>
+                                                <a href="/"><i className="fa fa-facebook"></i></a>
+                                                <a href="/"><i className="fa fa-twitter"></i></a>
+                                                <a href="/"><i className="fa fa-pinterest"></i></a>
+                                                <a href="/"><i className="fa fa-instagram"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -79,29 +75,29 @@ class IndexPage extends Component {
                                     </div>
                                     <div className="banner__item__text">
                                         <h2>Clothing Collections 2030</h2>
-                                        <a href="#">Shop now</a>
+                                        <a href="/">Shop now</a>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-5">
                                 <div className="banner__item banner__item--middle">
                                     <div className="banner__item__pic">
-                                        <img src="img/banner/banner-2.jpg" />
+                                        <img src="img/banner/banner-2.jpg" alt='' />
                                     </div>
                                     <div className="banner__item__text">
                                         <h2>Accessories</h2>
-                                        <a href="#">Shop now</a>
+                                        <a href="/">Shop now</a>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-7">
                                 <div className="banner__item banner__item--last">
                                     <div className="banner__item__pic">
-                                        <img src="img/banner/banner-3.jpg" />
+                                        <img src="img/banner/banner-3.jpg" alt= ''/>
                                     </div>
                                     <div className="banner__item__text">
                                         <h2>Shoes Spring 2030</h2>
-                                        <a href="#">Shop now</a>
+                                        <a href="/">Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +149,7 @@ class IndexPage extends Component {
                                             <p>Seconds</p>
                                         </div>
                                     </div>
-                                    <a href="#" className="primary-btn">Shop now</a>
+                                    <a href="/" className="primary-btn">Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +176,7 @@ class IndexPage extends Component {
                                     <h2>Instagram</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                     labore et dolore magna aliqua.</p>
-                                    <h3>#Male_Fashion</h3>
+                                    <h3>/Male_Fashion</h3>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +202,7 @@ class IndexPage extends Component {
                                     <div className="blog__item__text">
                                         <span><img src="img/icon/calendar.png" alt=""/> 16 February 2020</span>
                                         <h5>What Curling Irons Are The Best Ones</h5>
-                                        <a href="#">Read More</a>
+                                        <a href="/">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +212,7 @@ class IndexPage extends Component {
                                     <div className="blog__item__text">
                                         <span><img src="img/icon/calendar.png" alt=""/> 21 February 2020</span>
                                         <h5>Eternity Bands Do Last Forever</h5>
-                                        <a href="#">Read More</a>
+                                        <a href="/">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -226,14 +222,13 @@ class IndexPage extends Component {
                                     <div className="blog__item__text">
                                         <span><img src="img/icon/calendar.png" alt=""/> 28 February 2020</span>
                                         <h5>The Health Benefits Of Sunglasses</h5>
-                                        <a href="#">Read More</a>
+                                        <a href="/">Read More</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <Footer/>
+                </section> 
                 <SearchContainer />
             </Fragment>
         );

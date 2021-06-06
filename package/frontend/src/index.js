@@ -6,6 +6,7 @@ import {applyMiddleware,createStore} from 'redux';
 import appReducers from './reducers/index';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const store=createStore(
@@ -13,9 +14,11 @@ const store=createStore(
   applyMiddleware(thunk)
 )
 ReactDOM.render(
+  <BrowserRouter>
   <Provider store={store}>
     <App />
-  </Provider>,
+  </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
