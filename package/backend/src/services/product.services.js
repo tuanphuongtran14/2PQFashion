@@ -9,7 +9,7 @@ const convertToSlug = (slug) => {
 
 exports.create = (req, productInput) => {
     // Convert some infomation
-    productInput.tags = productInput.tags.replace(/ *, */g, ',').split(',');
+    productInput.tags = productInput.tags.trim().replace(/ *, */g, ',').split(',');
 
     // Add other infomation for product input
     let slug = productInput.name + '';

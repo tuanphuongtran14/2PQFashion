@@ -33,8 +33,16 @@ exports.create = (req, res) => {
             
             // If req.body is not empty, start creating new product
             try {
-                productInput.size = [...productInput.size];
-                productInput.color = [...productInput.color];
+                console.log(productInput);
+                console.log(productInput.status);
+                productInput.status = Number(productInput.status);
+                console.log(productInput.status);
+
+                if(typeof productInput.size === "string")
+                    productInput.size = new Array(productInput.size);
+                    
+                if(typeof productInput.color === "string")
+                    productInput.color = new Array(productInput.color);
 
                 // Validate product input
                 validateProduct(productInput);
@@ -46,6 +54,7 @@ exports.create = (req, res) => {
         
             } catch(err) {
                 // If errors occur, return 500 Error
+                console.log("err: " + err)
                 return res.status(500).json({
                     message: err.message || "Some error occurred while creating the Product."
                 });
