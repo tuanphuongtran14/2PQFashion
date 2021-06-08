@@ -8,55 +8,7 @@ export default class AddProductPage extends Component {
             loading: false
         }
     }
-    // handleInputChange = event => {
-    //     let target = event.target;
-    //     let name = target.name;
-    //     let value = target.value;
-    //     let type = target.type;
 
-    //     switch(type) {
-    //         case 'textarea':
-    //         case 'text': 
-    //             this.setState({
-    //                 [name]: value
-    //             });
-    //             break;
-            
-    //         case 'number':
-    //             value = Number(value);
-    //             this.setState({
-    //                 [name]: value
-    //             });
-    //             break;
-
-    //         case 'select-multiple': 
-    //             let options = target.options;
-    //             let values = [];
-                
-    //             for (var i = 0, l = options.length; i < l; i++) {
-    //                 if (options[i].selected) {
-    //                   values.push(options[i].value);
-    //                 }
-    //               }
-    //             this.setState({
-    //                 [name]: values
-    //             });
-    //             break;
-
-    //         case 'file': 
-    //             let files = event.target.files;
-    //             let images = [];
-    //             for(let i =0; i < files.length; i++) {
-    //                 images.push(files[i]);
-    //             }
-    //             this.setState({
-    //                 images: images
-    //             });
-    //             console.log(this.state)
-    //             break;
-    //         default: 
-    //     }
-    // }
     displayLoading = () => {
         if(this.state.loading) {
             return (
@@ -144,6 +96,15 @@ export default class AddProductPage extends Component {
                                 <option value="Xanh dương">Xanh dương</option>
                                 <option value="Vàng">Vàng</option>
                                 <option value="Đỏ">Đỏ</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="color">Tình trạng phân loại</label>
+                            <select className="form-control" id="status" name="status" onChange={this.handleInputChange} required>
+                                <option value="0">Bình thường</option>
+                                <option value="1">Best Sellers</option>
+                                <option value="2">New Arrivals</option>
+                                <option value="3">Hot Sales</option>
                             </select>
                         </div>
                         <div className="form-group">

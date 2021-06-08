@@ -20,7 +20,8 @@ exports.Product = function(mongoose) {
         remaining: Number,
         sku: {
             type: String,
-            unique: true
+            unique: true,
+            index: true
         },
         category: String,
         tags: Array,
@@ -66,7 +67,11 @@ exports.validateProduct = function(product) {
 exports.generateSKU = function(product) {
     let sku = '';
     let categoryWords = product.category.split(' ');
-    categoryID = categoryWords[0][0] + categoryWords[1][0]; // First letter first word + first letter second word
+    let categoryID = '';
+    categoryWords.forEach((word, index) => {
+        if(index < 2)
+        categoryID += categoryWords[index][0];
+    });
     categoryID = removeVietnameseTones(categoryID).toUpperCase();
     let brandID = removeVietnameseTones(product.brand.slice(0,4)).toUpperCase().padEnd(4,0);
     let currentDate = new Date();
