@@ -2,6 +2,7 @@ import React,{Component,Fragment} from 'react';
 import ProductList from '../components/ProductList'
 import {connect} from 'react-redux'
 import ProductItem from '../components/ProductItem';
+import { withRouter } from "react-router";
 class ShopContainer extends Component {
   constructor(props){
     super(props);
@@ -49,11 +50,72 @@ class ShopContainer extends Component {
   }
   render(){
     var {products,keyword,sort}=this.props;
+     var {match}=this.props;
+    let query= new URLSearchParams(this.props.location.search);
+    query.get("value")
+    var filter=match.params.filter;
+    if(filter){
+      
+      if(filter==='categories'){
+        
+        products=products.filter(product=>{
+          return product.category===query.get("value");
+      })
+      
+    }else if(filter==='branding'){
+        products=products.filter(product=>{
+          return product.brand===query.get("value");
+      })
+    }else if(filter==='tags'){
+        products=products.filter(product=>{
+          var result=false;
+          product.tags.map(element => {
+            if(element===query.get("value")){
+              result=true;
+            }
+          });
+          if(result){
+            return 1;
+          }        
+          return 0;
+      })
+      }
+      else if(filter==='sizes'){
+        products=products.filter(product=>{
+          var result=false;
+          product.size.map(element => {
+            if(element===query.get("value")){
+              result=true;
+            }
+          });
+          if(result){
+            return 1;
+          }        
+          return 0;
+      })
+      }
+      else if(filter==='colors'){
+        products=products.filter(product=>{
+          var result=false;
+          product.color.map(element => {
+            if(element===query.get("value")){
+              result=true;
+            }
+          });
+          if(result){
+            return 1;
+          }        
+          return 0;
+      })
+      }
+    }
     //xử lý sự kiện search
     if(keyword){
       products=products.filter(product=>{
+        keyword=keyword.toLowerCase()
           return product.name.toLowerCase().indexOf(keyword)!==-1;
       })
+     
   }
   //xử lý sự kiện sort
   if(sort==1){
@@ -111,4 +173,4 @@ const mapDispatchToProps=(dispatch)=>{
   return {
       }
   }
-export default connect(mapStateToProps,mapDispatchToProps)(ShopContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(ShopContainer));

@@ -10,7 +10,9 @@ import {
 
 class Header extends Component {
 
-
+onClick=(event)=>{
+    event.preventDefault();
+}
 
   render(){
     return (
@@ -55,7 +57,7 @@ class Header extends Component {
                             <nav className="header__menu mobile-menu">
                                 <ul>
                                     <li ><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
-                                    <li><a href="./shop.html">Shop</a></li>
+                                    <li><a href="/shop">Shop</a></li>
                                     <li><a href="/">Pages</a>
                                         <ul className="dropdown">
                                             <li>
@@ -80,7 +82,8 @@ class Header extends Component {
                         </div>
                         <div className="col-lg-3 col-md-3">
                             <div className="header__nav__option">
-                                <a href="/" className="search-switch"><img src="img/icon/search.png" alt=""/></a>
+                                
+                                <a onClick={this.onClick} className="search-switch"><img src="img/icon/search.png" alt=""/></a>
                                 <a href="/"><img src="img/icon/heart.png" alt=""/></a>
                                 <a href="/"><img src="img/icon/cart.png" alt=""/> <span>0</span></a>
                                 <div className="price">$0.00</div>

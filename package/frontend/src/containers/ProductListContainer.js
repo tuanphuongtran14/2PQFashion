@@ -40,7 +40,8 @@ class ProductListContainer extends Component {
     //xử lý sự kiện search
     if(keyword){
       products=products.filter(product=>{
-          return product.name.toLowerCase().indexOf(keyword)!==-1;
+        keyword=keyword.toLowerCase();
+        return product.name.toLowerCase().indexOf(keyword)!==-1;
       })
   }
     return (

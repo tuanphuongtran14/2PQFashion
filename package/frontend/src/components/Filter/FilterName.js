@@ -17,15 +17,13 @@ class FilterName extends Component {
         this.setState({
             [name]:value
         });
-        console.log(value);
     }
     onSearch=()=>
     {   
 
         this.props.onSearch(this.state.keyword);
         $('.search-model').fadeOut(400, function () {
-            
-        });
+            });
     }
   render(){
     const    {keyword}=this.state;

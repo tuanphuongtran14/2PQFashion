@@ -1,11 +1,8 @@
 import React,{Component} from 'react';
-<<<<<<< HEAD
-import ShopPage from './pages/ShopPage/ShopPage';
-
-=======
 import IndexPage from './pages/HomePage/IndexPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import ContactPage from './pages/ContactPage/ContactPage';
+import ShopPage from './pages/ShopPage/ShopPage';
 import AdminPage from './pages/Admin/AdminPage';
 import {
   BrowserRouter as Router,
@@ -16,28 +13,30 @@ import {
 import { withRouter } from "react-router";
 import Footer from './components/Footer';
 import Header from './components/Header';
->>>>>>> 21a876fd809333f1e0601e695787e95f4c02ed9f
+import routes from './routes'
 
 class App extends Component {
   
   render(){
+    
   if(this.props.location.pathname.indexOf('/admin') != 0)
     return (
-<<<<<<< HEAD
-        <div className="App">
-            <ShopPage />
-            
-=======
       <Router>
         <div className="App"> 
             <Header/>
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/" >
                 <IndexPage />
               </Route>
               <Route path="/about">
                 <AboutPage />
               </Route> 
+              <Route path="/shop" exact>
+                <ShopPage/>
+              </Route>
+              <Route path="/shop/:filter" match="match">
+                <ShopPage/>
+              </Route>
               <Route path='/contact'>
                 <ContactPage />
               </Route>
@@ -46,7 +45,6 @@ class App extends Component {
               </Route>
             </Switch>
             <Footer/>
->>>>>>> 21a876fd809333f1e0601e695787e95f4c02ed9f
         </div>
       </Router>
     );

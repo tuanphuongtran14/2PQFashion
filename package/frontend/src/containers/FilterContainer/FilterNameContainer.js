@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
-import FilterName from './../components/Filter/FilterName'
+import FilterName from '../../components/Filter/FilterName'
 import {connect} from 'react-redux'
-import * as actions from './../actions/index'
+import * as actions from '../../actions/index'
 class FilterNameContainer extends Component {
   render(){
     return (

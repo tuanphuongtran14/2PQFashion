@@ -1,22 +1,10 @@
 import React,{Component,Fragment} from 'react';
 class ProductItem extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            id:'',
-            name:'',
-            status:0,
-            images:[],
-            price:0,
-            color:[],
-            rating:{},
-                }
-    }
     renderClass=(status)=>{
         var result='';
-        if(status==2){
+        if(status===2){
             result="hot-sales";
-        }else if(status==1){
+        }else if(status=1){
             result="new-arrivals";
         }
         return result;
@@ -25,6 +13,7 @@ class ProductItem extends Component {
         var result=[];
         for(var i=1;i<=star;i++){
             result.push(<i key={i} className="fa fa-star"></i>);
+            
         }
         for(var i=1;i<=5-star;i++){
             result.push(<i key={i+5} className="fa fa-star-o"></i>);
@@ -55,7 +44,7 @@ class ProductItem extends Component {
                 <div className={`${onPage===1?'col-lg-3':'col-lg-4'} col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
                     <div className="product__item">
                         <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`}} >
-                        <span className="label" style={{display:`${status!=2?'none':'block'}`}}>Sale</span>
+                        <span className="label" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
                                 <li><a href="#" className="btn--square"><i className="fa fa-heart-o" aria-hidden="true"></i></a></li>
                                 <li><a href="#" className="btn--square"><i className="fa fa-cart-plus" aria-hidden="true"></i></a></li>
