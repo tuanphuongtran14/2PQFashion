@@ -17,9 +17,14 @@ const routes=[
 
     
     {
-        path:'/shop/{id}', 
+        path:'/shop/:filter', 
         exact: false, 
         main:({match,history})=><ShopPage match={match}  history={history}/>
+    },
+    {
+        path:'/shop', 
+        exact: true, 
+        main:({match,history})=><ShopPage/>
     },
     {
         path:'/about', 

@@ -1540,7 +1540,14 @@ ol {
 	padding-left: 10px;
 	padding-right: 15px;
 }
-
+.img-fluid{
+	width:200px;
+	height:auto;
+	padding-left:20px
+}
+.qty{
+	margin-right:5px;
+}
 /*---------------------
   Shop
 -----------------------*/

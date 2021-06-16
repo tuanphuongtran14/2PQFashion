@@ -1,5 +1,5 @@
 import React,{Component,Fragment} from 'react';
-
+import {connect} from 'react-redux'
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,7 +13,13 @@ class Header extends Component {
 onClick=(event)=>{
     event.preventDefault();
 }
-
+countPrice=(cart)=>{
+    var result=0;
+    cart.forEach(item=>{
+        result+=item.price*item.quantity;
+    })
+    return result;
+}
   render(){
     return (
         <Fragment>
@@ -50,7 +56,7 @@ onClick=(event)=>{
                     <div className="row">
                         <div className="col-lg-3 col-md-3">
                             <div className="header__logo">
-                                <Link to="/"><img src="img/logo.png" alt=""/></Link>
+                                <Link to="/"><img src="/img/logo.png" alt=""/></Link>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
@@ -83,10 +89,10 @@ onClick=(event)=>{
                         <div className="col-lg-3 col-md-3">
                             <div className="header__nav__option">
                                 
-                                <a onClick={this.onClick} className="search-switch"><img src="img/icon/search.png" alt=""/></a>
-                                <a href="/"><img src="img/icon/heart.png" alt=""/></a>
-                                <a href="/"><img src="img/icon/cart.png" alt=""/> <span>0</span></a>
-                                <div className="price">$0.00</div>
+                                <Link to={''} onClick={this.onClick} href="#" className="search-switch"><img src="/img/icon/search.png" alt=""/></Link>
+                                <Link type="button" to={`/`}><img src="/img/icon/heart.png" alt=""/></Link>
+                                <Link type="button" to={`/shop/cart`}><img src="/img/icon/cart.png" alt=""/> <span>0</span></Link>
+                                <div className="price">${this.countPrice(this.props.cart)}</div>
                             </div>
                         </div>
                     </div>
@@ -101,4 +107,14 @@ onClick=(event)=>{
   
 }
 
-export default Header;
+const mapStateToProps = (state)=>{
+    return{
+        cart:state.cart,
+    }
+  }
+  const mapDispatchToProps = (dispatch)=>{
+    return{
+         
+    }
+  }
+  export default connect (mapStateToProps,mapDispatchToProps)(Header);

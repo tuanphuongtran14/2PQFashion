@@ -30,7 +30,7 @@ class Sort extends Component {
             {/* <!-- Sort Begin --> */}
             <div className="shop__product__option__right">
                 <p>Sort by Price:</p>
-                <select style={{width:'120px', fontSize:'15px'}}
+                <select style={{width:'150px', fontSize:'15px'}} class="custom-select"
                      name='status' 
                      value={this.state.status}
                      onChange={this.onChange}>

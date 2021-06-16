@@ -4,7 +4,7 @@ class ProductItem extends Component {
         var result='';
         if(status===2){
             result="hot-sales";
-        }else if(status=1){
+        }else if(status===1){
             result="new-arrivals";
         }
         return result;
@@ -33,6 +33,19 @@ class ProductItem extends Component {
         }
         return result;
     }
+    onClick=(e)=>{
+        e.preventDefault();
+        const{sku,slug,price,name,images}=this.props.product;
+        const cartItem={
+            sku:sku,
+            name:name,
+            images:images,
+            slug:slug,
+            price:price,
+            quantity:1,
+        }                     
+        this.props.onAddToCart(cartItem);
+    }
     render(){
         const{images,name,price,status,rating}=this.props.product;
         const {onChange,onPage}=this.props;
@@ -47,7 +60,7 @@ class ProductItem extends Component {
                         <span className="label" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
                                 <li><a href="#" className="btn--square"><i className="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                                <li><a href="#" className="btn--square"><i className="fa fa-cart-plus" aria-hidden="true"></i></a></li>
+                                <li><a onClick={this.onClick} className="btn--square"><i className="fa fa-cart-plus" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                         <div className="product__item__text">

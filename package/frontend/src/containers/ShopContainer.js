@@ -3,6 +3,7 @@ import ProductList from '../components/ProductList'
 import {connect} from 'react-redux'
 import ProductItem from '../components/ProductItem';
 import { withRouter } from "react-router";
+import * as actions from './../actions/index';
 class ShopContainer extends Component {
   constructor(props){
     super(props);
@@ -24,6 +25,7 @@ class ShopContainer extends Component {
                     onChange={this.state.option}
                     onPage={this.props.onPage}
                     onSort={this.props.onSort}
+                    onAddToCart={this.props.onAddToCart}
                 />)
             } 
           } 
@@ -35,6 +37,7 @@ class ShopContainer extends Component {
                 onChange={this.state.option}
                 onPage={this.props.onPage}
                 onSort={this.props.onSort}
+                onAddToCart={this.props.onAddToCart}
             />)
           }
                   
@@ -171,6 +174,9 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
   return {
+    onAddToCart:(product)=>{
+      dispatch(actions.onAddToCart(product));
+    }
       }
   }
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(ShopContainer));

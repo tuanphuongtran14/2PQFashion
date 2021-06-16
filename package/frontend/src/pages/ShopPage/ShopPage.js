@@ -150,7 +150,8 @@ class ShopPage extends Component {
                                                             <label className="c-2" >
                                                                 <input type="radio" id="sp-2"/>
                                                             </label>
-                                                            </Link><Link type="button" to={`/shop/colors?value=orange`}>
+                                                            </Link>
+                                                            <Link type="button" to={`/shop/colors?value=orange`}>
                                                             <label className="c-3" >
                                                                 <input type="radio" id="sp-3"/>
                                                             </label>

@@ -2,6 +2,7 @@ import React,{Component,Fragment} from 'react';
 import ProductList from './../components/ProductList'
 import {connect} from 'react-redux'
 import ProductItem from './../components/ProductItem';
+import * as actions from './../actions/index';
 class ProductListContainer extends Component {
   constructor(props){
     super(props);
@@ -22,6 +23,7 @@ class ProductListContainer extends Component {
                     product={product}
                     onChange={this.state.option}
                     onPage={this.props.onPage}
+                    onAddToCart={this.props.onAddToCart}
                 />)
             } 
           }         
@@ -76,11 +78,14 @@ const mapStateToProps=(state)=>{
   return {
       products:state.products,
       onPage:state.page,
-      keyword:state.search
+      keyword:state.search,
   }
 }
 const mapDispatchToProps=(dispatch)=>{
   return {
+      onAddToCart:(product)=>{
+        dispatch(actions.onAddToCart(product));
+      }
       }
   }
 export default connect(mapStateToProps,mapDispatchToProps)(ProductListContainer);

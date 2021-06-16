@@ -16,7 +16,6 @@ class Search extends Component {
         this.setState({
             [name]:value
         });
-        console.log(value);
     }
     onSearch=()=>
     {   
