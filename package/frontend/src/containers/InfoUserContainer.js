@@ -10,6 +10,7 @@ class InfoUserContainer extends Component {
         <Fragment >
             <InfoUser onaddInfoUserToOrder={this.props.onaddInfoUserToOrder}
                       order={this.props.order}
+                      cart={this.props.cart}
                       onaddBillRequest={this.props.onaddBillRequest}
                       onAddBillSucess={this.props.onAddBillSucess}
                       history={this.props.history}/>
@@ -21,7 +22,8 @@ class InfoUserContainer extends Component {
 }
 const mapStateToProps = (state)=>{
   return{
-    order:state.order
+    order:state.order,
+    cart:state.cart,
   }
 }
 const mapDispatchToProps = (dispatch)=>{

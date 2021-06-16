@@ -14,7 +14,7 @@ class CartItem extends Component {
     }
   render(){
     const    {cartItem}=this.props;
-    console.log(cartItem)
+
     return (
         <Fragment>
             <tr>

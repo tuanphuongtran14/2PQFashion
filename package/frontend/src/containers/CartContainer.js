@@ -34,7 +34,7 @@ class CartContainer extends Component {
   }
   render(){
       var {cart}=this.props;
-      console.log(cart);
+
     return (
         <Fragment >
             <Cart >

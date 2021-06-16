@@ -30,12 +30,23 @@ class InfoUser extends Component {
     onSubmit=(e)=>{
         e.preventDefault();
 
-        var {history}=this.props;
+        var {history,cart}=this.props;
         var order=this.props.order;
         var {nameCustomer, address,email,orderNote,paymentMethod,phone}=this.state;
+        var products=cart.map((item)=>{
+
+            return{
+                sku:item.sku,
+                quantity:item.quantity,
+                price:item.price,
+            }   
+        })
+        const price = cart.reduce((total, item) => {
+            return total + item.quantity*item.price;
+          }, 0);
         var newBill={
-            products: order.products,
-             totalPrice: order.totalPrice
+            products: products,
+             totalPrice: price-order.salePrice
              ,
              nameCustomer:nameCustomer,
              id_User: order.id_User,
@@ -85,7 +96,7 @@ class InfoUser extends Component {
                     </div>
                 </div>
                 <div className="checkout__input">
-                    <select id="PaymentMethod" value={paymentMethod} name='paymentMethod' class="custom-select" onChange={this.onChange}>
+                    <select id="PaymentMethod" value={paymentMethod} name='paymentMethod' className="custom-select" onChange={this.onChange}>
                         <option value="Trả tiền khi nhận hàng">Trả tiền khi nhận hàng</option>
                         <option value="Chuyển khoản ngân hàng">Chuyển khoản ngân hàng</option>
                         <option value="Ví điện tử momo">Ví điện tử momo</option>
