@@ -1,22 +1,10 @@
 import React,{Component,Fragment} from 'react';
 class ProductItem extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            id:'',
-            name:'',
-            status:0,
-            images:[],
-            price:0,
-            color:[],
-            rating:{},
-                }
-    }
     renderClass=(status)=>{
         var result='';
-        if(status==2){
+        if(status===2){
             result="hot-sales";
-        }else if(status==1){
+        }else if(status===1){
             result="new-arrivals";
         }
         return result;
@@ -25,6 +13,7 @@ class ProductItem extends Component {
         var result=[];
         for(var i=1;i<=star;i++){
             result.push(<i key={i} className="fa fa-star"></i>);
+            
         }
         for(var i=1;i<=5-star;i++){
             result.push(<i key={i+5} className="fa fa-star-o"></i>);
@@ -44,6 +33,19 @@ class ProductItem extends Component {
         }
         return result;
     }
+    onClick=(e)=>{
+        e.preventDefault();
+        const{sku,slug,price,name,images}=this.props.product;
+        const cartItem={
+            sku:sku,
+            name:name,
+            images:images,
+            slug:slug,
+            price:price,
+            quantity:1,
+        }                     
+        this.props.onAddToCart(cartItem);
+    }
     render(){
         const{images,name,price,status,rating}=this.props.product;
         const {onChange,onPage}=this.props;
@@ -52,22 +54,21 @@ class ProductItem extends Component {
         
         return (
             <Fragment>
-                <div className={`col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
+                <div className={`${onPage===1?'col-lg-3':'col-lg-4'} col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
                     <div className="product__item">
                         <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`}} >
+                        <span className="label" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""/></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""/> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""/></a></li>
+                                <li><a href="#" className="btn--square"><i className="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a onClick={this.onClick} className="btn--square"><i className="fa fa-cart-plus" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                         <div className="product__item__text">
                             <h6>{name}</h6>
-                            <a href="#" className="add-cart">+ Add To Cart</a>
                             <div className="rating">
                                 {this.renderStarRate(rating.grade)}
                             </div>
-                            <h5>{price}</h5>
+                            <h5>${price}</h5>
                             <div className="product__color__select">
                                 <label >
                                     <input type="radio" id="pc-4"/>
