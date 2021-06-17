@@ -7,10 +7,14 @@ import {
 } from "react-router-dom";
 import CatogoryManagement from './CategoryManagement';
 import AddProduct from './AddProductPage';
+import {Helmet} from 'react-helmet'
 
 export default function AdminPage() {
     return (
       <Router>
+        <Helmet>
+          <title>Admin pages</title>
+        </Helmet>
         <div className="container-scroller">
         {/* partial:partials/_navbar.html */}
         <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">

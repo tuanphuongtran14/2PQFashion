@@ -4,6 +4,7 @@ class ContactForm extends Component {
     render() {
         return (
             <div className="contact__form">
+                
                 <form action="#">
                     <div className="row">
                         <div className="col-lg-6">
