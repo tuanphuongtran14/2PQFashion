@@ -1,26 +1,84 @@
-import React,{Component,Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import SearchContainer from '../../containers/SearchContainer';
 import ProductListContainer from './../../containers/ProductListContainer';
-import {connect} from 'react-redux';
-import * as actions from './../../actions/index'
+import { connect } from 'react-redux';
+import * as actions from './../../actions/index';
+import $ from 'jquery';
+import OwlCarousel from 'react-owl-carousel';
+import Countdown from 'react-countdown';
+
 class IndexPage extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            page:1,
+        this.state = {
+            page: 1,
         }
-        ;
+            ;
     }
-    componentDidMount(){
+    componentDidMount() {
         this.props.fetchProductsRequest();
         this.props.getDataPage(this.state.page);
     }
-    
-    render(){
+    componentDidUpdate() {
+        console.log('update')
+        $(function () {
+            /*------------------
+            Background Set
+            --------------------*/
+            $('.set-bg').each(function () {
+                var bg = $(this).data('setbg');
+                console.log(bg);
+                $(this).css('background-image', 'url(' + bg + ')');
+            });
+
+        })
+    }
+
+    sales = ({ days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            return <span>Hết hạn</span>;
+          } else {
+            // Render a countdown
+            return (
+                <Fragment>
+                    <div className='cd-item'>
+                        <span>{days}</span> <p>Days</p> 
+                    </div>
+                    <div className='cd-item'>
+                        <span>{hours}</span> 
+                        <p>Hours</p> 
+                    </div>
+                    <div className='cd-item'>
+                        <span>{minutes}</span> 
+                        <p>Minutes</p> 
+                    </div>
+                    <div className='cd-item'>
+                        <span>{seconds}</span>
+                        <p>Seconds</p>
+                    </div>
+                </Fragment>
+                
+            );
+          }
+    }
+
+    render() {
         return (
-            <Fragment> 
+            <Fragment>
                 <section className="hero">
-                    <div className="hero__slider owl-carousel">
+                    <OwlCarousel 
+                        className='hero__slider'
+                        loop 
+                        margin={0} 
+                        items={1} 
+                        dots={false} 
+                        nav={true} 
+                        navText={["<span class='arrow_left'><span/>", "<span class='arrow_right'><span/>"]}
+                        smartSpeed={1200}
+                        autoHeight={false}
+                        autoplay={false}
+                    >
                         <div className="hero__items set-bg" data-setbg="img/hero/hero-1.jpg" >
                             <div className="container">
                                 <div className="row">
@@ -29,7 +87,7 @@ class IndexPage extends Component {
                                             <h6>Summer Collection</h6>
                                             <h2>Fall - Winter Collections 2030</h2>
                                             <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                            commitment to exceptional quality.</p>
+                                                commitment to exceptional quality.</p>
                                             <a href="/" className="primary-btn">Shop now <span className="arrow_right"></span></a>
                                             <div className="hero__social">
                                                 <a href="/"><i className="fa fa-facebook"></i></a>
@@ -50,7 +108,7 @@ class IndexPage extends Component {
                                             <h6>Summer Collection</h6>
                                             <h2>Fall - Winter Collections 2030</h2>
                                             <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                            commitment to exceptional quality.</p>
+                                                commitment to exceptional quality.</p>
                                             <a href="/" className="primary-btn">Shop now <span className="arrow_right"></span></a>
                                             <div className="hero__social">
                                                 <a href="/"><i className="fa fa-facebook"></i></a>
@@ -63,7 +121,7 @@ class IndexPage extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </OwlCarousel>
                 </section>
                 <section className="banner spad">
                     <div className="container">
@@ -71,7 +129,7 @@ class IndexPage extends Component {
                             <div className="col-lg-7 offset-lg-4">
                                 <div className="banner__item">
                                     <div className="banner__item__pic">
-                                        <img src="/img/banner/banner-1.jpg" alt=""/>
+                                        <img src="/img/banner/banner-1.jpg" alt="" />
                                     </div>
                                     <div className="banner__item__text">
                                         <h2>Clothing Collections 2030</h2>
@@ -93,7 +151,7 @@ class IndexPage extends Component {
                             <div className="col-lg-7">
                                 <div className="banner__item banner__item--last">
                                     <div className="banner__item__pic">
-                                        <img src="/img/banner/banner-3.jpg" alt= ''/>
+                                        <img src="/img/banner/banner-3.jpg" alt='' />
                                     </div>
                                     <div className="banner__item__text">
                                         <h2>Shoes Spring 2030</h2>
@@ -105,10 +163,10 @@ class IndexPage extends Component {
                     </div>
                 </section>
                 <section className="product spad">
-                <ProductListContainer />
- 
-                </section>     
-                
+                    <ProductListContainer />
+
+                </section>
+
                 {/* <!-- Categories Section Begin --> */}
                 <section className="categories spad">
                     <div className="container">
@@ -120,7 +178,7 @@ class IndexPage extends Component {
                             </div>
                             <div className="col-lg-4">
                                 <div className="categories__hot__deal">
-                                    <img src="/img/product-sale.png" alt=""/>
+                                    <img src="/img/product-sale.png" alt="" />
                                     <div className="hot__deal__sticker">
                                         <span>Sale Of</span>
                                         <h5>$29.99</h5>
@@ -132,22 +190,10 @@ class IndexPage extends Component {
                                     <span>Deal Of The Week</span>
                                     <h2>Multi-pocket Chest Bag Black</h2>
                                     <div className="categories__deal__countdown__timer" id="countdown">
-                                        <div className="cd-item">
-                                            <span>3</span>
-                                            <p>Days</p>
-                                        </div>
-                                        <div className="cd-item">
-                                            <span>1</span>
-                                            <p>Hours</p>
-                                        </div>
-                                        <div className="cd-item">
-                                            <span>50</span>
-                                            <p>Minutes</p>
-                                        </div>
-                                        <div className="cd-item">
-                                            <span>18</span>
-                                            <p>Seconds</p>
-                                        </div>
+                                        <Countdown
+                                            date={Date.now() + 1000*60*60*24*4}
+                                            renderer={this.sales}
+                                        />
                                     </div>
                                     <a href="/" className="primary-btn">Shop now</a>
                                 </div>
@@ -175,7 +221,7 @@ class IndexPage extends Component {
                                 <div className="instagram__text">
                                     <h2>Instagram</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua.</p>
+                                        labore et dolore magna aliqua.</p>
                                     <h3>/Male_Fashion</h3>
                                 </div>
                             </div>
@@ -200,7 +246,7 @@ class IndexPage extends Component {
                                 <div className="blog__item">
                                     <div className="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
                                     <div className="blog__item__text">
-                                        <span><img src="/img/icon/calendar.png" alt=""/> 16 February 2020</span>
+                                        <span><img src="/img/icon/calendar.png" alt="" /> 16 February 2020</span>
                                         <h5>What Curling Irons Are The Best Ones</h5>
                                         <a href="/">Read More</a>
                                     </div>
@@ -210,7 +256,7 @@ class IndexPage extends Component {
                                 <div className="blog__item">
                                     <div className="blog__item__pic set-bg" data-setbg="/img/blog/blog-2.jpg"></div>
                                     <div className="blog__item__text">
-                                        <span><img src="/img/icon/calendar.png" alt=""/> 21 February 2020</span>
+                                        <span><img src="/img/icon/calendar.png" alt="" /> 21 February 2020</span>
                                         <h5>Eternity Bands Do Last Forever</h5>
                                         <a href="/">Read More</a>
                                     </div>
@@ -220,7 +266,7 @@ class IndexPage extends Component {
                                 <div className="blog__item">
                                     <div className="blog__item__pic set-bg" data-setbg="/img/blog/blog-3.jpg"></div>
                                     <div className="blog__item__text">
-                                        <span><img src="/img/icon/calendar.png" alt=""/> 28 February 2020</span>
+                                        <span><img src="/img/icon/calendar.png" alt="" /> 28 February 2020</span>
                                         <h5>The Health Benefits Of Sunglasses</h5>
                                         <a href="/">Read More</a>
                                     </div>
@@ -228,27 +274,27 @@ class IndexPage extends Component {
                             </div>
                         </div>
                     </div>
-                </section> 
+                </section>
                 <SearchContainer />
             </Fragment>
         );
     }
-  
+
 }
-const mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
     return {
-        products:state.products,
-        page:state.page
+        products: state.products,
+        page: state.page
     }
 }
-const mapDispatchToProps=(dispatch)=>{
+const mapDispatchToProps = (dispatch) => {
     return {
-        fetchProductsRequest:()=>{
+        fetchProductsRequest: () => {
             dispatch(actions.fetchProductsRequest());
         },
-        getDataPage:(data)=>{
+        getDataPage: (data) => {
             dispatch(actions.getDataPage(data));
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(IndexPage);
+export default connect(mapStateToProps, mapDispatchToProps)(IndexPage);

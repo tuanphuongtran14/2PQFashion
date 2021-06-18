@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Map from './Map';
 import ContactSection from './ContactSection'
+import {Helmet} from 'react-helmet'
 
 class ContactPage extends Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <title>Contacts</title>
+                </Helmet>
                 {/* Map Begin */}
                 <Map />
                 {/* Map End */}

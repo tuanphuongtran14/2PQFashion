@@ -4,10 +4,10 @@ class Breadcrumb extends Component {
     Display = () => { 
         return this.props.breadcrumbs.map((breadcrumb,index) => {
             if (index===this.props.breadcrumbs.length) {
-                return <span>{breadcrumb}</span> 
+                return <span key={index}>{breadcrumb}</span> 
             }
             else { 
-                return <a href="./index.html">{breadcrumb}</a> 
+                return <a key={index} href="./index.html">{breadcrumb}</a> 
             }
         })
     }

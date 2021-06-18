@@ -33,7 +33,7 @@
 });
 
 
-$(document).ready(function () {
+$(function () {
     /*------------------
         Background Set
         --------------------*/
@@ -84,22 +84,6 @@ $(document).ready(function () {
         $(".offcanvas-menu-overlay").removeClass("active");
     });
 
-    /*-----------------------
-        Hero Slider
-    ------------------------*/
-    $(".hero__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: false,
-        nav: true,
-        navText: ["<span class='arrow_left'><span/>", "<span class='arrow_right'><span/>"],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: false
-    });
 
 
     /*-------------------
@@ -147,7 +131,7 @@ $(document).ready(function () {
     /* var timerdate = "2020/12/30" */
 
     $("#countdown").countdown(timerdate, function (event) {
-        $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"));
+        $(this).html(event.strftime());
     });
 
     /*------------------
