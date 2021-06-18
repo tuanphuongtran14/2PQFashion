@@ -29,14 +29,17 @@
             var containerEl = document.querySelector('.product__filter');
             var mixer = mixitup(containerEl);
         }
-    });
+    })(jQuery);
+});
 
+
+$(document).ready(function () {
     /*------------------
         Background Set
-    --------------------*/
+        --------------------*/
     $('.set-bg').each(function () {
         var bg = $(this).data('setbg');
-
+        console.log(bg);
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
@@ -98,9 +101,6 @@
         autoplay: false
     });
 
-    /*--------------------------
-        Select
-    ----------------------------*/
 
     /*-------------------
 		Radio Btn
@@ -131,7 +131,7 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    if(mm == 12) {
+    if (mm == 12) {
         mm = '01';
         yyyy = yyyy + 1;
     } else {
@@ -212,5 +212,4 @@
             }
         });
     });
-
-})(jQuery);
+});

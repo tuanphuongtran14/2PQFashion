@@ -1,7 +1,8 @@
 import React,{Component,Fragment} from 'react';
+
 class ProductItem extends Component {
     renderClass=(status)=>{
-        var result='';
+        let result='';
         if(status===2){
             result="hot-sales";
         }else if(status===1){
@@ -10,18 +11,18 @@ class ProductItem extends Component {
         return result;
     }
     renderStarRate(star){
-        var result=[];
-        for(var i=1;i<=star;i++){
+        let result=[];
+        for(let i=1;i<=star;i++){
             result.push(<i key={i} className="fa fa-star"></i>);
             
         }
-        for(var i=1;i<=5-star;i++){
+        for(let i=1;i<=5-star;i++){
             result.push(<i key={i+5} className="fa fa-star-o"></i>);
         }
         return result;
     }
     renderOption(status,onChange){
-        var result="";
+        let result="";
         if(onChange===3){
             result="";
         }else {
@@ -59,8 +60,8 @@ class ProductItem extends Component {
                         <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`}} >
                         <span className="label" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
-                                <li><a href="#" className="btn--square"><i className="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                                <li><a onClick={this.onClick} className="btn--square"><i className="fa fa-cart-plus" aria-hidden="true"></i></a></li>
+                                <li><button type="button" className="btn--square"><i className="fa fa-heart-o" aria-hidden="true"></i></button></li>
+                                <li><button type="button" onClick={this.onClick} className="btn--square"><i className="fa fa-cart-plus" aria-hidden="true"></i></button></li>
                             </ul>
                         </div>
                         <div className="product__item__text">

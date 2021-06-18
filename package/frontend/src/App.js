@@ -4,24 +4,23 @@ import AboutPage from './pages/AboutPage/AboutPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import CartPage from './pages/PaymentPage/CartPage';
-import AdminPage from './pages/Admin/AdminPage';
+import AdminPage from './pages/AdminPage/MainPage';
 import CheckoutPage from './pages/PaymentPage/CheckoutPage';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from "react-router-dom";
 import { withRouter,} from "react-router";
 import Footer from './components/Footer';
 import Header from './components/Header';
-import routes from './routes'
+// import routes from './routes'
 
 class App extends Component {
   
   render(){
     
-  if(this.props.location.pathname.indexOf('/admin') != 0)
+  if(this.props.location.pathname.indexOf('/admin') !== 0)
     return (
       <Router>
         <div className="App"> 

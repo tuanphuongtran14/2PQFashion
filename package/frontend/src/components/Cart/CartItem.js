@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
-import $ from "jquery";
+// import $ from "jquery";
 import {Link} from 'react-router-dom';
-import Cart from './Cart';
+// import Cart from './Cart';
 class CartItem extends Component {
 
     onDeleteProductToCart(cartItem){

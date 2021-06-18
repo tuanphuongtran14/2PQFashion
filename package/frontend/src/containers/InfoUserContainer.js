@@ -2,7 +2,7 @@ import React,{Component,Fragment} from 'react';
 import InfoUser from './../components/Checkout/InfoUser'
 import {connect} from 'react-redux'
 import * as actions from './../actions/index'
-import * as Message from './../constants/Message'
+
 class InfoUserContainer extends Component {
 
   render(){

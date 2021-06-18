@@ -1,5 +1,5 @@
 import React,{Component,Fragment} from 'react';
-import $ from "jquery";
+// import $ from "jquery";
 import{addBillRequest} from './../../actions'
 class InfoUser extends Component {
     constructor(props)

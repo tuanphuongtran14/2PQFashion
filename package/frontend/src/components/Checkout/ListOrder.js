@@ -1,5 +1,5 @@
 import React,{Component,Fragment} from 'react';
-import $ from "jquery";
+// import $ from "jquery";
 class ListOrder extends Component {
     constructor(props)
     {

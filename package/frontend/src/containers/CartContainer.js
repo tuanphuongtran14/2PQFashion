@@ -1,5 +1,5 @@
 import React,{Component,Fragment} from 'react';
-import Search from './../components/Search'
+// import Search from './../components/Search'
 import Cart from './../components/Cart/Cart'
 import CartResult from './../components/Cart/CartResult'
 import CartItem from './../components/Cart/CartItem'

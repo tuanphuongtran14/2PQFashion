@@ -2,7 +2,7 @@ import React,{Component,Fragment} from 'react';
 import SearchContainer from '../../containers/SearchContainer';
 import CartContainer from '../../containers/CartContainer';
 import {connect} from 'react-redux';
-import * as actions from './../../actions/index'
+// import * as actions from './../../actions/index'
 class CartPage extends Component {
     constructor(props) {
         super(props);

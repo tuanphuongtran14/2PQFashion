@@ -1,9 +1,8 @@
 const categoryServices = require('../services/category.services');
-const {validateCategory} = require('../models/catagory.models');
+const {validateCategory} = require('../models/category.models');
 
 exports.create = async (req, res) => {
-    let categoryInput = req.body;
-
+    let categoryInput = {...req.body};
     // If categoryInput is empty, return 400 Error
     if (!categoryInput) {
         return res.status(400).json({

@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
-import CartItem from './CartItem';
-import $ from "jquery";
+// import CartItem from './CartItem';
+// import $ from "jquery";
 class Cart extends Component {
 
   render(){

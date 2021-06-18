@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
-import {connect} from 'react-redux'
-import $ from "jquery";
+// import {connect} from 'react-redux'
+// import $ from "jquery";
 class Sort extends Component {
     constructor(props)
     {
@@ -24,7 +24,6 @@ class Sort extends Component {
 
     }
   render(){
-    const    {status}=this.state;
     return (
         <Fragment>
             {/* <!-- Sort Begin --> */}

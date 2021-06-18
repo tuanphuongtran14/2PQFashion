@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import SearchContainer from '../../containers/SearchContainer';
 import FilterNameContainer from '../../containers/FilterContainer/FilterNameContainer';
-import FilterContainer from '../../containers/FilterContainer/FilterContainer';
+// import FilterContainer from '../../containers/FilterContainer/FilterContainer';
 import SortContainer from '../../containers/SortContainer';
 import ShopContainer from '../../containers/ShopContainer';
 import {Link} from 'react-router-dom';

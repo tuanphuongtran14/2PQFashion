@@ -1,9 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import {connect} from 'react-redux'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
     NavLink,
   } from "react-router-dom";
@@ -67,7 +64,7 @@ countPrice=(cart)=>{
                                     <li><a href="/">Pages</a>
                                         <ul className="dropdown">
                                             <li>
-                                                <Link exact to="/about">
+                                                <Link exact="true" to="/about">
                                                     About Us
                                                 </Link>
                                             </li>

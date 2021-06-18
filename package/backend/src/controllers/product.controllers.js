@@ -21,7 +21,9 @@ exports.create = (req, res) => {
                 message: err.message || 'Can\' upload product images'
             });
         } else {
-            let productInput = req.body;
+            
+            let productInput = {...req.body};
+            
 
             // If req.body is empty, return 400 Error
             if (!productInput) {
@@ -33,16 +35,17 @@ exports.create = (req, res) => {
             
             // If req.body is not empty, start creating new product
             try {
-                console.log(productInput);
-                console.log(productInput.status);
+                productInput.price = Number(productInput.price);
                 productInput.status = Number(productInput.status);
-                console.log(productInput.status);
-
-                if(typeof productInput.size === "string")
-                    productInput.size = new Array(productInput.size);
-                    
-                if(typeof productInput.color === "string")
-                    productInput.color = new Array(productInput.color);
+                productInput.tags = JSON.parse(productInput.tags);
+                productInput.options = JSON.parse(productInput.options);
+                productInput.options = productInput.options.map(option => {
+                    return {
+                        size: option.size,
+                        quantity: Number(option.quantity),
+                        remaining: Number(option.remaining)
+                    }
+                });
 
                 // Validate product input
                 validateProduct(productInput);

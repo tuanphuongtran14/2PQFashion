@@ -7,7 +7,8 @@ const convertToSlug = (slug) => {
 exports.create = categoryInput => {
     // Add other infomation for category input
     let slug = categoryInput.name + '';
-    categoryInput.slug = convertToSlug(slug);
+    if(!categoryInput.slug)
+        categoryInput.slug = convertToSlug(slug);
 
     // Calling creating repositoty
     return categoryRepo.create(categoryInput);

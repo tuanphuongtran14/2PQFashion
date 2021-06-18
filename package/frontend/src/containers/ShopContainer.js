@@ -17,7 +17,7 @@ class ShopContainer extends Component {
     if(products.length>0){
         result=products.map((product,index)=>{
           if(onPage===1){
-            if(product.status!=0){
+            if(product.status!==0){
                 return (<ProductItem
                     key={index}
                     index={index}
@@ -121,19 +121,19 @@ class ShopContainer extends Component {
      
   }
   //xử lý sự kiện sort
-  if(sort==1){
+  if(sort===1){
     products=products.sort(function(product1, product2) {
       if (product1.price > product2.price) return 1;
       else if (product1.price < product2.price) return -1;
       return 0;
   })
-}else if(sort==2){
+}else if(sort===2){
   products=products.sort(function(product1, product2) {
     if (product1.price < product2.price) return 1;
     else if (product1.price > product2.price) return -1;
     return 0;
 })
-}else if(sort ==3){
+}else if(sort ===3){
   products=products.filter((product,index)=>{
     return product.price<=100;
   })
@@ -142,7 +142,7 @@ class ShopContainer extends Component {
     else if (product1.price < product2.price) return -1;
     return 0;
 })
-}else if(sort ==4){
+}else if(sort ===4){
   products=products.filter((product,index)=>{
     return product.price>100;
   })

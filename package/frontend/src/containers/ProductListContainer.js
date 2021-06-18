@@ -16,7 +16,7 @@ class ProductListContainer extends Component {
     if(products.length>0){
         result=products.map((product,index)=>{
           if(onPage===1){
-            if(product.status!=0){
+            if(product.status!==0){
                 return (<ProductItem
                     key={index}
                     index={index}
@@ -26,7 +26,9 @@ class ProductListContainer extends Component {
                     onAddToCart={this.props.onAddToCart}
                 />)
             } 
-          }         
+          }
+          
+          return '';
         })
     }
     return result;

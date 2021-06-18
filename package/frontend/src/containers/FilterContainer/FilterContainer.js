@@ -1,7 +1,6 @@
 import React,{Component,Fragment} from 'react';
-import FilterCatagory from '../../components/Filter/Filter'
-import {connect} from 'react-redux'
-import * as actions from '../../actions/index'
+import FilterCatagory from '../../components/Filter/Filter';
+
 class FilterContainer extends Component {
   render(){
     return (

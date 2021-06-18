@@ -5,7 +5,7 @@ import InfoUserContainer from '../../containers/InfoUserContainer';
 import * as Message from './../../constants/Message';
 import {Link }from 'react-router-dom'
 import {connect} from 'react-redux';
-import * as actions from './../../actions/index'
+// import * as actions from './../../actions/index'
 class CheckoutPage extends Component {
     constructor(props) {
         super(props);

@@ -15,10 +15,11 @@ var findProductInCart=(cart,product)=>{
 const cart=(state=initialState,action)=>{
     var replaceState;
     var index;
+    let {product}=action;
     switch(action.type){
         case types.ADD_TO_CART:
             replaceState=[...state];
-            var {product}=action;
+            
             index=findProductInCart(replaceState,product);
             if(index===-1){
                 replaceState.push(product);
@@ -30,7 +31,7 @@ const cart=(state=initialState,action)=>{
             return replaceState;
         case types.DELETE_PRODUCT_TO_CART:
             replaceState=[...state];
-            var {product}=action;
+            
             index=findProductInCart(replaceState,product);
             if(index!==-1){
                 replaceState.splice(index,1);
@@ -39,7 +40,7 @@ const cart=(state=initialState,action)=>{
             return replaceState;
         case types.UPDATE_PRODUCT_TO_CART:
             replaceState=[...state];
-            var {product}=action;
+            
             index=findProductInCart(replaceState,product);
             if(index!==-1){
                 replaceState[index]=product;

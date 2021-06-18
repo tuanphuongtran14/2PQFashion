@@ -1,5 +1,4 @@
 import React,{Component,Fragment} from 'react';
-import ProductItem from './ProductItem';
 
 class ProductList extends Component {
   render(){
