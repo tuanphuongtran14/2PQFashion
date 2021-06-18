@@ -12068,7 +12068,7 @@ a[data-toggle="collapse"] {
   border-right: 1px solid #2f89fc;
 }
 
-.table--custom thead {
+.table--custom .thead--custom {
   z-index: 1;
   border-collapse: separate!important;
   border-color: #2f89fc!important;
@@ -12083,7 +12083,7 @@ a[data-toggle="collapse"] {
   background: linear-gradient(45deg, #2f89fc 0%, #ff5db1 100%);
 }
 
-.table--custom thead th {
+.table--custom .thead--custom th {
   line-height: 2.5rem;
 }
 
@@ -12094,6 +12094,10 @@ a[data-toggle="collapse"] {
 
 .form-check .form-check-label input {
   opacity: 1!important;
+}
+
+.input.form-control {
+  color: hsl(0, 0%, 20%)!important;
 }
 
 .loading {
@@ -12110,6 +12114,28 @@ a[data-toggle="collapse"] {
 }
 
 .form-control.readonly {
-  border: none;
   background-color: transparent!important;
+}
+
+div.readonly {
+  color: hsl(0, 0%, 20%)!important;
+}
+
+.css-107lb6w-singleValue {
+  color: hsl(0, 0%, 20%)!important;
+}
+
+.table.table--custom {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+
+.image-item {
+  width: 220px;
+  padding: 15px
+}
+
+.image-item .image-item__img {
+  width: 100%;
 }

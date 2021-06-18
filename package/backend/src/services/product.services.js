@@ -18,7 +18,7 @@ exports.create = (req, productInput) => {
     };
     productInput.sku = generateSKU(productInput);
     productInput.images = req.files.map(file => {
-        return `/images/upload/${file.filename}`
+        return `/images/uploads/${file.filename}`
     })
 
     // Calling creating repositoty

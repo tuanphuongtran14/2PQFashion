@@ -12,8 +12,7 @@ class IndexPage extends Component {
         super(props);
         this.state = {
             page: 1,
-        }
-            ;
+        };
     }
     componentDidMount() {
         this.props.fetchProductsRequest();
@@ -191,7 +190,7 @@ class IndexPage extends Component {
                                     <h2>Multi-pocket Chest Bag Black</h2>
                                     <div className="categories__deal__countdown__timer" id="countdown">
                                         <Countdown
-                                            date={Date.now() + 1000*60*60*24*4}
+                                            date={new Date('2021/06/19')}
                                             renderer={this.sales}
                                         />
                                     </div>

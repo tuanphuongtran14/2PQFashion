@@ -8,6 +8,7 @@ import ProductList from './pages/ProductList';
 import AddCategory from './pages/AddCategory';
 import EditCategory from './pages/EditCategory';
 import ViewCategory from './pages/ViewCategory';
+import ViewProduct from './pages/ViewProduct';
 
 export default class MainPage extends Component {
     render() {
@@ -66,6 +67,7 @@ export default class MainPage extends Component {
                         <Route path={'/admin/them-danh-muc'} component={AddCategory} />
                         <Route path={'/admin/sua-danh-muc'} component={EditCategory} />
                         <Route path={'/admin/danh-muc'} component={ViewCategory} />
+                        <Route path={'/admin/san-pham'} component={ViewProduct} />
                     </div>
                 </div>
                 </div>

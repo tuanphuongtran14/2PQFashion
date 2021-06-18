@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import callApi from '../../../utils/apiCaller';
 
 class ProductList extends Component {
@@ -102,7 +102,7 @@ class ProductList extends Component {
                 <h4 className="text-center mb-4">Danh sách danh mục</h4>
                 <div className="category-list mt-3">
                     <table className="table table--custom">
-                        <thead className="sticky-top bg-white">
+                        <thead className="sticky-top thead--custom">
                             <tr>
                                 <th>STT</th>
                                 <th>Tên danh mục</th>

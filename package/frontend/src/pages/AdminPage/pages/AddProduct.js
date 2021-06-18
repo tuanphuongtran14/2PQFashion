@@ -13,7 +13,7 @@ export default class AddProductPage extends Component {
         this.categorySelect = React.createRef();
         this.tagSelect = React.createRef();
         this.state = {
-            loading: false,
+            loading: true,
             categoryOptions: [
                 {
                     label: 'Quần jean',
@@ -69,6 +69,24 @@ export default class AddProductPage extends Component {
                 }
             ]
         }
+    }
+
+    componentDidMount() {
+        callApi('categories', 'GET')
+            .then(res => {
+                if (res && res.status === 200) {
+                    const categories = res.data.map(category => {
+                        return {
+                            value: category.name,
+                            label: category.name
+                        }
+                    }) 
+                    this.setState({
+                        categoryOptions: categories,
+                        loading: false
+                    })
+                }
+            })
     }
 
     displayLoading = () => {
@@ -184,14 +202,22 @@ export default class AddProductPage extends Component {
 
         callApi('products', 'POST', data)
             .then(res => {
-                this.setState({
-                    loading: false
-                });
                 if (res && res.status === 200) {
+                    document.getElementById('createNewProduct').reset();
+                    this.statusSelect.select.clearValue();
+                    this.categorySelect.select.clearValue();
+                    this.tagSelect.select.clearValue();
+                    document.getElementById('sizeS').setAttribute('disabled', 'true');
+                    document.getElementById('sizeM').setAttribute('disabled', 'true');
+                    document.getElementById('sizeL').setAttribute('disabled', 'true');
+                    document.getElementById('sizeXL').setAttribute('disabled', 'true');
                     alert("Thêm sản phẩm thành công!!!");
                 } else {
                     alert("Có lỗi xảy ra, vui lòng thử lại!!!");
                 }
+                this.setState({
+                    loading: false
+                });
             })
     }
 
