@@ -26,7 +26,6 @@ class IndexPage extends Component {
             --------------------*/
             $('.set-bg').each(function () {
                 var bg = $(this).data('setbg');
-                console.log(bg);
                 $(this).css('background-image', 'url(' + bg + ')');
             });
 
@@ -75,7 +74,6 @@ class IndexPage extends Component {
                         nav={true} 
                         navText={["<span class='arrow_left'><span/>", "<span class='arrow_right'><span/>"]}
                         smartSpeed={1200}
-                        autoHeight={false}
                         autoplay={false}
                     >
                         <div className="hero__items set-bg" data-setbg="img/hero/hero-1.jpg" >
