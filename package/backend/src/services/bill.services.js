@@ -8,8 +8,10 @@ exports.create = BillInput => {
     BillInput.bookingDate=new Date(today.getFullYear(),today.getMonth(),today.getDate());
     BillInput.deliveryDate=new Date(today.getFullYear(),today.getMonth(),today.getDate()+5);
     BillInput.id_Bill=generateIdBill();
+    BillInput.status="đang xử lý";
     return BillRepo.create(BillInput);
 }
+
 
 exports.findAll = () => {
     return BillRepo.findAll();

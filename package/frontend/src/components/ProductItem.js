@@ -36,14 +36,22 @@ class ProductItem extends Component {
     }
     onClick=(e)=>{
         e.preventDefault();
-        const{sku,slug,price,name,images}=this.props.product;
+        const{sku,slug,price,name,images,options}=this.props.product;
+        var size=options[0].size;
+        var inventory=options[0].quantity;
+        var quantity=inventory===0?0:1;
+    
         const cartItem={
             sku:sku,
             name:name,
             images:images,
             slug:slug,
             price:price,
-            quantity:1,
+            size:size,
+            inventory:inventory,
+            quantity:quantity,
+            options:options,
+
         }                     
         this.props.onAddToCart(cartItem);
     }

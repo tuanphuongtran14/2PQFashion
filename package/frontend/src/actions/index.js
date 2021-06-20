@@ -97,7 +97,7 @@ export const saveBill=(bill)=>{
 }
 
 export const addBillRequest=(newOrder)=>{
-        return callApi('bill','POST',{
+        return callApi('bills','POST',{
             products: newOrder.products,
              totalPrice: newOrder.totalPrice
              ,

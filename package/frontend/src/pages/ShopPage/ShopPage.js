@@ -95,37 +95,37 @@ class ShopPage extends Component {
                                                 <div id="collapseFour" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__size">
-                                                            <Link type="button" to={`/shop/sizes?value=xs`}>
+                                                            <Link type="button" to={`/shop/sizes?value=XS`}>
                                                                 <label >xs
                                                                     <input type="radio" id="xs"/>
                                                                 </label>
                                                             </Link>
-                                                            <Link type="button" to={`/shop/sizes?value=s`}>
+                                                            <Link type="button" to={`/shop/sizes?value=S`}>
                                                                 <label >s
                                                                     <input type="radio" id="s"/>
                                                                 </label>
                                                             </Link>
-                                                            <Link type="button" to={`/shop/sizes?value=m`}>
+                                                            <Link type="button" to={`/shop/sizes?value=M`}>
                                                                 <label >m
                                                                     <input type="radio" id="m"/>
                                                                 </label>
                                                             </Link>
-                                                            <Link type="button" to={`/shop/sizes?value=l`}>
+                                                            <Link type="button" to={`/shop/sizes?value=L`}>
                                                                 <label >l
                                                                     <input type="radio" id="l"/>
                                                                 </label>
                                                             </Link>
-                                                            <Link type="button" to={`/shop/sizes?value=xl`}>
+                                                            <Link type="button" to={`/shop/sizes?value=XL`}>
                                                                 <label >xl
                                                                     <input type="radio" id="xl"/>
                                                                 </label>
                                                             </Link>
-                                                            <Link type="button" to={`/shop/sizes?value=2xl`}>
+                                                            <Link type="button" to={`/shop/sizes?value=2XL`}>
                                                                 <label >2xl
                                                                     <input type="radio" id="2xl"/>
                                                                 </label>
                                                             </Link>
-                                                            <Link type="button" to={`/shop/sizes?value=3xl`}>
+                                                            <Link type="button" to={`/shop/sizes?value=3XL`}>
                                                                 <label >3xl
                                                                     <input type="radio" id="3xl"/>
                                                                 </label>
@@ -136,7 +136,7 @@ class ShopPage extends Component {
                                             </div>
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                                                    <a data-toggle="collapse" href="/#" data-target="#collapseFive">Colors</a>
                                                 </div>
                                                 <div id="collapseFive" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">

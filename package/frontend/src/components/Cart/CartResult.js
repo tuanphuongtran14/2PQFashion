@@ -4,18 +4,18 @@ class CartResult extends Component {
     render(){
         return (
             <tr>
-            <td colSpan="3"></td>
-            <td>
+            <td colSpan="2"></td>
+            <td colSpan="2">
                 <h4>
                     <strong>Tổng Tiền</strong>
                 </h4>
             </td>
-            <td>
+            <td colSpan="2">
                 <h4>
-                    <strong>{this.props.total}$</strong>
+                    <strong>{this.props.total}VND</strong>
                 </h4>
             </td>
-            <td colSpan="3">
+            <td colSpan="2">
                 <Link to={'/payment'} className="btn btn-primary waves-effect waves-light">Complete purchase
                     
                 </Link>

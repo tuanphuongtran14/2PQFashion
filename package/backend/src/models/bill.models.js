@@ -18,6 +18,7 @@ exports.Bill = function(mongoose) {
         bookingDate:Date,
         deliveryDate:Date,
         orderNote:String,
+        status:String,
         
     })
 

@@ -1,6 +1,6 @@
 import * as types from'../constants/ActionTypes'
-sessionStorage.setItem('user',JSON.stringify({id_User:"123"}));
-var result=sessionStorage.getItem('user');
+localStorage.setItem('user',JSON.stringify({id_User:"123"}));
+var result=localStorage.getItem('user');
 var user=result?JSON.parse(result):[];
 
 var initialState={

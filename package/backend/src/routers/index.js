@@ -10,8 +10,6 @@ module.exports = (app) => {
     // Category API Routing
     app.use('/api/categories', categoryRouter);
 
-    // Orders API Routing
-    app.use('/api/orders', ordersRouter);
     // Bill API Routing
-    app.use('/api/bill', BillRouter)
+    app.use('/api/bills', BillRouter)
 }

@@ -39,6 +39,8 @@ class InfoUser extends Component {
                 sku:item.sku,
                 quantity:item.quantity,
                 price:item.price,
+                size:item.size
+                
             }   
         })
         const price = cart.reduce((total, item) => {

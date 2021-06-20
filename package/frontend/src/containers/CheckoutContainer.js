@@ -9,8 +9,11 @@ class CheckoutContainer extends Component {
         var result=<li>{Message.MSG_ORDER_EMPTY}</li>;
         if(cart.length>0){
             result=cart.map((cartItem,index)=>{
-                return <li key={index}>{index}. {cartItem.name} <span>{cartItem.quantity} x $ {cartItem.price}</span></li>
+              if(cartItem.quantity!==0)
+                return <li key={index}>{index}. {cartItem.name} <br></br>(size:{cartItem.size})<span>{cartItem.quantity} x $ {cartItem.price}</span></li>
+                return false;
             })
+            
         }
         return result;
     }

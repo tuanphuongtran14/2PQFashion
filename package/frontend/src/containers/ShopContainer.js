@@ -86,8 +86,8 @@ class ShopContainer extends Component {
       else if(filter==='sizes'){
         products=products.filter(product=>{
           var result=false;
-          product.size.map(element => {
-            if(element===query.get("value")){
+          product.options.map(element => {
+            if(element.size===query.get("value")){
               result=true;
             }
           });
