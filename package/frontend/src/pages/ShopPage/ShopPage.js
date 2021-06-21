@@ -35,7 +35,7 @@ class ShopPage extends Component {
                                 <div className="breadcrumb__text">
                                     <h4>Shop</h4>
                                     <div className="breadcrumb__links">
-                                        <a href="./index.html">Home</a>
+                                        <a href="/#" href="./index.html">Home</a>
                                         <span>Shop</span>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@ class ShopPage extends Component {
                                         <div className="accordion" id="accordionExample">
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseOne">Categories</a>
                                                 </div>
                                                 <div id="collapseOne" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
@@ -74,7 +74,7 @@ class ShopPage extends Component {
                                             </div>
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseTwo">Branding</a>
                                                 </div>
                                                 <div id="collapseTwo" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
@@ -90,7 +90,7 @@ class ShopPage extends Component {
                                             </div>             
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseFour">Size</a>
                                                 </div>
                                                 <div id="collapseFour" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
@@ -192,7 +192,7 @@ class ShopPage extends Component {
                                             </div>
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseSix">Tags</a>
                                                 </div>
                                                 <div id="collapseSix" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
@@ -230,11 +230,11 @@ class ShopPage extends Component {
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <div className="product__pagination">
-                                            <a className="active" href="#">1</a>
-                                            <a href="#">2</a>
-                                            <a href="#">3</a>
+                                            <a href="/#" className="active" href="#">1</a>
+                                            <a href="/#" href="#">2</a>
+                                            <a href="/#" href="#">3</a>
                                             <span>...</span>
-                                            <a href="#">21</a>
+                                            <a href="/#" href="#">21</a>
                                         </div>
                                     </div>
                                 </div>

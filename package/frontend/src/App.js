@@ -6,6 +6,7 @@ import ShopPage from './pages/ShopPage/ShopPage';
 import CartPage from './pages/PaymentPage/CartPage';
 import AdminPage from './pages/AdminPage/MainPage';
 import CheckoutPage from './pages/PaymentPage/CheckoutPage';
+import UserPage from './pages/UserPage/UserPage';
 import {
   BrowserRouter as Router,
   Switch,
@@ -43,6 +44,9 @@ class App extends Component {
               <Route path="/payment" match="match" component={({ match, history }) => <CheckoutPage match={match} history={history} />} />
               <Route path='/contact'>
                 <ContactPage />
+              </Route>
+              <Route path='/user'>
+                <UserPage />
               </Route>
               <Route path='/admin'>
                 <AdminPage />

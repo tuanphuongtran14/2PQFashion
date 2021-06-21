@@ -29,17 +29,14 @@
             var containerEl = document.querySelector('.product__filter');
             var mixer = mixitup(containerEl);
         }
-    })(jQuery);
-});
+    });
 
-
-$(function () {
     /*------------------
         Background Set
-        --------------------*/
+    --------------------*/
     $('.set-bg').each(function () {
         var bg = $(this).data('setbg');
-        console.log(bg);
+
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
@@ -84,7 +81,9 @@ $(function () {
         $(".offcanvas-menu-overlay").removeClass("active");
     });
 
-
+    /*--------------------------
+        Select
+    ----------------------------*/
 
     /*-------------------
 		Radio Btn
@@ -105,10 +104,6 @@ $(function () {
         autohidemode: true,
         horizrailenabled: false
     });
-
-    /*------------------
-        CountDown
-    --------------------*/
 
     /*------------------
 		Magnific
@@ -172,4 +167,5 @@ $(function () {
             }
         });
     });
-});
+
+})(jQuery);
