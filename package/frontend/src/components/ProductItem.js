@@ -65,11 +65,11 @@ class ProductItem extends Component {
             <Fragment>
                 <div className={`${onPage===1?'col-lg-3':'col-lg-4'} col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
                     <div className="product__item">
-                        <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`}} >
-                        <span className="label" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
+                        <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`, backgroundSize: 'cover'}} >
+                        <span className="label label--sales" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
-                                <li><button type="button" className="btn--square"><i className="fa fa-heart-o" aria-hidden="true"></i></button></li>
-                                <li><button type="button" onClick={this.onClick} className="btn--square"><i className="fa fa-cart-plus" aria-hidden="true"></i></button></li>
+                                <li><button type="button" className="btn--square border"><i className="fa fa-heart-o" aria-hidden="true"></i></button></li>
+                                <li><button type="button" onClick={this.onClick} className="btn--square border"><i className="fa fa-cart-plus" aria-hidden="true"></i></button></li>
                             </ul>
                         </div>
                         <div className="product__item__text">
@@ -78,17 +78,6 @@ class ProductItem extends Component {
                                 {this.renderStarRate(rating.grade)}
                             </div>
                             <h5>${price}</h5>
-                            <div className="product__color__select">
-                                <label >
-                                    <input type="radio" id="pc-4"/>
-                                </label>
-                                <label className="active black">
-                                    <input type="radio" id="pc-5"/>
-                                </label>
-                                <label className="grey">
-                                    <input type="radio" id="pc-6"/>
-                                </label>
-                            </div>
                         </div>
                     </div>
                 </div>

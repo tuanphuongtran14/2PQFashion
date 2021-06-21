@@ -15,10 +15,15 @@ import {
 import { withRouter, } from "react-router";
 import Footer from './components/Footer';
 import Header from './components/Header';
+import $ from 'jquery';
 // import routes from './routes'
 
 class App extends Component {
-    
+  componentDidMount() {
+    $(".loader").fadeOut();
+    $("#preloder").delay(200).fadeOut("slow");
+  }
+
   render() {
     if (this.props.location.pathname.indexOf('/admin') !== 0)
       return (
