@@ -34,14 +34,17 @@ class InfoUser extends Component {
         var order=this.props.order;
         var {nameCustomer, address,email,orderNote,paymentMethod,phone}=this.state;
         var products=cart.map((item)=>{
-
-            return{
-                sku:item.sku,
-                quantity:item.quantity,
-                price:item.price,
-                size:item.size
-                
-            }   
+            if(item.quantity>0){
+                return{
+                    sku:item.sku,
+                    quantity:item.quantity,
+                    price:item.price,
+                    size:item.size,
+                    name:item.name ,
+                    image:item.images[0],
+                }  
+            } 
+            return null;
         })
         const price = cart.reduce((total, item) => {
             return total + item.quantity*item.price;

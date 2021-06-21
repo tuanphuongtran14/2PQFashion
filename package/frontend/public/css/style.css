@@ -3880,3 +3880,6 @@ ol {
 .size{
 	width:80px;
 }
+.hidden{
+	display:none;
+}

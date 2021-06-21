@@ -1,52 +1,53 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
+import ChangePassword from './../../components/User/ChangePassword'
+import LogOut from './../../components/User/LogOut'
+import InfoUser from './../../components/User/InfoUser'
+import OrderTraking from './../../components/User/OrderTraking'
 import './theme/style.css'
+import InfoBill from '../../components/User/InfoBill';
+import {connect} from 'react-redux'
+import * as actions from './../../actions'
 
-
-export default class MainPage extends Component {
+ class UserPage extends Component {
+    componentDidMount() {
+        var {user}=this.props;
+        this.props.onFetchBillsByUserRequest(user.id_User);
+        this.props.onFetchUserByIdRequest(user.id_User);
+    }
     render() {
         return (
             <Router>
                 <Helmet>
-                    <title>Admin Page</title>
+                    <title>User Page</title>
                 </Helmet>
-                <div className="body">
+                <div className="body-user">
                 <div className="container d-flex align-items-stretch shadow-lg px-0">
-                    <nav id="sidebar">
+                    <nav id="sidebar-user">
                         <div className="p-4">
-                            <h2 className="text-center text-white"><Link to="/admin">Admin Panel</Link></h2>
+                            <h2 className="text-center text-black-user"><Link to="/admin" >Tài khoản của tôi</Link></h2>
                             <ul className="list-unstyled components mb-5">
                                 <li>
-                                    <a href="#accountSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"><i className="fa fa-user-circle mr-2" aria-hidden="true"></i> Tuấn Phương</a>
+                                    <a href="#accountSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"><i className="fa fa-user-circle mr-2" aria-hidden="true"></i> Tài khoản</a>
                                     <ul className="collapse list-unstyled" id="accountSubmenu">
                                         <li>
-                                            <Link to="/them-san-pham">Thay đổi mật khẩu</Link>
+                                            <Link to="/user">Hồ Sơ</Link>
                                         </li>
                                         <li>
-                                            <Link to="">Đăng xuất</Link>
+                                            <Link to="/user/change-pasword">Thay đổi mật khẩu</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/user/logout">Đăng xuất</Link>
                                         </li>
                                     </ul>
                                 </li>
-                                <li className="active">
-                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Quản lý sản phẩm</a>
+                                {/* className="active" */}
+                                <li >
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Quản lý đơn hàng</a>
                                     <ul className="collapse list-unstyled" id="homeSubmenu">
                                         <li>
-                                            <Link to="/admin/xem-san-pham">Danh sách sản phẩm</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/admin/them-san-pham">Thêm sản phẩm</Link>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Quản lý danh mục</a>
-                                    <ul className="collapse list-unstyled" id="categorySubmenu">
-                                        <li>
-                                            <Link to="/admin/xem-danh-muc">Danh sách danh mục</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/admin/them-danh-muc">Thêm danh mục</Link>
+                                            <Link to="/user/order-traking">Theo dõi đơn hàng</Link>
                                         </li>
                                     </ul>
                                 </li>
@@ -54,18 +55,36 @@ export default class MainPage extends Component {
                         </div>
                     </nav>
                     {/* Page Content  */}
-                    {/* <div id="content" className="p-4 bg-white">
-                        <Route path={'/admin/xem-san-pham'} component={ProductList} />
-                        <Route path={'/admin/xem-danh-muc'} component={CategoryList} />
-                        <Route path={'/admin/them-san-pham'} component={AddProduct} />
-                        <Route path={'/admin/them-danh-muc'} component={AddCategory} />
-                        <Route path={'/admin/sua-danh-muc'} component={EditCategory} />
-                        <Route path={'/admin/danh-muc'} component={ViewCategory} />
-                        <Route path={'/admin/san-pham'} component={ViewProduct} />
-                    </div> */}
+                    <div id="content" className="p-4 bg-white">
+                        <Route path={'/user/change-pasword'} component={ChangePassword} />
+                        <Route path={'/user/logout'} component={LogOut} />
+                        <Route path={'/user'} component={InfoUser} exact={true}/>
+                        <Route path={'/user/order-traking'} component={OrderTraking} exact={true} />
+                        <Route path={'/user/order-traking/:idBill'} component={({match})=><InfoBill match={match}/>} />
+                        {/* <Route path={'/admin/danh-muc'} component={ViewCategory} />
+                        <Route path={'/admin/san-pham'} component={ViewProduct} /> */}
+                    </div>
                 </div>
                 </div>
             </Router>
         )
     }
 }
+
+const mapStateToProps=(state)=>{
+    return {
+        user:state.user,
+        list_bill:state.list_bill
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+        onFetchBillsByUserRequest:(id_User)=>{
+            dispatch(actions.fetchBillsByUserRequest(id_User));
+        },
+        onFetchUserByIdRequest:(id_User)=>{
+            dispatch(actions.fetchUserByIdRequest(id_User));
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

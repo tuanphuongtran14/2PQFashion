@@ -1,6 +1,6 @@
-const { Bill } = require('../models/bill.models');
-const BillRepo = require('../repositories/bill.repo');
-const {generateIdBill}=require('../models/Bill.models')
+const { User } = require('../models/user.models');
+const UserRepo = require('../repositories/user.repo');
+
 exports.create = BillInput => {
     
     var today = new Date();
@@ -14,26 +14,19 @@ exports.create = BillInput => {
 
 
 exports.findAll = () => {
-    return BillRepo.findAll();
+    return UserRepo.findAll();
 }
 
-exports.findBillByIdUser = (id_user) => {
-    return BillRepo.findBillByIdUser (id_user);
-}
 
 exports.findByID = (id) => {
-    return BillRepo.findByID(id);
+    return UserRepo.findByID(id);
 }
 
 exports.deleteByID = (id) => {
-    return BillRepo.deleteByID(id);
+    return UserRepo.deleteByID(id);
 }
 
 exports.updateByID = (id, updateContent) => {
-    return BillRepo.updateByID(id, updateContent);
+    return UserRepo.updateByID(id, updateContent);
 }
 
-//hủy bỏ bill
-exports.cancelBill = (id_Bill) => {
-    return BillRepo.cancelBill(id_Bill);
-}

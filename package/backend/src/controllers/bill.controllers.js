@@ -36,6 +36,21 @@ exports.getAll = (req, res) => {
         });
     })
 }
+
+exports.getBillByIdUser = async (req, res) => {
+    let id_user = req.params.id_user;
+    // Get all order from database
+    BillService.findBillByIdUser( id_user)
+    .then((bill)=>{
+        return res.status(200).json(bill);
+    })                                
+    .catch((err)=>{
+    res.status(500).json({
+        message:
+          err.message || "Some error occurred while retrieving bill."
+    });
+})
+}
 exports.getOne = async (req, res) => {
     let id = req.params.id;
 
@@ -111,4 +126,22 @@ exports.deleteOne = async (req, res) => {
               err.message || `Some error occurred while deleting orders with id=${id}.`
         });
     }
+}
+
+
+//sự kiện khi người dùng hủy bill 
+exports.cancelBill = async (req, res) => {
+    let id_Bill = req.body.id_Bill;
+    console.log(id_Bill);
+    // Get all order from database
+    BillService.cancelBill(  id_Bill )
+    .then((bill)=>{
+        return res.status(200).json(bill);
+    })                                
+    .catch((err)=>{
+    res.status(500).json({
+        message:
+          err.message || "Some error occurred while retrieving bill."
+    });
+})
 }

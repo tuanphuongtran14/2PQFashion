@@ -28,3 +28,9 @@ export const SAVE_BILL="SAVE_BILL";
 
 //add bill success 
 export const ADD_BILL_SUCCESS="ADD_BILL_SUCCESS";
+
+//fetch bill by id_user
+export const FETCH_BILLS_BY_USER="FETCH_BILLS_BY_USER";
+
+//fetch user by id
+export const FETCH_USER_BY_ID="FETCH_USER_BY_ID";

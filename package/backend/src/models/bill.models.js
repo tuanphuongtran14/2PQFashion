@@ -18,7 +18,7 @@ exports.Bill = function(mongoose) {
         bookingDate:Date,
         deliveryDate:Date,
         orderNote:String,
-        status:String,
+        status:Number,
         
     })
 
@@ -51,7 +51,7 @@ exports.validateBill = function(bill) {
 }
 exports.generateIdBill = function() {
     
-        return S4()+'-'+S4()+'-'+S4()+S4()+'-'+S4()+'-'+S4()+S4()+'-'+S4() +S4()+'-'+S4()+'-'+S4()+S4();
+        return S4()+S4();
 }
 function S4()
 {

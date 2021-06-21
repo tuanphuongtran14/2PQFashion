@@ -3,6 +3,7 @@ module.exports = (app) => {
     const categoryRouter = require('./category.routers');
     const ordersRouter = require('./ordrers.routers');
     const BillRouter = require('./bill.routers');
+    const UserRouter = require('./user.routers');
 
     // Product API Routing
     app.use('/api/products', productRouter);
@@ -12,4 +13,7 @@ module.exports = (app) => {
 
     // Bill API Routing
     app.use('/api/bills', BillRouter)
+
+    //User API Routing
+    app.use('/api/users', UserRouter)
 }
