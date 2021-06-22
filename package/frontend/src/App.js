@@ -9,6 +9,7 @@ import CheckoutPage from './pages/PaymentPage/CheckoutPage';
 import UserPage from './pages/UserPage/UserPage';
 import LoginPage from './pages/LoginRegisterPage/LoginPage'
 import RegisterPage from './pages/LoginRegisterPage/RegisterPage'
+import ShopDetailsPage from './pages/ShopDetailsPage/ShopDetailsPage';
 import {
   BrowserRouter as Router,
   Switch,
@@ -63,6 +64,9 @@ class App extends Component {
               </Route>
               <Route path='/register'>
                 <RegisterPage />
+              </Route>
+              <Route path='/info'>
+                <ShopDetailsPage />
               </Route>
             </Switch>
             <Footer />

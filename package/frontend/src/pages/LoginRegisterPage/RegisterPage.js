@@ -8,7 +8,7 @@ class RegisterPage extends Component {
                 <Helmet>
                     <title>Đăng ký</title>
                 </Helmet>
-                <form className="w-50 mx-auto shadow p-4">
+                <form className="regForm mx-auto shadow p-4">
                     <h2 className="text-center">Đăng ký</h2>
                     <p className="text-center"><u><a href="/login">Đã có tài khoản? Đăng nhập ngay.</a></u></p>
                     <div class="form-group">

@@ -33,7 +33,7 @@ countPrice=(cart)=>{
                             <div className="col-lg-6 col-md-5">
                                 <div className="header__top__right">
                                     <div className="header__top__links">
-                                        <a href="/">Sign in</a>
+                                        <a href="/login">Sign in</a>
                                         <a href="/">FAQs</a>
                                     </div>
                                     <div className="header__top__hover">

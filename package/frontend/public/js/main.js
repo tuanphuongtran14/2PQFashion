@@ -34,9 +34,8 @@
     /*------------------
         Background Set
     --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-
+    $('.set_bg').each(function () {
+        var bg = $(this).data('data-setbg'); 
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
