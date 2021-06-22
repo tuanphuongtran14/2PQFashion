@@ -4,6 +4,7 @@ const productModel = require('./product.models');
 const categoryModel = require('./category.models');
 const ordersModel = require('./orders.models')
 const billModel = require('./bill.models')
+const userModel = require('./user.models')
 const db = {};
 
 db.url = dbConfig.url;
@@ -12,5 +13,6 @@ db.product = productModel.Product(mongoose);
 db.category = categoryModel.Category(mongoose);
 db.orders = ordersModel.Orders(mongoose);
 db.bill = billModel.Bill(mongoose);
+db.user = userModel.User(mongoose);
 
 module.exports = db;

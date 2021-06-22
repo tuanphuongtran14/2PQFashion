@@ -46,7 +46,7 @@ class CartItem extends Component {
                 <th scope="row">
                     <Link to={"#"} >
                         <img src={cartItem.images[0]}
-                            alt="" className=" z-depth-0" />
+                            alt="" className=" z-depth-0" style={{width:100}}/>
                     </Link>
                 </th>
                 <td>

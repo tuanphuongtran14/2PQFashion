@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {create, getOne, getAll, updateOne, deleteOne, search} = require('../controllers/bill.controllers');
+const {create, getOne, getAll, updateOne, deleteOne, search, getBillByIdUser,cancelBill} = require('../controllers/bill.controllers');
 
 // Creating new orders
 router.post('/', create);
@@ -10,7 +10,13 @@ router.get('/', getAll);
 // Get all orders
 router.get('/search', search);
 
+// Get all orders by id_User
+router.get('/user/:id_user', getBillByIdUser);
 // Get orders by ID
+
+// Hủy bill
+router.post('/cancel-bill', cancelBill);
+
 router.get('/:id', getOne);
 
 // Update orders by ID

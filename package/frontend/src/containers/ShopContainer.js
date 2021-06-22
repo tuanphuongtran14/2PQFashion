@@ -55,7 +55,6 @@ class ShopContainer extends Component {
     var {products,keyword,sort}=this.props;
      var {match}=this.props;
     let query= new URLSearchParams(this.props.location.search);
-    query.get("value")
     var filter=match.params.filter;
     if(filter){
       

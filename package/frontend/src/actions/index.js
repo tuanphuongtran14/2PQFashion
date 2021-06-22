@@ -119,3 +119,47 @@ export const addBillSucess=(isCheck)=>{
         isCheck
     }
 }
+
+//xử lý render list sản phẩm
+export const fetchBillsByUser=(bills)=>{
+    return {
+        type:types.FETCH_BILLS_BY_USER,
+        bills,//products=products
+    }
+}
+
+//Lên API lấy dữ liệu products về
+export const fetchBillsByUserRequest=(id_User)=>{
+    return (dispatch)=>{
+        return callApi(`bills/user/${id_User}`,'GET',null)
+                        .then(res=>{
+                            dispatch(fetchBillsByUser(res.data));
+                        })
+    }
+}
+
+export const deleteBill=(id_Bill)=>{
+    console.log(123);
+    return callApi('bills/cancel-bill','POST',{
+        id_Bill:id_Bill
+    })
+}
+
+
+//xử lý render list sản phẩm
+export const fetchUserById=(user)=>{
+    return {
+        type:types.FETCH_USER_BY_ID,
+        user,//products=products
+    }
+}
+
+//Lên API lấy dữ liệu products về
+export const fetchUserByIdRequest=(id_User)=>{
+    return (dispatch)=>{
+        return callApi(`users/${id_User}`,'GET',null)
+                        .then(res=>{
+                            dispatch(fetchUserById(res.data));
+                        })
+    }
+}
