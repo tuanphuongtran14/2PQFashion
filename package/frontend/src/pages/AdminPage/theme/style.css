@@ -2952,14 +2952,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #007bff!important;
+  border-color: #007bff!important;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: #0069d9!important;
+  border-color: #0062cc!important;
 }
 
 .btn-primary:focus,
@@ -11746,7 +11746,6 @@ a.text-dark:focus {
 }
 
 
-
 a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
@@ -11951,32 +11950,6 @@ h5,
   font-size: 14px;
 }
 
-#sidebar .custom-menu .btn.btn-primary {
-  background: transparent;
-  border-color: transparent;
-}
-
-#sidebar .custom-menu .btn.btn-primary:after {
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: #30e3ca;
-  border-radius: 10px;
-}
-
-#sidebar .custom-menu .btn.btn-primary:hover,
-#sidebar .custom-menu .btn.btn-primary:focus {
-  background: transparent !important;
-  border-color: transparent !important;
-}
-
 a[data-toggle="collapse"] {
   position: relative;
 }
@@ -11998,17 +11971,6 @@ a[data-toggle="collapse"] {
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-}
-
-.btn.btn-primary {
-  background: #30e3ca;
-  border-color: #30e3ca;
-}
-
-.btn.btn-primary:hover,
-.btn.btn-primary:focus {
-  background: #30e3ca !important;
-  border-color: #30e3ca !important;
 }
 
 .footer p {
@@ -12062,6 +12024,14 @@ a[data-toggle="collapse"] {
 
 .category-list {
   height: 80vh;
+  overflow-y: auto;
+  border-bottom: 1px solid #2f89fc;
+  border-left: 1px solid #2f89fc;
+  border-right: 1px solid #2f89fc;
+}
+
+.order-list {
+  height: 480px;
   overflow-y: auto;
   border-bottom: 1px solid #2f89fc;
   border-left: 1px solid #2f89fc;
@@ -12136,6 +12106,26 @@ div.readonly {
   padding: 15px
 }
 
-.image-item .image-item__img {
+
+
+.img-list {
   width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.img-list .image-item {
+  display: inline-block;
+  height: 300px;
+  width: auto;
+  padding: 15px
+}
+
+.img-list .image-item .image-item__img {
+  height: 100%;
+  width: auto;
+}
+
+.badge.badge--custom {
+  font-size: 0.7rem!important;
 }

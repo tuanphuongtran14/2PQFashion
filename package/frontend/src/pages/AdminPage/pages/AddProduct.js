@@ -13,6 +13,7 @@ export default class AddProductPage extends Component {
         this.categorySelect = React.createRef();
         this.tagSelect = React.createRef();
         this.state = {
+            imgSrc: [],
             loading: true,
             categoryOptions: [
                 {
@@ -211,6 +212,9 @@ export default class AddProductPage extends Component {
                     document.getElementById('sizeM').setAttribute('disabled', 'true');
                     document.getElementById('sizeL').setAttribute('disabled', 'true');
                     document.getElementById('sizeXL').setAttribute('disabled', 'true');
+                    this.setState({
+                        imgSrc: []
+                    });
                     alert("Thêm sản phẩm thành công!!!");
                 } else {
                     alert("Có lỗi xảy ra, vui lòng thử lại!!!");
@@ -219,6 +223,35 @@ export default class AddProductPage extends Component {
                     loading: false
                 });
             })
+    }
+
+    handleFileOnChange = (event) => {
+        const files = [...event.target.files];
+
+        const urls = files.map(file => {
+            return URL.createObjectURL(file)
+        })
+        this.setState({
+            imgSrc: urls
+        })
+    }
+
+    displayImg = () => {
+        if(this.state.imgSrc.length > 0) {
+            const imgs = this.state.imgSrc.map((src, index) => {
+                return (
+                    <div className="image-item" key={index}>
+                        <img className="image-item__img" src={src} />
+                    </div>
+                )
+            });
+
+            return (
+                <div className="img-list bg-dark">
+                    {imgs}
+                </div>
+            )
+        }
     }
 
     render() {
@@ -371,8 +404,9 @@ export default class AddProductPage extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="images">Tải hình ảnh</label>
-                        <input type="file" multiple id="images" name="images" className="d-block" required onChange={this.handleInputChange} />
+                        <input type="file" multiple id="images" name="images" className="d-block" required onChange={this.handleFileOnChange} />
                     </div>
+                    { this.displayImg() }
                     <div className="d-flex justify-content-between mt-4">
                         <button className="btn btn-success" onClick={this.handleSubmit}>Thêm sản phẩm</button>
                         <button type="reset" className="btn btn-danger">Hủy</button>

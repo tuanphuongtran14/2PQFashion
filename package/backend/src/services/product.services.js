@@ -38,12 +38,6 @@ exports.deleteBySKU = (sku) => {
 }
 
 exports.updateBySKU = (sku, updateContent) => {
-    // If change product name, change product slug
-    if(updateContent.name) {
-        let slug = updateContent.name + '';
-        updateContent.slug = convertToSlug(slug);
-    }
-
     return productRepo.updateBySKU(sku, updateContent);
 }
 

@@ -72,8 +72,12 @@ class ProductList extends Component {
 
     viewProduct = (event, id) => {
         event.preventDefault();
-        console.log(this.props.history);
         this.props.history.push(`/admin/san-pham?id=${id}`)
+    }
+
+    editProduct  = (event, id) => {
+        event.preventDefault();
+        this.props.history.push(`/admin/sua-san-pham?id=${id}`)
     }
 
     render() {
@@ -86,7 +90,7 @@ class ProductList extends Component {
                     <td>{ product.category }</td>
                     <td className="pt-0 text-center">
                         <button className="btn" onClick={(event) => this.viewProduct(event, product.sku)}><i className="fa fa-eye text-primary" aria-hidden="true"></i></button>
-                        <button className="btn"><i className="fa fa-pencil-square-o text-success" aria-hidden="true"></i></button>
+                        <button className="btn" onClick={(event) => this.editProduct(event, product.sku)}><i className="fa fa-pencil-square-o text-success" aria-hidden="true"></i></button>
                         <button className="btn" onClick={(event) => this.deleteProduct(event, product.sku)}><i className="fa fa-trash text-danger" aria-hidden="true"></i></button>
                     </td>
                 </tr>
@@ -136,7 +140,7 @@ class ProductList extends Component {
                         </tbody>
                     </table>
                 </div>
-                <div className="text-center my-3">Tổng cộng: 30 sản phẩm</div>
+                <div className="text-center my-3">Tổng cộng: { this.state.products.length } sản phẩm</div>
                 { this.displayLoading() }
             </Fragment>
         )

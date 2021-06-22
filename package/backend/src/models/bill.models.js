@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const removeVietnameseTones = require('../vendors/removeVietnameseTones')
 
 exports.Bill = function(mongoose) {
     // Creating Product Schema
@@ -15,11 +14,17 @@ exports.Bill = function(mongoose) {
         totalPrice:Number,
         phone: Number,
         paymentMethod: String,
-        bookingDate:Date,
+        bookingDate:Date, 
         deliveryDate:Date,
         orderNote:String,
-        status:String,
-        
+        status: Number 
+        /*--- Status value explain ---
+            0. Đang xử lý
+            1. Đã tiếp nhận
+            2. Đang giao hàng
+            3. Hoàn thành
+            4. Đã hủy
+        ----------------------------*/
     })
 
     // Creating Bill Model
@@ -42,6 +47,7 @@ exports.validateBill = function(bill) {
         paymentMethod: Joi.string().min(1),
         orderNote:Joi.string().min(0),
         coupon: Joi.string().min(0).max(20),
+        status: Joi.number()
     });
 
     let { error } = schema.validate(bill)

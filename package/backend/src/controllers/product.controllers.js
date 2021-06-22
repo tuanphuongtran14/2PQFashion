@@ -115,51 +115,77 @@ exports.deleteOne = async (req, res) => {
         } else {
             res.status(404).send({
                 message: `Cannot delete Product with sku=${sku}. Maybe Product was not found!`
-              });
+            });
         }
     } catch(err) {
         res.status(500).json({
             message:
-              err.message || `Some error occurred while deleting product with sku=${sku}.`
+            err.message || `Some error occurred while deleting product with sku=${sku}.`
         });
     }
 }
 
 exports.updateOne = async (req, res) => {
-    let sku = req.params.sku;
-    let updateContent = req.body;
+    upload(req, res, async function (err) {
+        if(err) {
+            return res.status(500).json({
+                message: err.message || 'Can\' upload product images'
+            });
+        } else {
+            let sku = req.params.sku;
+            let updateContent = req.body;
 
-    // If updated content is null, return 400 Error
-    if (!updateContent) {
-        return res.status(400).json({
-          message: "Data to update can not be empty!"
-        });
-    }
+            // If updated content is null, return 400 Error
+            if (!updateContent) {
+                return res.status(400).json({
+                message: "Data to update can not be empty!"
+                });
+            }
 
-    // If user update product sku, return 400 Error
-    if (updateContent.sku) {
-        return res.status(400).json({
-          message: "Can\'t update or change product sku"
-        });
-    }
+            // If user update product sku, return 400 Error
+            if (updateContent.sku) {
+                return res.status(400).json({
+                message: "Can\'t update or change product sku"
+                });
+            }
 
-    try {
-        //Update product by SKU
-        let product = await productServices.updateBySKU(sku, updateContent);
-        
-        // If exist product, update and return it
-        if(product) {
-            return res.status(200).json({ message: "Product was updated successfully." });
+            try {
+                //Update product by SKU
+                updateContent.price = Number(updateContent.price);
+                updateContent.status = Number(updateContent.status);
+                
+                updateContent.tags = JSON.parse(updateContent.tags);
+                updateContent.options = JSON.parse(updateContent.options);
+                updateContent.options = updateContent.options.map(option => {
+                    return {
+                        size: option.size,
+                        quantity: Number(option.quantity),
+                        remaining: Number(option.remaining)
+                    }
+                });
+
+                if(req.files.length > 0)
+                    updateContent.images = req.files.map(file => {
+                        return `/images/uploads/${file.filename}`
+                    })
+
+                let product = await productServices.updateBySKU(sku, updateContent);
+                
+                // If exist product, update and return it
+                if(product) {
+                    return res.status(200).json({ message: "Product was updated successfully." });
+                }
+
+                // If product is not exist, return 404 Error
+                return res.status(404).json({
+                    message: `Cannot update Product with sku=${sku}. Maybe Product was not found!`
+                })
+            } catch(err) {
+                res.status(500).json({
+                    message:
+                    err.message || `Some error occurred while retrieving product with sku=${sku}.`
+                });
+            }
         }
-
-        // If product is not exist, return 404 Error
-        return res.status(404).json({
-            message: `Cannot update Product with sku=${sku}. Maybe Product was not found!`
-        })
-    } catch(err) {
-        res.status(500).json({
-            message:
-              err.message || `Some error occurred while retrieving product with sku=${sku}.`
-        });
-    }
+    });
 }

@@ -36,12 +36,32 @@ exports.getAll = (req, res) => {
         });
     })
 }
+
+exports.search = async (req, res) => {
+    let input = {
+        code: req.query.code,
+        status: Number(req.query.status),
+        sort: req.query.sort
+    }
+    try {
+        let orders = await BillService.search(input);
+        return res.json(orders);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({
+            message:
+              err.message || `Some error occurred while retrieving orders.`
+        });
+    }
+}
+
 exports.getOne = async (req, res) => {
     let id = req.params.id;
+    console.log(id);
 
     try {
         //Find orders by ID
-        let orders = await ordersServices.findByID(id);
+        let orders = await BillService.findByID(id);
         
         // If exist orders, return it
         if(orders) {
@@ -73,7 +93,7 @@ exports.updateOne = async (req, res) => {
 
     try {
         // Update orders by ID
-        let orders = await ordersServices.updateByID(id, updateContent);
+        let orders = await BillService.updateByID(id, updateContent);
         
         // If exist orders, update and return it
         if(orders) {

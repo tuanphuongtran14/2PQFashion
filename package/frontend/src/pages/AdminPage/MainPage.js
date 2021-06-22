@@ -4,11 +4,14 @@ import { Helmet } from 'react-helmet';
 import './theme/style.css'
 import AddProduct from './pages/AddProduct';
 import CategoryList from './pages/CategoryList';
+import OrderList from './pages/OrderList';
 import ProductList from './pages/ProductList';
 import AddCategory from './pages/AddCategory';
 import EditCategory from './pages/EditCategory';
+import EditProduct from './pages/EditProduct';
 import ViewCategory from './pages/ViewCategory';
 import ViewProduct from './pages/ViewProduct';
+import ViewOrder from './pages/ViewOrder';
 
 export default class MainPage extends Component {
     render() {
@@ -56,6 +59,9 @@ export default class MainPage extends Component {
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <Link to="/admin/xem-don-hang">Quản lý đơn hàng</Link>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -66,8 +72,11 @@ export default class MainPage extends Component {
                         <Route path={'/admin/them-san-pham'} component={AddProduct} />
                         <Route path={'/admin/them-danh-muc'} component={AddCategory} />
                         <Route path={'/admin/sua-danh-muc'} component={EditCategory} />
+                        <Route path={'/admin/sua-san-pham'} component={EditProduct} />
                         <Route path={'/admin/danh-muc'} component={ViewCategory} />
                         <Route path={'/admin/san-pham'} component={ViewProduct} />
+                        <Route path={'/admin/xem-don-hang'} component={OrderList} />
+                        <Route path={'/admin/don-hang'} component={ViewOrder} />
                     </div>
                 </div>
                 </div>

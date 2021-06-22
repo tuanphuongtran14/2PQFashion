@@ -107,7 +107,7 @@ export default class AddCategory extends Component {
                             <button type="submit" class="btn btn-success" onClick={ this.handleSubmit }>Lưu thay đổi</button>
                         </div>
                         <div className="col-6 text-right px-0">
-                            <button type="reset" class="btn btn-danger" onClick={ this.handleCancel }>Hủy</button>
+                            <button type="reset" class="btn btn-danger" onClick={ this.handleCancel }>Quay lại</button>
                         </div>
                     </div>
                 </div>

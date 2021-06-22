@@ -77,7 +77,7 @@ class ProductItem extends Component {
                             <div className="rating">
                                 {this.renderStarRate(rating.grade)}
                             </div>
-                            <h5>${price}</h5>
+                            <h5>{price.toLocaleString('de-DE')}đ</h5>
                         </div>
                     </div>
                 </div>

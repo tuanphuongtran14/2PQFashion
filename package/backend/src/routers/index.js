@@ -1,8 +1,7 @@
 module.exports = (app) => {
     const productRouter = require('./product.routers');
     const categoryRouter = require('./category.routers');
-    const ordersRouter = require('./ordrers.routers');
-    const BillRouter = require('./bill.routers');
+    const billRouter = require('./bill.routers');
 
     // Product API Routing
     app.use('/api/products', productRouter);
@@ -11,5 +10,5 @@ module.exports = (app) => {
     app.use('/api/categories', categoryRouter);
 
     // Bill API Routing
-    app.use('/api/bills', BillRouter)
+    app.use('/api/bills', billRouter)
 }

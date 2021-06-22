@@ -115,7 +115,7 @@ class ProductList extends Component {
                         </tbody>
                     </table>
                 </div>
-                <div className="text-center my-3">Tổng cộng: 10 danh mục</div>
+                <div className="text-center my-3">Tổng cộng: { this.state.categories.length } danh mục</div>
                 { this.displayLoading() }
             </Fragment>
         )
