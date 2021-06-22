@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import callApi from '../../../utils/apiCaller';
+import axios from 'axios';
 
 export default class ViewOrder extends Component {
     constructor(props) {
@@ -13,30 +13,39 @@ export default class ViewOrder extends Component {
         }
     }
     componentDidMount() {
-        callApi(`bills/${this.state.id}`, 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    this.setState({
-                        status: Number(res.data.status)
-                    });
-                    this.setState({
-                        details: res.data.products
-                    });
-                    document.getElementById('name').value = res.data.nameCustomer;
-                    document.getElementById('phone').value = res.data.phone;
-                    document.getElementById('email').value = res.data.email;
-                    document.getElementById('address').value = res.data.address;
-                    document.getElementById('coupon').value = (res.data.coupon !== ' ')  ?  res.data.coupon : 'Không có';
-                    document.getElementById('paymentMethod').value = res.data.paymentMethod;
-                    document.getElementById('orderNote').value = (res.data.orderNote !== ' ')  ?  res.data.orderNote : 'Không có';
-                    const bookingDate = new Date(res.data.bookingDate);
-                    document.getElementById('bookingDate').value = `${bookingDate.getDate()}/${bookingDate.getMonth() + 1}/${bookingDate.getFullYear()}`
-                    document.getElementById('totalPrice').value = res.data.totalPrice.toLocaleString('de-DE') + 'đ';
-                    this.setState({
-                        loading: false
-                    });
-                }
+        axios({
+            method: 'GET',
+            url: `/api/bills/${this.state.id}`
+        }).then(res => {
+            if (res && res.status === 200) {
+                this.setState({
+                    status: Number(res.data.status)
+                });
+                this.setState({
+                    details: res.data.products
+                });
+                document.getElementById('name').value = res.data.nameCustomer;
+                document.getElementById('phone').value = res.data.phone;
+                document.getElementById('email').value = res.data.email;
+                document.getElementById('address').value = res.data.address;
+                document.getElementById('coupon').value = (res.data.coupon !== ' ')  ?  res.data.coupon : 'Không có';
+                document.getElementById('paymentMethod').value = res.data.paymentMethod;
+                document.getElementById('orderNote').value = (res.data.orderNote !== ' ')  ?  res.data.orderNote : 'Không có';
+                const bookingDate = new Date(res.data.bookingDate);
+                document.getElementById('bookingDate').value = `${bookingDate.getDate()}/${bookingDate.getMonth() + 1}/${bookingDate.getFullYear()}`
+                document.getElementById('totalPrice').value = res.data.totalPrice.toLocaleString('de-DE') + 'đ';
+                this.setState({
+                    loading: false
+                });
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+            this.setState({
+                loading: false
             });
+        })
     }
 
     displayLoading = () => {
@@ -72,8 +81,14 @@ export default class ViewOrder extends Component {
             this.setState({
                 loading: true
             });
-            callApi(`bills/${this.state.id}`, 'PUT', {
-                status: value
+            
+            axios({
+                method: 'PUT',
+                url: `/api/bills/${this.state.id}`,
+                data: { status: value },
+                headers: {
+                    Authorization: `Bearer ${this.props.token}`
+                }
             }).then(res => {
                 if(res && res.status === 200) {
                     this.setState({
@@ -83,6 +98,13 @@ export default class ViewOrder extends Component {
                         loading: false
                     });
                 }
+            }).catch(error => {
+                if(error.response) {
+                    alert("Lỗi: " + error.response.data.message)
+                }
+                this.setState({
+                    loading: false
+                });
             })
         }
     }

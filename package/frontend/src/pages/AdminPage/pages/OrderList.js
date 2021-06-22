@@ -1,9 +1,11 @@
+import axios from 'axios';
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Select from 'react-select';
-import callApi from '../../../utils/apiCaller';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
 
-export default class OrderList extends Component {
+class OrderList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,15 +54,21 @@ export default class OrderList extends Component {
     }
 
     componentDidMount() {
-        callApi('bills', 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    this.setState({
-                        bills: res.data,
-                        loading: false
-                    })
-                }
-            })
+        console.log(this.props.token);
+        axios({
+            method: 'GET',
+            url: '/api/bills/search',
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }).then(res => {
+            if (res && res.status === 200) {
+                this.setState({
+                    bills: res.data,
+                    loading: false
+                })
+            }
+        })
     }
 
     displayLoading = () => {
@@ -104,16 +112,25 @@ export default class OrderList extends Component {
         }
 
         console.log(query);
-        callApi(`bills/search${query}`, 'GET')
-            .then(res => {
-                if(res && res.status === 200)
-                     this.setState({
-                         bills: res.data
-                     });
-                this.setState({
-                    loading: false
-                });
+        // callApi(`bills/search${query}`, 'GET', null, {
+        //     headers: {
+        //         "Authorization" : `Bearer ${this.props.token}`
+        //     }})
+        axios({
+            method: 'GET',
+            url: `/api/bills/search${query}`,
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }).then(res => {
+            if(res && res.status === 200)
+                    this.setState({
+                        bills: res.data
+                    });
+            this.setState({
+                loading: false
             });
+        });
     }
 
     handleCodeOnChange = (event) => {
@@ -241,3 +258,23 @@ export default class OrderList extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(OrderList));

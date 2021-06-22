@@ -29,8 +29,45 @@ class IndexPage extends Component {
                 $(this).css('background-image', 'url(' + bg + ')');
             });
 
+            //Search Switch
+            $('.search-switch').on('click', function () {
+                $('.search-model').fadeIn(400);
+            });
+
+            $('.search-close-switch').on('click', function () {
+                $('.search-model').fadeOut(400, function () {
+                    $('#search-input').val('');
+                });
+            });
+            
+            /*------------------
+                Accordin Active
+            --------------------*/
+            $('.collapse').on('shown.bs.collapse', function () {
+                $(this).prev().addClass('active');
+            });
+
+            $('.collapse').on('hidden.bs.collapse', function () {
+                $(this).prev().removeClass('active');
+            });
+
+             /*-------------------
+                Radio Btn
+            --------------------- */
+            $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").on('click', function () {
+                $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").removeClass('active');
+                $(this).addClass('active');
+            });
+            /*------------------
+                Gallery filter
+            --------------------*/
+            $('.filter__controls li').on('click', function () {
+                $('.filter__controls li').removeClass('active');
+                $(this).addClass('active');
+            });
         })
     }
+
 
     sales = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {

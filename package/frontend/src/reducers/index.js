@@ -7,6 +7,7 @@ import cart from './cart'
 import order from './order'
 import list_bill from './list_bill'
 import user from './user'
+import authorization from './authorization'
 
 const appReducer=combineReducers({
     products,
@@ -17,5 +18,6 @@ const appReducer=combineReducers({
     order,
     list_bill,
     user,
+    authorization,
 });
 export default appReducer;

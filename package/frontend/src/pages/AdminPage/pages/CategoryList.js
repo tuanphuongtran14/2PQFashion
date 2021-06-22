@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
-import callApi from '../../../utils/apiCaller';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
+import axios from 'axios';
 
 class ProductList extends Component {
     constructor(props) {
@@ -12,15 +14,21 @@ class ProductList extends Component {
     }
 
     componentDidMount() {
-        callApi('categories', 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    this.setState({
-                        categories: res.data,
-                        loading: false
-                    })
-                }
-            })
+        axios({
+            method: 'GET',
+            url: '/api/categories'
+        }).then(res => {
+            if (res && res.status === 200) {
+                this.setState({
+                    categories: res.data,
+                    loading: false
+                })
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+        })
     }
 
     displayLoading = () => {
@@ -47,26 +55,47 @@ class ProductList extends Component {
             this.setState({
                 loading: true
             });
-            callApi(`categories/${id}`, 'DELETE')
-                .then(res => {
-                    if (res && res.status === 200) {
-                        // Fetch new data
-                        callApi('categories', 'GET')
-                            .then(res => {
-                                if (res && res.status === 200) {
-                                    this.setState({
-                                        categories: res.data
-                                    })
-                                }
-                                alert("Đã xóa thành công!!!");
-                                this.setState({
-                                    loading: false
-                                });
+            axios({
+                method:'DELETE',
+                url: `/api/categories/${id}`,
+                headers: {
+                    Authorization: `Bearer ${this.props.token}`
+                }
+            }).then(res => {
+                if (res && res.status === 200) {
+                    // Fetch new data
+                    axios({
+                        method: 'GET',
+                        url: '/api/categories'
+                    }).then(res => {
+                        if (res && res.status === 200) {
+                            this.setState({
+                                categories: res.data
                             })
-                    } else {
-                        alert("Xóa thất bại, vui lòng thử lại sau!!!");
-                    }
-                })
+                        }
+                        alert("Đã xóa thành công!!!");
+                        this.setState({
+                            loading: false
+                        });
+                    }).catch(error => {
+                        if(error.response) {
+                            alert("Lỗi: " + error.response.data.message)
+                        }
+                        this.setState({
+                            loading: false
+                        });
+                    });
+                } else {
+                    alert("Xóa thất bại, vui lòng thử lại sau!!!");
+                }
+            }).catch(error => {
+                if(error.response) {
+                    alert("Lỗi: " + error.response.data.message)
+                }
+                this.setState({
+                    loading: false
+                });
+            })
         }
     }
 
@@ -122,4 +151,22 @@ class ProductList extends Component {
     }
 }
 
-export default withRouter(ProductList);
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductList));

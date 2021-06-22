@@ -17,7 +17,6 @@ exports.findAll = () => {
     return BillRepo.findAll();
 }
 
-<<<<<<< HEAD
 exports.search = async (input) => {
     let orders = await BillRepo.findAll();
     
@@ -46,10 +45,10 @@ exports.search = async (input) => {
     }
 
     return orders;
-=======
+}
+
 exports.findBillByIdUser = (id_user) => {
     return BillRepo.findBillByIdUser (id_user);
->>>>>>> 3776c425445680d3295e36630d95b6cd9ad584d2
 }
 
 exports.findByID = (id) => {

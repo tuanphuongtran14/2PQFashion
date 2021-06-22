@@ -1,12 +1,15 @@
-import React, { Component, Fragment } from 'react'
-import callApi from '../../../utils/apiCaller';
+import React, { Component, Fragment } from 'react';
 import convertToSlug from '../../../utils/convertToSlug';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
+import axios from 'axios';
 
 const animatedComponents = makeAnimated();
 
-export default class AddProductPage extends Component {
+class EditProduct extends Component {
     constructor(props) {
         super(props);
         const query = new URLSearchParams(this.props.location.search);
@@ -75,71 +78,91 @@ export default class AddProductPage extends Component {
     }
 
     componentDidMount() {
-        callApi(`products/${this.state.id}`, 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    let data = res.data;
-                    document.getElementById('name').value = data.name;
-                    document.getElementById('slug').value = data.slug;
-                    document.getElementById('price').value = data.price;
-                    document.getElementById('shortDesc').value = data.shortDesc;
-                    document.getElementById('fullDesc').value = data.fullDesc;
-                    document.getElementById('additionalInfo').value = data.additionalInfo;
-                    let statusLabel = 'Bình thường';
-                    switch (data.status) {
-                        case 1:
-                            statusLabel = 'Best Sellers';
-                            break;
-                        case 2:
-                            statusLabel = 'New Arrivals';
-                            break;
-                        case 3:
-                            statusLabel = 'Hot Sales';
-                            break;
+        axios({
+            method: 'GET',
+            url: `/api/products/${this.state.id}`
+        }).then(res => {
+            if (res && res.status === 200) {
+                let data = res.data;
+                document.getElementById('name').value = data.name;
+                document.getElementById('slug').value = data.slug;
+                document.getElementById('price').value = data.price;
+                document.getElementById('shortDesc').value = data.shortDesc;
+                document.getElementById('fullDesc').value = data.fullDesc;
+                document.getElementById('additionalInfo').value = data.additionalInfo;
+                let statusLabel = 'Bình thường';
+                switch (data.status) {
+                    case 1:
+                        statusLabel = 'Best Sellers';
+                        break;
+                    case 2:
+                        statusLabel = 'New Arrivals';
+                        break;
+                    case 3:
+                        statusLabel = 'Hot Sales';
+                        break;
+                }
+                this.statusSelect.select.setValue({ value: data.status, label: statusLabel })
+                this.categorySelect.select.setValue({ value: data.category, label: data.category })
+                this.tagSelect.select.setValue(data.tags.map(tag => {
+                    return {
+                        value: tag,
+                        label: tag
                     }
-                    this.statusSelect.select.setValue({ value: data.status, label: statusLabel })
-                    this.categorySelect.select.setValue({ value: data.category, label: data.category })
-                    this.tagSelect.select.setValue(data.tags.map(tag => {
-                        return {
-                            value: tag,
-                            label: tag
-                        }
-                    }));
-                    data.options.map(option => {
-                        document.getElementById(`size${option.size}Checkbox`).setAttribute('checked', 'true');
-                        document.getElementById(`size${option.size}`).value = option.quantity;
-                        document.getElementById(`size${option.size}`).removeAttribute('disabled')
-                        document.getElementById(`remaining${option.size}`).value = option.remaining;
-                        document.getElementById(`remaining${option.size}`).removeAttribute('disabled')
-                    })
-                    this.setState({
-                        productOptions: data.options,
-                        imgSrc: data.images
-                    });
-                    this.setState({
-                        loading: false
-                    });
-                } else {
-                    alert("Sản phẩm cần chỉnh sửa không tồn tại!!!");
-                    this.props.history.push(`/admin/xem-san-pham`);
-                }
-            })
+                }));
+                data.options.map(option => {
+                    document.getElementById(`size${option.size}Checkbox`).setAttribute('checked', 'true');
+                    document.getElementById(`size${option.size}`).value = option.quantity;
+                    document.getElementById(`size${option.size}`).removeAttribute('disabled')
+                    document.getElementById(`remaining${option.size}`).value = option.remaining;
+                    document.getElementById(`remaining${option.size}`).removeAttribute('disabled')
+                })
+                this.setState({
+                    productOptions: data.options,
+                    imgSrc: data.images
+                });
+                this.setState({
+                    loading: false
+                });
+            } else {
+                alert("Sản phẩm cần chỉnh sửa không tồn tại!!!");
+                this.props.history.push(`/admin/xem-san-pham`);
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+            this.setState({
+                loading: false
+            });
+        })
 
-        callApi('categories', 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    const categories = res.data.map(category => {
-                        return {
-                            value: category.name,
-                            label: category.name
-                        }
-                    }) 
-                    this.setState({
-                        categoryOptions: categories,
-                        loading: false
-                    })
-                }
-            })
+        axios({
+            method: 'GET',
+            url: `/api/categories`
+        }).then(res => {
+            if (res && res.status === 200) {
+                const categories = res.data.map(category => {
+                    return {
+                        value: category.name,
+                        label: category.name
+                    }
+                }) 
+                this.setState({
+                    categoryOptions: categories
+                });
+                this.setState({
+                    loading: false
+                });
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+            this.setState({
+                loading: false
+            });
+        })
     }
 
     displayLoading = () => {
@@ -268,21 +291,30 @@ export default class AddProductPage extends Component {
             console.log(pair[0] + ', ' + pair[1]);
         }
 
-        callApi(`products/${this.state.id}`, 'PUT', data, {
+        axios({
+            method: 'PUT',
+            url: `/api/products/${this.state.id}`,
+            data: data,
             headers: {
-                'Content-Type': 'multipart/form-data'
-              }
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }).then(res => {
+            if (res && res.status === 200) {
+                alert("Thêm sản phẩm thành công!!!");
+            } else {
+                alert("Có lỗi xảy ra, vui lòng thử lại!!!");
+            }
+            this.setState({
+                loading: false
+            });
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+            this.setState({
+                loading: false
+            });
         })
-            .then(res => {
-                if (res && res.status === 200) {
-                    alert("Thêm sản phẩm thành công!!!");
-                } else {
-                    alert("Có lỗi xảy ra, vui lòng thử lại!!!");
-                }
-                this.setState({
-                    loading: false
-                });
-            })
     }
 
     handleFileOnChange = (event) => {
@@ -522,3 +554,23 @@ export default class AddProductPage extends Component {
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditProduct));

@@ -60,6 +60,7 @@ export default class AddProductPage extends Component {
                         productOptions: data.options,
                         productImages: data.images
                     });
+                    console.log(data.images);
                 } else {
                     alert("Sản phẩm cần xem không tồn tại!!!");
                     this.props.history.push(`/admin/xem-san-pham`);
@@ -195,7 +196,7 @@ export default class AddProductPage extends Component {
                     <div className="form-group">
                         <label htmlFor="images">Hình ảnh sản phẩm</label>
                         <div className="border p-3 readonly bg-dark">
-                        { this.state.productImages.length > 1 && (<OwlCarousel 
+                        { this.state.productImages.length > 0 && (<OwlCarousel 
                             className='owl-carousel owl-theme'
                             loop={false}
                             margin={0} 
