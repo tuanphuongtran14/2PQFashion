@@ -1,18 +1,22 @@
 import React, { Component, Fragment } from 'react'
-import callApi from '../../../utils/apiCaller';
 import convertToSlug from '../../../utils/convertToSlug';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
+import { withRouter } from 'react-router-dom'
+import axios from 'axios';
 
 const animatedComponents = makeAnimated();
 
-export default class AddProductPage extends Component {
+class AddProduct extends Component {
     constructor(props) {
         super(props);
         this.statusSelect = React.createRef();
         this.categorySelect = React.createRef();
         this.tagSelect = React.createRef();
         this.state = {
+            imgSrc: [],
             loading: true,
             categoryOptions: [
                 {
@@ -72,21 +76,27 @@ export default class AddProductPage extends Component {
     }
 
     componentDidMount() {
-        callApi('categories', 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    const categories = res.data.map(category => {
-                        return {
-                            value: category.name,
-                            label: category.name
-                        }
-                    }) 
-                    this.setState({
-                        categoryOptions: categories,
-                        loading: false
-                    })
-                }
-            })
+        axios({
+            method: 'GET',
+            url: '/api/categories'
+        }).then(res => {
+            if (res && res.status === 200) {
+                const categories = res.data.map(category => {
+                    return {
+                        value: category.name,
+                        label: category.name
+                    }
+                }) 
+                this.setState({
+                    categoryOptions: categories,
+                    loading: false
+                })
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+        })
     }
 
     displayLoading = () => {
@@ -150,7 +160,7 @@ export default class AddProductPage extends Component {
 
     handleSLug =(event) => {
         const value = event.target.value;
-        console.log(value);
+        
         document.getElementById('slug').value = convertToSlug(value);
     }
 
@@ -195,30 +205,67 @@ export default class AddProductPage extends Component {
         data.append('fullDesc', document.getElementById('fullDesc').value);
         data.append('additionalInfo', document.getElementById('additionalInfo').value);
 
-        console.log(options)
-        for (var pair of data.entries()) {
-            console.log(pair[0] + ', ' + pair[1]);
-        }
-
-        callApi('products', 'POST', data)
-            .then(res => {
-                if (res && res.status === 200) {
-                    document.getElementById('createNewProduct').reset();
-                    this.statusSelect.select.clearValue();
-                    this.categorySelect.select.clearValue();
-                    this.tagSelect.select.clearValue();
-                    document.getElementById('sizeS').setAttribute('disabled', 'true');
-                    document.getElementById('sizeM').setAttribute('disabled', 'true');
-                    document.getElementById('sizeL').setAttribute('disabled', 'true');
-                    document.getElementById('sizeXL').setAttribute('disabled', 'true');
-                    alert("Thêm sản phẩm thành công!!!");
-                } else {
-                    alert("Có lỗi xảy ra, vui lòng thử lại!!!");
-                }
+        axios({
+            method: 'POST',
+            data: data,
+            url: '/api/products',
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }).then(res => {
+            if (res && res.status === 200) {
+                document.getElementById('createNewProduct').reset();
+                this.statusSelect.select.clearValue();
+                this.categorySelect.select.clearValue();
+                this.tagSelect.select.clearValue();
+                document.getElementById('sizeS').setAttribute('disabled', 'true');
+                document.getElementById('sizeM').setAttribute('disabled', 'true');
+                document.getElementById('sizeL').setAttribute('disabled', 'true');
+                document.getElementById('sizeXL').setAttribute('disabled', 'true');
                 this.setState({
-                    loading: false
+                    imgSrc: []
                 });
-            })
+                alert("Thêm sản phẩm thành công!!!");
+            } else {
+                alert("Có lỗi xảy ra, vui lòng thử lại!!!");
+            }
+            this.setState({
+                loading: false
+            });
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+        })
+    }
+
+    handleFileOnChange = (event) => {
+        const files = [...event.target.files];
+
+        const urls = files.map(file => {
+            return URL.createObjectURL(file)
+        })
+        this.setState({
+            imgSrc: urls
+        })
+    }
+
+    displayImg = () => {
+        if(this.state.imgSrc.length > 0) {
+            const imgs = this.state.imgSrc.map((src, index) => {
+                return (
+                    <div className="image-item" key={index}>
+                        <img className="image-item__img" src={src} />
+                    </div>
+                )
+            });
+
+            return (
+                <div className="img-list bg-dark">
+                    {imgs}
+                </div>
+            )
+        }
     }
 
     render() {
@@ -371,8 +418,9 @@ export default class AddProductPage extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="images">Tải hình ảnh</label>
-                        <input type="file" multiple id="images" name="images" className="d-block" required onChange={this.handleInputChange} />
+                        <input type="file" multiple id="images" name="images" className="d-block" required onChange={this.handleFileOnChange} />
                     </div>
+                    { this.displayImg() }
                     <div className="d-flex justify-content-between mt-4">
                         <button className="btn btn-success" onClick={this.handleSubmit}>Thêm sản phẩm</button>
                         <button type="reset" className="btn btn-danger">Hủy</button>
@@ -383,3 +431,22 @@ export default class AddProductPage extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddProduct));

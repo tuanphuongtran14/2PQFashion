@@ -6,7 +6,7 @@ export default class ViewCategory extends Component {
         super(props);
         const query = new URLSearchParams(this.props.location.search);
         this.state = {
-            loading: false,
+            loading: true,
             id: query.get('id')
         }
     }

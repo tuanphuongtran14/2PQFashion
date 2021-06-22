@@ -1,4 +1,6 @@
 const userServices = require('../services/user.services');
+const jwt = require('jsonwebtoken');
+
 exports.create = async (req, res) => {
     let userInput = req.body;
     console.log(userInput);
@@ -136,4 +138,22 @@ exports.cancelBill = async (req, res) => {
           err.message || "Some error occurred while retrieving bill."
     });
 })
+}
+
+exports.me = async (req, res) => {
+    const authorizationHeader = req.headers['authorization'];
+    let token = '';
+
+    if(authorizationHeader)
+        token = authorizationHeader.split(' ')[1];
+
+    if(!token) res.sendStatus(401);
+
+    jwt.verify(token, process.env.APP_JWT_SECRET, (err, data) => {
+        if(err) res.sendStatus(403);
+
+        return res.status(200).json({
+            ...data
+        })
+    })
 }

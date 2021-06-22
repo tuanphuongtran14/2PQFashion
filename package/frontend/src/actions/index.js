@@ -163,3 +163,19 @@ export const fetchUserByIdRequest=(id_User)=>{
                         })
     }
 }
+
+// Set jwt token
+export const setToken=(token) => {
+    return {
+        type: types.SET_TOKEN,
+        token
+    }
+}
+
+// Check is Admin
+export const setAdmin=(isAdmin) => {
+    return {
+        type: types.SET_ADMIN,
+        isAdmin
+    }
+}

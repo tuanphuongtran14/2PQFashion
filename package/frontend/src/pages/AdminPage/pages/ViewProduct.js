@@ -60,6 +60,7 @@ export default class AddProductPage extends Component {
                         productOptions: data.options,
                         productImages: data.images
                     });
+                    console.log(data.images);
                 } else {
                     alert("Sản phẩm cần xem không tồn tại!!!");
                     this.props.history.push(`/admin/xem-san-pham`);
@@ -90,6 +91,12 @@ export default class AddProductPage extends Component {
         this.props.history.push(`/admin/xem-san-pham`)
     }
 
+    handleGoToEdit = (event, id) => {
+        event.preventDefault();
+        console.log(this.props.history);
+        this.props.history.push(`/admin/sua-san-pham?id=${id}`)
+    }
+
     render() {
         const productOptions = this.state.productOptions.map((option, index) => {
             return (
@@ -111,7 +118,7 @@ export default class AddProductPage extends Component {
         console.log(this.state.productImages);
         return (
             <Fragment>
-                <h4>Thêm sản phẩm</h4>
+                <h4>Xem sản phẩm #{this.state.id}</h4>
                 <form className="forms-sample" id="createNewProduct">
                     <div className="row mx-0">
                         <div className="form-group col-6 mx-0 pl-0 pr-2">
@@ -189,7 +196,7 @@ export default class AddProductPage extends Component {
                     <div className="form-group">
                         <label htmlFor="images">Hình ảnh sản phẩm</label>
                         <div className="border p-3 readonly bg-dark">
-                        { this.state.productImages.length > 1 && (<OwlCarousel 
+                        { this.state.productImages.length > 0 && (<OwlCarousel 
                             className='owl-carousel owl-theme'
                             loop={false}
                             margin={0} 
@@ -207,7 +214,7 @@ export default class AddProductPage extends Component {
                         </div>
                     </div>
                     <div className="d-flex justify-content-between mt-4">
-                        <button className="btn btn-success" onClick={this.handleSubmit}>Thêm sản phẩm</button>
+                        <button className="btn btn-success" onClick={ event => this.handleGoToEdit(event, this.state.id) }>Chỉnh sửa sản phẩm</button>
                         <button type="reset" className="btn btn-danger" onClick={this.handleGoBack}>Quay lại</button>
                     </div>
                 </form>

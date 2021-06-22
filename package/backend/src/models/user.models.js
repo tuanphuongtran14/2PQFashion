@@ -1,6 +1,3 @@
-const Joi = require('joi');
-const removeVietnameseTones = require('../vendors/removeVietnameseTones')
-
 exports.User = function(mongoose) {
     // Creating Product Schema
     const Schema = mongoose.Schema;
@@ -11,8 +8,7 @@ exports.User = function(mongoose) {
         email:String,
         phone: Number,
         password:String,
-
-        
+        isAdmin: Boolean,
     })
 
     // Creating User Model

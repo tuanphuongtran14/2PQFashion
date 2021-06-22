@@ -5,20 +5,20 @@ const logger = require('morgan');
 const db = require('./src/models');
 const PORT = process.env.PORT || 3000;
 const path = require('path');
-const bodyParser = require('body-parser')
 
 // Configure logger
 app.use(logger('dev'));
 
-// Set public folder path
-app.use(express.static(path.join(__dirname, 'src/public')));
-
 // Configure body parser
+app.use(express.json());
+
 app.use(express.urlencoded({
-    extended: false
+    extended: true
 }));
 
-app.use(express.json());
+
+// Set public folder path
+app.use(express.static(path.join(__dirname, 'src/public')));
 
 // Configure and connect to database
 db.mongoose

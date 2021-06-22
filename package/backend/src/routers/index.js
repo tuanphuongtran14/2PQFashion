@@ -1,9 +1,10 @@
 module.exports = (app) => {
     const productRouter = require('./product.routers');
     const categoryRouter = require('./category.routers');
-    const ordersRouter = require('./ordrers.routers');
     const BillRouter = require('./bill.routers');
     const UserRouter = require('./user.routers');
+    const { login, adminLogin } = require('../controllers/login.controller');
+    const { register } = require('../controllers/register.controller');
 
     // Product API Routing
     app.use('/api/products', productRouter);
@@ -16,4 +17,10 @@ module.exports = (app) => {
 
     //User API Routing
     app.use('/api/users', UserRouter)
+
+    //Login Routing
+    app.post('/login', login)
+
+    app.post('/register', register)
+
 }
