@@ -7,6 +7,8 @@ import CartPage from './pages/PaymentPage/CartPage';
 import AdminPage from './pages/AdminPage/MainPage';
 import CheckoutPage from './pages/PaymentPage/CheckoutPage';
 import UserPage from './pages/UserPage/UserPage';
+import LoginPage from './pages/LoginRegisterPage/LoginPage'
+import RegisterPage from './pages/LoginRegisterPage/RegisterPage'
 import {
   BrowserRouter as Router,
   Switch,
@@ -55,6 +57,12 @@ class App extends Component {
               </Route>
               <Route path='/admin'>
                 <AdminPage />
+              </Route>
+              <Route path='/login'>
+                <LoginPage />
+              </Route>
+              <Route path='/register'>
+                <RegisterPage />
               </Route>
             </Switch>
             <Footer />
