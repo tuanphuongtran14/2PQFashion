@@ -24,6 +24,7 @@ class ProductListContainer extends Component {
                     onChange={this.state.option}
                     onPage={this.props.onPage}
                     onAddToCart={this.props.onAddToCart}
+                    history={this.props.history}
                 />)
             } 
           }

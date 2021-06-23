@@ -225,7 +225,7 @@ class ShopPage extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    < ShopContainer />
+                                    < ShopContainer history={this.props.history}/>
                                 </div>
                                 {/* <div className="row">
                                     <div className="col-lg-12">

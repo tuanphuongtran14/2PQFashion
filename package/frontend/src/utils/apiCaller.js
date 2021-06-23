@@ -7,7 +7,4 @@ export default function callApi(endpoint,method='GET',body, config){
         data:body,
         config: config      
     })
-    .catch((err)=>{
-        console.log(err);
-    })
 }

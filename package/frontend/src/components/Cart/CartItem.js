@@ -51,7 +51,7 @@ class CartItem extends Component {
                 </th>
                 <td>
                     <h5>
-                        <strong>${process.env.REACT_APP_API_URL}{cartItem.name}</strong>
+                        <strong>{cartItem.name}</strong>
                     </h5>
                 </td>
                 <td>

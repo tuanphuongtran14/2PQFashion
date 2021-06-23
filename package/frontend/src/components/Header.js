@@ -18,6 +18,7 @@ countPrice=(cart)=>{
     return result;
 }
   render(){
+      console.log(this.props.cart);
     return (
         <Fragment>
                 {/* <!-- Header Section Begin --> */}

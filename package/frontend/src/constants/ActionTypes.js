@@ -45,3 +45,8 @@ export const SET_TOKEN="SET_TOKEN"
 
 // check is admin
 export const SET_ADMIN="SET_ADMIN"
+
+// login cho cart
+export const LOGIN_CART="LOGIN_CART"
+// logout cho cart
+export const LOGOUT_CART="LOGOUT_CART"

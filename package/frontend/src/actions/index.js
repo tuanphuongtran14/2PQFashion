@@ -200,3 +200,18 @@ export const setAdmin=(isAdmin) => {
         isAdmin
     }
 }
+
+// Check is Admin
+export const loginCart=() => {
+    return {
+        type: types.LOGIN_CART,
+
+    }
+}
+// Check is Admin
+export const logoutCart=() => {
+    return {
+        type: types.LOGOUT_CART,
+
+    }
+}

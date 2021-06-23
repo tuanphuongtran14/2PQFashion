@@ -26,6 +26,7 @@ class ShopContainer extends Component {
                     onPage={this.props.onPage}
                     onSort={this.props.onSort}
                     onAddToCart={this.props.onAddToCart}
+                    history={this.props.history}
                 />)
             } 
           } 
@@ -38,6 +39,7 @@ class ShopContainer extends Component {
                 onPage={this.props.onPage}
                 onSort={this.props.onSort}
                 onAddToCart={this.props.onAddToCart}
+                history={this.props.history}
             />)
           }
         return null;          

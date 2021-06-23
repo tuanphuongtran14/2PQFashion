@@ -1,5 +1,4 @@
 import * as types from'../constants/ActionTypes'
-localStorage.setItem('user',JSON.stringify({id_User:"123"}));
 var result=localStorage.getItem('user');
 var user=result?JSON.parse(result):[];
 

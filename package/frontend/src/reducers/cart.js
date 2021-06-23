@@ -1,3 +1,4 @@
+import { type } from 'jquery';
 import * as types from'./../constants/ActionTypes'
 var result=localStorage.getItem('products');
 var data=result?JSON.parse(result):[];
@@ -61,8 +62,11 @@ const cart=(state=initialState,action)=>{
             localStorage.setItem('products',JSON.stringify(replaceState));
         }
         return replaceState; 
+        case types.LOGOUT_CART:
+            replaceState=[];
+            return replaceState; 
         default:
-            
+            localStorage.removeItem('products');
             return state;
     }
 
