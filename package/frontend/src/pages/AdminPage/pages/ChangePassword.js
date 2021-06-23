@@ -1,6 +1,18 @@
 import React,{Component,Fragment} from 'react';
+import axios from 'axios';
+import { handleInputChange } from 'react-select/src/utils';
 
 class ChangePassword extends Component {
+    handleSubmit = event => {
+          event.preventDefault();
+          axios({
+              method: 'PUT',
+              url: `/api/users/${JSON.parse(localStorage.getItem('user')).id_User}`,
+              data: {
+                  
+              }
+          })
+    }
   render(){
     return (
         <Fragment>

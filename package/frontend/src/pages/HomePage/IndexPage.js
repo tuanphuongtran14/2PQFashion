@@ -58,13 +58,6 @@ class IndexPage extends Component {
                 $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").removeClass('active');
                 $(this).addClass('active');
             });
-            /*------------------
-                Gallery filter
-            --------------------*/
-            $('.filter__controls li').on('click', function () {
-                $('.filter__controls li').removeClass('active');
-                $(this).addClass('active');
-            });
         })
     }
 
