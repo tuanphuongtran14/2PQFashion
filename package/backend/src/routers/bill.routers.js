@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {create, getOne, getAll, updateOne, deleteOne, search, getBillByIdUser,cancelBill} = require('../controllers/bill.controllers');
+const {create, getOne, getAll, updateOne, deleteOne, search, getBillByIdUser,cancelBill, count} = require('../controllers/bill.controllers');
 const authenJWT = require('../validations/authenJWT');
 const authenAdmin = require('../validations/authenAdmin');
 
@@ -8,6 +8,9 @@ router.post('/', create);
 
 // Get all orders
 router.get('/', getAll);
+
+// Search orders
+router.get('/count', count);
 
 // Get all orders
 router.get('/search', authenAdmin, search);

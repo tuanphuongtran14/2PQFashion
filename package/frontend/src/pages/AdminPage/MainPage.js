@@ -14,13 +14,18 @@ import EditProduct from './pages/EditProduct';
 import ViewCategory from './pages/ViewCategory';
 import ViewProduct from './pages/ViewProduct';
 import ViewOrder from './pages/ViewOrder';
+import AddTag from './pages/AddTag';
+import TagList from './pages/TagList';
+import Home from './pages/Home';
+import ChangePassword from './pages/ChangePassword';
 import axios from 'axios';
 
 class MainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false
+            loading: false,
+            username: ''
         }
     }
 
@@ -38,6 +43,9 @@ class MainPage extends Component {
             }).then(res => {
                 if(res && res.status === 200) {
                     this.props.setAdmin(res.data.isAdmin);
+                    this.setState({
+                        username: res.data.username
+                    })
                     this.setState({
                         loading: false
                     });
@@ -70,11 +78,13 @@ class MainPage extends Component {
                 }).then(res => {
                     if(res && res.status === 200) {
                         this.props.setAdmin(res.data.isAdmin);
-                        console.log()
                         let user = {
-                            id_User: res.data.id_User,
-                            username: res.data.username,
+                            ...res.data
                         };
+                        this.setState({
+                            username: user.username
+                        })
+
                         user = JSON.stringify(user);
                         localStorage.setItem('user', user);
                         this.setState({
@@ -83,7 +93,7 @@ class MainPage extends Component {
                     }
                 });
             }
-        }).catch(function (error) {
+        }).catch((error) => {
             if (error.response && error.response.status === 401) {
             //   console.log(error.response.data);
             //   console.log(error.response.status);
@@ -107,6 +117,7 @@ class MainPage extends Component {
         this.props.setAdmin(null);
         localStorage.removeItem('token');
         localStorage.removeItem('isAdmin');
+        localStorage.removeItem('user');
     } 
 
     displayLoading = () => {
@@ -178,17 +189,20 @@ class MainPage extends Component {
                                     <h2 className="text-center text-white"><Link to="/admin">Admin Panel</Link></h2>
                                     <ul className="list-unstyled components mb-5">
                                         <li>
-                                            <a href="#accountSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"><i className="fa fa-user-circle mr-2" aria-hidden="true"></i> Tuấn Phương</a>
+                                            <a href="#accountSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle "><i className="fa fa-user-circle mr-2" aria-hidden="true"></i>{ this.state.username }</a>
                                             <ul className="collapse list-unstyled" id="accountSubmenu">
                                                 <li>
-                                                    <Link to="/them-san-pham">Thay đổi mật khẩu</Link>
+                                                    <Link to="/admin/doi-mat-khau">Thay đổi mật khẩu</Link>
                                                 </li>
                                                 <li>
                                                     <Link to="" onClick={this.logout}>Đăng xuất</Link>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li className="active">
+                                        <li>
+                                            <Link to="/admin/xem-don-hang">Quản lý đơn hàng</Link>
+                                        </li>
+                                        <li>
                                             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Quản lý sản phẩm</a>
                                             <ul className="collapse list-unstyled" id="homeSubmenu">
                                                 <li>
@@ -211,7 +225,15 @@ class MainPage extends Component {
                                             </ul>
                                         </li>
                                         <li>
-                                            <Link to="/admin/xem-don-hang">Quản lý đơn hàng</Link>
+                                            <a href="#tagSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Quản lý tags</a>
+                                            <ul className="collapse list-unstyled" id="tagSubmenu">
+                                                <li>
+                                                    <Link to="/admin/xem-tags">Danh sách tags</Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/admin/them-tag">Thêm danh tag mới</Link>
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -228,6 +250,10 @@ class MainPage extends Component {
                                 <Route path={'/admin/san-pham'} component={ViewProduct} />
                                 <Route path={'/admin/xem-don-hang'} component={OrderList} />
                                 <Route path={'/admin/don-hang'} component={ViewOrder} />
+                                <Route path={'/admin/doi-mat-khau'} component={ChangePassword} />
+                                <Route path={'/admin/xem-tags'} component={TagList} />
+                                <Route path={'/admin/them-tag'} component={AddTag} />
+                                <Route exact path={'/admin'} component={Home} />
                             </div>
                         </div>
                         </div>

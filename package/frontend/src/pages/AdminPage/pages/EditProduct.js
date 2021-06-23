@@ -20,42 +20,8 @@ class EditProduct extends Component {
             imgSrc: [],
             id: query.get('id'),
             loading: true,
-            categoryOptions: [
-                {
-                    label: 'Quần jean',
-                    value: 'Quần jean'
-                },
-                {
-                    label: 'Quần tây',
-                    value: 'Quần tây'
-                },
-                {
-                    label: 'Áo thun',
-                    value: 'Áo thun'
-                },
-                {
-                    label: 'Áo sơ mi',
-                    value: 'Áo sơ mi'
-                },
-            ],
-            tagOptions: [
-                {
-                    label: 'Quần jean',
-                    value: 'Quần jean'
-                },
-                {
-                    label: 'Quần tây',
-                    value: 'Quần tây'
-                },
-                {
-                    label: 'Áo thun',
-                    value: 'Áo thun'
-                },
-                {
-                    label: 'Áo sơ mi',
-                    value: 'Áo sơ mi'
-                },
-            ],
+            categoryOptions: [],
+            tagOptions: [],
             statusOptions: [
                 {
                     label: 'Bình thường',
@@ -162,6 +128,28 @@ class EditProduct extends Component {
             this.setState({
                 loading: false
             });
+        })
+
+        axios({
+            method: 'GET',
+            url: '/api/tags'
+        }).then(res => {
+            if (res && res.status === 200) {
+                const tags = res.data.map(tag => {
+                    return {
+                        value: tag.name,
+                        label: tag.name
+                    }
+                }) 
+                this.setState({
+                    tagOptions: tags,
+                    loading: false
+                })
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
         })
     }
 

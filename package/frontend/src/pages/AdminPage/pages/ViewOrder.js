@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
 
-export default class ViewOrder extends Component {
+class ViewOrder extends Component {
     constructor(props) {
         super(props);
         const query = new URLSearchParams(this.props.location.search);
@@ -256,3 +259,22 @@ export default class ViewOrder extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ViewOrder));

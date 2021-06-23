@@ -111,7 +111,7 @@ class ProductList extends Component {
         let query = "?";
 
         if(document.getElementById("name").value)
-            query += "name=" + document.getElementById("name").value;
+            query += "name=" + document.getElementById("name").value + '&';
 
         if(document.getElementById("sku").value)
             query += "sku=" + document.getElementById("sku").value;
@@ -177,7 +177,7 @@ class ProductList extends Component {
                         </div>
                     </div>
                     <div className="col-2 py-0 text-right px-0">
-                        <button type="submit" className="btn btn-success">Tìm ngay</button>
+                        <button type="submit" className="btn btn-success" onClick={this.handleSearchSubmit}>Tìm ngay</button>
                     </div>
                 </div>
                 <div className="product-list mt-3">

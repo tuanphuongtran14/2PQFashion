@@ -12144,3 +12144,12 @@ div.readonly {
   padding: 1.5rem;
   background-color: #fff;
 }
+
+.box {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #2f89fc
+}

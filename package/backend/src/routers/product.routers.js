@@ -1,11 +1,13 @@
 const router = require('express').Router();
-const {create, getAll, getOne, deleteOne, updateOne, search } = require('../controllers/product.controllers');
+const {create, getAll, getOne, deleteOne, updateOne, search, count } = require('../controllers/product.controllers');
 const authenAdmin = require('../validations/authenAdmin');
 
 
 // Search product
 router.get('/search', search);
 
+// Count product
+router.get('/count', count);
 
 // Creating new product
 router.post('/', authenAdmin, create);

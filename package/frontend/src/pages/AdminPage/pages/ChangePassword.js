@@ -1,5 +1,5 @@
 import React,{Component,Fragment} from 'react';
-import  {changePassword} from './../../actions'
+import  {changePassword} from './../../../actions'
 import {connect} from 'react-redux'
 class ChangePassword extends Component {
     constructor(props)
@@ -69,8 +69,9 @@ class ChangePassword extends Component {
                     oldPassword:oldPassword,
                 })
                 .then((res)=>{
+                    console.log(res);
                     if(res.status===201){
-                    history.replace('/user')
+                        alert("Mật khẩu đã được thay đổi thành công!!!")
                     }
                     else if(res.status===200){
                         this.setState({

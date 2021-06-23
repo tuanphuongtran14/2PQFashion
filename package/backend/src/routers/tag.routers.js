@@ -1,23 +1,23 @@
 const router = require('express').Router();
-const {create, getAll, getOne, updateOne, deleteOne, count } = require('../controllers/category.controllers');
+const {create, getAll, getOne, updateOne, deleteOne, count } = require('../controllers/tag.controllers');
 const authenAdmin = require('../validations/authenAdmin');
 
-// Count all categories
+// Count all tags
 router.get('/count', count);
 
-// Getting all categories
+// Getting all tags
 router.get('/', getAll);
 
-// Creating new category
+// Creating new tag
 router.post('/', authenAdmin, create);
 
-// Getting category by ID
+// Getting tag by ID
 router.get('/:id', getOne);
 
-// Updating category by ID
+// Updating tag by ID
 router.put('/:id', authenAdmin, updateOne);
 
-// Deleting category by ID
+// Deleting tag by ID
 router.delete('/:id', authenAdmin, deleteOne);
 
 module.exports = router;
