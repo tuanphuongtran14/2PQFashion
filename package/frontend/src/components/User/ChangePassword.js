@@ -1,5 +1,4 @@
 import React,{Component,Fragment} from 'react';
-import { Link } from 'react-router-dom';
 import  {changePassword} from './../../actions'
 import {connect} from 'react-redux'
 class ChangePassword extends Component {

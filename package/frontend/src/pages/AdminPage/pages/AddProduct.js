@@ -18,42 +18,8 @@ class AddProduct extends Component {
         this.state = {
             imgSrc: [],
             loading: true,
-            categoryOptions: [
-                {
-                    label: 'Quần jean',
-                    value: 'Quần jean'
-                },
-                {
-                    label: 'Quần tây',
-                    value: 'Quần tây'
-                },
-                {
-                    label: 'Áo thun',
-                    value: 'Áo thun'
-                },
-                {
-                    label: 'Áo sơ mi',
-                    value: 'Áo sơ mi'
-                },
-            ],
-            tagOptions: [
-                {
-                    label: 'Quần jean',
-                    value: 'Quần jean'
-                },
-                {
-                    label: 'Quần tây',
-                    value: 'Quần tây'
-                },
-                {
-                    label: 'Áo thun',
-                    value: 'Áo thun'
-                },
-                {
-                    label: 'Áo sơ mi',
-                    value: 'Áo sơ mi'
-                },
-            ],
+            categoryOptions: [],
+            tagOptions: [],
             statusOptions: [
                 {
                     label: 'Bình thường',
@@ -89,6 +55,28 @@ class AddProduct extends Component {
                 }) 
                 this.setState({
                     categoryOptions: categories,
+                    loading: false
+                })
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+        })
+
+        axios({
+            method: 'GET',
+            url: '/api/tags'
+        }).then(res => {
+            if (res && res.status === 200) {
+                const tags = res.data.map(tag => {
+                    return {
+                        value: tag.name,
+                        label: tag.name
+                    }
+                }) 
+                this.setState({
+                    tagOptions: tags,
                     loading: false
                 })
             }

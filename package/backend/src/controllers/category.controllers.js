@@ -131,7 +131,7 @@ exports.count = async (req, res) => {
         console.log(err);
         res.status(500).json({
             message:
-              err.message || "Some error occurred while retrieving bill."
+              err.message || "Some error occurred while counting categories."
         });
     }
 }

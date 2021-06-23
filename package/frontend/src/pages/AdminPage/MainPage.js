@@ -14,6 +14,8 @@ import EditProduct from './pages/EditProduct';
 import ViewCategory from './pages/ViewCategory';
 import ViewProduct from './pages/ViewProduct';
 import ViewOrder from './pages/ViewOrder';
+import AddTag from './pages/AddTag';
+import TagList from './pages/TagList';
 import Home from './pages/Home';
 import ChangePassword from './pages/ChangePassword';
 import axios from 'axios';
@@ -198,6 +200,9 @@ class MainPage extends Component {
                                             </ul>
                                         </li>
                                         <li>
+                                            <Link to="/admin/xem-don-hang">Quản lý đơn hàng</Link>
+                                        </li>
+                                        <li>
                                             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Quản lý sản phẩm</a>
                                             <ul className="collapse list-unstyled" id="homeSubmenu">
                                                 <li>
@@ -220,7 +225,15 @@ class MainPage extends Component {
                                             </ul>
                                         </li>
                                         <li>
-                                            <Link to="/admin/xem-don-hang">Quản lý đơn hàng</Link>
+                                            <a href="#tagSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Quản lý tags</a>
+                                            <ul className="collapse list-unstyled" id="tagSubmenu">
+                                                <li>
+                                                    <Link to="/admin/xem-tags">Danh sách tags</Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/admin/them-tag">Thêm danh tag mới</Link>
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -238,6 +251,8 @@ class MainPage extends Component {
                                 <Route path={'/admin/xem-don-hang'} component={OrderList} />
                                 <Route path={'/admin/don-hang'} component={ViewOrder} />
                                 <Route path={'/admin/doi-mat-khau'} component={ChangePassword} />
+                                <Route path={'/admin/xem-tags'} component={TagList} />
+                                <Route path={'/admin/them-tag'} component={AddTag} />
                                 <Route exact path={'/admin'} component={Home} />
                             </div>
                         </div>
