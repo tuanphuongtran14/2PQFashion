@@ -1,7 +1,40 @@
 import React, { Component } from 'react';
-import {Helmet } from 'react-helmet'
+import {Helmet } from 'react-helmet';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from './../../actions/index';
+import { withRouter } from 'react-router-dom';
 
 class RegisterPage extends Component {
+    handleRegister = (event) => {
+        event.preventDefault();
+        const data = {
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            address: document.getElementById('address').value,
+            isMale: document.querySelector('input[name="isMale"]:checked').value
+        }
+        console.log(data);
+        axios({
+            method: 'POST',
+            url: '/register',
+            data
+        }).then(res => {
+            if(res && res.status === 200) {
+                if(window.confirm('Tạo tài khoản thành công, bạn có muốn đăng nhập ngay?')) {
+                    this.props.history.push('/login');
+                }
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+        })
+    }
     render() {
         return (
             <div className="container mt-2 mb-4">
@@ -12,41 +45,45 @@ class RegisterPage extends Component {
                     <h2 className="text-center">Đăng ký</h2>
                     <p className="text-center"><u><a href="/login">Đã có tài khoản? Đăng nhập ngay.</a></u></p>
                     <div class="form-group">
-                        <label for="">Tên</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
+                        <label for="name">Họ và tên</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="">Họ</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
+                        <label for="phone">Số điện thoại</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="">Số điện thoại</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" name="address" id="address" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="">Mật khẩu</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="Mật khẩu" aria-describedby="helpId" /> 
+                        <label for="username">Tên tài khoản</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="">Xác nhận mật khẩu</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="Xác nhận mật khẩu" aria-describedby="helpId" /> 
+                        <label for="password">Mật khẩu</label>
+                        <input type="text" name="password" id="password" class="form-control" placeholder="Mật khẩu" aria-describedby="helpId" /> 
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordConfirmed">Xác nhận mật khẩu</label>
+                        <input type="text" name="passwordConfirmed" id="passwordConfirmed" class="form-control" placeholder="Xác nhận mật khẩu" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
                         <div>
                             <label class="btn active">
-                                <input type="radio" name="gender" id="" autocomplete="off" checked />Nam
+                                <input type="radio" name="isMale" id="isMale" autocomplete="off" checked value={true} />Nam
                             </label>
                             <label class="btn">
-                                <input type="radio" name="gender" id="" autocomplete="off" />Nữ
+                                <input type="radio" name="isMale" id="isFemale" autocomplete="off" value={false} />Nữ
                             </label> 
                         </div> 
                     </div>
                     <div className="text-center">
-                        <a name="" id="" class="btn btn-dark" href="/" role="button">Tạo tài khoản mới</a>
+                        <button class="btn btn-dark" onClick={this.handleRegister}>Tạo tài khoản mới</button>
                     </div> 
                 </form>
             </div>
@@ -54,4 +91,21 @@ class RegisterPage extends Component {
     }
 }
 
-export default RegisterPage;
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RegisterPage));

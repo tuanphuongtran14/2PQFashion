@@ -236,6 +236,9 @@ class AddProduct extends Component {
             if(error.response) {
                 alert("Lỗi: " + error.response.data.message)
             }
+            this.setState({
+                loading: false
+            });
         })
     }
 
