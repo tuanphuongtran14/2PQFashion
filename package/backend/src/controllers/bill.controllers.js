@@ -37,6 +37,22 @@ exports.getAll = (req, res) => {
     })
 }
 
+exports.count = async (req, res) => {
+    const query = {
+        ...req.query
+    };
+    try {
+        let count = await BillService.count(query);
+        return res.status(200).json(count);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({
+            message:
+              err.message || "Some error occurred while retrieving bill."
+        });
+    }
+}
+
 exports.search = async (req, res) => {
     let input = {
         code: req.query.code,

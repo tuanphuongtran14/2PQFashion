@@ -1,6 +1,9 @@
 const router = require('express').Router();
-const {create, getAll, getOne, updateOne, deleteOne} = require('../controllers/category.controllers');
+const {create, getAll, getOne, updateOne, deleteOne, count } = require('../controllers/category.controllers');
 const authenAdmin = require('../validations/authenAdmin');
+
+// Count all categories
+router.get('/count', count);
 
 // Getting all categories
 router.get('/', getAll);

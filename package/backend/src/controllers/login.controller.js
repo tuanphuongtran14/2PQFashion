@@ -13,7 +13,7 @@ exports.login = async (req, res) => {
         if(checkPw) {
             const data = {
                 id_User: user.id_User,
-                usename: user.username,
+                username: user.username,
                 phone: user.phone, 
                 email: user.email,
                 address: user.address,

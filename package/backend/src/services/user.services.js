@@ -1,5 +1,7 @@
 const { User } = require('../models/user.models');
 const UserRepo = require('../repositories/user.repo');
+const bcrypt = require('bcrypt');
+const saltRounds = Number(process.env.APP_SALT_ROUNDS) || 10;
 
 exports.create = BillInput => {
     
@@ -26,7 +28,7 @@ exports.deleteByID = (id) => {
     return UserRepo.deleteByID(id);
 }
 
-exports.updateByID = (id, updateContent) => {
+exports.updateByID = async (id, updateContent) => {
     return UserRepo.updateByID(id, updateContent);
 }
 

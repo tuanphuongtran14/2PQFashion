@@ -205,3 +205,20 @@ exports.updateOne = async (req, res) => {
         }
     });
 }
+
+exports.count = async (req, res) => {
+    // const query = {
+    //     ...req.query
+    // };
+    try {
+        let products = await productServices.findAll();
+        let count = products.length;
+        return res.status(200).json(count);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({
+            message:
+              err.message || "Some error occurred while retrieving bill."
+        });
+    }
+}

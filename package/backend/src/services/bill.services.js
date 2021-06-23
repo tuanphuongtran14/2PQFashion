@@ -51,6 +51,18 @@ exports.findBillByIdUser = (id_user) => {
     return BillRepo.findBillByIdUser (id_user);
 }
 
+exports.count = async query => {
+    let bills = await BillRepo.findAll();
+    
+    if(query.status) {
+        bills = bills.filter(bill => {
+            return (bill.status === Number(query.status))
+        });
+    }
+
+    return bills.length;
+}
+
 exports.findByID = (id) => {
     return BillRepo.findByID(id);
 }
