@@ -6,7 +6,8 @@ class FilterNameContainer extends Component {
   render(){
     return (
         <Fragment >
-            <FilterName onSearch={this.props.onSearch}/>
+            <FilterName onSearch={this.props.onSearch}
+            history={this.props.history}/>
         </Fragment>
         
     );

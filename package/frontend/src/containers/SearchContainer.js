@@ -6,7 +6,8 @@ class SearchContainer extends Component {
   render(){
     return (
         <Fragment >
-            <Search onSearch={this.props.onSearch}/>
+            <Search onSearch={this.props.onSearch}
+                    history={this.props.history}/>
         </Fragment>
         
     );

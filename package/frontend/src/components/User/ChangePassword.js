@@ -69,7 +69,6 @@ class ChangePassword extends Component {
                     oldPassword:oldPassword,
                 })
                 .then((res)=>{
-                    console.log(res);
                     if(res.status===201){
                     history.replace('/user')
                     }

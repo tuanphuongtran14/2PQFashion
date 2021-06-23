@@ -2,6 +2,7 @@ import React,{Component,Fragment} from 'react';
 import ProductList from './../components/ProductList'
 import {connect} from 'react-redux'
 import ProductItem from './../components/ProductItem';
+import { withRouter } from "react-router";
 import * as actions from './../actions/index';
 class ProductListContainer extends Component {
   constructor(props){
@@ -41,14 +42,24 @@ class ProductListContainer extends Component {
       })
   }
   render(){
-    var {products,keyword}=this.props;
+    var {products}=this.props;
+    let query= new URLSearchParams(this.props.location.search);
+    
+    var search=query.get("search");
     //xử lý sự kiện search
-    if(keyword){
+    if(search){
+          
+      var keyword=search.toLowerCase();
       products=products.filter(product=>{
-        keyword=keyword.toLowerCase();
-        return product.name.toLowerCase().indexOf(keyword)!==-1;
-      })
-  }
+          return product.name.toLowerCase().indexOf(keyword)!==-1;
+        })
+    }
+    // if(keyword){
+    //   products=products.filter(product=>{
+    //     keyword=keyword.toLowerCase();
+    //     return product.name.toLowerCase().indexOf(keyword)!==-1;
+    //   })
+    // }
     return (
         <Fragment>
             <section className="product spad">
@@ -91,4 +102,4 @@ const mapDispatchToProps=(dispatch)=>{
       }
       }
   }
-export default connect(mapStateToProps,mapDispatchToProps)(ProductListContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(ProductListContainer));

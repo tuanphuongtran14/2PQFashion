@@ -19,7 +19,6 @@ class IndexPage extends Component {
         this.props.getDataPage(this.state.page);
     }
     componentDidUpdate() {
-        console.log('update')
         $(function () {
             /*------------------
             Background Set
@@ -302,7 +301,7 @@ class IndexPage extends Component {
                         </div>
                     </div>
                 </section>
-                <SearchContainer />
+                <SearchContainer history={this.props.history}/>
             </Fragment>
         );
     }

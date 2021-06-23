@@ -167,6 +167,7 @@ exports.me = async (req, res) => {
 
     if(!token) res.sendStatus(401);
 
+    
     jwt.verify(token, process.env.APP_JWT_SECRET, (err, data) => {
         if(err) res.sendStatus(403);
 

@@ -17,13 +17,21 @@ class Search extends Component {
             [name]:value
         });
     }
-    onSearch=()=>
-    {   
-
-        this.props.onSearch(this.state.keyword);
+    onSubmit=(e)=>{
+        e.preventDefault();
+        var {history}=this.props;
+        // console.log(history);
+        // this.props.onSearch(this.state.keyword);
+        var url=history.location.pathname;
         $('.search-model').fadeOut(400, function () {
             
         });
+        if((url==='/')){
+            history.replace(`?search=${this.state.keyword}`)
+        }else{
+            history.replace(`/shop/search?value=${this.state.keyword}`)
+        }
+        
     }
   render(){
     const    {keyword}=this.state;
@@ -33,15 +41,15 @@ class Search extends Component {
             <div className="search-model">
                 <div className="h-100 d-flex align-items-center justify-content-center">
                     <div className="search-close-switch">+</div>
-                    <form className="search-model-form" >
+                    <form className="search-model-form" onSubmit={this.onSubmit}>
                         <input type="text" id="search-input"
                          placeholder="Search here....."
                           name="keyword" value={keyword} 
                           onChange={this.onChange}/>
                         <span className="input-group-btn">
                             <button className="btn btn-primary"
-                                type="button"
-                                onClick={this.onSearch}>
+                                type="submit"
+                                >
                                 <span className="fa fa-search mr-5"></span>Tìm
                             </button>
                         </span>
