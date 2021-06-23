@@ -6,7 +6,8 @@ class ListOrder extends Component {
         super(props);
         this.state={
             coupon:'',
-            salePrice:0
+            salePrice:0,
+            infoCheckout:'',
         }
     }
     onChange=(event)=>
@@ -24,18 +25,25 @@ class ListOrder extends Component {
             salePrice=price*5/100;
            this.setState({
             coupon:coupon,
-            salePrice:salePrice
-        })
+            salePrice:salePrice,
+            infoCheckout:'Bạn được 5% cho hóa đơm của bạn!!!'
+            })
 
-        this.props.onAddCouponToOrder(
-            {coupon:coupon,
-            salePrice:salePrice});
+            this.props.onAddCouponToOrder(
+                {coupon:coupon,
+                salePrice:salePrice});
+        }else{
+            this.setState({
+                coupon:'',
+                salePrice:0,
+                infoCheckout:'Mã khuyến mãi của bạn không đúng hoặc đã hết thời hạn!!!'
+                })
         }
        
         
     }
   render(){
-      const {coupon,salePrice}=this.state;
+      const {coupon,salePrice,infoCheckout}=this.state;
     return (
         <Fragment>
             <div className="checkout__order">
@@ -61,6 +69,9 @@ class ListOrder extends Component {
                             <button type="button" onClick={()=>this.isCheckCoupon(coupon,this.props.totalPrice)}>Kiểm tra</button>
                         </div>
                         <p></p>
+                </div>
+                <div className="row">     
+                    <label className="text-success">{infoCheckout}</label>
                 </div>
             </div>
         </Fragment>

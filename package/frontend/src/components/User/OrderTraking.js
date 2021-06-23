@@ -8,8 +8,9 @@ class OrderTraking extends Component {
     
     renderListBills=(bills)=>{
         var result=null;
+        var {history}=this.props;
         result =bills.map((bill,index)=>{
-            return <DetailBill key={index}  bill={bill} />
+            return <DetailBill key={index}  history={history} bill={bill} />
         })
         return result;
     }
@@ -18,15 +19,15 @@ class OrderTraking extends Component {
     return (
         <Fragment>
             <h4 className="text-center mb-4">Theo dõi đơn hàng</h4>
-            <table className="table">
-                <thead>
+            <table className="table table-hover">
+                <thead className="table-info">
                     <tr>
-                        <th scope="col">Mã đơn hàng</th>
-                        <th scope="col">Ngày mua</th>
-                        <th scope="col">Sản phẩm</th>
-                        <th scope="col">Tổng tiền</th>
-                        <th scope="col">Trạng thái đơn hàng</th>
-                        <th scope="col">Hàng động</th>
+                        <th className="col-2" scope="col">Mã đơn hàng</th>
+                        <th className="col-1" scope="col">Ngày mua</th>
+                        <th className="col-2" scope="col">Sản phẩm</th>
+                        <th className="col-2" scope="col">Tổng tiền</th>
+                        <th className="col-2" scope="col">Trạng thái đơn hàng</th>
+                        <th className="col-3" scope="col">Hàng động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,9 +49,11 @@ const mapStateToProps=(state)=>{
   }
   const mapDispatchToProps=(dispatch)=>{
     return {
-      onFetchBillsByUserRequest:(id_User)=>{
-        dispatch(actions.fetchBillsByUserRequest(id_User));
-      }
+          onFetchBillsByUserRequest:(id_User)=>{
+            dispatch(actions.fetchBillsByUserRequest(id_User));
+          },
+          
+         
         }
     }
   export default connect(mapStateToProps,mapDispatchToProps)(OrderTraking);

@@ -1,4 +1,10 @@
 const userServices = require('../services/user.services');
+// ===Import ===
+const bcrypt = require('bcrypt');
+const saltRounds = Number(process.env.APP_SALT_ROUNDS) || 10;
+
+
+
 exports.create = async (req, res) => {
     let userInput = req.body;
     console.log(userInput);
@@ -69,34 +75,65 @@ exports.getOne = async (req, res) => {
 
 exports.updateOne = async (req, res) => {
     let id = req.params.id;
-    let updateContent = req.body;
-
+    let contentUser =req.body.contentUser;
     // If updated content is null, return 400 Error
-    if (!updateContent) {
+    if (!contentUser) {
         return res.status(400).json({
           message: "Data to update can not be empty!"
         });
     }
+    // ===Code ===
+    //chuyển mật khẩu
+    
+    var newPassword = await bcrypt.hash(contentUser.newPassword, saltRounds);
+    userServices.findByID(id)
+    .then((user)=>{
+       bcrypt.compare(contentUser.oldPassword, user.password).then((result)=>{
+           if(result){
+                userServices.updateByID(id, newPassword)
+                .then(()=>{
+                    
+                    return res.status(201).json({ message: "create successfully"});
+                })
+                .catch(()=>{
+                    return res.status(404).json({
+                        message: `Cannot update user with ID=${id}. Maybe user was not found!`
+                    })
+                })
+           }else{
+            return res.status(200).json({
+                message: "create fails. Password is not correct!!!"
+            })
+           }
+       })
 
-    try {
-        // Update user by ID
-        let user = await userServices.updateByID(id, updateContent);
-        
-        // If exist user, update and return it
-        if(user) {
-            return res.status(200).json({ message: "user was updated successfully." });
-        }
-
-        // If user is not exist, return 404 Error
+    })
+    .catch(()=>{
         return res.status(404).json({
-            message: `Cannot update user with ID=${id}. Maybe user was not found!`
+            message: `Cannot update user with ID=${id}. User was not found!`
         })
-    } catch(err) {
-        res.status(500).json({
-            message:
-              err.message || `Some error occurred while retrieving user with ID=${id}.`
-        });
-    }
+    })
+    
+
+    // try {
+    //     // Update user by ID
+    //     let user = await userServices.updateByID(id, contentUser);
+              
+    //     // If exist user, update and return it
+    //     if(user) {
+    //         return res.status(200).json({ message: "user was updated successfully." });
+    //     }
+
+    //     // If user is not exist, return 404 Error
+    //     return res.status(404).json({
+    //         message: `Cannot update user with ID=${id}. Maybe user was not found!`
+    //     })
+    // } catch(err) {
+    //     res.status(500).json({
+    //         message:
+    //           err.message || `Some error occurred while retrieving user with ID=${id}.`
+    //     });
+    // }
 }
 exports.deleteOne = async (req, res) => {
     let id = req.params.id;
@@ -120,20 +157,3 @@ exports.deleteOne = async (req, res) => {
     }
 }
 
-
-//sự kiện khi người dùng hủy bill 
-exports.cancelBill = async (req, res) => {
-    let id_Bill = req.body.id_Bill;
-    console.log(id_Bill);
-    // Get all order from database
-    BillService.cancelBill(  id_Bill )
-    .then((bill)=>{
-        return res.status(200).json(bill);
-    })                                
-    .catch((err)=>{
-    res.status(500).json({
-        message:
-          err.message || "Some error occurred while retrieving bill."
-    });
-})
-}

@@ -35,7 +35,7 @@ class ShopPage extends Component {
                                 <div className="breadcrumb__text">
                                     <h4>Shop</h4>
                                     <div className="breadcrumb__links">
-                                        <a href="/#" href="./index.html">Home</a>
+                                        <a href="/#" >Home</a>
                                         <span>Shop</span>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@ class ShopPage extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="card">
+                                            {/* <div className="card">
                                                 <div className="card-heading">
                                                     <a data-toggle="collapse" href="/#" data-target="#collapseFive">Colors</a>
                                                 </div>
@@ -189,7 +189,7 @@ class ShopPage extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className="card">
                                                 <div className="card-heading">
                                                     <a href="/#" data-toggle="collapse" data-target="#collapseSix">Tags</a>
@@ -227,17 +227,17 @@ class ShopPage extends Component {
                                 <div className="row">
                                     < ShopContainer />
                                 </div>
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="col-lg-12">
                                         <div className="product__pagination">
-                                            <a href="/#" className="active" href="#">1</a>
-                                            <a href="/#" href="#">2</a>
-                                            <a href="/#" href="#">3</a>
+                                            <a href="/#" className="active">1</a>
+                                            <a href="/#" >2</a>
+                                            <a href="/#" >3</a>
                                             <span>...</span>
-                                            <a href="/#" href="#">21</a>
+                                            <a href="/#" >21</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

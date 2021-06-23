@@ -65,7 +65,7 @@ class ProductItem extends Component {
             <Fragment>
                 <div className={`${onPage===1?'col-lg-3':'col-lg-4'} col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
                     <div className="product__item">
-                        <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`, backgroundSize: 'cover'}} >
+                        <div className="product__item__pic " style={{backgroundImage:`url(${process.env.REACT_APP_API_URL}${images[0]})`, backgroundSize: 'cover'}} >
                         <span className="label label--sales" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
                                 <li><button type="button" className="btn--square border"><i className="fa fa-heart-o" aria-hidden="true"></i></button></li>

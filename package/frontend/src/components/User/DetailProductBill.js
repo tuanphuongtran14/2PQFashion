@@ -45,7 +45,7 @@ class DetailProductBill extends Component {
             <tr>
                 <th scope="row">
                     <Link to={"#"} >
-                        <img src={product.image}
+                        <img src={`${process.env.REACT_APP_API_URL}${product.image}`}
                             alt="" className=" z-depth-0"  style={{width:100}}/>
                     </Link>
                 </th>

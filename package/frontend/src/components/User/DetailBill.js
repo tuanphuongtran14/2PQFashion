@@ -2,20 +2,12 @@ import React,{Component,Fragment} from 'react';
 // import $ from "jquery";
 import {Link} from 'react-router-dom';
 import {deleteBill} from './../../actions'
+import * as actions from './../../actions'
+import {connect} from 'react-redux'
 // import Cart from './Cart';
+
 class DetailBill extends Component {
 
-    onChange=(event)=>
-    {
-        var target=event.target;
-       // var name=target.name;
-        var value=target.value;
-        const {cartItem}=this.props;
-        cartItem.size=value;
-        this.props.onUpdateProductToCart(cartItem);
-
-
-    }
     renderName(bill){
         var name='';
         var length=bill.products.length;
@@ -30,7 +22,17 @@ class DetailBill extends Component {
         return name;
     }
     onClick=(id_Bill)=>{
-        deleteBill(id_Bill)
+        //var {history}=this.props;
+        if(window.confirm("Xác nhận hủy đơn hàng có mã "+id_Bill+"!!!")){
+            deleteBill(id_Bill)
+            .then(()=>{
+                this.props.onChangeStatusBill({
+                    id_Bill:id_Bill,
+                    status:4
+                })
+            })
+        }
+        
     }
     renderStatus=(status)=>{
         if(status===0){
@@ -45,15 +47,22 @@ class DetailBill extends Component {
             return <span className="text-danger">Đã hủy</span>
         }
     }
+    convertDay=(day)=>{
+        
+        var date=new Date(day);
+        var result=date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+        return result;
+    }
   render(){
      const    {bill}=this.props;
+     
     // var {quantity, inventory,size,options}=cartItem;
     return (
        
         <Fragment>
             <tr > 
                 <th scope="row">{bill.id_Bill}</th>
-                    <td>{bill.bookingDate}</td>
+                    <td>{this.convertDay(bill.bookingDate)}</td>
                     <td>{this.renderName(bill)}</td>
                     <td>{bill.totalPrice} VND</td>
                     <td>{this.renderStatus(bill.status)}</td>
@@ -72,4 +81,23 @@ class DetailBill extends Component {
 }
 
 
-export default  DetailBill;
+const mapStateToProps=(state)=>{
+    return {
+        user:state.user,
+        list_bill:state.list_bill
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+        onFetchBillsByUserRequest:(id_User)=>{
+            dispatch(actions.fetchBillsByUserRequest(id_User));
+        },
+        onFetchUserByIdRequest:(id_User)=>{
+            dispatch(actions.fetchUserByIdRequest(id_User));
+        },
+        onChangeStatusBill:(bill)=>{
+            dispatch(actions.changeStatusBill(bill));
+          },
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DetailBill);

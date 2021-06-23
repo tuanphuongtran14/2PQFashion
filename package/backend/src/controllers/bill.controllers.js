@@ -2,7 +2,6 @@ const BillService = require('../services/bill.services');
 const {validateBill} = require('../models/Bill.models');
 exports.create = async (req, res) => {
     let ordersInput = req.body;
-    console.log(ordersInput);
     //If ordersInput is null, return 400 Error
     if(!ordersInput) {
         return res.status(400).json({
@@ -132,11 +131,10 @@ exports.deleteOne = async (req, res) => {
 //sự kiện khi người dùng hủy bill 
 exports.cancelBill = async (req, res) => {
     let id_Bill = req.body.id_Bill;
-    console.log(id_Bill);
     // Get all order from database
     BillService.cancelBill(  id_Bill )
-    .then((bill)=>{
-        return res.status(200).json(bill);
+    .then(()=>{
+        return res.status(200).json({success:"cancel bill successfully"});
     })                                
     .catch((err)=>{
     res.status(500).json({

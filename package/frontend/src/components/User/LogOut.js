@@ -1,26 +1,24 @@
 import React,{Component,Fragment} from 'react';
-import { Link } from 'react-router-dom';
-
-class Logut extends Component {
+import * as actions from './../../actions'
+import {connect} from 'react-redux'
+class LogOut extends Component {
+    onClick=()=>{
+        var {user,history}=this.props;
+        this.props.onLogOut(user.id_User);
+        history.replace('/');
+    }
   render(){
     return (
         <Fragment>
-            <h4 className="text-center mb-4">Đăng xuất</h4>
+            <h2 className="text-center mb-4">Đăng xuất</h2>
             <form >
                 <div className="row mx-0">   
                     <div className="col-2 py-0 text-right px-0">
                         
                     </div> 
                     <div className="col-8 px-0 text-center">
-                        <h4>Xin chào: Tống Đình Quốc</h4>
-                        {/* <div className="row form-group mx-0">
-                            <div className="col-4 d-flex align-items-center text-right">
-                                <label className="mb-0">Xin chào:</label>
-                            </div>
-                            <div className="col-8 d-flex align-items-center px-0">
-                                <label className="mb-0">Tống Đình Quốc</label>
-                            </div>
-                        </div> */}
+                        <h3 class="text-info">Xin chào: Tống Đình Quốc</h3>
+                        
                     </div>
                     <div className="col-2 py-0 text-right px-0"> 
                     </div> 
@@ -30,7 +28,7 @@ class Logut extends Component {
                         
                     </div>       
                     <div className="col-4 py-0 text-center px-0">
-                        <button type="submit" className="btn btn-success">Đăng xuất</button>
+                        <button type="button" onClick={this.onClick} className="btn btn-success">Đăng xuất</button>
                     </div>
                     <div className="col-4 py-0 text-right px-0">
                         
@@ -44,4 +42,18 @@ class Logut extends Component {
   
 }
 
-export default Logut;
+const mapStateToProps=(state)=>{
+    return {
+        user:state.user,
+        
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+       onLogOut:(id_User)=>{
+            dispatch(actions.logOut(id_User));
+        },
+        
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(LogOut);

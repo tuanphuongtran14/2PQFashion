@@ -50,8 +50,7 @@ class App extends Component {
               <Route path='/contact'>
                 <ContactPage />
               </Route>
-              <Route path='/user'>
-                <UserPage />
+              <Route path='/user' component={({ match, history }) => <UserPage match={match} history={history} />}>
               </Route>
               <Route path='/admin'>
                 <AdminPage />

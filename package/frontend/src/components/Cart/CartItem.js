@@ -45,13 +45,13 @@ class CartItem extends Component {
             <tr>
                 <th scope="row">
                     <Link to={"#"} >
-                        <img src={cartItem.images[0]}
+                        <img src={`${process.env.REACT_APP_API_URL}${cartItem.images[0]}`}
                             alt="" className=" z-depth-0" style={{width:100}}/>
                     </Link>
                 </th>
                 <td>
                     <h5>
-                        <strong>{cartItem.name}</strong>
+                        <strong>${process.env.REACT_APP_API_URL}{cartItem.name}</strong>
                     </h5>
                 </td>
                 <td>

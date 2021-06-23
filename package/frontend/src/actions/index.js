@@ -139,9 +139,14 @@ export const fetchBillsByUserRequest=(id_User)=>{
 }
 
 export const deleteBill=(id_Bill)=>{
-    console.log(123);
     return callApi('bills/cancel-bill','POST',{
         id_Bill:id_Bill
+    })
+}
+
+export const changePassword=(id,contentUser)=>{
+    return callApi(`users/${id}`,'PUT',{
+        contentUser
     })
 }
 
@@ -161,5 +166,21 @@ export const fetchUserByIdRequest=(id_User)=>{
                         .then(res=>{
                             dispatch(fetchUserById(res.data));
                         })
+    }
+}
+//Thêm sản phẩm
+export const changeStatusBill=(bill)=>{
+    return{
+        type:types.CHANGE_STATUS_BILL,
+        bill,
+    }
+}
+
+
+//Đăng xuất
+export const logOut=(id_User)=>{
+    return{
+        type:types.LOG_OUT,
+        id_User
     }
 }

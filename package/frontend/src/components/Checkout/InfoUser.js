@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from 'react';
 // import $ from "jquery";
 import{addBillRequest} from './../../actions'
+import { Link } from 'react-router-dom';
 class InfoUser extends Component {
     constructor(props)
     {
@@ -12,6 +13,7 @@ class InfoUser extends Component {
             orderNote:'',
             paymentMethod: 'Trả tiền khi nhận hàng',
             phone:0,
+            errInformation:''
 
 
         }
@@ -46,31 +48,46 @@ class InfoUser extends Component {
             } 
             return null;
         })
-        const price = cart.reduce((total, item) => {
-            return total + item.quantity*item.price;
-          }, 0);
-        var newBill={
-            products: products,
-             totalPrice: price-order.salePrice
-             ,
-             nameCustomer:nameCustomer,
-             id_User: order.id_User,
-             coupon: order.coupon,
-             address: address,
-             email: email,
-             orderNote:orderNote===''?' ':orderNote,
-             paymentMethod: paymentMethod,
-             phone: phone,
-        };
-        addBillRequest(newBill)
-        .then(()=>{
-            this.props.onAddBillSucess(true);
-            history.replace('/');
+        products=products.filter((item)=>{
+            return item!==null;
         })
+        if(products.length===0){
+            this.setState({
+                errInformation:'Giỏ hàng của bạn trống hoặc bạn đã mua sản phẩm hết hàng. Vui lòng kiểm tra lại!!!',
+            });
+        }else{
+            const price = cart.reduce((total, item) => {
+                return total + item.quantity*item.price;
+              }, 0);
+            var newBill={
+                products: products,
+                 totalPrice: price-order.salePrice
+                 ,
+                 nameCustomer:nameCustomer,
+                 id_User: order.id_User,
+                 coupon: order.coupon,
+                 address: address,
+                 email: email,
+                 orderNote:orderNote===''?' ':orderNote,
+                 paymentMethod: paymentMethod,
+                 phone: phone,
+            };
+            addBillRequest(newBill)
+            .then(()=>{
+                this.props.onAddBillSucess(true);
+                history.replace('/');
+            })
+        }
+        
 
     }
+    checkCart=(key)=>{
+        if(key!==''){
+            return <Link to={'shop/cart'} className="text-info">Kiểm tra giỏ hàng</Link>
+        }
+    }
   render(){
-      var {nameCustomer, address,email,orderNote,paymentMethod,phone}=this.state;
+      var {nameCustomer, address,email,orderNote,paymentMethod,phone,errInformation}=this.state;
     return (
         <Fragment>
             <h6 className="coupon__code"><span className="icon_tag_alt"></span>
@@ -114,6 +131,9 @@ class InfoUser extends Component {
                     <input type="text"
                     placeholder="Notes about your order, e.g. special notes for delivery." 
                     onChange={this.onChange} value={orderNote} name='orderNote'/>
+                </div>
+                <div className="checkout__input">
+                    <label className="text-danger">{errInformation}. {this.checkCart(errInformation)}</label>
                 </div>
                 <button type="submit" className="site-btn" >PLACE ORDER</button>
             </form>

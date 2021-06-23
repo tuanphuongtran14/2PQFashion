@@ -40,7 +40,7 @@ class ShopContainer extends Component {
                 onAddToCart={this.props.onAddToCart}
             />)
           }
-                  
+        return null;          
         })
     }
     return result;
@@ -120,37 +120,39 @@ class ShopContainer extends Component {
      
   }
   //xử lý sự kiện sort
+  sort=Number(sort);
   if(sort===1){
+    
     products=products.sort(function(product1, product2) {
       if (product1.price > product2.price) return 1;
       else if (product1.price < product2.price) return -1;
       return 0;
-  })
-}else if(sort===2){
-  products=products.sort(function(product1, product2) {
-    if (product1.price < product2.price) return 1;
-    else if (product1.price > product2.price) return -1;
-    return 0;
-})
-}else if(sort ===3){
-  products=products.filter((product,index)=>{
-    return product.price<=100;
-  })
-  products=products.sort(function(product1, product2) {
-    if (product1.price > product2.price) return 1;
-    else if (product1.price < product2.price) return -1;
-    return 0;
-})
-}else if(sort ===4){
-  products=products.filter((product,index)=>{
-    return product.price>100;
-  })
-  products=products.sort(function(product1, product2) {
-    if (product1.price > product2.price) return 1;
-    else if (product1.price < product2.price) return -1;
-    return 0;
-})
-}
+      })
+    }else if(sort===2){
+      products=products.sort(function(product1, product2) {
+        if (product1.price < product2.price) return 1;
+        else if (product1.price > product2.price) return -1;
+        return 0;
+    })
+    }else if(sort ===3){
+      products=products.filter((product,index)=>{
+        return product.price<=100;
+      })
+      products=products.sort(function(product1, product2) {
+        if (product1.price > product2.price) return 1;
+        else if (product1.price < product2.price) return -1;
+        return 0;
+    })
+    }else if(sort ===4){
+      products=products.filter((product,index)=>{
+        return product.price>100;
+      })
+      products=products.sort(function(product1, product2) {
+        if (product1.price > product2.price) return 1;
+        else if (product1.price < product2.price) return -1;
+        return 0;
+    })
+    }
     return (
         <Fragment>       
           <ProductList >

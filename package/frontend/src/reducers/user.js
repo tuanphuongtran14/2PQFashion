@@ -13,7 +13,18 @@ var initialState={
 const user=(state=initialState,action)=>{
     switch(action.type){
         case types.FETCH_USER_BY_ID:
-        return action.user;                 
+            return action.user;   
+        case types.LOG_OUT:
+            
+             var newUser={
+                id_User:'',
+                username:' ',
+                phone:' ',
+                address:' ',
+                email:' ',
+            }  
+            localStorage.removeItem('user');
+            return newUser;       
         default:
             return state;
     }

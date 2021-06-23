@@ -6,17 +6,17 @@ class Cart extends Component {
   render(){
     return (
         <Fragment>
-            <table className="table product-table cart" >
+            <table className="table product-table table-hover cart" >
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Sản Phẩm</th>
-                        <th>kích thước</th>
-                        <th>Giá</th>
-                        <th>Số lượng hàng trong kho</th>
-                        <th>Số Lượng</th>
-                        <th>Tổng Cộng</th>
-                        <th></th>
+                        <th className="col-2">Hình ảnh</th>
+                        <th className="col-2">Sản Phẩm</th>
+                        <th className="col-1">kích thước</th>
+                        <th className="col-1">Giá</th>
+                        <th className="col-1">Số lượng hàng trong kho</th>
+                        <th className="col-1">Số Lượng</th>
+                        <th className="col-2">Tổng Cộng</th>
+                        <th className="col-1">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>

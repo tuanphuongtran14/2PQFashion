@@ -34,3 +34,9 @@ export const FETCH_BILLS_BY_USER="FETCH_BILLS_BY_USER";
 
 //fetch user by id
 export const FETCH_USER_BY_ID="FETCH_USER_BY_ID";
+
+//change status bill
+export const CHANGE_STATUS_BILL="CHANGE_STATUS_BILL";
+
+//log out
+export const LOG_OUT="LOG_OUT";

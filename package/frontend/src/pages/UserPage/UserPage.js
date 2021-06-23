@@ -17,6 +17,7 @@ import * as actions from './../../actions'
         this.props.onFetchUserByIdRequest(user.id_User);
     }
     render() {
+        var {history}=this.props;
         return (
             <Router>
                 <Helmet>
@@ -56,13 +57,11 @@ import * as actions from './../../actions'
                     </nav>
                     {/* Page Content  */}
                     <div id="content" className="p-4 bg-white">
-                        <Route path={'/user/change-pasword'} component={ChangePassword} />
-                        <Route path={'/user/logout'} component={LogOut} />
+                        <Route path={'/user/change-pasword'} component={({history})=><ChangePassword history={history} />}/>
+                        <Route path={'/user/logout'} component={()=><LogOut history={history}/>} />
                         <Route path={'/user'} component={InfoUser} exact={true}/>
-                        <Route path={'/user/order-traking'} component={OrderTraking} exact={true} />
+                        <Route path={'/user/order-traking'} component={({history})=><OrderTraking history={history}/>} exact={true} />
                         <Route path={'/user/order-traking/:idBill'} component={({match})=><InfoBill match={match}/>} />
-                        {/* <Route path={'/admin/danh-muc'} component={ViewCategory} />
-                        <Route path={'/admin/san-pham'} component={ViewProduct} /> */}
                     </div>
                 </div>
                 </div>

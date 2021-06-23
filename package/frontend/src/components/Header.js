@@ -60,7 +60,7 @@ countPrice=(cart)=>{
                             <nav className="header__menu mobile-menu">
                                 <ul>
                                     <li ><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
-                                    <li><a href="/shop">Shop</a></li>
+                                    <li><Link to={`/shop`}>Shop </Link></li>
                                     <li><a href="/">Pages</a>
                                         <ul className="dropdown">
                                             <li>

@@ -51,7 +51,7 @@ exports.validateBill = function(bill) {
 }
 exports.generateIdBill = function() {
     
-        return S4()+S4();
+        return 'QDT'+S4()+S4();
 }
 function S4()
 {

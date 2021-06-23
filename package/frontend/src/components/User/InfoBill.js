@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import DetailProductBill from './DetailProductBill';
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom';
 // import $ from "jquery";
 class InfoBill extends Component {
 
@@ -29,15 +30,15 @@ class InfoBill extends Component {
         <Fragment>
             <h4 className="text-center mb-4">Chi tiết đơn hàng của tôi</h4>
             <div className="row">
-                <table className="table product-table" >
+                <table className="table product-table table-hover" >
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Sản Phẩm</th>
-                            <th>kích thước</th>
-                            <th>Giá</th>
-                            <th>Số Lượng</th>
-                            <th>Tổng Cộng</th>
+                            <th className="col-2"></th>
+                            <th className="col-3">Sản Phẩm</th>
+                            <th className="col-1">kích thước</th>
+                            <th className="col-2">Giá</th>
+                            <th className="col-2">Số Lượng</th>
+                            <th className="col-2">Tổng Cộng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +46,13 @@ class InfoBill extends Component {
                     </tbody>
                 </table>
             </div>
+            <div className="row mx-0">   
+
+                    <div className="col-12 px-0 text-center mt-5">
+                    <Link to={'/user/order-traking'} className="btn btn-info">Quay lại trang quản lý đơn hàng</Link>
+                    </div>
+
+                </div>
             {/* <div className="row">
                 <class
             </div> */}
