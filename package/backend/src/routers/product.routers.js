@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const {create, getAll, getOne, deleteOne, updateOne} = require('../controllers/product.controllers');
+const {create, getAll, getOne, deleteOne, updateOne, search } = require('../controllers/product.controllers');
 const authenAdmin = require('../validations/authenAdmin');
 
-// Getting all products
-router.get('/', getAll);
+
+// Search product
+router.get('/search', search);
+
 
 // Creating new product
 router.post('/', authenAdmin, create);
@@ -16,5 +18,8 @@ router.put('/:sku', authenAdmin, updateOne);
 
 // Deleting product by SKU
 router.delete('/:sku', authenAdmin, deleteOne);
+
+// Getting all products
+router.get('/', getAll);
 
 module.exports = router;

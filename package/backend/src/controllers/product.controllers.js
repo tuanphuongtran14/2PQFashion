@@ -79,6 +79,22 @@ exports.getAll = async (req, res) => {
     }
 };
 
+exports.search = async (req, res) => {
+    const query = {
+        ...req.query
+    };
+    try{
+        // Find all product
+        let products = await productServices.search(query);
+        return res.status(200).json(products);
+    } catch(err) {
+        res.status(500).json({
+            message:
+              err.message || "Some error occurred while retrieving products."
+        });
+    }
+}
+
 exports.getOne = async (req, res) => {
     let sku = req.params.sku;
 

@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import callApi from '../../../utils/apiCaller';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import axios from 'axios';
 
 const animatedComponents = makeAnimated();
 
@@ -17,7 +17,7 @@ export default class AddProductPage extends Component {
         this.imageSlider = React.createRef();
         const query = new URLSearchParams(this.props.location.search);
         this.state = {
-            loading: false,
+            loading: true,
             id: query.get('id'),
             productOptions: [],
             productImages: []
@@ -25,47 +25,56 @@ export default class AddProductPage extends Component {
     }
 
     componentDidMount() {
-        callApi(`products/${this.state.id}`, 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    let data = res.data;
-                    document.getElementById('name').value = data.name;
-                    document.getElementById('slug').value = data.slug;
-                    document.getElementById('price').value = data.price.toLocaleString('de-DE') + 'đ';
-                    document.getElementById('shortDesc').innerHTML = data.shortDesc;
-                    document.getElementById('fullDesc').innerHTML = data.fullDesc;
-                    document.getElementById('additionalInfo').innerHTML = data.additionalInfo;
-                    let statusLabel = 'Bình thường';
-                    switch (data.status) {
-                        case 1:
-                            statusLabel = 'Best Sellers';
-                            break;
-                        case 2:
-                            statusLabel = 'New Arrivals';
-                            break;
-                        case 3:
-                            statusLabel = 'Hot Sales';
-                            break;
-                    }
-                    this.statusSelect.select.setValue({ value: data.status, label: statusLabel })
-                    this.categorySelect.select.setValue({ value: data.category, label: data.category })
-                    this.tagSelect.select.setValue(data.tags.map(tag => {
-                        return {
-                            value: tag,
-                            label: tag
-                        }
-                    }));
-                    this.setState({
-                        loading: false,
-                        productOptions: data.options,
-                        productImages: data.images
-                    });
-                    console.log(data.images);
-                } else {
-                    alert("Sản phẩm cần xem không tồn tại!!!");
-                    this.props.history.push(`/admin/xem-san-pham`);
+        axios({
+            method: 'GET',
+            url: `/api/products/${this.state.id}`,
+        }).then(res => {
+            if (res && res.status === 200) {
+                let data = res.data;
+                document.getElementById('name').value = data.name;
+                document.getElementById('slug').value = data.slug;
+                document.getElementById('price').value = data.price.toLocaleString('de-DE') + 'đ';
+                document.getElementById('shortDesc').innerHTML = data.shortDesc;
+                document.getElementById('fullDesc').innerHTML = data.fullDesc;
+                document.getElementById('additionalInfo').innerHTML = data.additionalInfo;
+                let statusLabel = 'Bình thường';
+                switch (data.status) {
+                    case 1:
+                        statusLabel = 'Best Sellers';
+                        break;
+                    case 2:
+                        statusLabel = 'New Arrivals';
+                        break;
+                    case 3:
+                        statusLabel = 'Hot Sales';
+                        break;
                 }
+                this.statusSelect.select.setValue({ value: data.status, label: statusLabel })
+                this.categorySelect.select.setValue({ value: data.category, label: data.category })
+                this.tagSelect.select.setValue(data.tags.map(tag => {
+                    return {
+                        value: tag,
+                        label: tag
+                    }
+                }));
+                this.setState({
+                    loading: false,
+                    productOptions: data.options,
+                    productImages: data.images
+                });
+                console.log(data.images);
+            } else {
+                alert("Sản phẩm cần xem không tồn tại!!!");
+                this.props.history.push(`/admin/xem-san-pham`);
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert(error.response.data.message);
+            }
+            this.setState({
+                loading: false
             })
+        })
     }
 
     displayLoading = () => {

@@ -26,8 +26,11 @@ class ProductList extends Component {
             }
         }).catch(error => {
             if(error.response) {
-                alert("Lỗi: " + error.response.data.message)
+                alert(error.response.data.message);
             }
+            this.setState({
+                loading: false
+            })
         })
     }
 
@@ -102,6 +105,37 @@ class ProductList extends Component {
         this.props.history.push(`/admin/sua-san-pham?id=${id}`)
     }
 
+    
+    handleSearchSubmit = event => {
+        event.preventDefault();
+        let query = "?";
+
+        if(document.getElementById("name").value)
+            query += "name=" + document.getElementById("name").value;
+
+        if(document.getElementById("sku").value)
+            query += "sku=" + document.getElementById("sku").value;
+
+        axios({
+            method: 'GET',
+            url: `/api/products/search${query}`
+        }).then(res => {
+            if (res && res.status === 200) {
+                this.setState({
+                    products: res.data,
+                    loading: false
+                })
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert(error.response.data.message);
+            }
+            this.setState({
+                loading: false
+            })
+        })
+    }
+
     render() {
         const productList = this.state.products.map((product, index) => {
             return (
@@ -128,7 +162,7 @@ class ProductList extends Component {
                             <label className="mb-0">SKU:</label>
                             </div>
                             <div className="col-9 d-flex align-items-center px-0">
-                            <input type="text" className="form-control" aria-describedby="helpId"  />
+                            <input type="text" id="sku" className="form-control" aria-describedby="helpId"  />
                             </div>
                         </div>
                     </div>
@@ -138,7 +172,7 @@ class ProductList extends Component {
                             <label className="mb-0">Tên sản phẩm:</label>
                             </div>
                             <div className="col-8 d-flex align-items-center px-0">
-                            <input type="text" className="form-control" aria-describedby="helpId"  />
+                            <input type="text" id="name" className="form-control" aria-describedby="helpId"  />
                             </div>
                         </div>
                     </div>

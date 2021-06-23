@@ -5,8 +5,6 @@ const convertToSlug = (slug) => {
     return removeVietnameseTones(slug + '').replace(/ /g, '-').toLowerCase();
 }
 
-
-
 exports.create = (req, productInput) => {
     // Add other infomation for product input
     let slug = productInput.name + '';
@@ -27,6 +25,24 @@ exports.create = (req, productInput) => {
 
 exports.findAll = () => {
     return productRepo.findAll();
+}
+
+exports.search = async (query) => {
+    let products = await productRepo.findAll();
+    
+    if(query.sku) {
+        products = products.filter(product => {
+            return product.sku.toLowerCase().indexOf(query.sku.toLowerCase()) > -1;
+        })
+    }
+    
+    if(query.name) {
+        products = products.filter(product => {
+            return product.name.toLowerCase().indexOf(query.name.toLowerCase()) > -1;
+        })
+    }
+
+    return products;
 }
 
 exports.findBySKU = (sku) => {

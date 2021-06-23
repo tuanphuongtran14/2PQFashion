@@ -5,6 +5,7 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import CartPage from './pages/PaymentPage/CartPage';
 import AdminPage from './pages/AdminPage/MainPage';
+import Test from './pages/AdminPage/test';
 import CheckoutPage from './pages/PaymentPage/CheckoutPage';
 import UserPage from './pages/UserPage/UserPage';
 import LoginPage from './pages/LoginRegisterPage/LoginPage'
@@ -69,6 +70,9 @@ class App extends Component {
               </Route>
               <Route path='/info'>
                 <ShopDetailsPage />
+              </Route>
+              <Route path='/test'>
+                <Test />
               </Route>
             </Switch>
             <Route path={/^((?!\/admin).)*$/} component={Footer} />
