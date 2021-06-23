@@ -38,7 +38,7 @@ class App extends Component {
               <Route path="/about">
                 <AboutPage />
               </Route>
-              <Route path="/shop/cart">
+              <Route exact path="/shop/cart">
                 <CartPage />
               </Route>
               <Route path="/shop" exact component={({ match, history }) => <ShopPage match={match} history={history} />} />

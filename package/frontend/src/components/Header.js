@@ -1,14 +1,32 @@
 import React,{Component,Fragment} from 'react';
 import {connect} from 'react-redux'
+import $ from "jquery";
 import {
     Link,
     NavLink,
   } from "react-router-dom";
 
 class Header extends Component {
-
+componentDidMount() {
+    $('.search-switch').on('click', function () {
+        $('.search-model').fadeIn(400);
+    });
+    $('.search-close-switch').on('click', function () {
+        $('.search-model').fadeOut(400, function () {
+            $('#search-input').val('');
+        });
+    });
+}
 onClick=(event)=>{
     event.preventDefault();
+    $('.search-switch').on('click', function () {
+        $('.search-model').fadeIn(400);
+    });
+    $('.search-close-switch').on('click', function () {
+        $('.search-model').fadeOut(400, function () {
+            $('#search-input').val('');
+        });
+    });
 }
 countPrice=(cart)=>{
     var result=0;
@@ -18,7 +36,6 @@ countPrice=(cart)=>{
     return result;
 }
   render(){
-      console.log(this.props.cart);
     return (
         <Fragment>
                 {/* <!-- Header Section Begin --> */}
@@ -85,9 +102,8 @@ countPrice=(cart)=>{
                             </nav>
                         </div>
                         <div className="col-lg-3 col-md-3">
-                            <div className="header__nav__option">
-                                
-                                <Link to={''} onClick={this.onClick} href="#" className="search-switch"><img src="/img/icon/search.png" alt=""/></Link>
+                            <div className="header__nav__option">     
+                                <Link to={''} onClick={this.onClick} className="search-switch"><img src="/img/icon/search.png" alt=""/></Link>
                                 <Link type="button" to={`/`}><img src="/img/icon/heart.png" alt=""/></Link>
                                 <Link type="button" to={`/shop/cart`}><img src="/img/icon/cart.png" alt=""/> <span>0</span></Link>
                                 <div className="price">${this.countPrice(this.props.cart)}</div>

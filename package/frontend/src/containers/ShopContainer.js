@@ -60,29 +60,30 @@ class ShopContainer extends Component {
     var filter=match.params.filter;
     if(filter){
       
-      if(filter==='categories'){
+        if(filter==='categories'){
         
-        products=products.filter(product=>{
-          return product.category===query.get("value");
-      })
+            products=products.filter(product=>{
+            return product.category===query.get("value");
+            })
       
-    }else if(filter==='branding'){
-        products=products.filter(product=>{
-          return product.brand===query.get("value");
-      })
-    }else if(filter==='tags'){
-        products=products.filter(product=>{
-          var result=false;
-          product.tags.map(element => {
-            if(element===query.get("value")){
-              result=true;
-            }
-          });
-          if(result){
-            return 1;
-          }        
-          return 0;
-      })
+        }else if(filter==='branding'){
+            products=products.filter(product=>{
+            return product.brand===query.get("value");
+        })
+        }else if(filter==='tags'){
+            products=products.filter(product=>{
+            var result=false;
+            product.tags.map(element => {
+                if(element===query.get("value")){
+                result=true;
+                }
+                return null;
+            });
+            if(result){
+                return 1;
+            }        
+            return 0;
+        })
       }
       else if(filter==='sizes'){
         products=products.filter(product=>{
@@ -98,29 +99,22 @@ class ShopContainer extends Component {
           return 0;
       })
       }
-      else if(filter==='colors'){
+      else if(filter==='search'){
+          
+          keyword=query.get("value").toLowerCase();
         products=products.filter(product=>{
-          var result=false;
-          product.color.map(element => {
-            if(element===query.get("value")){
-              result=true;
-            }
-          });
-          if(result){
-            return 1;
-          }        
-          return 0;
-      })
-      }
+            return product.name.toLowerCase().indexOf(keyword)!==-1;
+          })
     }
-    //xử lý sự kiện search
-    if(keyword){
-      products=products.filter(product=>{
-        keyword=keyword.toLowerCase()
-          return product.name.toLowerCase().indexOf(keyword)!==-1;
-      })
+    }
+//     //xử lý sự kiện search
+//     if(keyword){
+//       products=products.filter(product=>{
+//         keyword=keyword.toLowerCase()
+          
+//       })
      
-  }
+//   }
   //xử lý sự kiện sort
   sort=Number(sort);
   if(sort===1){

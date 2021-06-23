@@ -52,7 +52,7 @@ class ShopPage extends Component {
                             <div className="col-lg-3">
                                 <div className="shop__sidebar">
                                     <div className="shop__sidebar__search">
-                                        < FilterNameContainer />
+                                        < FilterNameContainer history={this.props.history}/>
                                     </div>
                                     <div className="shop__sidebar__accordion">
                                         <div className="accordion" id="accordionExample">
@@ -244,7 +244,7 @@ class ShopPage extends Component {
                 </section>
                 {/* <!-- Shop Section End --></div> */}
                 <Footer/>
-                <SearchContainer />
+                <SearchContainer history={this.props.history}/>
             </Fragment>
         );
     }

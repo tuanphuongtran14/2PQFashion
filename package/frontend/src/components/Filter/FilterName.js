@@ -18,22 +18,21 @@ class FilterName extends Component {
             [name]:value
         });
     }
-    onSearch=()=>
-    {   
 
-        this.props.onSearch(this.state.keyword);
-        $('.search-model').fadeOut(400, function () {
-            });
+    onSubmit=(e)=>{
+        e.preventDefault();
+        var {history}=this.props;
+            history.replace(`/shop/search?value=${this.state.keyword}`)
     }
   render(){
     const    {keyword}=this.state;
     return (
         <Fragment>
             {/* <!-- Filter Begin --> */}
-            <form action="#">
+            <form onSubmit={this.onSubmit}>
                 <input type="text" placeholder="Search..." name="keyword" value={keyword} 
                           onChange={this.onChange}/>
-                <button  type="button"  onClick={this.onSearch}><span className="icon_search"></span></button>
+                <button  type="submit"  ><span className="icon_search"></span></button>
             </form>
             {/* <!-- Filter End --> */}
         </Fragment>
