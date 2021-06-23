@@ -62,7 +62,8 @@ exports.validateProduct = function(product) {
         fullDesc: Joi.string(),
         additionalInfo: Joi.string(),
         images: Joi.file().contents(),
-        status: Joi.number().min(0).max(3)
+        status: Joi.number().min(0).max(3),
+        rating: Joi.number().min(1).max(5)
     });
 
     let { error } = schema.validate(product)

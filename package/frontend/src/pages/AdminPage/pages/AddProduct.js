@@ -183,6 +183,7 @@ class AddProduct extends Component {
         data.append('name', document.getElementById('name').value);
         data.append('slug', document.getElementById('slug').value);
         data.append('price', document.getElementById('price').value);
+        data.append('rating', document.getElementById('rating').value);
         data.append('status', this.statusSelect.select.getValue()[0].value);
         data.append('category', this.categorySelect.select.getValue()[0].value);
         data.append('tags', JSON.stringify(this.tagSelect.select.getValue().map(option => {
@@ -312,7 +313,11 @@ class AddProduct extends Component {
                                 options={this.state.tagOptions}
                             />
                         </div>
-                        <div className="form-group col-12 mx-0 pl-0 pr-2" style={{ zIndex: "0" }}>
+                        <div className="form-group col-6 mx-0 pl-0 pr-2">
+                            <label htmlFor="price">Đánh giá sản phẩm (1-5)</label>
+                            <input type="number" min={1} max={5} className="form-control" name="rating" id="rating" required />
+                        </div>
+                        <div className="form-group col-12 mx-0 px-0" style={{ zIndex: "0" }}>
                             <label htmlFor="category">Kích cỡ & Số lượng</label>
                             <div className="border size-listing px-3 pt-2">
                                 <div className="row m-0 d-flex align-items-center">

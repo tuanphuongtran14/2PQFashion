@@ -53,6 +53,7 @@ class EditProduct extends Component {
                 document.getElementById('name').value = data.name;
                 document.getElementById('slug').value = data.slug;
                 document.getElementById('price').value = data.price;
+                document.getElementById('rating').value = data.rating.grade;
                 document.getElementById('shortDesc').value = data.shortDesc;
                 document.getElementById('fullDesc').value = data.fullDesc;
                 document.getElementById('additionalInfo').value = data.additionalInfo;
@@ -264,6 +265,7 @@ class EditProduct extends Component {
         data.append('name', document.getElementById('name').value);
         data.append('slug', document.getElementById('slug').value);
         data.append('price', document.getElementById('price').value);
+        data.append('rating', document.getElementById('rating').value);
         data.append('status', this.statusSelect.select.getValue()[0].value);
         data.append('category', this.categorySelect.select.getValue()[0].value);
         data.append('tags', JSON.stringify(this.tagSelect.select.getValue().map(option => {
@@ -391,6 +393,10 @@ class EditProduct extends Component {
                                 defaultValue={this.state.tagOptions[0]}
                                 options={this.state.tagOptions}
                             />
+                        </div>
+                        <div className="form-group col-6 mx-0 pl-0 pr-2">
+                            <label htmlFor="price">Đánh giá sản phẩm (1-5)</label>
+                            <input type="number" min={1} max={5} className="form-control" name="rating" id="rating" required />
                         </div>
                         <div className="form-group col-12 mx-0 pl-0 pr-2" style={{ zIndex: "0" }}>
                             <label htmlFor="category">Kích cỡ & Số lượng</label>

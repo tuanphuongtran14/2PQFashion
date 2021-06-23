@@ -33,6 +33,7 @@ export default class AddProductPage extends Component {
                 let data = res.data;
                 document.getElementById('name').value = data.name;
                 document.getElementById('slug').value = data.slug;
+                document.getElementById('rating').value = data.rating;
                 document.getElementById('price').value = data.price.toLocaleString('de-DE') + 'đ';
                 document.getElementById('shortDesc').innerHTML = data.shortDesc;
                 document.getElementById('fullDesc').innerHTML = data.fullDesc;
@@ -173,6 +174,10 @@ export default class AddProductPage extends Component {
                                     animatedComponents
                                 }}
                             />
+                        </div>
+                        <div className="form-group col-6 mx-0 pl-0 pr-2">
+                            <label htmlFor="price">Đánh giá sản phẩm (1-5)</label>
+                            <input type="number" min={1} max={5} className="form-control" name="rating" id="rating" required />
                         </div>
                         <div className="form-group col-12 mx-0 pl-0 pr-2" style={{ zIndex: "0" }}>
                             <label htmlFor="category">Kích cỡ & Số lượng</label>

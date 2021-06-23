@@ -10,8 +10,9 @@ exports.create = (req, productInput) => {
     let slug = productInput.name + '';
     if(!productInput.slug)
         productInput.slug = convertToSlug(slug);
+    let rating = productInput.rating;
     productInput.rating = {
-        grade: 0,
+        grade: rating,
         votes: 0
     };
     productInput.sku = generateSKU(productInput);
@@ -54,6 +55,11 @@ exports.deleteBySKU = (sku) => {
 }
 
 exports.updateBySKU = (sku, updateContent) => {
+    let rating = updateContent.rating;
+    updateContent.rating = {
+        grade: rating,
+        votes: 0
+    };
     return productRepo.updateBySKU(sku, updateContent);
 }
 
