@@ -1,5 +1,5 @@
 import React,{Component,Fragment} from 'react';
-
+import {connect} from 'react-redux'
 class ProductItem extends Component {
     renderClass=(status)=>{
         let result='';
@@ -36,7 +36,11 @@ class ProductItem extends Component {
     }
     onClick=(e)=>{
         e.preventDefault();
-        const{sku,slug,price,name,images,options}=this.props.product;
+        var {token,history}=this.props;
+        if(!token){
+            history.replace('/login');
+        }else{
+            const{sku,slug,price,name,images,options}=this.props.product;
         var size=options[0].size;
         var inventory=options[0].quantity;
         var quantity=inventory===0?0:1;
@@ -54,6 +58,8 @@ class ProductItem extends Component {
 
         }                     
         this.props.onAddToCart(cartItem);
+        }
+        
     }
     render(){
         const{images,name,price,status,rating}=this.props.product;
@@ -65,7 +71,7 @@ class ProductItem extends Component {
             <Fragment>
                 <div className={`${onPage===1?'col-lg-3':'col-lg-4'} col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
                     <div className="product__item">
-                        <div className="product__item__pic " style={{backgroundImage:`url(${images[0]})`, backgroundSize: 'cover'}} >
+                        <div className="product__item__pic " style={{backgroundImage:`url(${process.env.REACT_APP_API_URL}${images[0]})`, backgroundSize: 'cover'}} >
                         <span className="label label--sales" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
                                 <li><button type="button" className="btn--square border"><i className="fa fa-heart-o" aria-hidden="true"></i></button></li>
@@ -89,4 +95,14 @@ class ProductItem extends Component {
   
 }
 
-export default ProductItem;
+const mapStateToProps=(state)=>{
+    return {
+        ...state.authorization,
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+        
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);

@@ -1,13 +1,13 @@
 import * as types from'./../constants/ActionTypes'
 
 var initialState=[];
-var findProductInCart=(cart,product)=>{
+var findBillinListBill=(id_Bill,bills)=>{
     var index=-1;
-    cart.map((cartItem,i)=>{
-        if((product.sku===cartItem.sku) && (product.size===cartItem.size)){
+    bills.map((item,i)=>{
+        if(item.id_Bill===id_Bill){
             index=i;
         }
-        return cartItem;
+        return item;
     });
     return index;
 }
@@ -19,13 +19,13 @@ const list_bill=(state=initialState,action)=>{
             replaceState=[...state];
             replaceState=action.bills;
             return replaceState;
-        case types.DELETE_PRODUCT_TO_CART:
-           
-            return replaceState;
-        case types.UPDATE_PRODUCT_TO_CART:
-            replaceState=[...state];
         
-        return replaceState; 
+        case types.CHANGE_STATUS_BILL:
+            replaceState=[...state];
+
+            index=findBillinListBill(action.bill.id_Bill,replaceState);
+            replaceState[index].status=action.bill.status;
+            return replaceState;
         default:
             
             return state;

@@ -35,8 +35,18 @@ export const FETCH_BILLS_BY_USER="FETCH_BILLS_BY_USER";
 //fetch user by id
 export const FETCH_USER_BY_ID="FETCH_USER_BY_ID";
 
+//change status bill
+export const CHANGE_STATUS_BILL="CHANGE_STATUS_BILL";
+
+//log out
+export const LOG_OUT="LOG_OUT";
 // set jwt token
 export const SET_TOKEN="SET_TOKEN"
 
 // check is admin
 export const SET_ADMIN="SET_ADMIN"
+
+// login cho cart
+export const LOGIN_CART="LOGIN_CART"
+// logout cho cart
+export const LOGOUT_CART="LOGOUT_CART"

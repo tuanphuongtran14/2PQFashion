@@ -26,6 +26,6 @@ exports.deleteByID = (id_User) => {
 }
 
 exports.updateByID = (id_User, updateContent) => {
-    return User.updateOne({id_User:id_User}, {...updateContent});
+    return User.updateOne({id_User:id_User}, {password:updateContent});
 }
 

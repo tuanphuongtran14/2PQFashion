@@ -18,6 +18,7 @@ countPrice=(cart)=>{
     return result;
 }
   render(){
+      console.log(this.props.cart);
     return (
         <Fragment>
                 {/* <!-- Header Section Begin --> */}
@@ -60,7 +61,7 @@ countPrice=(cart)=>{
                             <nav className="header__menu mobile-menu">
                                 <ul>
                                     <li ><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
-                                    <li><a href="/shop">Shop</a></li>
+                                    <li><Link to={`/shop`}>Shop </Link></li>
                                     <li><a href="/">Pages</a>
                                         <ul className="dropdown">
                                             <li>

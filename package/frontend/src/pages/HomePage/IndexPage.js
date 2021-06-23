@@ -190,7 +190,7 @@ class IndexPage extends Component {
                     </div>
                 </section>
                 <section className="product spad">
-                    <ProductListContainer />
+                    <ProductListContainer history={this.props.history}/>
 
                 </section>
 

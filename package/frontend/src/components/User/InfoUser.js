@@ -1,7 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import * as actions from './../../actions'
 class InfoUser extends Component {
   render(){
       var {user}=this.props;
@@ -9,79 +8,83 @@ class InfoUser extends Component {
     return (
         <Fragment>
             <h4 className="text-center mb-4">Tài khoản của tôi</h4>
-            <form >
                 <div className="row mx-0">   
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
-                    <div className="col-8 px-0">
+                    <div className="col-6 px-0">
                         <div className="row form-group mx-0">
-                            <div className="col-4 d-flex align-items-center">
-                            <label className="mb-0">Tài khoản của tôi:</label>
+                            <div className="col-6 d-flex align-items-center">
+                            <label >Tài khoản của tôi:</label>
                             </div>
-                            <div className="col-8 d-flex text-center px-0">
-                            <label>{user.username}</label>
+                            <div className="col-6 d-flex text-center px-0">
+                            <label className="text-info">{user.username}</label>
                             </div>
                         </div>
                     </div>
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
                 </div>
                 <div className="row mx-0">   
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
-                    <div className="col-8 px-0">
+                    <div className="col-6 px-0">
                         <div className="row form-group mx-0">
-                            <div className="col-4 d-flex align-items-center">
-                            <label className="mb-0">Số điện thoại:</label>
+                            <div className="col-6 d-flex align-items-center">
+                            <label >Số điện thoại:</label>
                             </div>
-                            <div className="col-8 d-flex text-center px-0">
-                            <label>{user.phone}</label>
+                            <div className="col-6 d-flex text-center px-0">
+                            <label className="text-info">{user.phone}</label>
                             </div>
                         </div>
                     </div>
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
                 </div>
                 <div className="row mx-0">   
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
-                    <div className="col-8 px-0">
+                    <div className="col-6 px-0">
                         <div className="row form-group mx-0">
-                            <div className="col-4 d-flex align-items-center">
-                            <label className="mb-0">Email:</label>
+                            <div className="col-6 d-flex align-items-center">
+                            <label >Email:</label>
                             </div>
-                            <div className="col-8 d-flex text-center px-0">
-                            <label>{user.email}</label>
+                            <div className="col-6 d-flex text-center px-0">
+                            <label className="text-info">{user.email}</label>
                             </div>
                         </div>
                     </div>
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                     </div> 
                 </div>
                 <div className="row mx-0">   
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
-                    <div className="col-8 px-0">
+                    <div className="col-6 px-0">
                         <div className="row form-group mx-0">
-                            <div className="col-4 d-flex align-items-center">
-                            <label className="mb-0">Địa chỉ:</label>
+                            <div className="col-6 d-flex align-items-center">
+                            <label >Địa chỉ:</label>
                             </div>
-                            <div className="col-8 d-flex text-center px-0">
-                            <label>{user.address}</label>
+                            <div className="col-6 d-flex text-center px-0">
+                            <label className="text-info">{user.address}</label>
                             </div>
                         </div>
                     </div>
-                    <div className="col-2 py-0 text-right px-0">
+                    <div className="col-3 py-0 text-right px-0">
                     </div> 
                 </div>
-   
-            </form>
+                <div className="row mx-0">   
+
+                    <div className="col-12 px-0 text-center mt-5">
+                        <Link to={'/user/change-pasword'} className="btn btn-info">Thay đổi mật khẩu</Link>
+                    </div>
+
+                </div>
         </Fragment>
         
     );

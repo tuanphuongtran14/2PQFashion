@@ -15,7 +15,6 @@ class Sort extends Component {
         var target=event.target;
         var name=target.name;
         var value=target.value;
-        console.log(value);
         this.props.onSort(value);
         this.setState({
             [name]:value

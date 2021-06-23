@@ -168,8 +168,8 @@ exports.cancelBill = async (req, res) => {
 
     // Get all order from database
     BillService.cancelBill(  id_Bill )
-    .then((bill)=>{
-        return res.status(200).json(bill);
+    .then(()=>{
+        return res.status(200).json({success:"cancel bill successfully"});
     })                                
     .catch((err)=>{
     res.status(500).json({

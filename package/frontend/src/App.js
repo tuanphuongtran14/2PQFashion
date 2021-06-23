@@ -34,27 +34,20 @@ class App extends Component {
           <div className="App">
             <Route path={/^((?!\/admin).)*$/} component={Header} />
             <Switch>
-              <Route exact path="/" >
-                <IndexPage />
-              </Route>
+              <Route exact path="/" component={({ match, history }) => <IndexPage match={match} history={history} />} />
               <Route path="/about">
                 <AboutPage />
               </Route>
               <Route path="/shop/cart">
                 <CartPage />
               </Route>
-              <Route path="/shop" exact>
-                <ShopPage />
-              </Route>
-              <Route path="/shop/:filter" match="match" >
-                <ShopPage />
-              </Route>
-              <Route path="/payment" match="match" component={({ match, history }) => <CheckoutPage match={match} history={history} />} />
+              <Route path="/shop" exact component={({ match, history }) => <ShopPage match={match} history={history} />} />
+              <Route path="/shop/:filter" component={({ match, history }) => <ShopPage match={match} history={history} />} />
+              <Route path="/payment" component={({ match, history }) => <CheckoutPage match={match} history={history} />} />
               <Route path='/contact'>
                 <ContactPage />
               </Route>
-              <Route path='/user'>
-                <UserPage />
+              <Route path='/user' component={({ match, history }) => <UserPage match={match} history={history} />}>
               </Route>
               <Route path='/admin'>
                 <AdminPage />
