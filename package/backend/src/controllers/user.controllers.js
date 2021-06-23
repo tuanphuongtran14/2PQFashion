@@ -1,9 +1,13 @@
 const userServices = require('../services/user.services');
+<<<<<<< HEAD
 // ===Import ===
 const bcrypt = require('bcrypt');
 const saltRounds = Number(process.env.APP_SALT_ROUNDS) || 10;
 
 
+=======
+const jwt = require('jsonwebtoken');
+>>>>>>> f91cd2526a57e18cdb274e811457ad5bb686f3db
 
 exports.create = async (req, res) => {
     let userInput = req.body;
@@ -157,3 +161,41 @@ exports.deleteOne = async (req, res) => {
     }
 }
 
+<<<<<<< HEAD
+=======
+
+//sự kiện khi người dùng hủy bill 
+exports.cancelBill = async (req, res) => {
+    let id_Bill = req.body.id_Bill;
+    console.log(id_Bill);
+    // Get all order from database
+    BillService.cancelBill(  id_Bill )
+    .then((bill)=>{
+        return res.status(200).json(bill);
+    })                                
+    .catch((err)=>{
+    res.status(500).json({
+        message:
+          err.message || "Some error occurred while retrieving bill."
+    });
+})
+}
+
+exports.me = async (req, res) => {
+    const authorizationHeader = req.headers['authorization'];
+    let token = '';
+
+    if(authorizationHeader)
+        token = authorizationHeader.split(' ')[1];
+
+    if(!token) res.sendStatus(401);
+
+    jwt.verify(token, process.env.APP_JWT_SECRET, (err, data) => {
+        if(err) res.sendStatus(403);
+
+        return res.status(200).json({
+            ...data
+        })
+    })
+}
+>>>>>>> f91cd2526a57e18cdb274e811457ad5bb686f3db

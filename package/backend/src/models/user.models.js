@@ -1,18 +1,16 @@
-const Joi = require('joi');
-const removeVietnameseTones = require('../vendors/removeVietnameseTones')
-
 exports.User = function(mongoose) {
     // Creating Product Schema
     const Schema = mongoose.Schema;
     const userSchema = new Schema({
         id_User:String,
+        name: String,
         username:String,
         address:String,
         email:String,
         phone: Number,
         password:String,
-
-        
+        isAdmin: Boolean,
+        isMale: Boolean
     })
 
     // Creating User Model

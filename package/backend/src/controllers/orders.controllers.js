@@ -40,6 +40,8 @@ exports.getAll = (req, res) => {
         });
     }
 }
+
+
 exports.getOne = async (req, res) => {
     let id = req.params.id;
 

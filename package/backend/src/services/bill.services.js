@@ -17,6 +17,36 @@ exports.findAll = () => {
     return BillRepo.findAll();
 }
 
+exports.search = async (input) => {
+    let orders = await BillRepo.findAll();
+    
+    if(input.code) {
+        orders = orders.filter(order => {
+            return order.id_Bill.toLowerCase().indexOf(input.code.toLowerCase()) > -1;
+        })
+    }
+
+    if(input.status >= 0 && input.status <= 4) {
+        orders = orders.filter(order => (order.status == input.status));
+    }
+    
+    if(input.sort === "newest") {
+        // Sắp xếp giảm dần
+        orders = orders.sort(function(bookDate1, bookDate2) {
+            return (bookDate1 > bookDate2)? 1 : -1;
+        });
+    }
+
+    if(input.sort === "oldest") {
+        // Sắp xếp tăng dần
+        orders = orders.sort(function(bookDate1, bookDate2) {
+            return (bookDate1 < bookDate2) ? 1 : -1;
+        });
+    }
+
+    return orders;
+}
+
 exports.findBillByIdUser = (id_user) => {
     return BillRepo.findBillByIdUser (id_user);
 }

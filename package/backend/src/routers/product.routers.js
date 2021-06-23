@@ -1,19 +1,25 @@
 const router = require('express').Router();
-const {create, getAll, getOne, deleteOne, updateOne} = require('../controllers/product.controllers');
+const {create, getAll, getOne, deleteOne, updateOne, search } = require('../controllers/product.controllers');
+const authenAdmin = require('../validations/authenAdmin');
 
-// Getting all products
-router.get('/', getAll);
+
+// Search product
+router.get('/search', search);
+
 
 // Creating new product
-router.post('/', create);
+router.post('/', authenAdmin, create);
 
 // Getting product by SKU
 router.get('/:sku', getOne);
 
 // Updating product by SKU
-router.put('/:sku', updateOne);
+router.put('/:sku', authenAdmin, updateOne);
 
 // Deleting product by SKU
-router.delete('/:sku', deleteOne);
+router.delete('/:sku', authenAdmin, deleteOne);
+
+// Getting all products
+router.get('/', getAll);
 
 module.exports = router;

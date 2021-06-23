@@ -1,19 +1,20 @@
 const router = require('express').Router();
 const {create, getAll, getOne, updateOne, deleteOne} = require('../controllers/category.controllers');
+const authenAdmin = require('../validations/authenAdmin');
 
 // Getting all categories
 router.get('/', getAll);
 
 // Creating new category
-router.post('/', create);
+router.post('/', authenAdmin, create);
 
 // Getting category by ID
 router.get('/:id', getOne);
 
 // Updating category by ID
-router.put('/:id', updateOne);
+router.put('/:id', authenAdmin, updateOne);
 
 // Deleting category by ID
-router.delete('/:id', deleteOne);
+router.delete('/:id', authenAdmin, deleteOne);
 
 module.exports = router;

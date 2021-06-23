@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import callApi from '../../../utils/apiCaller';
+import axios from 'axios';
 import convertToSlug from '../../../utils/convertToSlug';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
+import { withRouter } from 'react-router-dom'
 
-export default class AddCategory extends Component {
+class AddCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,21 +47,33 @@ export default class AddCategory extends Component {
             slug: document.getElementById('slug').value,
             desc: document.getElementById('desc').value
         }
-
-        callApi('categories', 'POST', data)
-            .then(res => {
+        axios({
+            method: 'POST',
+            url: '/api/categories',
+            data: data,
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }).then(res => {
+            this.setState({
+                loading: false
+            });
+            if (res && res.status === 200) {
+                alert("Thêm danh mục thành công!!!");
+                document.getElementById('name').value = '';
+                document.getElementById('slug').value = '';
+                document.getElementById('desc').value = '';
+            } else {
+                alert("Có lỗi xảy ra, vui lòng thử lại!!!");
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message);
                 this.setState({
                     loading: false
                 });
-                if (res && res.status === 200) {
-                    alert("Thêm danh mục thành công!!!");
-                    document.getElementById('name').value = '';
-                    document.getElementById('slug').value = '';
-                    document.getElementById('desc').value = '';
-                } else {
-                    alert("Có lỗi xảy ra, vui lòng thử lại!!!");
-                }
-            })
+            }
+        })
     }
 
     render() {
@@ -94,3 +109,23 @@ export default class AddCategory extends Component {
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddCategory));

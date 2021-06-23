@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import callApi from '../../../utils/apiCaller';
 import convertToSlug from '../../../utils/convertToSlug';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
+import { withRouter } from 'react-router-dom'
+import axios from 'axios';
 
-export default class AddCategory extends Component {
+class EditCategory extends Component {
     constructor(props) {
         super(props);
         const query = new URLSearchParams(this.props.location.search);
@@ -13,21 +16,33 @@ export default class AddCategory extends Component {
     }
 
     componentDidMount() {
-        callApi(`categories/${this.state.id}`, 'GET')
-            .then(res => {
-                if(res && res.status === 200) {
-                    let data = res.data;
-                    document.getElementById('name').value = data.name;
-                    document.getElementById('slug').value = data.slug;
-                    document.getElementById('desc').value = data.desc;
-                    this.setState({
-                        loading: false
-                    });
-                } else {
-                    alert("Danh mục cần xem không tồn tại!!!");
-                    this.props.history.push(`/admin/xem-danh-muc`);
-                }
+        axios({
+            method: 'GET',
+            url: `/api/categories/${this.state.id}`,
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }).then(res => {
+            if(res && res.status === 200) {
+                let data = res.data;
+                document.getElementById('name').value = data.name;
+                document.getElementById('slug').value = data.slug;
+                document.getElementById('desc').value = data.desc;
+                this.setState({
+                    loading: false
+                });
+            } else {
+                alert("Danh mục cần xem không tồn tại!!!");
+                this.props.history.push(`/admin/xem-danh-muc`);
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert(error.response.data.message);
+            }
+            this.setState({
+                loading: false
             })
+        })
     }
 
     handleSLug =(event) => {
@@ -65,18 +80,31 @@ export default class AddCategory extends Component {
             desc: document.getElementById('desc').value
         }
 
-        callApi(`categories/${this.state.id}`, 'PUT', data)
-            .then(res => {
-                this.setState({
-                    loading: false
-                });
-                if (res && res.status === 200) {
-                    if(window.confirm('Lưu thành công!!! Bạn có muốn về trang danh mục?'))
-                        this.props.history.push('/admin/xem-danh-muc');
-                } else {
-                    alert("Có lỗi xảy ra, vui lòng thử lại!!!");
-                }
+        axios({
+            method: 'PUT',
+            url: `/api/categories/${this.state.id}`,
+            data: data,
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }).then(res => {
+            this.setState({
+                loading: false
+            });
+            if (res && res.status === 200) {
+                if(window.confirm('Lưu thành công!!! Bạn có muốn về trang danh mục?'))
+                    this.props.history.push('/admin/xem-danh-muc');
+            } else {
+                alert("Có lỗi xảy ra, vui lòng thử lại!!!");
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert(error.response.data.message);
+            }
+            this.setState({
+                loading: false
             })
+        })
     }
 
     handleCancel = (event) => {
@@ -107,7 +135,7 @@ export default class AddCategory extends Component {
                             <button type="submit" class="btn btn-success" onClick={ this.handleSubmit }>Lưu thay đổi</button>
                         </div>
                         <div className="col-6 text-right px-0">
-                            <button type="reset" class="btn btn-danger" onClick={ this.handleCancel }>Hủy</button>
+                            <button type="reset" class="btn btn-danger" onClick={ this.handleCancel }>Quay lại</button>
                         </div>
                     </div>
                 </div>
@@ -117,3 +145,22 @@ export default class AddCategory extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditCategory));

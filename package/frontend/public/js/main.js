@@ -9,6 +9,23 @@
 
 'use strict';
 
+$(window).on('hashchange', function (e) {
+    // Your Code goes here
+    /*------------------
+        Gallery filter
+    --------------------*/
+    alert("change");
+    console.log("change");
+    $('.filter__controls li').on('click', function () {
+        $('.filter__controls li').removeClass('active');
+        $(this).addClass('active');
+    });
+    if ($('.product__filter').length > 0) {
+        var containerEl = document.querySelector('.product__filter');
+        var mixer = mixitup(containerEl);
+    }
+});
+
 (function ($) {
 
     /*------------------
@@ -18,6 +35,17 @@
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
 
+
+
+
+    });
+
+
+
+    MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+    var observer = new MutationObserver(function (mutations, observer) {
+        // fired when a mutation occurs
         /*------------------
             Gallery filter
         --------------------*/
@@ -29,14 +57,22 @@
             var containerEl = document.querySelector('.product__filter');
             var mixer = mixitup(containerEl);
         }
+        // ...
+    });
+
+    // define what element should be observed by the observer
+    // and what types of mutations trigger the callback
+    observer.observe(document, {
+        subtree: true,
+        childList: true
+        //...
     });
 
     /*------------------
         Background Set
     --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-
+    $('.set_bg').each(function () {
+        var bg = $(this).data('data-setbg'); 
         $(this).css('background-image', 'url(' + bg + ')');
     });
 

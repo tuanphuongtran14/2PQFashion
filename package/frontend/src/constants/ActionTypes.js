@@ -40,3 +40,8 @@ export const CHANGE_STATUS_BILL="CHANGE_STATUS_BILL";
 
 //log out
 export const LOG_OUT="LOG_OUT";
+// set jwt token
+export const SET_TOKEN="SET_TOKEN"
+
+// check is admin
+export const SET_ADMIN="SET_ADMIN"

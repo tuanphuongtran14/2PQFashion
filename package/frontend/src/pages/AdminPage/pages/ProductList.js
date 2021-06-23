@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
-import callApi from '../../../utils/apiCaller';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
+import axios from 'axios';
 
 class ProductList extends Component {
     constructor(props) {
@@ -12,15 +14,24 @@ class ProductList extends Component {
     }
 
     componentDidMount() {
-        callApi('products', 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    this.setState({
-                        products: res.data,
-                        loading: false
-                    })
-                }
+        axios({
+            method: 'GET',
+            url: '/api/products'
+        }).then(res => {
+            if (res && res.status === 200) {
+                this.setState({
+                    products: res.data,
+                    loading: false
+                })
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert(error.response.data.message);
+            }
+            this.setState({
+                loading: false
             })
+        })
     }
 
     displayLoading = () => {
@@ -47,33 +58,82 @@ class ProductList extends Component {
             this.setState({
                 loading: true
             });
-            callApi(`products/${id}`, 'DELETE')
-                .then(res => {
-                    if (res && res.status === 200) {
-                        // Fetch new data
-                        callApi('products', 'GET')
-                            .then(res => {
-                                if (res && res.status === 200) {
-                                    this.setState({
-                                        products: res.data
-                                    })
-                                }
-                                alert("Đã xóa thành công!!!");
-                                this.setState({
-                                    loading: false
-                                });
+            axios({
+                method:'DELETE',
+                url: `/api/products/${id}`,
+                headers: {
+                    Authorization: `Bearer ${this.props.token}`
+                }
+            }).then(res => {
+                if (res && res.status === 200) {
+                    // Fetch new data
+                    axios({
+                        method: 'GET',
+                        url: '/api/products'
+                    }).then(res => {
+                        if (res && res.status === 200) {
+                            this.setState({
+                                products: res.data
                             })
-                    } else {
-                        alert("Xóa thất bại, vui lòng thử lại sau!!!");
-                    }
-                })
+                        }
+                        alert("Đã xóa thành công!!!");
+                        this.setState({
+                            loading: false
+                        });
+                    })
+                } else {
+                    alert("Xóa thất bại, vui lòng thử lại sau!!!");
+                }
+            }).catch(error => {
+                if(error.response) {
+                    alert("Lỗi: " + error.response.data.message)
+                }
+                this.setState({
+                    loading: false
+                });
+            })
         }
     }
 
     viewProduct = (event, id) => {
         event.preventDefault();
-        console.log(this.props.history);
         this.props.history.push(`/admin/san-pham?id=${id}`)
+    }
+
+    editProduct  = (event, id) => {
+        event.preventDefault();
+        this.props.history.push(`/admin/sua-san-pham?id=${id}`)
+    }
+
+    
+    handleSearchSubmit = event => {
+        event.preventDefault();
+        let query = "?";
+
+        if(document.getElementById("name").value)
+            query += "name=" + document.getElementById("name").value;
+
+        if(document.getElementById("sku").value)
+            query += "sku=" + document.getElementById("sku").value;
+
+        axios({
+            method: 'GET',
+            url: `/api/products/search${query}`
+        }).then(res => {
+            if (res && res.status === 200) {
+                this.setState({
+                    products: res.data,
+                    loading: false
+                })
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert(error.response.data.message);
+            }
+            this.setState({
+                loading: false
+            })
+        })
     }
 
     render() {
@@ -86,7 +146,7 @@ class ProductList extends Component {
                     <td>{ product.category }</td>
                     <td className="pt-0 text-center">
                         <button className="btn" onClick={(event) => this.viewProduct(event, product.sku)}><i className="fa fa-eye text-primary" aria-hidden="true"></i></button>
-                        <button className="btn"><i className="fa fa-pencil-square-o text-success" aria-hidden="true"></i></button>
+                        <button className="btn" onClick={(event) => this.editProduct(event, product.sku)}><i className="fa fa-pencil-square-o text-success" aria-hidden="true"></i></button>
                         <button className="btn" onClick={(event) => this.deleteProduct(event, product.sku)}><i className="fa fa-trash text-danger" aria-hidden="true"></i></button>
                     </td>
                 </tr>
@@ -102,7 +162,7 @@ class ProductList extends Component {
                             <label className="mb-0">SKU:</label>
                             </div>
                             <div className="col-9 d-flex align-items-center px-0">
-                            <input type="text" className="form-control" aria-describedby="helpId"  />
+                            <input type="text" id="sku" className="form-control" aria-describedby="helpId"  />
                             </div>
                         </div>
                     </div>
@@ -112,7 +172,7 @@ class ProductList extends Component {
                             <label className="mb-0">Tên sản phẩm:</label>
                             </div>
                             <div className="col-8 d-flex align-items-center px-0">
-                            <input type="text" className="form-control" aria-describedby="helpId"  />
+                            <input type="text" id="name" className="form-control" aria-describedby="helpId"  />
                             </div>
                         </div>
                     </div>
@@ -136,11 +196,29 @@ class ProductList extends Component {
                         </tbody>
                     </table>
                 </div>
-                <div className="text-center my-3">Tổng cộng: 30 sản phẩm</div>
+                <div className="text-center my-3">Tổng cộng: { this.state.products.length } sản phẩm</div>
                 { this.displayLoading() }
             </Fragment>
         )
     }
 }
 
-export default withRouter(ProductList);
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.authorization
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setToken: (token) => {
+            dispatch(actions.setToken(token));
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductList));

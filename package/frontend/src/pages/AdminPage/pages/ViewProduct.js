@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import callApi from '../../../utils/apiCaller';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import axios from 'axios';
 
 const animatedComponents = makeAnimated();
 
@@ -17,7 +17,7 @@ export default class AddProductPage extends Component {
         this.imageSlider = React.createRef();
         const query = new URLSearchParams(this.props.location.search);
         this.state = {
-            loading: false,
+            loading: true,
             id: query.get('id'),
             productOptions: [],
             productImages: []
@@ -25,46 +25,56 @@ export default class AddProductPage extends Component {
     }
 
     componentDidMount() {
-        callApi(`products/${this.state.id}`, 'GET')
-            .then(res => {
-                if (res && res.status === 200) {
-                    let data = res.data;
-                    document.getElementById('name').value = data.name;
-                    document.getElementById('slug').value = data.slug;
-                    document.getElementById('price').value = data.price.toLocaleString('de-DE') + 'đ';
-                    document.getElementById('shortDesc').innerHTML = data.shortDesc;
-                    document.getElementById('fullDesc').innerHTML = data.fullDesc;
-                    document.getElementById('additionalInfo').innerHTML = data.additionalInfo;
-                    let statusLabel = 'Bình thường';
-                    switch (data.status) {
-                        case 1:
-                            statusLabel = 'Best Sellers';
-                            break;
-                        case 2:
-                            statusLabel = 'New Arrivals';
-                            break;
-                        case 3:
-                            statusLabel = 'Hot Sales';
-                            break;
-                    }
-                    this.statusSelect.select.setValue({ value: data.status, label: statusLabel })
-                    this.categorySelect.select.setValue({ value: data.category, label: data.category })
-                    this.tagSelect.select.setValue(data.tags.map(tag => {
-                        return {
-                            value: tag,
-                            label: tag
-                        }
-                    }));
-                    this.setState({
-                        loading: false,
-                        productOptions: data.options,
-                        productImages: data.images
-                    });
-                } else {
-                    alert("Sản phẩm cần xem không tồn tại!!!");
-                    this.props.history.push(`/admin/xem-san-pham`);
+        axios({
+            method: 'GET',
+            url: `/api/products/${this.state.id}`,
+        }).then(res => {
+            if (res && res.status === 200) {
+                let data = res.data;
+                document.getElementById('name').value = data.name;
+                document.getElementById('slug').value = data.slug;
+                document.getElementById('price').value = data.price.toLocaleString('de-DE') + 'đ';
+                document.getElementById('shortDesc').innerHTML = data.shortDesc;
+                document.getElementById('fullDesc').innerHTML = data.fullDesc;
+                document.getElementById('additionalInfo').innerHTML = data.additionalInfo;
+                let statusLabel = 'Bình thường';
+                switch (data.status) {
+                    case 1:
+                        statusLabel = 'Best Sellers';
+                        break;
+                    case 2:
+                        statusLabel = 'New Arrivals';
+                        break;
+                    case 3:
+                        statusLabel = 'Hot Sales';
+                        break;
                 }
+                this.statusSelect.select.setValue({ value: data.status, label: statusLabel })
+                this.categorySelect.select.setValue({ value: data.category, label: data.category })
+                this.tagSelect.select.setValue(data.tags.map(tag => {
+                    return {
+                        value: tag,
+                        label: tag
+                    }
+                }));
+                this.setState({
+                    loading: false,
+                    productOptions: data.options,
+                    productImages: data.images
+                });
+                console.log(data.images);
+            } else {
+                alert("Sản phẩm cần xem không tồn tại!!!");
+                this.props.history.push(`/admin/xem-san-pham`);
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert(error.response.data.message);
+            }
+            this.setState({
+                loading: false
             })
+        })
     }
 
     displayLoading = () => {
@@ -90,6 +100,12 @@ export default class AddProductPage extends Component {
         this.props.history.push(`/admin/xem-san-pham`)
     }
 
+    handleGoToEdit = (event, id) => {
+        event.preventDefault();
+        console.log(this.props.history);
+        this.props.history.push(`/admin/sua-san-pham?id=${id}`)
+    }
+
     render() {
         const productOptions = this.state.productOptions.map((option, index) => {
             return (
@@ -111,7 +127,7 @@ export default class AddProductPage extends Component {
         console.log(this.state.productImages);
         return (
             <Fragment>
-                <h4>Thêm sản phẩm</h4>
+                <h4>Xem sản phẩm #{this.state.id}</h4>
                 <form className="forms-sample" id="createNewProduct">
                     <div className="row mx-0">
                         <div className="form-group col-6 mx-0 pl-0 pr-2">
@@ -189,7 +205,7 @@ export default class AddProductPage extends Component {
                     <div className="form-group">
                         <label htmlFor="images">Hình ảnh sản phẩm</label>
                         <div className="border p-3 readonly bg-dark">
-                        { this.state.productImages.length > 1 && (<OwlCarousel 
+                        { this.state.productImages.length > 0 && (<OwlCarousel 
                             className='owl-carousel owl-theme'
                             loop={false}
                             margin={0} 
@@ -207,7 +223,7 @@ export default class AddProductPage extends Component {
                         </div>
                     </div>
                     <div className="d-flex justify-content-between mt-4">
-                        <button className="btn btn-success" onClick={this.handleSubmit}>Thêm sản phẩm</button>
+                        <button className="btn btn-success" onClick={ event => this.handleGoToEdit(event, this.state.id) }>Chỉnh sửa sản phẩm</button>
                         <button type="reset" className="btn btn-danger" onClick={this.handleGoBack}>Quay lại</button>
                     </div>
                 </form>
