@@ -10,30 +10,32 @@ class RegisterPage extends Component {
         event.preventDefault();
         const data = {
             username: document.getElementById('username').value,
-            password: document.getElementById('password').value,
-            name: document.getElementById('name').value,
+            password: document.getElementById('password').value, 
             email: document.getElementById('email').value,
             phone: document.getElementById('phone').value,
-            address: document.getElementById('address').value,
-            address: document.getElementById('address').value,
-            isMale: document.querySelector('input[name="isMale"]:checked').value
+            address: document.getElementById('address').value, 
         }
-        console.log(data);
-        axios({
-            method: 'POST',
-            url: '/register',
-            data
-        }).then(res => {
-            if(res && res.status === 200) {
-                if(window.confirm('Tạo tài khoản thành công, bạn có muốn đăng nhập ngay?')) {
-                    this.props.history.push('/login');
+        if(document.getElementById("password").value === document.getElementById("passwordConfirmed").value)
+        (
+            axios({
+                method: 'POST',
+                url: '/register',
+                data
+            }).then(res => {
+                if(res && res.status === 200) {
+                    if(window.confirm('Tạo tài khoản thành công, bạn có muốn đăng nhập ngay?')) {
+                        this.props.history.push('/login');
+                    }
                 }
-            }
-        }).catch(error => {
-            if(error.response) {
-                alert("Lỗi: " + error.response.data.message)
-            }
-        })
+            }).catch(error => {
+                if(error.response) {
+                    alert("Lỗi: " + error.response.data.message)
+                }
+            })
+        )
+        else {
+            alert("Mat khau khong giong nhau")
+        }
     }
     render() {
         return (
@@ -45,42 +47,28 @@ class RegisterPage extends Component {
                     <h2 className="text-center">Đăng ký</h2>
                     <p className="text-center"><u><a href="/login">Đã có tài khoản? Đăng nhập ngay.</a></u></p>
                     <div class="form-group">
-                        <label for="name">Họ và tên</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
+                        <label for="username">Tên tài khoản</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" name="email" id="email" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="phone">Số điện thoại</label>
-                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Mật khẩu" aria-describedby="helpId" /> 
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordConfirmed">Xác nhận mật khẩu</label>
+                        <input type="password" name="passwordConfirmed" id="passwordConfirmed" class="form-control" placeholder="Xác nhận mật khẩu" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
                         <label for="address">Địa chỉ</label>
                         <input type="text" name="address" id="address" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="username">Tên tài khoản</label>
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Mật khẩu</label>
-                        <input type="text" name="password" id="password" class="form-control" placeholder="Mật khẩu" aria-describedby="helpId" /> 
-                    </div>
-                    <div class="form-group">
-                        <label for="passwordConfirmed">Xác nhận mật khẩu</label>
-                        <input type="text" name="passwordConfirmed" id="passwordConfirmed" class="form-control" placeholder="Xác nhận mật khẩu" aria-describedby="helpId" /> 
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <label class="btn active">
-                                <input type="radio" name="isMale" id="isMale" autocomplete="off" checked value={true} />Nam
-                            </label>
-                            <label class="btn">
-                                <input type="radio" name="isMale" id="isFemale" autocomplete="off" value={false} />Nữ
-                            </label> 
-                        </div> 
+                        <label for="phone">Số điện thoại</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div className="text-center">
                         <button class="btn btn-dark" onClick={this.handleRegister}>Tạo tài khoản mới</button>

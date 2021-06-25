@@ -21,10 +21,15 @@ export default class test extends Component {
         })
     }
     render() {
+        var {images} = this.state.product
+        for (let index = 0; index < images.length; index++) {
+            
+            
+        }
         return (
             <div>
                 <p>{this.state.product.name}</p>
-                <p>{this.state.product.fullDesc}</p>
+                <p>{images}</p>
                 <p>{this.state.product.category}</p>
             </div>
         )

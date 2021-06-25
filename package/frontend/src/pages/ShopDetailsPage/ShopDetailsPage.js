@@ -1,12 +1,41 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-import {Helmet } from 'react-helmet'
 import SD_DetailsSection from './SD_DetailsSection';
 import SD_RelatedSection from './SD_RelatedSection';
+import $ from 'jquery';
+import {Helmet } from 'react-helmet'
+import axios from 'axios';
 
 class ShopDetailsPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listProduct: [],
+            product: {}
+        }
+    }
 
     componentDidMount() {
+        axios({
+            method: 'GET',
+            url: '/api/products/AT1806211619'
+        }).then(response => {
+            if(response && response.status === 200) {
+                this.setState({
+                    product: response.data
+                })
+            }
+        });
+
+        axios({
+            method: 'GET',
+            url: '/api/products',
+        }).then(response => {
+            if(response && response.status === 200) {
+                this.setState({
+                    listProduct: response.data
+                })
+            }
+        })
         /*------------------
         Background Set
         --------------------*/
@@ -14,14 +43,6 @@ class ShopDetailsPage extends Component {
         $('.set_bg').each(function () {
             var bg = $(this).data('setbg'); 
             $(this).css('background-image', 'url(' + bg + ')');
-        });
-
-        /*------------------
-        Radio Btn
-        --------------------*/
-        $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").on('click', function () {
-            $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").removeClass('active');
-            $(this).addClass('active');
         });
 
         /*-------------------
@@ -46,23 +67,31 @@ class ShopDetailsPage extends Component {
             }
             $button.parent().find('input').val(newVal);
         });
+
+        
     }
 
-    render() { 
-        return (
-            <div>
-                <Helmet>
-                    <title>Shop Details</title>
-                </Helmet>
-                {/* <!-- Shop Details Section Begin --> */}
-                    <SD_DetailsSection />
-                {/* <!-- Shop Details Section End --> */}
+    render() {
+        // console.log(this.state.product.options) 
+        if(this.state.product){
+            return (
+                <div>
+                    <Helmet>
+                        <title>Shop Details</title>
+                    </Helmet>
+                    {/* <!-- Shop Details Section Begin --> */} 
+                        <SD_DetailsSection product={this.state.product}/> 
+                    {/* <!-- Shop Details Section End --> */}
 
-                {/* <!-- Related Section Begin --> */}
-                    <SD_RelatedSection />
-                {/* <!-- Related Section End --> */}
-            </div>
-        );
+                    {/* <!-- Related Section Begin --> */}
+                        <SD_RelatedSection listProduct={this.state.listProduct}/>
+                    {/* {/* <!-- Related Section End --> */}
+                </div>
+            );
+        }
+        else {
+            return;
+        }
     }
 }
 
