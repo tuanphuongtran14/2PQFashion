@@ -66,7 +66,6 @@ const cart=(state=initialState,action)=>{
             replaceState=[];
             return replaceState; 
         default:
-            localStorage.removeItem('products');
             return state;
     }
 

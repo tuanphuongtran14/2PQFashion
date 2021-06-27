@@ -26,11 +26,11 @@ class CartPage extends Component {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="breadcrumb__text">
-                                        <h4>Check Out</h4>
+                                        <h4>Giỏ hàng</h4>
                                         <div className="breadcrumb__links">
-                                            <a href="./Cart.html">Home</a>
+                                            <a href="./Cart.html">Trang chủ</a>
                                             <a href="./shop.html">Shop</a>
-                                            <span>Cart</span>
+                                            <span>Giỏ hàng</span>
                                         </div>
                                     </div>
                                 </div>

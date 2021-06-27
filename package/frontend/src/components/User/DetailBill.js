@@ -36,15 +36,15 @@ class DetailBill extends Component {
     }
     renderStatus=(status)=>{
         if(status===0){
-            return <span className="text-warning">Đang xử lý</span>
+            return <button className="btn btn-sm btn-warning">Đang xử lý</button>
         }else if(status===1){
-            return <span className=".text-primary">Đã tiếp nhận</span>
+            return <button className=".btn btn-primary">Đã tiếp nhận</button>
         }else if(status===2){
-            return <span className=".text-info">Đang giao hàng</span>
+            return <button className=".btn btn-info">Đang giao hàng</button>
         }else if(status===3){
-            return <span className="text-success">Hoàn thành</span>
+            return <button className="btn btn-success">Hoàn thành</button>
         }else if(status===4){
-            return <span className="text-danger">Đã hủy</span>
+            return <button className="btn btn-sm btn-danger">Đã hủy</button>
         }
     }
     convertDay=(day)=>{
@@ -61,6 +61,7 @@ class DetailBill extends Component {
        
         <Fragment>
             <tr > 
+
                 <th scope="row">{bill.id_Bill}</th>
                     <td>{this.convertDay(bill.bookingDate)}</td>
                     <td>{this.renderName(bill)}</td>

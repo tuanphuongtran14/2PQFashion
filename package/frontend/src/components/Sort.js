@@ -27,16 +27,16 @@ class Sort extends Component {
         <Fragment>
             {/* <!-- Sort Begin --> */}
             <div className="shop__product__option__right">
-                <p>Sort by Price:</p>
-                <select style={{width:'150px', fontSize:'15px'}} className="custom-select"
+                <p>Sắp xếp theo giá:</p>
+                <select style={{width:'170px', fontSize:'15px'}} className="custom-select"
                      name='status' 
                      value={this.state.status}
                      onChange={this.onChange}>
-                    <option value="0">-Sort-</option>
-                    <option value="1">Low To High</option>
-                    <option value="2">High To Low</option>
-                    <option value="3">$0 - $100</option>
-                    <option value="4"> over $100</option>
+                    <option value="0">-Sắp xếp-</option>
+                    <option value="1">Thấp đến cao</option>
+                    <option value="2">Cao đến thấp</option>
+                    <option value="3">1-&gt;500.000VND</option>
+                    <option value="4"> Trên 500.000VND</option>
                 </select>
             </div>
             {/* <!-- Sort End --> */}

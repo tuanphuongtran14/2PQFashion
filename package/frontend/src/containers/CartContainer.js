@@ -9,7 +9,7 @@ import * as Message from './../constants/Message'
 import {Link} from 'react-router-dom'
 class CartContainer extends Component {
     renderCart(cart){
-        var result=<tr><td><span>{Message.MSG_CART_EMPTY}</span><Link type="button" to={`/shop`}>Let's continue shopping !!!</Link></td></tr>;
+        var result=<tr><td colSpan="8" ><div className="text-align"><p className="text-info text-align"><span >{Message.MSG_CART_EMPTY}</span><Link type="button" to={`/shop`} className="text-success">Tiếp tục mua sắm !!!</Link></p></div></td></tr>;
         if(cart.length>0){
             result=cart.map((cartItem,index)=>{
                 return <CartItem key={index}

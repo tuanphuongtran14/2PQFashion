@@ -3,6 +3,7 @@ import ListOrder from './../components/Checkout/ListOrder'
 import {connect} from 'react-redux'
 import * as actions from './../actions/index'
 import * as Message from './../constants/Message'
+import convertToMoney from './../utils/convertMoney'
 class CheckoutContainer extends Component {
 
     renderOrderItem(cart){
@@ -10,7 +11,7 @@ class CheckoutContainer extends Component {
         if(cart.length>0){
             result=cart.map((cartItem,index)=>{
               if(cartItem.quantity!==0)
-                return <li key={index}>{index}. {cartItem.name} <br></br>(size:{cartItem.size})<span>{cartItem.quantity} x $ {cartItem.price}</span></li>
+                return <li key={index}>{index}. {cartItem.name} <br></br>(size:{cartItem.size})<span>{cartItem.quantity} x  {convertToMoney(cartItem.price)}VND</span></li>
                 return false;
             })
             

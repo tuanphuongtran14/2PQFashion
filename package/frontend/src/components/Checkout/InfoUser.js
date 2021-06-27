@@ -91,22 +91,22 @@ class InfoUser extends Component {
     return (
         <Fragment>
             <h6 className="coupon__code"><span className="icon_tag_alt"></span>
-            Welcome to the payment page</h6>
-            <h6 className="checkout__title">Billing Details</h6>
+            Chào mừng bạn đến với trang thanh toán</h6>
+            <h6 className="checkout__title">Nhập thông tin khách hàng</h6>
             <form onSubmit={this.onSubmit}>
                 <div className="checkout__input">
-                    <p>Name<span>*</span></p>
+                    <p>Họ tên<span>*</span></p>
                     <input type="text" value={nameCustomer} name='nameCustomer' onChange={this.onChange} required/> 
                 </div>
                 <div className="checkout__input">
-                    <p>Address<span>*</span></p>
-                    <input type="text" placeholder="Street Address" 
+                    <p>Địa chỉ<span>*</span></p>
+                    <input type="text" placeholder="Địa chỉ nhận hàng" 
                     onChange={this.onChange} className="checkout__input__add" value={address} name='address' required/>
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="checkout__input">
-                            <p>Phone<span>*</span></p>
+                            <p>Số điện thoại<span>*</span></p>
                             <input type="number" value={phone} name='phone' onChange={this.onChange} required/>
                         </div>
                     </div>
@@ -127,15 +127,15 @@ class InfoUser extends Component {
                 </div>
                 
                 <div className="checkout__input">
-                    <p>Order notes<span>*</span></p>
+                    <p>Lưu ý khi giao hàng<span>*</span></p>
                     <input type="text"
-                    placeholder="Notes about your order, e.g. special notes for delivery." 
+                    placeholder="Chú ý khi giao hàng" 
                     onChange={this.onChange} value={orderNote} name='orderNote'/>
                 </div>
                 <div className="checkout__input">
                     <label className="text-danger">{errInformation}. {this.checkCart(errInformation)}</label>
                 </div>
-                <button type="submit" className="site-btn" >PLACE ORDER</button>
+                <button type="submit" className="site-btn" >Đặt hàng</button>
             </form>
         </Fragment>
         

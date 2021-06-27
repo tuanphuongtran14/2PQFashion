@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import {connect} from 'react-redux'
 import $ from "jquery";
+import convertToMoney from './../utils/convertMoney'
 import {
     Link,
     NavLink,
@@ -77,7 +78,7 @@ countPrice=(cart)=>{
                         <div className="col-lg-6 col-md-6">
                             <nav className="header__menu mobile-menu">
                                 <ul>
-                                    <li ><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
+                                    <li ><NavLink exact to="/" activeClassName="active">Trang chủ</NavLink></li>
                                     <li><Link to={`/shop`}>Shop </Link></li>
                                     <li><a href="/">Pages</a>
                                         <ul className="dropdown">
@@ -92,10 +93,10 @@ countPrice=(cart)=>{
                                             <li><a href="./blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><NavLink exact to='/about' activeClassName="active">Blog</NavLink></li>
+                                    <li><NavLink exact to='/about' activeClassName="active">Tin tức</NavLink></li>
                                     <li>
                                         <NavLink exact to="/contact" activeClassName="active">
-                                            Contacts
+                                            Liên hệ
                                         </NavLink>
                                     </li>
                                 </ul>
@@ -106,7 +107,7 @@ countPrice=(cart)=>{
                                 <Link to={''} onClick={this.onClick} className="search-switch"><img src="/img/icon/search.png" alt=""/></Link>
                                 <Link type="button" to={`/`}><img src="/img/icon/heart.png" alt=""/></Link>
                                 <Link type="button" to={`/shop/cart`}><img src="/img/icon/cart.png" alt=""/> <span>0</span></Link>
-                                <div className="price">${this.countPrice(this.props.cart)}</div>
+                                <div className="price">{convertToMoney(this.countPrice(this.props.cart))}VND</div>
                             </div>
                         </div>
                     </div>

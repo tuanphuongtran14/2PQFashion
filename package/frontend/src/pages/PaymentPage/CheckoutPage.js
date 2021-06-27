@@ -30,11 +30,11 @@ class CheckoutPage extends Component {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="breadcrumb__text">
-                                        <h4>Check Out</h4>
+                                        <h4>Thanh toán</h4>
                                         <div className="breadcrumb__links">
-                                            <a href="./index.html">Home</a>
+                                            <a href="./index.html">Trang chủ</a>
                                             <a href="./shop.html">Shop</a>
-                                            <span>Check Out</span>
+                                            <span>Thanh toán</span>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@ class CheckoutPage extends Component {
                     <section className="checkout spad">
                         <div className="container">
                             <div className="checkout__form">
-                            <p><span>{Message.MSG_ORDER_EMPTY} </span><Link type="button" to={`/shop`} >Let's continue shopping !!!</Link></p>
+                            <p><span>{Message.MSG_ORDER_EMPTY} </span><Link type="button" to={`/shop`} >Tiếp tục mua sắm!!!</Link></p>
     
                             </div>
                         </div>
@@ -66,11 +66,11 @@ class CheckoutPage extends Component {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="breadcrumb__text">
-                                        <h4>Check Out</h4>
+                                        <h4>Thanh toán</h4>
                                         <div className="breadcrumb__links">
-                                            <a href="./index.html">Home</a>
+                                            <a href="./index.html">Trang chủ</a>
                                             <a href="./shop.html">Shop</a>
-                                            <span>Check Out</span>
+                                            <span>Thanh toán</span>
                                         </div>
                                     </div>
                                 </div>

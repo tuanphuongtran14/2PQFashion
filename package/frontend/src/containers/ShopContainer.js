@@ -92,6 +92,7 @@ class ShopContainer extends Component {
             if(element.size===query.get("value")){
               result=true;
             }
+            
           });
           if(result){
             return 1;
@@ -132,7 +133,7 @@ class ShopContainer extends Component {
     })
     }else if(sort ===3){
       products=products.filter((product,index)=>{
-        return product.price<=100;
+        return product.price<=500000;
       })
       products=products.sort(function(product1, product2) {
         if (product1.price > product2.price) return 1;
@@ -141,7 +142,7 @@ class ShopContainer extends Component {
     })
     }else if(sort ===4){
       products=products.filter((product,index)=>{
-        return product.price>100;
+        return product.price>500000;
       })
       products=products.sort(function(product1, product2) {
         if (product1.price > product2.price) return 1;

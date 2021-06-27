@@ -35,7 +35,7 @@ class ShopPage extends Component {
                                 <div className="breadcrumb__text">
                                     <h4>Shop</h4>
                                     <div className="breadcrumb__links">
-                                        <a href="/#" >Home</a>
+                                        <a href="/#" >Trang chủ</a>
                                         <span>Shop</span>
                                     </div>
                                 </div>
@@ -58,15 +58,15 @@ class ShopPage extends Component {
                                         <div className="accordion" id="accordionExample">
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a href="/#" data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseOne">Thể loại</a>
                                                 </div>
                                                 <div id="collapseOne" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__categories">
                                                         <ul className="nice-scroll">
-                                                            <li><Link type="button" to={`/shop/categories?value=clothing`}>Clothing </Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=shoes`}>Shoes</Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=accessories`}>Accessories</Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=quần áo`}>Quần áo </Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=giày`}>Giày</Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=phụ kiện`}>Phụ kiện</Link></li>
                                                         </ul>
                                                         </div>
                                                     </div>
@@ -74,7 +74,7 @@ class ShopPage extends Component {
                                             </div>
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a href="/#" data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseTwo">Nhãn hiệu</a>
                                                 </div>
                                                 <div id="collapseTwo" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
@@ -90,7 +90,7 @@ class ShopPage extends Component {
                                             </div>             
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a href="/#" data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseFour">Kích thước</a>
                                                 </div>
                                                 <div id="collapseFour" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
@@ -192,17 +192,17 @@ class ShopPage extends Component {
                                             </div> */}
                                             <div className="card">
                                                 <div className="card-heading">
-                                                    <a href="/#" data-toggle="collapse" data-target="#collapseSix">Tags</a>
+                                                    <a href="/#" data-toggle="collapse" data-target="#collapseSix">Nhãn</a>
                                                 </div>
                                                 <div id="collapseSix" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__tags">
-                                                            <Link type="button" to={`/shop/tags?value=clothing`}>Clothing </Link>
-                                                            <Link type="button" to={`/shop/tags?value=bags`}>Bags </Link>
-                                                            <Link type="button" to={`/shop/tags?value="fashio"`}>Fashio </Link>
-                                                            <Link type="button" to={`/shop/tags?value=shoes`}>Shoes </Link>
-                                                            <Link type="button" to={`/shop/tags?value=hats`}>Hats </Link>
-                                                            <Link type="button" to={`/shop/tags?value=accessories`}>Accessories </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Quần áo`}>Quần áo </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Ba lô`}>Ba lô </Link>
+                                                            <Link type="button" to={`/shop/tags?value="Thời trang"`}>Thời trang </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Giày`}>Giày </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Mũ`}>Mũ </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Phụ kiện`}>Phụ kiện </Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -215,9 +215,9 @@ class ShopPage extends Component {
                                 <div className="shop__product__option">
                                     <div className="row">
                                         <div className="col-lg-6 col-md-6 col-sm-6">
-                                            <div className="shop__product__option__left">
+                                            {/* <div className="shop__product__option__left">
                                                 <p>Showing 1–12 of 126 results</p>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <SortContainer />

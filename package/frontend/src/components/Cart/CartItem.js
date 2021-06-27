@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from 'react';
 // import $ from "jquery";
 import {Link} from 'react-router-dom';
+import convertToMoney from './../../utils/convertMoney'
 // import Cart from './Cart';
 class CartItem extends Component {
 
@@ -59,19 +60,20 @@ class CartItem extends Component {
                         {this.renderOption(options)}
                 </select>
                 </td>
-                <td>{cartItem.price} VND</td>
+                <td>{convertToMoney(cartItem.price)} VND</td>
                 <td>{inventory===0?'sản phẩm tạm hết hàng':inventory}</td>
                 <td className="center-on-small-only">
-                    <span className="qty">{quantity}</span>
+                    
                     <div className="btn-group radio-group" >
                         <button type="button" className="btn btn-sm btn-secondary waves-effect waves-light" 
                         onClick={()=>this.UpdateQuantity(cartItem,-1)}>—</button>
+                        <span className="qty ml-2 mr-2 text-primary">{quantity}</span>
                         <button type="button" className="btn btn-sm btn-secondary waves-effect waves-light"
                         onClick={()=>this.UpdateQuantity(cartItem,1)}
                         >+</button>    
                     </div>
                 </td>
-                <td>{cartItem.price*quantity}VND</td>
+                <td>{convertToMoney(cartItem.price*quantity)}VND</td>
                 <td>
                     <button type="button" className="btn btn-sm btn-danger"
                         title="" 
