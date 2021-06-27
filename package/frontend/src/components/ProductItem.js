@@ -12,6 +12,7 @@ class ProductItem extends Component {
     }
     renderStarRate(star){
         let result=[];
+        star = Math.round(star);
         for(let i=1;i<=star;i++){
             result.push(<i key={i} className="fa fa-star"></i>);
             

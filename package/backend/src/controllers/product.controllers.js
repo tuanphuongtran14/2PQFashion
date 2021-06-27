@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
 exports.create = (req, res) => {
     upload(req, res, async function (err) {
         if(err) {
-            console.log("err: " + err)
             return res.status(500).json({
                 message: err.message || 'Can\' upload product images'
             });
@@ -57,7 +56,6 @@ exports.create = (req, res) => {
         
             } catch(err) {
                 // If errors occur, return 500 Error
-                console.log("err: " + err)
                 return res.status(500).json({
                     message: err.message || "Some error occurred while creating the Product."
                 });
@@ -215,7 +213,6 @@ exports.count = async (req, res) => {
         let count = products.length;
         return res.status(200).json(count);
     } catch(err) {
-        console.log(err);
         res.status(500).json({
             message:
               err.message || "Some error occurred while retrieving bill."

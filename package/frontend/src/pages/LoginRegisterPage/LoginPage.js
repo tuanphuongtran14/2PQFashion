@@ -38,6 +38,7 @@ class LoginPage extends Component {
                         this.setState({
                             loading: false
                         });
+                        this.props.history.push("/");
                     }
                 });
             }
@@ -49,6 +50,9 @@ class LoginPage extends Component {
     }
 
     render() {
+        if (this.props.token){
+            this.props.history.push("/");
+        }
         return (
             
             <div className='container mt-2 mb-5'> 
@@ -64,7 +68,7 @@ class LoginPage extends Component {
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            <input type="text" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Mật khẩu" /> 
+                            <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Mật khẩu" /> 
                         </div>
                         <div className="text-center">
                             <button type="submit" class="btn btn-dark" onClick={this.handleLoginSubmit}>Đăng nhập</button>

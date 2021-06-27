@@ -1,26 +1,52 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 class SD_ProductDetails extends Component {
+    componentDidUpdate() {
+        $(".shop__sidebar__size label, .product__details__option__size label").on('click', function () {
+            $(".shop__sidebar__size label, .product__details__option__size label").removeClass('active');
+            $(this).addClass('active');
+        });
+    }
+
     render() {
+        var product = this.props.product; 
+        let options = this.props.options;
+        let displaySize = [];
+        if (options){
+            // console.log(options);
+            displaySize = options.map((option,index) => {
+                return (
+                    <label 
+                        for={option.size}
+                        className={ index == 0 ? "active" : "" }
+                    >{option.size}
+                        <input type="radio" id={option.size} key={index}/>
+                    </label>
+                )
+            })
+        }
+        // console.log
+        
         return (
             <div className="product__details__text">
-                <h4>Hooded thermal anorak</h4>
+                {/* <h1>{displaySize}</h1> */}
+                {/* <h4>{product.name}</h4> */}
                 <div className="rating">
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star-o"></i>
-                    <span> - 5 Reviews</span>
+                    <span> - 5 Đánh giá</span>
                 </div>
-                <h3>$270.00 <span>70.00</span></h3>
-                <p>Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
-                    cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
-                with placket.</p>
+                <h3>{product.price}</h3>
+                <p>{product.shortDesc}</p>
                 <div className="product__details__option">
                     <div className="product__details__option__size">
-                        <span>Size:</span>
-                        <label for="xxl">xxl
+                        <span>Kích cỡ:</span>
+                        {displaySize}
+                        {/* <label for="xxl">xxl
                             <input type="radio" id="xxl" />
                         </label>
                         <label className="active" for="xl">xl
@@ -31,26 +57,9 @@ class SD_ProductDetails extends Component {
                         </label>
                         <label for="sm">s
                             <input type="radio" id="sm" />
-                        </label>
+                        </label> */}
                     </div>
-                    <div className="product__details__option__color">
-                        <span>Color:</span>
-                        <label className="c-1" for="sp-1">
-                            <input type="radio" id="sp-1" />
-                        </label>
-                        <label className="c-2" for="sp-2">
-                            <input type="radio" id="sp-2" />
-                        </label>
-                        <label className="c-3" for="sp-3">
-                            <input type="radio" id="sp-3" />
-                        </label>
-                        <label className="c-4" for="sp-4">
-                            <input type="radio" id="sp-4" />
-                        </label>
-                        <label className="c-9" for="sp-9">
-                            <input type="radio" id="sp-9" />
-                        </label>
-                    </div>
+                    
                 </div>
                 <div className="product__details__cart__option">
                     <div className="quantity">
@@ -58,19 +67,15 @@ class SD_ProductDetails extends Component {
                             <input type="text" value="1" />
                         </div>
                     </div>
-                    <a href="/" className="primary-btn">add to cart</a>
-                </div>
-                <div className="product__details__btns__option">
-                    <a href="/"><i className="fa fa-heart"></i> add to wishlist</a>
-                    <a href="/"><i className="fa fa-exchange"></i> Add To Compare</a>
+                    <a href="/" className="primary-btn">Thêm vào giỏ hàng</a>
                 </div>
                 <div className="product__details__last__option">
-                    <h5><span>Guaranteed Safe Checkout</span></h5>
+                    <h5><span>Các kênh thanh toán</span></h5>
                     <img src="img/shop-details/details-payment.png" alt="" />
                     <ul>
-                        <li><span>SKU:</span> 3812912</li>
-                        <li><span>Categories:</span> Clothes</li>
-                        <li><span>Tag:</span> Clothes, Skin, Body</li>
+                        <li><span>SKU:</span> {product.sku}</li>
+                        <li><span>Loại:</span> {product.category}</li>
+                        <li><span>Nhãn:</span> {product.tags}</li>
                     </ul>
                 </div>
             </div>

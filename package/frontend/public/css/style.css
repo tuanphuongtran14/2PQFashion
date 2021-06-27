@@ -1540,7 +1540,9 @@ ol {
 /*---------------------
   Shop
 -----------------------*/
-
+.rating .fa.fa-star {
+	color: #f7941d;
+}
 .product__details__pic {
 	text-align: center;
 	background: #f3f2ee;
