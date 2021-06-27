@@ -27,7 +27,7 @@ class ListOrder extends Component {
            this.setState({
             coupon:coupon,
             salePrice:salePrice,
-            infoCheckout:'Bạn được 5% cho hóa đơm của bạn!!!'
+            infoCheckout:'Bạn được 5% cho hóa đơn của bạn!!!'
             })
 
             this.props.onAddCouponToOrder(

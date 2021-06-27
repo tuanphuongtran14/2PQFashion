@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {deleteBill} from './../../actions'
 import * as actions from './../../actions'
 import {connect} from 'react-redux'
+import convertToMoney from './../../utils/convertMoney'
 // import Cart from './Cart';
 
 class DetailBill extends Component {
@@ -36,15 +37,15 @@ class DetailBill extends Component {
     }
     renderStatus=(status)=>{
         if(status===0){
-            return <button className="btn btn-sm btn-warning">Đang xử lý</button>
+            return <span className="badge badge--custom badge-warning">Đang xử lý</span>
         }else if(status===1){
-            return <button className=".btn btn-primary">Đã tiếp nhận</button>
+            return <span className="badge badge--custom badge-primary">Đã tiếp nhận</span>
         }else if(status===2){
-            return <button className=".btn btn-info">Đang giao hàng</button>
+            return <span className="badge badge--custom badge-info">Đang giao hàng</span>
         }else if(status===3){
-            return <button className="btn btn-success">Hoàn thành</button>
+            return <span className="badge badge--custom badge-success">Hoàn thành</span>
         }else if(status===4){
-            return <button className="btn btn-sm btn-danger">Đã hủy</button>
+            return <span className="badge badge--custom badge-danger">Đã hủy</span>
         }
     }
     convertDay=(day)=>{
@@ -65,7 +66,7 @@ class DetailBill extends Component {
                 <th scope="row">{bill.id_Bill}</th>
                     <td>{this.convertDay(bill.bookingDate)}</td>
                     <td>{this.renderName(bill)}</td>
-                    <td>{bill.totalPrice} VND</td>
+                    <td>{convertToMoney(bill.totalPrice)} VND</td>
                     <td>{this.renderStatus(bill.status)}</td>
                     <td>
                         <Link type="button" to={`/user/order-traking/${bill.id_Bill}`} className="btn btn-primary mr-3">Xem </Link>

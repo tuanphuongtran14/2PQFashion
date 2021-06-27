@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 class InfoUser extends Component {
   render(){
       var {user}=this.props;
-      console.log(user);
     return (
         <Fragment>
             <h4 className="text-center mb-4">Tài khoản của tôi</h4>

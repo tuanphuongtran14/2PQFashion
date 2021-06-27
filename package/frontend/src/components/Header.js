@@ -36,6 +36,14 @@ countPrice=(cart)=>{
     })
     return result;
 }
+renderSignin=(user)=>{
+    if(user.id_User===''){
+        return <Link to={"/login"}>Sign in</Link>
+    }else{
+        console.log(user.username);
+        return <Link to={"/user"}>{user.username}</Link>
+    }
+}
   render(){
     return (
         <Fragment>
@@ -52,7 +60,7 @@ countPrice=(cart)=>{
                             <div className="col-lg-6 col-md-5">
                                 <div className="header__top__right">
                                     <div className="header__top__links">
-                                        <a href="/login">Sign in</a>
+                                        {this.renderSignin(this.props.user)}
                                         <a href="/">FAQs</a>
                                     </div>
                                     <div className="header__top__hover">
@@ -125,6 +133,7 @@ countPrice=(cart)=>{
 const mapStateToProps = (state)=>{
     return{
         cart:state.cart,
+        user:state.user,
     }
   }
   const mapDispatchToProps = (dispatch)=>{

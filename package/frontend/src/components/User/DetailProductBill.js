@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from 'react';
 // import $ from "jquery";
 import {Link} from 'react-router-dom';
+import convertToMoney from './../../utils/convertMoney'
 // import Cart from './Cart';
 class DetailProductBill extends Component {
 
@@ -57,11 +58,11 @@ class DetailProductBill extends Component {
                 <td >
                 <span>S</span>
                 </td>
-                <td>{product.price} VND</td>
+                <td>{convertToMoney(product.price)} VND</td>
                 <td className="center-on-small-only">
                     <span className="qty">{product.quantity}</span>
                 </td>
-                <td>{product.price*product.quantity}VND</td>
+                <td>{convertToMoney(product.price*product.quantity)}VND</td>
             </tr>
         </Fragment>
         

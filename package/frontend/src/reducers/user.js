@@ -4,10 +4,10 @@ var init_user=result?JSON.parse(result):[];
 
 var initialState={
      id_User: init_user.id_User,
-     username:' ',
-     phone:' ',
-     address:' ',
-     email:' ',
+     username:init_user.username,
+     phone:init_user.phone,
+     address:init_user.address,
+     email:init_user.email,
 };
 
 const user=(state=initialState,action)=>{
