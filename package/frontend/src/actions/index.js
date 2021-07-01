@@ -12,9 +12,19 @@ export const fetchProducts=(products)=>{
 }
 
 //Lên API lấy dữ liệu products về
-export const fetchProductsRequest=()=>{
+export const fetchProductsRequest=(limit, skip)=>{
     return (dispatch)=>{
-        return callApi('products','GET',null)
+        let query = '?';
+
+        if(limit)
+            query += `limit=${limit}&`;
+        
+        if(skip)
+            query += `skip=${skip}&`;
+        
+        
+
+        return callApi(`products${ query }`,'GET',null)
                         .then(res=>{
                             dispatch(fetchProducts(res.data));
                         })

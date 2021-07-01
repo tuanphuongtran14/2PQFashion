@@ -24,8 +24,8 @@ exports.create = (req, productInput) => {
     return productRepo.create(productInput);
 }
 
-exports.findAll = () => {
-    return productRepo.findAll();
+exports.findAll = (limit, skip) => {
+    return productRepo.findAll(limit, skip);
 }
 
 exports.search = async (query) => {

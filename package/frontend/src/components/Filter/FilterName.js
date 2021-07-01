@@ -30,7 +30,7 @@ class FilterName extends Component {
         <Fragment>
             {/* <!-- Filter Begin --> */}
             <form onSubmit={this.onSubmit}>
-                <input type="text" placeholder="Search..." name="keyword" value={keyword} 
+                <input type="text" placeholder="Tìm kiếm..." name="keyword" value={keyword} 
                           onChange={this.onChange}/>
                 <button  type="submit"  ><span className="icon_search"></span></button>
             </form>
