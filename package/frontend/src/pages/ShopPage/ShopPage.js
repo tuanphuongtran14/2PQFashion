@@ -142,7 +142,10 @@ class ShopPage extends Component {
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__categories">
                                                         <ul className="nice-scroll">
-                                                            { this.displayFilterCategories() }
+                                                            <li><Link type="button" to={`/shop/categories?value=Quần áo`}>Quần áo </Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=Áo thun`}>Áo thun </Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=Giày`}>Giày</Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=Phụ kiện`}>Phụ kiện</Link></li>
                                                         </ul>
                                                         </div>
                                                     </div>
@@ -273,7 +276,13 @@ class ShopPage extends Component {
                                                 <div id="collapseSix" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__tags">
-                                                            { this.displayFilterTags() }
+                                                            <Link type="button" to={`/shop/tags?value=Quần áo`}>Quần áo </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Ba lô`}>Ba lô </Link>
+                                                            <Link type="button" to={`/shop/tags?value="Thời trang"`}>Thời trang </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Giày`}>Giày </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Mũ`}>Mũ </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Phụ kiện`}>Phụ kiện </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Áo thun`}>Áo thun </Link>
                                                         </div>
                                                     </div>
                                                 </div>

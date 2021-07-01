@@ -65,10 +65,10 @@ class CartItem extends Component {
                 <td className="center-on-small-only text-center">
                     
                     <div className="btn-group radio-group" >
-                        <button type="button" className="btn btn-sm btn-secondary waves-effect waves-light" 
-                        onClick={()=>this.UpdateQuantity(cartItem,-1)}>—</button>
-                        <span className="qty ml-2 mr-2 text-primary">{quantity}</span>
-                        <button type="button" className="btn btn-sm btn-secondary waves-effect waves-light"
+                        <button type="button" className="btn btn-sm btn--quantity-control rounded btn-secondary waves-effect waves-light" 
+                        onClick={()=>this.UpdateQuantity(cartItem,-1)}>-</button>
+                        <span className="qty ml-2 mr-2 text-primary mt-1">{quantity}</span>
+                        <button type="button" className="btn btn-sm btn--quantity-control rounded btn-secondary waves-effect waves-light"
                         onClick={()=>this.UpdateQuantity(cartItem,1)}
                         >+</button>    
                     </div>

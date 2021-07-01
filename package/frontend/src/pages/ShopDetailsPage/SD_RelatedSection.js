@@ -20,7 +20,7 @@ class SD_RelatedSection extends Component {
         var product = listProduct.slice(0, 4).map((product,index) => {
             var images = product.images;
             var image = images.map((image,index) => {
-                if (index == 0){
+                if (index === 0){
                     return (
                         <div 
                             className="product__item__pic set_bg" 

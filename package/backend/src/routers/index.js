@@ -3,6 +3,7 @@ module.exports = (app) => {
     const categoryRouter = require('./category.routers');
     const tagRouter = require('./tag.routers');
     const BillRouter = require('./bill.routers');
+    const CartRouter = require('./cart.routers');
     const UserRouter = require('./user.routers');
     const { login, adminLogin } = require('../controllers/login.controller');
     const { register } = require('../controllers/register.controller');
@@ -20,7 +21,10 @@ module.exports = (app) => {
     app.use('/api/bills', BillRouter)
 
     //User API Routing
+
     app.use('/api/users', UserRouter)
+
+    app.use('/api/carts', CartRouter)
 
     //Login Routing
     app.post('/login', login)

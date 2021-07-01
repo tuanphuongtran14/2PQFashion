@@ -225,3 +225,41 @@ export const logoutCart=() => {
 
     }
 }
+export const getUserLogin=(user)=>{
+    return {
+        type: types.LOGIN_USER,
+        user
+
+    }
+}
+
+
+
+
+export const changeCartInDTB=(cart)=>{
+    console.log(cart);
+    return callApi(`carts/create`,'post',{
+        id_User:cart.id_User,
+        products:cart.products
+    })
+}
+
+//xử lý render list sản phẩm
+export const fetchCartByIdUser=(cart)=>{
+
+    return {
+        type:types.FETCH_CART_BY_ID_USER,
+        cart,//products=products
+    }
+}
+
+//Lên API lấy dữ liệu products về
+export const fetchCartByIdUserRequest=(id_User)=>{
+    return (dispatch)=>{
+        return callApi(`carts/${id_User}`,'GET',null)
+                        .then(res=>{
+                        
+                            dispatch(fetchCartByIdUser(res.data));
+                        })
+    }
+}

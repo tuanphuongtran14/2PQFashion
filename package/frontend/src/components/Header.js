@@ -2,6 +2,7 @@ import React,{Component,Fragment} from 'react';
 import {connect} from 'react-redux'
 import $ from "jquery";
 import convertToMoney from './../utils/convertMoney'
+import * as actions from './../actions/index';
 import {
     Link,
     NavLink,
@@ -17,6 +18,11 @@ componentDidMount() {
             $('#search-input').val('');
         });
     });
+    var {user}=this.props;
+    if(user.id_User!==''){
+        this.props.fetchCartByIdUserRequest(user.id_User);
+    }
+    
 }
 onClick=(event)=>{
     event.preventDefault();
@@ -31,13 +37,14 @@ onClick=(event)=>{
 }
 countPrice=(cart)=>{
     var result=0;
+    
     cart.forEach(item=>{
         result+=item.price*item.quantity;
     })
     return result;
 }
 renderSignin=(user)=>{
-    if(user.id_User===''){
+    if(!user.id_User){
         return <Link to={"/login"}>Sign in</Link>
     }else{
         return <Link to={"/user"}>{user.username}</Link>
@@ -45,6 +52,7 @@ renderSignin=(user)=>{
 }
   render(){
     return (
+        
         <Fragment>
                 {/* <!-- Header Section Begin --> */}
             <header className="header">
@@ -99,8 +107,11 @@ renderSignin=(user)=>{
                         <div className="col-lg-3 col-md-3">
                             <div className="header__nav__option">     
                                 <Link to={''} onClick={this.onClick} className="search-switch"><img src="/img/icon/search.png" alt=""/></Link>
-                                <Link type="button" to={`/shop/cart`}><img src="/img/icon/cart.png" alt=""/> <span>{ this.props.cart.length }</span></Link>
-                                <div className="price">{convertToMoney(this.countPrice(this.props.cart))}đ</div>
+                                <Link type="button" to={`/shop/cart`}><img src="/img/icon/cart.png" alt=""/> <span>{ this.props.cart.products.length }</span></Link>
+                                {/* <div className="price">{convertToMoney(this.countPrice(this.props.cart))}đ</div> */}
+
+                            
+                                <div className="price">{convertToMoney(this.countPrice(this.props.cart.products))}đ</div>
                             </div>
                         </div>
                     </div>
@@ -123,7 +134,9 @@ const mapStateToProps = (state)=>{
   }
   const mapDispatchToProps = (dispatch)=>{
     return{
-         
+        fetchCartByIdUserRequest:(id)=>{
+            dispatch(actions.fetchCartByIdUserRequest(id));
+        }
     }
   }
   export default connect (mapStateToProps,mapDispatchToProps)(Header);

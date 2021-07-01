@@ -7,14 +7,14 @@ class CartResult extends Component {
             <tr>
             <td colSpan="2"></td>
             <td colSpan="2">
-                <h4>
+                <h5>
                     <strong>Tổng Tiền</strong>
-                </h4>
+                </h5>
             </td>
             <td colSpan="2">
-                <h4>
+                <h5>
                     <strong>{convertToMoney(this.props.total)}VND</strong>
-                </h4>
+                </h5>
             </td>
             <td colSpan="2">
                 <Link to={'/payment'} className="btn btn-primary waves-effect waves-light">Thanh toán

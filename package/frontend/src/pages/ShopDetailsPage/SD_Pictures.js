@@ -7,7 +7,7 @@ class SD_Pictures extends Component {
         if (images) {
             var navItem = images.map((image,i) => 
                 <li className="nav-item"> 
-                    <a  className= { i == 0 ? "nav-link active" : "nav-link" } 
+                    <a  className= { i === 0 ? "nav-link active" : "nav-link" } 
                         data-toggle="tab" 
                         href={"#tabs-"+(i+1)} 
                         role="tab"
@@ -24,7 +24,7 @@ class SD_Pictures extends Component {
             )
             var tabPane = images.map((image,i) => 
                 <div 
-                    className= { i == 0 ? "tab-pane active" : "tab-pane" } 
+                    className= { i === 0 ? "tab-pane active" : "tab-pane" } 
                     id={"tabs-"+(i+1)} 
                     role="tabpanel"
                     >
