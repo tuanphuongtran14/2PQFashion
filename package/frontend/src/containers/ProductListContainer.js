@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import ProductItem from './../components/ProductItem';
 import { withRouter } from "react-router";
 import * as actions from './../actions/index';
+import $ from 'jquery';
+
 class ProductListContainer extends Component {
   constructor(props){
     super(props);
@@ -11,6 +13,14 @@ class ProductListContainer extends Component {
       option:3,
     }
   }
+
+  componentDidMount() {
+    $('.filter__controls li').on('click', function () {
+        $('.filter__controls li').removeClass('active');
+        $(this).addClass('active');
+    });
+  }
+  
   renderProductItems(products){
     var result=null;
     const onPage=this.props.onPage;
@@ -39,7 +49,7 @@ class ProductListContainer extends Component {
   onClick(option){
       this.setState({
         option:option
-      })
+      });
   }
   render(){
     var {products}=this.props;

@@ -6,6 +6,7 @@ import SortContainer from '../../containers/SortContainer';
 import ShopContainer from '../../containers/ShopContainer';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import { Helmet } from 'react-helmet';
 import callApi from '../../utils/apiCaller';
 
 import * as actions from '../../actions/index'
@@ -17,7 +18,8 @@ class ShopPage extends Component {
             categoriesList: [],
             tagsList: [],
             pageNumber: 1,
-            productsOnPage: 6
+            productsOnPage: 6,
+            productsNumber: 0
         };
     }
 
@@ -41,6 +43,21 @@ class ShopPage extends Component {
                     this.setState({
                         tagsList: res.data
                     });
+            })
+            .catch(err => {
+                if(err && err.response)
+                    alert(err.response.data);
+            })
+        callApi('products/count', 'GET')
+            .then(res => {
+                if(res && res.status === 200) {
+                    this.setState({
+                        productsNumber: res.data
+                    });
+
+                    if(this.props.products.length === res.data)
+                        document.getElementById("loadMoreBtn").setAttribute('disabled', true);
+                }
             })
             .catch(err => {
                 if(err && err.response)
@@ -73,12 +90,24 @@ class ShopPage extends Component {
         this.setState({
             pageNumber: this.state.pageNumber + 1
         })
-        
     }
+
+    componentDidUpdate() {
+        console.log(this.state.productsNumber)
+        console.log(this.state.productsOnPage * this.state.pageNumber)
+        if(this.state.productsNumber <= this.state.productsOnPage * this.state.pageNumber)
+            document.getElementById("loadMoreBtn").setAttribute('disabled', true);
+        else 
+            document.getElementById("loadMoreBtn").removeAttribute('disabled');
+    }
+
     
     render(){
         return (
             <Fragment>
+                <Helmet>
+                    <title>Shop</title>
+                </Helmet>
                 
                 {/* <!-- Breadcrumb Section Begin --> */}
                 <section className="breadcrumb-option">
@@ -117,10 +146,14 @@ class ShopPage extends Component {
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__categories">
                                                         <ul className="nice-scroll">
+<<<<<<< HEAD
                                                             <li><Link type="button" to={`/shop/categories?value=Quần áo`}>Quần áo </Link></li>
                                                             <li><Link type="button" to={`/shop/categories?value=Áo thun`}>Áo thun </Link></li>
                                                             <li><Link type="button" to={`/shop/categories?value=Giày`}>Giày</Link></li>
                                                             <li><Link type="button" to={`/shop/categories?value=Phụ kiện`}>Phụ kiện</Link></li>
+=======
+                                                            { this.displayFilterCategories() }
+>>>>>>> fcf1d96f652ed0f652d8df8d35764af614662129
                                                         </ul>
                                                         </div>
                                                     </div>
@@ -251,6 +284,7 @@ class ShopPage extends Component {
                                                 <div id="collapseSix" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__tags">
+<<<<<<< HEAD
                                                             <Link type="button" to={`/shop/tags?value=Quần áo`}>Quần áo </Link>
                                                             <Link type="button" to={`/shop/tags?value=Ba lô`}>Ba lô </Link>
                                                             <Link type="button" to={`/shop/tags?value="Thời trang"`}>Thời trang </Link>
@@ -258,6 +292,9 @@ class ShopPage extends Component {
                                                             <Link type="button" to={`/shop/tags?value=Mũ`}>Mũ </Link>
                                                             <Link type="button" to={`/shop/tags?value=Phụ kiện`}>Phụ kiện </Link>
                                                             <Link type="button" to={`/shop/tags?value=Áo thun`}>Áo thun </Link>
+=======
+                                                            { this.displayFilterTags() }
+>>>>>>> fcf1d96f652ed0f652d8df8d35764af614662129
                                                         </div>
                                                     </div>
                                                 </div>
@@ -283,7 +320,7 @@ class ShopPage extends Component {
                                     < ShopContainer history={this.props.history}/>
                                 </div>
                                 
-                                <button className="btn btn-danger d-block mx-auto" onClick={ this.loadMoreProducts }>
+                                <button className="btn btn-danger d-block mx-auto" id="loadMoreBtn" onClick={ this.loadMoreProducts }>
                                         Hiển thị thêm
                                 </button>
                                 {/* <div className="row">

@@ -1,6 +1,11 @@
 import React, { Component } from 'react'; 
+import {Link} from 'react-router-dom';
 
 class SD_RelatedSection extends Component {
+    refreshPage=()=>{ 
+        window.location.reload(); 
+    }
+
     renderStarRate(star){
         let result=[];
         star = Math.round(star);
@@ -43,7 +48,11 @@ class SD_RelatedSection extends Component {
                     <div className="product__item">
                         {image}
                         <div className="product__item__text">
-                            <h6>{product.name}</h6>
+                            <h6 onClick={ this.refreshPage }>
+                                <Link to={"/" + product.sku}>
+                                    {product.name}
+                                </Link>
+                            </h6>
                             <a href="/" className="add-cart">+ Thêm vào giỏ hàng</a>
                             <div className="rating">
                                 {this.renderStarRate(star)}

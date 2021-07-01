@@ -19,6 +19,7 @@ import {
 } from "react-router-dom";
 import Footer from './components/Footer';
 import Header from './components/Header';
+import ScrollToTop from './components/ScrollToTop';
 import $ from 'jquery';
 // import routes from './routes'
 
@@ -29,9 +30,11 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <Router>
           <div className="App">
+            <ScrollToTop /> 
             { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Header /> : '') }
             <Switch>
               <Route exact path="/" component={({ match, history }) => <IndexPage match={match} history={history} />} />
@@ -61,71 +64,19 @@ class App extends Component {
               <Route path='/admin'>
                 <AdminPage />
               </Route>
-              <Route path='/info'>
+              {/* <Route path='/info'>
                 <ShopDetailsPage />
-              </Route>
+              </Route> */}
               <Route path='/test'>
                 <Test />
               </Route>
+              <Route path="/:sku" strict render={(props) => <ShopDetailsPage {...props}/>}></Route> 
             </Switch>
             { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Footer /> : '') }
           </div>
       </Router>
     )
-    // if (this.props.location.pathname.indexOf('/admin') !== 0)
-    //   return (
-    //     <Router>
-    //       <div className="App">
-    //         <Header />
-    //         <Switch>
-    //           <Route exact path="/" >
-    //             <IndexPage />
-    //           </Route>
-    //           <Route path="/about">
-    //             <AboutPage />
-    //           </Route>
-    //           <Route path="/shop/cart">
-    //             <CartPage />
-    //           </Route>
-    //           <Route path="/shop" exact>
-    //             <ShopPage />
-    //           </Route>
-    //           <Route path="/shop/:filter" match="match" >
-    //             <ShopPage />
-    //           </Route>
-    //           <Route path="/payment" match="match" component={({ match, history }) => <CheckoutPage match={match} history={history} />} />
-    //           <Route path='/contact'>
-    //             <ContactPage />
-    //           </Route>
-    //           <Route path='/user'>
-    //             <UserPage />
-    //           </Route>
-    //           <Route path='/admin'>
-    //             <AdminPage />
-    //           </Route>
-    //           <Route path='/login'>
-    //             <LoginPage />
-    //           </Route>
-    //           <Route path='/register'>
-    //             <RegisterPage />
-    //           </Route>
-    //         </Switch>
-    //         <Footer />
-    //       </div>
-    //     </Router>
-    //   );
-    // else
-    //   return (
-    //     <Router>
-    //       <div className="App">
-    //         <Switch>
-    //           <Route path='/admin'>
-    //             <AdminPage />
-    //           </Route>
-    //         </Switch>
-    //       </div>
-    //     </Router>
-    //   );
+   
   }
 
 }

@@ -3923,3 +3923,7 @@ ol {
 .hideProduct{
 	display:none
 }
+
+.btn.btn--quantity-control {
+	width: 30px!important;
+}
