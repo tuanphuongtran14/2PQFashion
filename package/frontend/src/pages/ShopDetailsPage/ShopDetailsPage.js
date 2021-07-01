@@ -3,9 +3,11 @@ import SD_DetailsSection from './SD_DetailsSection';
 import SD_RelatedSection from './SD_RelatedSection';
 import $ from 'jquery';
 import {Helmet } from 'react-helmet'
-import axios from 'axios';
+import axios from 'axios'; 
 
-class ShopDetailsPage extends Component {
+
+class ShopDetailsPage extends Component { 
+
     constructor(props) {
         super(props);
         this.state = {
@@ -13,18 +15,23 @@ class ShopDetailsPage extends Component {
             product: {}
         }
     }
-
-    componentDidMount() {
-        axios({
-            method: 'GET',
-            url: '/api/products/AT1806211619'
-        }).then(response => {
-            if(response && response.status === 200) {
-                this.setState({
-                    product: response.data
-                })
-            }
-        });
+    
+    componentDidMount() {  
+        // window.location.reload();
+        if(this.props.match && this.props.match.params.sku){ 
+            // window.location.reload();
+            axios({
+                method: 'GET',
+                url: `/api/products/${this.props.match.params.sku}`
+            }).then(response => {
+                if(response && response.status === 200) {
+                    this.setState({
+                        product: response.data
+                    })
+                }
+            });
+        }
+        
 
         axios({
             method: 'GET',
@@ -71,14 +78,13 @@ class ShopDetailsPage extends Component {
         
     }
 
-    render() {
-        // console.log(this.state.product.options) 
+    render() { 
         if(this.state.product){
             return (
-                <div>
+                <div> 
                     <Helmet>
-                        <title>Shop Details</title>
-                    </Helmet>
+                        <title>Shop Details</title> 
+                    </Helmet> 
                     {/* <!-- Shop Details Section Begin --> */} 
                         <SD_DetailsSection product={this.state.product}/> 
                     {/* <!-- Shop Details Section End --> */}

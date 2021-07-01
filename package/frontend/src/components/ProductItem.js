@@ -1,5 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import {connect} from 'react-redux'
+import {Link, useParams} from "react-router-dom"
 class ProductItem extends Component {
     renderClass=(status)=>{
         let result='';
@@ -60,10 +61,15 @@ class ProductItem extends Component {
         }                     
         this.props.onAddToCart(cartItem);
         }
-        
+
     }
+    
+    refreshPage=()=>{ 
+        window.location.reload(); 
+    }
+    
     render(){
-        const{images,name,price,status,rating}=this.props.product;
+        const{sku,images,name,price,status,rating}=this.props.product;
         const {onChange,onPage}=this.props;
         const addClass=this.renderClass(status);
         const result=onPage===1?` ${addClass} ${this.renderOption(status,onChange)}`:'';
@@ -80,7 +86,9 @@ class ProductItem extends Component {
                             </ul>
                         </div>
                         <div className="product__item__text">
-                            <h6>{name}</h6>
+                            <h6 onClick={ this.refreshPage }>
+                                <Link to={"/" + sku}>{name}</Link>
+                            </h6>
                             <div className="rating">
                                 {this.renderStarRate(rating.grade)}
                             </div>

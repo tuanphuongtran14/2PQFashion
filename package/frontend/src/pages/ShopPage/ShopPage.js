@@ -7,6 +7,7 @@ import ShopContainer from '../../containers/ShopContainer';
 import {Link} from 'react-router-dom';
 import Footer from '../../components/Footer';
 import {connect} from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import * as actions from '../../actions/index'
 class ShopPage extends Component {
@@ -26,6 +27,9 @@ class ShopPage extends Component {
     render(){
         return (
             <Fragment>
+                <Helmet>
+                    <title>Shop</title>
+                </Helmet>
                 
                 {/* <!-- Breadcrumb Section Begin --> */}
                 <section className="breadcrumb-option">

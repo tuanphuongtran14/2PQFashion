@@ -31,7 +31,7 @@ class SD_ProductDetails extends Component {
         return (
             <div className="product__details__text">
                 {/* <h1>{displaySize}</h1> */}
-                {/* <h4>{product.name}</h4> */}
+                <h4>{product.name}</h4>
                 <div className="rating">
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
@@ -45,19 +45,7 @@ class SD_ProductDetails extends Component {
                 <div className="product__details__option">
                     <div className="product__details__option__size">
                         <span>Kích cỡ:</span>
-                        {displaySize}
-                        {/* <label for="xxl">xxl
-                            <input type="radio" id="xxl" />
-                        </label>
-                        <label className="active" for="xl">xl
-                            <input type="radio" id="xl" />
-                        </label>
-                        <label for="l">l
-                            <input type="radio" id="l" />
-                        </label>
-                        <label for="sm">s
-                            <input type="radio" id="sm" />
-                        </label> */}
+                        {displaySize} 
                     </div>
                     
                 </div>
