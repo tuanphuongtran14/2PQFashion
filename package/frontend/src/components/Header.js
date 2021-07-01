@@ -47,10 +47,6 @@ renderSignin=(user)=>{
     if(!user.id_User){
         return <Link to={"/login"}>Sign in</Link>
     }else{
-<<<<<<< HEAD
-
-=======
->>>>>>> e63dffbc929ba4db4d5a2df3b223ac1832bfd089
         return <Link to={"/user"}>{user.username}</Link>
     }
 }
@@ -99,20 +95,7 @@ renderSignin=(user)=>{
                                 <ul>
                                     <li ><NavLink exact to="/" activeClassName="active">Trang chủ</NavLink></li>
                                     <li><Link to={`/shop`}>Shop </Link></li>
-                                    <li><a href="/">Pages</a>
-                                        <ul className="dropdown">
-                                            <li>
-                                                <Link exact="true" to="/about">
-                                                    About Us
-                                                </Link>
-                                            </li>
-                                            <li><a href="./shop-details.html">Shop Details</a></li>
-                                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                            <li><a href="./checkout.html">Check Out</a></li>
-                                            <li><a href="./blog-details.html">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><NavLink exact to='/about' activeClassName="active">Tin tức</NavLink></li>
+                                    <li><NavLink exact to='/about' activeClassName="active">Về chúng tôi</NavLink></li>
                                     <li>
                                         <NavLink exact to="/contact" activeClassName="active">
                                             Liên hệ
@@ -124,9 +107,11 @@ renderSignin=(user)=>{
                         <div className="col-lg-3 col-md-3">
                             <div className="header__nav__option">     
                                 <Link to={''} onClick={this.onClick} className="search-switch"><img src="/img/icon/search.png" alt=""/></Link>
-                                <Link type="button" to={`/`}><img src="/img/icon/heart.png" alt=""/></Link>
-                                <Link type="button" to={`/shop/cart`}><img src="/img/icon/cart.png" alt=""/> <span>0</span></Link>
-                                <div className="price">{convertToMoney(this.countPrice(this.props.cart.products))}VND</div>
+                                <Link type="button" to={`/shop/cart`}><img src="/img/icon/cart.png" alt=""/> <span>{ this.props.cart.products.length }</span></Link>
+                                {/* <div className="price">{convertToMoney(this.countPrice(this.props.cart))}đ</div> */}
+
+                            
+                                <div className="price">{convertToMoney(this.countPrice(this.props.cart.products))}đ</div>
                             </div>
                         </div>
                     </div>

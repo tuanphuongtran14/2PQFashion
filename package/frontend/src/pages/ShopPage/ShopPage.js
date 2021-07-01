@@ -18,7 +18,8 @@ class ShopPage extends Component {
             categoriesList: [],
             tagsList: [],
             pageNumber: 1,
-            productsOnPage: 6
+            productsOnPage: 6,
+            productsNumber: 0
         };
     }
 
@@ -42,6 +43,21 @@ class ShopPage extends Component {
                     this.setState({
                         tagsList: res.data
                     });
+            })
+            .catch(err => {
+                if(err && err.response)
+                    alert(err.response.data);
+            })
+        callApi('products/count', 'GET')
+            .then(res => {
+                if(res && res.status === 200) {
+                    this.setState({
+                        productsNumber: res.data
+                    });
+
+                    if(this.props.products.length === res.data)
+                        document.getElementById("loadMoreBtn").setAttribute('disabled', true);
+                }
             })
             .catch(err => {
                 if(err && err.response)
@@ -74,8 +90,17 @@ class ShopPage extends Component {
         this.setState({
             pageNumber: this.state.pageNumber + 1
         })
-        
     }
+
+    componentDidUpdate() {
+        console.log(this.state.productsNumber)
+        console.log(this.state.productsOnPage * this.state.pageNumber)
+        if(this.state.productsNumber <= this.state.productsOnPage * this.state.pageNumber)
+            document.getElementById("loadMoreBtn").setAttribute('disabled', true);
+        else 
+            document.getElementById("loadMoreBtn").removeAttribute('disabled');
+    }
+
     
     render(){
         return (
@@ -278,7 +303,7 @@ class ShopPage extends Component {
                                     < ShopContainer history={this.props.history}/>
                                 </div>
                                 
-                                <button className="btn btn-danger d-block mx-auto" onClick={ this.loadMoreProducts }>
+                                <button className="btn btn-danger d-block mx-auto" id="loadMoreBtn" onClick={ this.loadMoreProducts }>
                                         Hiển thị thêm
                                 </button>
                                 {/* <div className="row">
