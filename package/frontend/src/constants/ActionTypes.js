@@ -50,3 +50,11 @@ export const SET_ADMIN="SET_ADMIN"
 export const LOGIN_CART="LOGIN_CART"
 // logout cho cart
 export const LOGOUT_CART="LOGOUT_CART"
+
+//fetch cart by id user
+export const LOGIN_USER="LOGIN_USER";
+
+//fetch cart by id user
+export const FETCH_CART_BY_ID_USER="FETCH_CART_BY_ID_USER";
+
+

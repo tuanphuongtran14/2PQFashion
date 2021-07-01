@@ -34,8 +34,8 @@ class App extends Component {
     return (
       <Router>
           <div className="App">
-            <ScrollToTop />
-            <Route path={/^((?!\/admin).)*$/} component={Header} />
+            <ScrollToTop /> 
+            { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Header /> : '') }
             <Switch>
               <Route exact path="/" component={({ match, history }) => <IndexPage match={match} history={history} />} />
               <Route path="/about">
@@ -72,9 +72,9 @@ class App extends Component {
               </Route>
               <Route path="/:sku" strict render={(props) => <ShopDetailsPage {...props}/>}></Route> 
             </Switch>
-            <Route path={/^((?!\/admin).)*$/} component={Footer} />
+            { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Footer /> : '') }
           </div>
-        </Router>
+      </Router>
     )
    
   }

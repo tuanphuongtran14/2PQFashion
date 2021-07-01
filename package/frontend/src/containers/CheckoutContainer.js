@@ -31,8 +31,8 @@ class CheckoutContainer extends Component {
       var {cart}=this.props;
     return (
         <Fragment >
-            <ListOrder renderOrderItem={this.renderOrderItem(cart)}
-            totalPrice={this.totalPrice(cart)}
+            <ListOrder renderOrderItem={this.renderOrderItem(cart.products)}
+            totalPrice={this.totalPrice(cart.products)}
             onAddCouponToOrder={this.props.onAddCouponToOrder}
             
             />

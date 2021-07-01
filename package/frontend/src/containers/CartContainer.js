@@ -38,8 +38,8 @@ class CartContainer extends Component {
     return (
         <Fragment >
             <Cart >
-                {this.renderCart(cart)}
-                {this.renderTotalMount(cart)}
+                {this.renderCart(cart.products)}
+                {this.renderTotalMount(cart.products)}
             </Cart>
         </Fragment>
         

@@ -20,6 +20,7 @@ class LoginPage extends Component {
         }).then(res => {
             if(res && res.status === 200) {
                 this.props.setToken(res.data.token);
+                
                 axios({
                     method: 'GET',
                     url: `/api/users/me`,
@@ -32,8 +33,11 @@ class LoginPage extends Component {
                         let user = {
                             ...res.data
                         };
-
+                        this.props.fetchCartByIdUserRequest(user.id_User);
+                        this.props.fetchUserByIdRequest(user.id_User);
+                        
                         user = JSON.stringify(user);
+                        this.props.getUserLogin(user);
                         localStorage.setItem('user', user);
                         this.setState({
                             loading: false
@@ -106,6 +110,15 @@ const mapDispatchToProps = (dispatch) => {
         },
         setAdmin: (isAdmin) => {
             dispatch(actions.setAdmin(isAdmin));
+        },
+        getUserLogin: (user)=>{
+            dispatch(actions.getUserLogin(user));
+        },
+        fetchCartByIdUserRequest:(id)=>{
+            dispatch(actions.fetchCartByIdUserRequest(id));
+        },
+        fetchUserByIdRequest:(id)=>{
+            dispatch(actions.fetchUserByIdRequest(id));
         }
     }
 }

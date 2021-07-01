@@ -5,9 +5,9 @@ import FilterNameContainer from '../../containers/FilterContainer/FilterNameCont
 import SortContainer from '../../containers/SortContainer';
 import ShopContainer from '../../containers/ShopContainer';
 import {Link} from 'react-router-dom';
-import Footer from '../../components/Footer';
 import {connect} from 'react-redux';
 import { Helmet } from 'react-helmet';
+import callApi from '../../utils/apiCaller';
 
 import * as actions from '../../actions/index'
 class ShopPage extends Component {
@@ -15,13 +15,66 @@ class ShopPage extends Component {
         super(props);
         this.state={
             page:0,
-        }
-        ;
+            categoriesList: [],
+            tagsList: [],
+            pageNumber: 1,
+            productsOnPage: 6
+        };
     }
 
     componentDidMount(){
-        this.props.fetchProductsRequest();
+        this.props.fetchProductsRequest(this.state.pageNumber * this.state.productsOnPage);
         this.props.getDataPage(this.state.page);
+        callApi('categories', 'GET')
+            .then(res => {
+                if(res && res.status === 200)
+                    this.setState({
+                        categoriesList: res.data
+                    });
+            })
+            .catch(err => {
+                if(err && err.response)
+                    alert(err.response.data);
+            })
+        callApi('tags', 'GET')
+            .then(res => {
+                if(res && res.status === 200)
+                    this.setState({
+                        tagsList: res.data
+                    });
+            })
+            .catch(err => {
+                if(err && err.response)
+                    alert(err.response.data);
+            })
+    }
+
+    displayFilterCategories = () => {
+        return this.state.categoriesList.map(category => {
+            return (
+                <li><Link type="button" to={`/shop/categories?value=${ category.name }`}>{ category.name }</Link></li>
+            )
+        })
+    }
+
+    displayFilterTags = () => {
+        return this.state.tagsList.map(tag => {
+            return (
+                <Link type="button" to={`/shop/tags?value=${ tag.name }`}>{ tag.name }</Link>
+            )
+        })
+    }
+
+    loadMoreProducts = event => {
+        event.preventDefault();
+        
+        const limit = (this.state.pageNumber + 1) * this.state.productsOnPage;
+        this.props.fetchProductsRequest(limit);
+
+        this.setState({
+            pageNumber: this.state.pageNumber + 1
+        })
+        
     }
     
     render(){
@@ -68,15 +121,13 @@ class ShopPage extends Component {
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__categories">
                                                         <ul className="nice-scroll">
-                                                            <li><Link type="button" to={`/shop/categories?value=quần áo`}>Quần áo </Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=giày`}>Giày</Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=phụ kiện`}>Phụ kiện</Link></li>
+                                                            { this.displayFilterCategories() }
                                                         </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="card">
+                                            {/* <div className="card">
                                                 <div className="card-heading">
                                                     <a href="/#" data-toggle="collapse" data-target="#collapseTwo">Nhãn hiệu</a>
                                                 </div>
@@ -91,7 +142,7 @@ class ShopPage extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>             
+                                            </div>              */}
                                             <div className="card">
                                                 <div className="card-heading">
                                                     <a href="/#" data-toggle="collapse" data-target="#collapseFour">Kích thước</a>
@@ -124,7 +175,7 @@ class ShopPage extends Component {
                                                                     <input type="radio" id="xl"/>
                                                                 </label>
                                                             </Link>
-                                                            <Link type="button" to={`/shop/sizes?value=2XL`}>
+                                                            {/* <Link type="button" to={`/shop/sizes?value=2XL`}>
                                                                 <label >2xl
                                                                     <input type="radio" id="2xl"/>
                                                                 </label>
@@ -133,7 +184,7 @@ class ShopPage extends Component {
                                                                 <label >3xl
                                                                     <input type="radio" id="3xl"/>
                                                                 </label>
-                                                            </Link>
+                                                            </Link> */}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -201,12 +252,7 @@ class ShopPage extends Component {
                                                 <div id="collapseSix" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__tags">
-                                                            <Link type="button" to={`/shop/tags?value=Quần áo`}>Quần áo </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Ba lô`}>Ba lô </Link>
-                                                            <Link type="button" to={`/shop/tags?value="Thời trang"`}>Thời trang </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Giày`}>Giày </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Mũ`}>Mũ </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Phụ kiện`}>Phụ kiện </Link>
+                                                            { this.displayFilterTags() }
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,6 +277,10 @@ class ShopPage extends Component {
                                 <div className="row">
                                     < ShopContainer history={this.props.history}/>
                                 </div>
+                                
+                                <button className="btn btn-danger d-block mx-auto" onClick={ this.loadMoreProducts }>
+                                        Hiển thị thêm
+                                </button>
                                 {/* <div className="row">
                                     <div className="col-lg-12">
                                         <div className="product__pagination">
@@ -247,7 +297,6 @@ class ShopPage extends Component {
                     </div>
                 </section>
                 {/* <!-- Shop Section End --></div> */}
-                <Footer/>
                 <SearchContainer history={this.props.history}/>
             </Fragment>
         );
@@ -262,8 +311,8 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
     return {
-        fetchProductsRequest:()=>{
-            dispatch(actions.fetchProductsRequest());
+        fetchProductsRequest:(limit, skip)=>{
+            dispatch(actions.fetchProductsRequest(limit, skip));
         },
         getDataPage:(data)=>{
             dispatch(actions.getDataPage(data));

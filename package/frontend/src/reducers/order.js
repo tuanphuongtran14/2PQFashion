@@ -1,6 +1,8 @@
 import * as types from'../constants/ActionTypes'
 var result=localStorage.getItem('user');
-var user=result?JSON.parse(result):[];
+var user=result?JSON.parse(result):{
+    
+};
 
 var initialState={
      products: [],

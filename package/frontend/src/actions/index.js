@@ -12,9 +12,19 @@ export const fetchProducts=(products)=>{
 }
 
 //Lên API lấy dữ liệu products về
-export const fetchProductsRequest=()=>{
+export const fetchProductsRequest=(limit, skip)=>{
     return (dispatch)=>{
-        return callApi('products','GET',null)
+        let query = '?';
+
+        if(limit)
+            query += `limit=${limit}&`;
+        
+        if(skip)
+            query += `skip=${skip}&`;
+        
+        
+
+        return callApi(`products${ query }`,'GET',null)
                         .then(res=>{
                             dispatch(fetchProducts(res.data));
                         })
@@ -213,5 +223,43 @@ export const logoutCart=() => {
     return {
         type: types.LOGOUT_CART,
 
+    }
+}
+export const getUserLogin=(user)=>{
+    return {
+        type: types.LOGIN_USER,
+        user
+
+    }
+}
+
+
+
+
+export const changeCartInDTB=(cart)=>{
+    console.log(cart);
+    return callApi(`carts/create`,'post',{
+        id_User:cart.id_User,
+        products:cart.products
+    })
+}
+
+//xử lý render list sản phẩm
+export const fetchCartByIdUser=(cart)=>{
+
+    return {
+        type:types.FETCH_CART_BY_ID_USER,
+        cart,//products=products
+    }
+}
+
+//Lên API lấy dữ liệu products về
+export const fetchCartByIdUserRequest=(id_User)=>{
+    return (dispatch)=>{
+        return callApi(`carts/${id_User}`,'GET',null)
+                        .then(res=>{
+                        
+                            dispatch(fetchCartByIdUser(res.data));
+                        })
     }
 }
