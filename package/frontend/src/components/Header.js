@@ -40,7 +40,6 @@ renderSignin=(user)=>{
     if(user.id_User===''){
         return <Link to={"/login"}>Sign in</Link>
     }else{
-        console.log(user.username);
         return <Link to={"/user"}>{user.username}</Link>
     }
 }
