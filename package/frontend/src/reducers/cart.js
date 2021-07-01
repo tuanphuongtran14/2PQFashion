@@ -76,7 +76,7 @@ const cart=(state=initialState,action)=>{
             }
             return replaceState; 
         case types.LOGOUT_CART:
-            replaceState.in_User='';
+            replaceState.id_User='';
             replaceState.products=[];
             return replaceState; 
         case types.FETCH_CART_BY_ID_USER:  
