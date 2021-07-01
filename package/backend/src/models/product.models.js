@@ -12,7 +12,7 @@ exports.Product = function(mongoose) {
             grade: Number,
             votes: Number
         },
-        brand: String,
+        // brand: String,
         shortDesc: String,
         options: [
             {

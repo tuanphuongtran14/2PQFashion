@@ -3,14 +3,14 @@ exports.User = function(mongoose) {
     const Schema = mongoose.Schema;
     const userSchema = new Schema({
         id_User:String,
-        name: String,
+        // name: String,
         username:String,
         address:String,
         email:String,
         phone: Number,
         password:String,
         isAdmin: Boolean,
-        isMale: Boolean
+        // isMale: Boolean
     })
 
     // Creating User Model

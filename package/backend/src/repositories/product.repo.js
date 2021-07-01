@@ -11,7 +11,16 @@ exports.create = productInput => {
     return newProduct.save();
 }
 
-exports.findAll = () => {
+exports.findAll = (limit, skip) => {
+    if(limit && skip)
+        return Product.find({}).limit(limit).skip(skip);
+
+    if(limit)
+        return Product.find({}).limit(limit);
+
+    if(skip)
+        return Product.find({}).skip(skip);
+    
     return Product.find({});
 }
 

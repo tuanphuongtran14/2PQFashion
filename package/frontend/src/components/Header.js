@@ -47,7 +47,10 @@ renderSignin=(user)=>{
     if(!user.id_User){
         return <Link to={"/login"}>Sign in</Link>
     }else{
+<<<<<<< HEAD
 
+=======
+>>>>>>> e63dffbc929ba4db4d5a2df3b223ac1832bfd089
         return <Link to={"/user"}>{user.username}</Link>
     }
 }

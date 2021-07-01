@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <Router>
           <div className="App">
-            <Route path={/^((?!\/admin).)*$/} component={Header} />
+            { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Header /> : '') }
             <Switch>
               <Route exact path="/" component={({ match, history }) => <IndexPage match={match} history={history} />} />
               <Route path="/about">
@@ -68,9 +68,9 @@ class App extends Component {
                 <Test />
               </Route>
             </Switch>
-            <Route path={/^((?!\/admin).)*$/} component={Footer} />
+            { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Footer /> : '') }
           </div>
-        </Router>
+      </Router>
     )
     // if (this.props.location.pathname.indexOf('/admin') !== 0)
     //   return (

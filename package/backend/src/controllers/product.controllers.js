@@ -66,8 +66,11 @@ exports.create = (req, res) => {
 
 exports.getAll = async (req, res) => {
     try{
+        let { skip, limit } = req.query;
+        limit = Number(limit);
+        skip = Number(skip);
         // Find all product
-        let products = await productServices.findAll();
+        let products = await productServices.findAll(limit, skip);
         return res.status(200).json(products);
     } catch(err) {
         res.status(500).json({
