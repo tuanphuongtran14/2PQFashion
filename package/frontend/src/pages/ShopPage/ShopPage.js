@@ -64,9 +64,10 @@ class ShopPage extends Component {
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__categories">
                                                         <ul className="nice-scroll">
-                                                            <li><Link type="button" to={`/shop/categories?value=quần áo`}>Quần áo </Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=giày`}>Giày</Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=phụ kiện`}>Phụ kiện</Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=Quần áo`}>Quần áo </Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=Áo thun`}>Áo thun </Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=Giày`}>Giày</Link></li>
+                                                            <li><Link type="button" to={`/shop/categories?value=Phụ kiện`}>Phụ kiện</Link></li>
                                                         </ul>
                                                         </div>
                                                     </div>
@@ -203,6 +204,7 @@ class ShopPage extends Component {
                                                             <Link type="button" to={`/shop/tags?value=Giày`}>Giày </Link>
                                                             <Link type="button" to={`/shop/tags?value=Mũ`}>Mũ </Link>
                                                             <Link type="button" to={`/shop/tags?value=Phụ kiện`}>Phụ kiện </Link>
+                                                            <Link type="button" to={`/shop/tags?value=Áo thun`}>Áo thun </Link>
                                                         </div>
                                                     </div>
                                                 </div>

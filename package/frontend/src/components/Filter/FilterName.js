@@ -1,6 +1,5 @@
 import React,{Component,Fragment} from 'react';
 // import {connect} from 'react-redux'
-import $ from "jquery";
 class FilterName extends Component {
     constructor(props)
     {

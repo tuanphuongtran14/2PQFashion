@@ -6,7 +6,7 @@ class InfoUser extends Component {
       var {user}=this.props;
     return (
         <Fragment>
-            <h4 className="text-center mb-4">Tài khoản của tôi</h4>
+            <h2 className="text-center mb-4">Tài khoản của tôi</h2>
                 <div className="row mx-0">   
                     <div className="col-3 py-0 text-right px-0">
                         
@@ -14,10 +14,10 @@ class InfoUser extends Component {
                     <div className="col-6 px-0">
                         <div className="row form-group mx-0">
                             <div className="col-6 d-flex align-items-center">
-                            <label >Tài khoản của tôi:</label>
+                            <h5 >Tài khoản của tôi:</h5>
                             </div>
                             <div className="col-6 d-flex text-center px-0">
-                            <label className="text-info">{user.username}</label>
+                            <h5 className="text-info">{user.username}</h5>
                             </div>
                         </div>
                     </div>
@@ -32,10 +32,10 @@ class InfoUser extends Component {
                     <div className="col-6 px-0">
                         <div className="row form-group mx-0">
                             <div className="col-6 d-flex align-items-center">
-                            <label >Số điện thoại:</label>
+                            <h5 >Số điện thoại:</h5>
                             </div>
                             <div className="col-6 d-flex text-center px-0">
-                            <label className="text-info">{user.phone}</label>
+                            <h5 className="text-info">{user.phone}</h5>
                             </div>
                         </div>
                     </div>
@@ -50,10 +50,10 @@ class InfoUser extends Component {
                     <div className="col-6 px-0">
                         <div className="row form-group mx-0">
                             <div className="col-6 d-flex align-items-center">
-                            <label >Email:</label>
+                            <h5 >Email:</h5>
                             </div>
                             <div className="col-6 d-flex text-center px-0">
-                            <label className="text-info">{user.email}</label>
+                            <h5 className="text-info">{user.email}</h5>
                             </div>
                         </div>
                     </div>
@@ -64,18 +64,17 @@ class InfoUser extends Component {
                     <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
-                    <div className="col-6 px-0">
+                    <div className="col-9 px-0">
                         <div className="row form-group mx-0">
-                            <div className="col-6 d-flex align-items-center">
-                            <label >Địa chỉ:</label>
+                            <div className="col-4 d-flex align-items-center">
+                            <h5 >Địa chỉ:</h5>
                             </div>
-                            <div className="col-6 d-flex text-center px-0">
-                            <label className="text-info">{user.address}</label>
+                            <div className="col-8 d-flex text-center px-0">
+                            <h5 className="text-info">{user.address}</h5>
                             </div>
                         </div>
                     </div>
-                    <div className="col-3 py-0 text-right px-0">
-                    </div> 
+                    
                 </div>
                 <div className="row mx-0">   
 

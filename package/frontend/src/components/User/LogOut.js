@@ -5,6 +5,7 @@ class LogOut extends Component {
     onClick=()=>{
         var {user,history}=this.props;
         this.props.onLogOut(user.id_User);
+        this.props.logoutCart();
         this.props.setToken('');
         history.replace('/');
     }
