@@ -11,6 +11,11 @@ exports.login = async (req, res) => {
         const checkPw = await bcrypt.compare(authorizarion.password, user.password);
         
         if(checkPw) {
+            if(user.confirmedToken)
+                return res.status(403).json({
+                    message: "Vui lòng xác nhận tài khoản của bạn trước khi đăng nhập!!!"
+                })
+
             const data = {
                 id_User: user.id_User,
                 username: user.username,
@@ -27,11 +32,11 @@ exports.login = async (req, res) => {
         }
         else
             return res.status(401).json({
-                message: "Wrong password"
+                message: "Mật khẩu bạn nhập không đúng"
             })
         
     } else
         return res.status(401).json({
-            message: "Wrong username"
+            message: "Tên tài khoản không tồn tại"
         })
 }

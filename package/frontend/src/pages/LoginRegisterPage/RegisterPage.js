@@ -34,7 +34,7 @@ class RegisterPage extends Component {
             })
         )
         else {
-            alert("Mat khau khong giong nhau")
+            alert("Mật khẩu bạn nhập không khớp nhau")
         }
     }
     render() {

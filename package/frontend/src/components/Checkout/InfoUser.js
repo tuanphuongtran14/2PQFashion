@@ -35,7 +35,7 @@ class InfoUser extends Component {
         var {history,cart}=this.props;
         var order=this.props.order;
         var {nameCustomer, address,email,orderNote,paymentMethod,phone}=this.state;
-        var products=cart.map((item)=>{
+        var products=cart.products.map((item)=>{
             if(item.quantity>0){
                 return{
                     sku:item.sku,
@@ -56,7 +56,7 @@ class InfoUser extends Component {
                 errInformation:'Giỏ hàng của bạn trống hoặc bạn đã mua sản phẩm hết hàng. Vui lòng kiểm tra lại!!!',
             });
         }else{
-            const price = cart.reduce((total, item) => {
+            const price = cart.products.reduce((total, item) => {
                 return total + item.quantity*item.price;
               }, 0);
             var newBill={
@@ -64,13 +64,14 @@ class InfoUser extends Component {
                  totalPrice: price-order.salePrice
                  ,
                  nameCustomer:nameCustomer,
-                 id_User: order.id_User,
+                //  id_User: order.id_User,
                  coupon: order.coupon,
                  address: address,
                  email: email,
                  orderNote:orderNote===''?' ':orderNote,
                  paymentMethod: paymentMethod,
                  phone: phone,
+                 id_User: JSON.parse(localStorage.getItem('user')).id_User
             };
             addBillRequest(newBill)
             .then(()=>{

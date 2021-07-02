@@ -13,6 +13,7 @@ export const fetchProducts=(products)=>{
 
 //Lên API lấy dữ liệu products về
 export const fetchProductsRequest=(limit, skip)=>{
+    
     return (dispatch)=>{
         let query = '?';
 
@@ -237,7 +238,6 @@ export const getUserLogin=(user)=>{
 
 
 export const changeCartInDTB=(cart)=>{
-    console.log(cart);
     return callApi(`carts/create`,'post',{
         id_User:cart.id_User,
         products:cart.products

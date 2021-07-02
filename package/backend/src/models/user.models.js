@@ -10,6 +10,7 @@ exports.User = function(mongoose) {
         phone: Number,
         password:String,
         isAdmin: Boolean,
+        confirmedToken: String,
         // isMale: Boolean
     })
 

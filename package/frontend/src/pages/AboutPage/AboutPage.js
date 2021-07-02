@@ -6,8 +6,10 @@ import CounterSection from './CounterSection'
 import TeamSection from './TeamSection'
 import ClientSection from './ClientSection'
 import {Helmet} from 'react-helmet'
+import SearchContainer from '../../containers/SearchContainer';
 
 class AboutPage extends Component {
+    
     render() {
         return ( 
             <div>
@@ -35,6 +37,7 @@ class AboutPage extends Component {
                 {/* Client Section Begin */}
                 <ClientSection />
                 {/* Client Section End */}
+                <SearchContainer history={this.props.history}/>
             </div>
         );
     }

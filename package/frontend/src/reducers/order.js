@@ -25,6 +25,7 @@ const order=(state=initialState,action)=>{
             newOrder={...state};
             newOrder.nameCustomer=action.infoUser.nameCustomer;
             newOrder.address=action.infoUser.address;
+            newOrder.id_User=action.infoUser.id_User;
             newOrder.email=action.infoUser.email;
             newOrder.phone=action.infoUser.phone;
             newOrder.paymentMethod=action.infoUser.paymentMethod;

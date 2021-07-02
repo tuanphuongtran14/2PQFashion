@@ -6,6 +6,7 @@ import SDProductDetailsTab from './SD_ProductDetailsTab';
 
 class SD_DetailsSection extends Component {
     render() { 
+        
         let options = [];
         if (this.props.product.options)
             options = this.props.product.options; 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import SDDetailsSection from './SD_DetailsSection';
 import SDRelatedSection from './SD_RelatedSection';
 import $ from 'jquery';
@@ -17,37 +17,98 @@ class ShopDetailsPage extends Component {
         super(props);
         this.state = {
             listProduct: [],
-            product: {}
+            product: {},
+            sku:'',
+        }
+    }
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.match.params.sku !== prevState.sku) {
+            return {sku: nextProps.match.params.sku};
+            
+        }
+        
+        return null;
+    }
+    
+    componentDidUpdate(prevProps, prevState) {
+        
+        const {sku} = this.props.match.params;
+        if (prevProps.match.params.sku !== sku) {
+            var product={};
+            var listProduct=[];
+            if(this.props.match && this.props.match.params.sku){ 
+                // window.location.reload();
+                axios({
+                    method: 'GET',
+                    url: `/api/products/${this.props.match.params.sku}`
+                }).then(response => {
+                    if(response && response.status === 200) {
+                        
+                            product= response.data;
+                            axios({
+                                method: 'GET',
+                                url: '/api/products',
+                            }).then(response => {
+                                if(response && response.status === 200) {
+                                    
+                                        listProduct= response.data;
+                                        this.setState({
+                                            listProduct: listProduct,
+                                            product: product
+                                        })
+                                    
+                                }
+                            })
+                           
+                            
+                        
+                    }
+                });
+                
+            }
+            
         }
     }
     
-    componentDidMount() {  
+    componentDidMount() { 
+
         // window.location.reload();
+        var product={};
+        var listProduct=[];
         if(this.props.match && this.props.match.params.sku){ 
+            
             // window.location.reload();
             axios({
                 method: 'GET',
-                url: `/api/products/${this.props.match.params.sku}`
+                url: `/api/products/${this.state.sku}`
             }).then(response => {
                 if(response && response.status === 200) {
-                    this.setState({
-                        product: response.data
-                    })
+                    
+                        product= response.data;
+                        axios({
+                            method: 'GET',
+                            url: '/api/products',
+                        }).then(response => {
+                            if(response && response.status === 200) {
+                                
+                                    listProduct= response.data;
+                                    this.setState({
+                                        listProduct: listProduct,
+                                        product: product
+                                    })
+                                
+                            }
+                        })
+                       
+                        
+                    
                 }
             });
+            
         }
         
 
-        axios({
-            method: 'GET',
-            url: '/api/products',
-        }).then(response => {
-            if(response && response.status === 200) {
-                this.setState({
-                    listProduct: response.data
-                })
-            }
-        })
+        
         /*------------------
         Background Set
         --------------------*/
@@ -67,27 +128,30 @@ class ShopDetailsPage extends Component {
         proQty.on('click', '.qtybtn', function () {
             var $button = $(this);
             var oldValue = $button.parent().find('input').val();
+            var newVal ;
             if ($button.hasClass('inc')) {
-                var newVal = parseFloat(oldValue) - 1;
+                 newVal = parseFloat(oldValue) - 1;
             } else {
                 // Don't allow decrementing below zero
                 if (oldValue > 0) {
-                    var newVal = parseFloat(oldValue) + 1;
+                     newVal = parseFloat(oldValue) + 1;
                 } else {
                     newVal = 0;
                 }
             }
             $button.parent().find('input').val(newVal);
         });
-
-        
     }
 
+
     render() { 
-        if(this.state.product){
             return (
+<<<<<<< HEAD
                 <div> 
                     <ScrollToTop />
+=======
+                <Fragment> 
+>>>>>>> 9b38c51d0595b927824e3a3ed08c11686e690104
                     <Helmet>
                         <title>Shop Details</title> 
                     </Helmet> 
@@ -96,14 +160,16 @@ class ShopDetailsPage extends Component {
                     {/* <!-- Shop Details Section End --> */}
 
                     {/* <!-- Related Section Begin --> */}
+<<<<<<< HEAD
                         <SDRelatedSection listProduct={this.state.listProduct}/>
+=======
+                        <SDRelatedSection listProduct={this.state.listProduct} history={this.props.history}/>
+>>>>>>> 9b38c51d0595b927824e3a3ed08c11686e690104
                     {/* {/* <!-- Related Section End --> */}
-                </div>
+                </Fragment>
             );
-        }
-        else {
-            return;
-        }
+
+
     }
 }
 

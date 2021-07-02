@@ -1,10 +1,10 @@
 import React, { Component } from 'react'; 
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as actions from './../../actions'
+
 
 class SD_RelatedSection extends Component {
-    refreshPage=()=>{ 
-        window.location.reload(); 
-    }
 
     renderStarRate(star){
         let result=[];
@@ -18,7 +18,38 @@ class SD_RelatedSection extends Component {
         }
         return result;
     }
+    onClick=(product)=>{
+       // e.preventDefault();
+        var {token,history}=this.props;
+        if(!token){
+            history.replace('/login');
+        }else{
+            const{sku,slug,price,name,images,options}=product;
+        let i = 0;
+        while(options[i].remaining === 0)
+            i++;
+        var size=options[i].size;
+        var inventory=options[i].quantity;
+        var quantity=inventory===0?0:1;
+        
+        const cartItem={
+            sku:sku,
+            name:name,
+            images:images,
+            slug:slug,
+            price:price,
+            size:size,
+            inventory:inventory,
+            quantity:quantity,
+            options:options,
+            index:0,
 
+        }    
+                        
+        this.props.onAddToCart(cartItem);
+        }
+         
+    }
     render() {
         var {listProduct} = this.props;
         
@@ -27,7 +58,7 @@ class SD_RelatedSection extends Component {
             var image = images.map((image,index) => {
                 if (index === 0){
                     return (
-                        <div 
+                        <div key={index}
                             className="product__item__pic set_bg" 
                             data-setbg={process.env.REACT_APP_API_URL + image} 
                             style={{backgroundImage: "url("+process.env.REACT_APP_API_URL + image+")"}}
@@ -44,16 +75,16 @@ class SD_RelatedSection extends Component {
             })
             var star = product.rating.grade;
             return(
-                <div className="col-lg-3 col-md-6 col-sm-6 col-sm-6">
+                <div className="col-lg-3 col-md-6 col-sm-6 col-sm-6" key={index}>
                     <div className="product__item">
                         {image}
                         <div className="product__item__text">
-                            <h6 onClick={ this.refreshPage }>
-                                <Link to={"/" + product.sku}>
+                            <h6 >
+                                <Link to={`/${product.sku}`}>
                                     {product.name}
                                 </Link>
                             </h6>
-                            <a href="/" className="add-cart">+ Thêm vào giỏ hàng</a>
+                            <p  onClick={()=>this.onClick(product)} className="add-cart">+ Thêm vào giỏ hàng</p>
                             <div className="rating">
                                 {this.renderStarRate(star)}
                             </div>
@@ -80,5 +111,16 @@ class SD_RelatedSection extends Component {
         );
     }
 }
-
-export default SD_RelatedSection;
+const mapStateToProps=(state)=>{
+    return {
+        ...state.authorization,
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+        onAddToCart:(product)=>{
+            dispatch(actions.onAddToCart(product));
+          }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SD_RelatedSection);

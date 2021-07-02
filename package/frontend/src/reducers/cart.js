@@ -15,15 +15,32 @@ var initialState={
     id_User:user.id_User,
     products:[]
 }
-var findProductInCart=(cart,product)=>{
+var findProductInCartByIndex=(cart,product)=>{
     var index=-1;
     cart.map((cartItem,i)=>{
-        if((product.sku===cartItem.sku) && (product.size===cartItem.size)){
+        if(cartItem.index===product.index){
             index=i;
         }
         return cartItem;
     });
     return index;
+}
+var findProductInCartBySize=(cart,product)=>{
+    var index=-1;
+    cart.map((cartItem,i)=>{
+        if(cartItem.sku===product.sku&&cartItem.size===product.size){
+            index=i;
+        }
+        return cartItem;
+    });
+    return index;
+}
+var getMaxIndex=(cart)=>{
+    var result=0;
+    cart.forEach(cartItem=>{
+        result=cartItem.index;
+    })
+    return result;
 }
 const cart=(state=initialState,action)=>{
     var replaceState;
@@ -32,8 +49,9 @@ const cart=(state=initialState,action)=>{
     switch(action.type){
         case types.ADD_TO_CART:
             replaceState={...state};
-            index=findProductInCart(replaceState.products,product);
+            index=findProductInCartBySize(replaceState.products,product);
             if(index===-1){
+                product.index=getMaxIndex(replaceState.products)+1;
                 replaceState.products.push(product);
             }else{
                 if(product.inventory!==0){
@@ -42,11 +60,12 @@ const cart=(state=initialState,action)=>{
                 
             }
             changeCartInDTB(replaceState);
+            
             return replaceState;
         case types.DELETE_PRODUCT_TO_CART:
             replaceState={...state};
             
-            index=findProductInCart(replaceState.products,product);
+            index=findProductInCartByIndex(replaceState.products,product);
             if(index!==-1){
                 replaceState.products.splice(index,1);
             }
@@ -54,13 +73,13 @@ const cart=(state=initialState,action)=>{
             return replaceState;
         case types.UPDATE_PRODUCT_TO_CART:
             replaceState={...state};
-            index=findProductInCart(replaceState.products,product);
+            index=findProductInCartByIndex(replaceState.products,product);
             if(index!==-1){
                 var inventory=0;
 
-                //option chứ size và quantity của sản pham
+                //option chứa size và quantity của sản pham
                 product.options.forEach(item=>{
-                    inventory=item.size===product.size?item.quantity:inventory 
+                    inventory=item.size===product.size?item.remaining:inventory 
                 })
                 product.quantity=inventory===0?0:product.quantity;
                 product.inventory=inventory;
@@ -70,13 +89,15 @@ const cart=(state=initialState,action)=>{
             changeCartInDTB(replaceState);
             return replaceState;
         case types.ADD_BILL_SUCCESS:  
+            replaceState={...state};
             if(action.isCheck===true){
                 replaceState.products=[]; 
                 changeCartInDTB(replaceState);
             }
             return replaceState; 
         case types.LOGOUT_CART:
-            replaceState.in_User='';
+            replaceState={...state};
+            replaceState.id_User='';
             replaceState.products=[];
             return replaceState; 
         case types.FETCH_CART_BY_ID_USER:  

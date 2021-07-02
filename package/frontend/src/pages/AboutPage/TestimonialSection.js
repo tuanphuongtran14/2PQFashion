@@ -14,7 +14,7 @@ class TestimonialSection extends Component {
                                 </p>
                                 <div className="testimonial__author">
                                     <div className="testimonial__author__pic">
-                                        <img src="img/about/testimonial-author.jpg" alt="" />
+                                        <img src="/img/about/testimonial-author.jpg" alt="" />
                                     </div>
                                     <div className="testimonial__author__text">
                                         <h5>Augusta Schultz</h5>
@@ -24,7 +24,7 @@ class TestimonialSection extends Component {
                             </div>
                         </div>
                         <div className="col-lg-6 p-0">
-                            <div className="testimonial__pic set-bg" data-setbg="img/about/testimonial-pic.jpg" />
+                            <div className="testimonial__pic set-bg" data-setbg="/img/about/testimonial-pic.jpg" />
                         </div>
                     </div>
                 </div>

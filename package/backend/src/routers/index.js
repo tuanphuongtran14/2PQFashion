@@ -5,6 +5,7 @@ module.exports = (app) => {
     const BillRouter = require('./bill.routers');
     const CartRouter = require('./cart.routers');
     const UserRouter = require('./user.routers');
+    const ConfirmRouter = require('./confirm.routers');
     const { login, adminLogin } = require('../controllers/login.controller');
     const { register } = require('../controllers/register.controller');
 
@@ -21,14 +22,18 @@ module.exports = (app) => {
     app.use('/api/bills', BillRouter)
 
     //User API Routing
-
     app.use('/api/users', UserRouter)
 
+    // Cart API Routing
     app.use('/api/carts', CartRouter)
+
+    // Confirm Routing
+    app.use('/confirm', ConfirmRouter);
 
     //Login Routing
     app.post('/login', login)
 
+    // Register Routing
     app.post('/register', register)
 
 }

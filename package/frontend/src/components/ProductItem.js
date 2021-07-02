@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import {connect} from 'react-redux'
-import {Link, useParams} from "react-router-dom"
+import {Link} from "react-router-dom"
 class ProductItem extends Component {
     renderClass=(status)=>{
         let result='';
@@ -43,8 +43,11 @@ class ProductItem extends Component {
             history.replace('/login');
         }else{
             const{sku,slug,price,name,images,options}=this.props.product;
-        var size=options[0].size;
-        var inventory=options[0].quantity;
+        let i = 0;
+        while(options[i].remaining === 0)
+            i++;
+        var size=options[i].size;
+        var inventory=options[i].remaining;
         var quantity=inventory===0?0:1;
     
         const cartItem={
@@ -57,6 +60,7 @@ class ProductItem extends Component {
             inventory:inventory,
             quantity:quantity,
             options:options,
+            index:0,
 
         }                     
         this.props.onAddToCart(cartItem);
@@ -86,7 +90,7 @@ class ProductItem extends Component {
                             </ul>
                         </div>
                         <div className="product__item__text">
-                            <h6 onClick={ this.refreshPage }>
+                            <h6>
                                 <Link to={"/" + sku}>{name}</Link>
                             </h6>
                             <div className="rating">
