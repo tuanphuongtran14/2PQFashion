@@ -52,12 +52,12 @@ exports.register = async (req, res) => {
     to: newUser.email,
     subject: '[2PQFashion Shop] Xác nhận đăng ký tài khoản tại shop',
     html: `
-        <h1>Xác nhận đăng ký tài khoản<h1>
+        <h1>Xác nhận đăng ký tài khoản</h1>
         <p> Vui lòng xác nhận đăng ký tài khoản tại 2PQFashion Shop, bằng cách nhấn <a href="http://localhost:8080/confirm/${newUser.confirmedToken}">vào đây</a></p>
     `
     };
 
-    transporter.sendMail(mailOptions, function(error, info){
+    transporter.sendMail(mailOptions, async function(error, info){
         if (error) {
             console.log(error);
         } else {

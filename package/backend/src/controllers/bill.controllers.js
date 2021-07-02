@@ -9,6 +9,7 @@ exports.create = async (req, res) => {
             message: "Can'\t create an empty orders"
         })
     }
+        console.log(ordersInput);
         //Validate orders input
         validateBill(ordersInput);
 

@@ -6,19 +6,10 @@ import CounterSection from './CounterSection'
 import TeamSection from './TeamSection'
 import ClientSection from './ClientSection'
 import {Helmet} from 'react-helmet'
-import $ from 'jquery';
+import SearchContainer from '../../containers/SearchContainer';
 
 class AboutPage extends Component {
     
-    componentDidUpdate() {
-        /*------------------
-            Background Set
-            --------------------*/
-            $('.set-bg').each(function () {
-                var bg = $(this).data('setbg');
-            });
-                
-    }
     render() {
         return ( 
             <div>
@@ -46,6 +37,7 @@ class AboutPage extends Component {
                 {/* Client Section Begin */}
                 <ClientSection />
                 {/* Client Section End */}
+                <SearchContainer history={this.props.history}/>
             </div>
         );
     }

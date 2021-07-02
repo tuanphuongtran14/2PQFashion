@@ -17,9 +17,9 @@ class SD_ProductDetails extends Component {
             // console.log(options);
             displaySize = options.map((option,index) => {
                 return (
-                    <label 
-                        for={option.size}
-                        className={ index == 0 ? "active" : "" }
+                    <label key={index}
+                    
+                        className={ index === 0 ? "active" : "" }
                     >{option.size}
                         <input type="radio" id={option.size} key={index}/>
                     </label>
@@ -52,7 +52,8 @@ class SD_ProductDetails extends Component {
                 <div className="product__details__cart__option">
                     <div className="quantity">
                         <div className="pro-qty">
-                            <input type="text" value="1" />
+                            <input type="text"   />
+                            {/* <input type="text" value="1"  /> */}
                         </div>
                     </div>
                     <a href="/" className="primary-btn">Thêm vào giỏ hàng</a>

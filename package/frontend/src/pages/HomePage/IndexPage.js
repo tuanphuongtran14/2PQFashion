@@ -26,7 +26,6 @@ class IndexPage extends Component {
 
     addInteraction = () => {
         $(function () {
-            console.log("ok");
             /*------------------
             Background Set
             --------------------*/
@@ -108,7 +107,7 @@ class IndexPage extends Component {
                         items={1} 
                         dots={false} 
                         nav={true} 
-                        navText={["<span class='arrow_left'><span/>", "<span class='arrow_right'><span/>"]}
+                        navText={["<span className='arrow_left'><span/>", "<span className='arrow_right'><span/>"]}
                         smartSpeed={1200}
                         autoplay={false}
                     >

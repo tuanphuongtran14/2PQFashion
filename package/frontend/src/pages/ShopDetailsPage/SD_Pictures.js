@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 // import $ from 'jquery'
 
 class SD_Pictures extends Component { 
+    constructor(props)
+    {
+        super(props);
+        this.state={
+            images:[]
+        }
+    }
+    componentDidMount() {
+
+        var {images} = this.props;
+
+        this.setState({
+            images:images
+        })
+    }
     render() {
         var {images} = this.props;
         if (images) {
             var navItem = images.map((image,i) => 
-                <li className="nav-item"> 
+                <li className="nav-item" key={i}> 
                     <a  className= { i === 0 ? "nav-link active" : "nav-link" } 
                         data-toggle="tab" 
                         href={"#tabs-"+(i+1)} 
@@ -23,7 +38,7 @@ class SD_Pictures extends Component {
                 </li>
             )
             var tabPane = images.map((image,i) => 
-                <div 
+                <div key={i}
                     className= { i === 0 ? "tab-pane active" : "tab-pane" } 
                     id={"tabs-"+(i+1)} 
                     role="tabpanel"

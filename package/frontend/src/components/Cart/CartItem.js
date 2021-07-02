@@ -20,11 +20,16 @@ class CartItem extends Component {
         this.props.onDeleteProductToCart(cartItem);
     }
     UpdateQuantity(cartItem, quantity){
+        // Increase or decrease quantity
         cartItem.quantity+=quantity;
+
+        
         if(cartItem.inventory<cartItem.quantity){
             cartItem.quantity=cartItem.inventory;
         }
-        cartItem.quantity=cartItem.quantity>0?cartItem.quantity:1;
+        
+        cartItem.quantity = cartItem.quantity>0?cartItem.quantity:1;
+
         if(cartItem.inventory===0){
             cartItem.quantity=0;
         }
@@ -79,7 +84,7 @@ class CartItem extends Component {
                         title="" 
                         onClick={()=>this.onDeleteProductToCart(cartItem)}
                     >
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </td>
             </tr>

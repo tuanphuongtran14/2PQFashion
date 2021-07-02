@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import SD_DetailsSection from './SD_DetailsSection';
-import SD_RelatedSection from './SD_RelatedSection';
+import React, { Component,Fragment } from 'react';
+import SDDetailsSection from './SD_DetailsSection';
+import SDRelatedSection from './SD_RelatedSection';
 import $ from 'jquery';
 import {Helmet } from 'react-helmet'
 import axios from 'axios'; 
@@ -19,31 +19,43 @@ class ShopDetailsPage extends Component {
     
     componentDidMount() {  
         // window.location.reload();
-        if(this.state.sku){ 
+        console.log(this.props.match.params.sku);
+        var product={};
+        var listProduct=[];
+        if(this.props.match && this.props.match.params.sku){ 
             // window.location.reload();
+            console.log(this.props.match.params.sku);
             axios({
                 method: 'GET',
                 url: `/api/products/${this.state.sku}`
             }).then(response => {
                 if(response && response.status === 200) {
-                    this.setState({
-                        product: response.data
-                    })
+                    
+                        product= response.data;
+                        axios({
+                            method: 'GET',
+                            url: '/api/products',
+                        }).then(response => {
+                            if(response && response.status === 200) {
+                                
+                                    listProduct= response.data;
+                                    this.setState({
+                                        listProduct: listProduct,
+                                        product: product
+                                    })
+                                
+                            }
+                        })
+                       
+                        
+                    
                 }
             });
+            
         }
         
 
-        axios({
-            method: 'GET',
-            url: '/api/products',
-        }).then(response => {
-            if(response && response.status === 200) {
-                this.setState({
-                    listProduct: response.data
-                })
-            }
-        })
+        
         /*------------------
         Background Set
         --------------------*/
@@ -63,12 +75,13 @@ class ShopDetailsPage extends Component {
         proQty.on('click', '.qtybtn', function () {
             var $button = $(this);
             var oldValue = $button.parent().find('input').val();
+            var newVal ;
             if ($button.hasClass('inc')) {
-                var newVal = parseFloat(oldValue) - 1;
+                 newVal = parseFloat(oldValue) - 1;
             } else {
                 // Don't allow decrementing below zero
                 if (oldValue > 0) {
-                    var newVal = parseFloat(oldValue) + 1;
+                     newVal = parseFloat(oldValue) + 1;
                 } else {
                     newVal = 0;
                 }
@@ -79,25 +92,23 @@ class ShopDetailsPage extends Component {
 
 
     render() { 
-        if(this.state.product){
+       
             return (
-                <div> 
+                <Fragment> 
                     <Helmet>
                         <title>Shop Details</title> 
                     </Helmet> 
                     {/* <!-- Shop Details Section Begin --> */} 
-                        <SD_DetailsSection product={this.state.product}/> 
+                        <SDDetailsSection product={this.state.product}/> 
                     {/* <!-- Shop Details Section End --> */}
 
                     {/* <!-- Related Section Begin --> */}
-                        <SD_RelatedSection listProduct={this.state.listProduct}/>
+                        <SDRelatedSection listProduct={this.state.listProduct}/>
                     {/* {/* <!-- Related Section End --> */}
-                </div>
+                </Fragment>
             );
-        }
-        else {
-            return;
-        }
+
+
     }
 }
 

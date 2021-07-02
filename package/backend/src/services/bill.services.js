@@ -10,12 +10,13 @@ exports.create = BillInput => {
     BillInput.deliveryDate=new Date(today.getFullYear(),today.getMonth(),today.getDate()+5);
     BillInput.id_Bill=generateIdBill();
     BillInput.status=0;
-    Bill.products.forEach(async product => {
-        const tmp = await Product.findOne({ sku: product.sku });
+    BillInput.products.forEach(async product => {
+        let tmp = await Product.findOne({ sku: product.sku });
         tmp.options.forEach(option => {
             if(option.size === product.size)
                 option.remaining -= product.quantity;
-        })
+        });
+        
         await tmp.save();
     })
     return BillRepo.create(BillInput);

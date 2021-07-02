@@ -87,7 +87,13 @@ exports.getCartByIdUser = async (req, res) => {
     // Get all order from database
     CartService.findCartByIdUser( id_user)
     .then((cart)=>{
-        
+        if(cart===null){
+            cart={
+                id_User:id_user,
+                products:[],
+            }
+            
+        }
         return res.status(200).json(cart);
     })                                
     .catch((err)=>{

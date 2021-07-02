@@ -66,17 +66,17 @@ class ShopPage extends Component {
     }
 
     displayFilterCategories = () => {
-        return this.state.categoriesList.map(category => {
+        return this.state.categoriesList.map((category,index) => {
             return (
-                <li><Link type="button" to={`/shop/categories?value=${ category.name }`}>{ category.name }</Link></li>
+                <li key={index}><Link type="button" to={`/shop/categories?value=${ category.name }`}>{ category.name }</Link></li>
             )
         })
     }
 
     displayFilterTags = () => {
-        return this.state.tagsList.map(tag => {
+        return this.state.tagsList.map((tag,index) => {
             return (
-                <Link type="button" to={`/shop/tags?value=${ tag.name }`}>{ tag.name }</Link>
+                <Link key={index} type="button" to={`/shop/tags?value=${ tag.name }`}>{ tag.name }</Link>
             )
         })
     }
@@ -93,8 +93,6 @@ class ShopPage extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.productsNumber)
-        console.log(this.state.productsOnPage * this.state.pageNumber)
         if(this.state.productsNumber <= this.state.productsOnPage * this.state.pageNumber)
             document.getElementById("loadMoreBtn").setAttribute('disabled', true);
         else 
