@@ -35,7 +35,7 @@ class InfoUser extends Component {
         var {history,cart}=this.props;
         var order=this.props.order;
         var {nameCustomer, address,email,orderNote,paymentMethod,phone}=this.state;
-        var products=cart.map((item)=>{
+        var products=cart.products.map((item)=>{
             if(item.quantity>0){
                 return{
                     sku:item.sku,

@@ -66,17 +66,17 @@ class ShopPage extends Component {
     }
 
     displayFilterCategories = () => {
-        return this.state.categoriesList.map(category => {
+        return this.state.categoriesList.map((category,index) => {
             return (
-                <li><Link type="button" to={`/shop/categories?value=${ category.name }`}>{ category.name }</Link></li>
+                <li key={index}><Link type="button" to={`/shop/categories?value=${ category.name }`}>{ category.name }</Link></li>
             )
         })
     }
 
     displayFilterTags = () => {
-        return this.state.tagsList.map(tag => {
+        return this.state.tagsList.map((tag,index) => {
             return (
-                <Link type="button" to={`/shop/tags?value=${ tag.name }`}>{ tag.name }</Link>
+                <Link key={index} type="button" to={`/shop/tags?value=${ tag.name }`}>{ tag.name }</Link>
             )
         })
     }
@@ -93,8 +93,6 @@ class ShopPage extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.productsNumber)
-        console.log(this.state.productsOnPage * this.state.pageNumber)
         if(this.state.productsNumber <= this.state.productsOnPage * this.state.pageNumber)
             document.getElementById("loadMoreBtn").setAttribute('disabled', true);
         else 
@@ -146,14 +144,7 @@ class ShopPage extends Component {
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__categories">
                                                         <ul className="nice-scroll">
-<<<<<<< HEAD
-                                                            <li><Link type="button" to={`/shop/categories?value=Quần áo`}>Quần áo </Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=Áo thun`}>Áo thun </Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=Giày`}>Giày</Link></li>
-                                                            <li><Link type="button" to={`/shop/categories?value=Phụ kiện`}>Phụ kiện</Link></li>
-=======
                                                             { this.displayFilterCategories() }
->>>>>>> fcf1d96f652ed0f652d8df8d35764af614662129
                                                         </ul>
                                                         </div>
                                                     </div>
@@ -284,17 +275,7 @@ class ShopPage extends Component {
                                                 <div id="collapseSix" className="collapse show" data-parent="#accordionExample">
                                                     <div className="card-body">
                                                         <div className="shop__sidebar__tags">
-<<<<<<< HEAD
-                                                            <Link type="button" to={`/shop/tags?value=Quần áo`}>Quần áo </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Ba lô`}>Ba lô </Link>
-                                                            <Link type="button" to={`/shop/tags?value="Thời trang"`}>Thời trang </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Giày`}>Giày </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Mũ`}>Mũ </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Phụ kiện`}>Phụ kiện </Link>
-                                                            <Link type="button" to={`/shop/tags?value=Áo thun`}>Áo thun </Link>
-=======
                                                             { this.displayFilterTags() }
->>>>>>> fcf1d96f652ed0f652d8df8d35764af614662129
                                                         </div>
                                                     </div>
                                                 </div>

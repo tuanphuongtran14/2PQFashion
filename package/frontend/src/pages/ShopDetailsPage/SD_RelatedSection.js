@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 class SD_RelatedSection extends Component {
-    refreshPage=()=>{ 
-        window.location.reload(); 
-    }
 
     renderStarRate(star){
         let result=[];
@@ -27,7 +24,7 @@ class SD_RelatedSection extends Component {
             var image = images.map((image,index) => {
                 if (index === 0){
                     return (
-                        <div 
+                        <div key={index}
                             className="product__item__pic set_bg" 
                             data-setbg={process.env.REACT_APP_API_URL + image} 
                             style={{backgroundImage: "url("+process.env.REACT_APP_API_URL + image+")"}}
@@ -44,12 +41,12 @@ class SD_RelatedSection extends Component {
             })
             var star = product.rating.grade;
             return(
-                <div className="col-lg-3 col-md-6 col-sm-6 col-sm-6">
+                <div className="col-lg-3 col-md-6 col-sm-6 col-sm-6" key={index}>
                     <div className="product__item">
                         {image}
                         <div className="product__item__text">
-                            <h6 onClick={ this.refreshPage }>
-                                <Link to={"/" + product.sku}>
+                            <h6 >
+                                <Link to={`/${product.sku}`}>
                                     {product.name}
                                 </Link>
                             </h6>

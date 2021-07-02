@@ -79,7 +79,7 @@ class CartItem extends Component {
                         title="" 
                         onClick={()=>this.onDeleteProductToCart(cartItem)}
                     >
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </td>
             </tr>

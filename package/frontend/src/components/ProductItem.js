@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import {connect} from 'react-redux'
-import {Link, useParams} from "react-router-dom"
+import {Link} from "react-router-dom"
 class ProductItem extends Component {
     renderClass=(status)=>{
         let result='';
@@ -60,6 +60,7 @@ class ProductItem extends Component {
             inventory:inventory,
             quantity:quantity,
             options:options,
+            index:0,
 
         }                     
         this.props.onAddToCart(cartItem);
@@ -89,7 +90,7 @@ class ProductItem extends Component {
                             </ul>
                         </div>
                         <div className="product__item__text">
-                            <h6 onClick={ this.refreshPage }>
+                            <h6>
                                 <Link to={"/" + sku}>{name}</Link>
                             </h6>
                             <div className="rating">

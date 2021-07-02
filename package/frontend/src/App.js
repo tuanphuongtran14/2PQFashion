@@ -70,7 +70,7 @@ class App extends Component {
               <Route path='/test'>
                 <Test />
               </Route>
-              <Route path="/:sku" strict render={(props) => <ShopDetailsPage {...props}/>}></Route> 
+              <Route path="/:sku" strict render={({ match, history }) => <ShopDetailsPage match={match} history={history}/>} />
             </Switch>
             { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Footer /> : '') }
           </div>

@@ -237,7 +237,6 @@ export const getUserLogin=(user)=>{
 
 
 export const changeCartInDTB=(cart)=>{
-    console.log(cart);
     return callApi(`carts/create`,'post',{
         id_User:cart.id_User,
         products:cart.products
