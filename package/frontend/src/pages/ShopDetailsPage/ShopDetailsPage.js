@@ -12,18 +12,67 @@ class ShopDetailsPage extends Component {
         super(props);
         this.state = {
             listProduct: [],
-            product: {}
+            product: {},
+            sku:'',
+        }
+    }
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.match.params.sku !== prevState.sku) {
+            return {sku: nextProps.match.params.sku};
+            
+        }
+        
+        return null;
+    }
+    
+    componentDidUpdate(prevProps, prevState) {
+        
+        const {sku} = this.props.match.params;
+        if (prevProps.match.params.sku !== sku) {
+            var product={};
+            var listProduct=[];
+            if(this.props.match && this.props.match.params.sku){ 
+                // window.location.reload();
+                axios({
+                    method: 'GET',
+                    url: `/api/products/${this.props.match.params.sku}`
+                }).then(response => {
+                    if(response && response.status === 200) {
+                        
+                            product= response.data;
+                            axios({
+                                method: 'GET',
+                                url: '/api/products',
+                            }).then(response => {
+                                if(response && response.status === 200) {
+                                    
+                                        listProduct= response.data;
+                                        this.setState({
+                                            listProduct: listProduct,
+                                            product: product
+                                        })
+                                    
+                                }
+                            })
+                           
+                            
+                        
+                    }
+                });
+                
+            }
+            
         }
     }
     
-    componentDidMount() {  
+    componentDidMount() { 
+
         // window.location.reload();
-        console.log(this.props.match.params.sku);
         var product={};
         var listProduct=[];
         if(this.props.match && this.props.match.params.sku){ 
+            
             // window.location.reload();
-            console.log(this.props.match.params.sku);
             axios({
                 method: 'GET',
                 url: `/api/products/${this.props.match.params.sku}`
@@ -92,7 +141,6 @@ class ShopDetailsPage extends Component {
     }
 
     render() { 
-       
             return (
                 <Fragment> 
                     <Helmet>
@@ -103,7 +151,7 @@ class ShopDetailsPage extends Component {
                     {/* <!-- Shop Details Section End --> */}
 
                     {/* <!-- Related Section Begin --> */}
-                        <SDRelatedSection listProduct={this.state.listProduct}/>
+                        <SDRelatedSection listProduct={this.state.listProduct} history={this.props.history}/>
                     {/* {/* <!-- Related Section End --> */}
                 </Fragment>
             );

@@ -13,6 +13,7 @@ export const fetchProducts=(products)=>{
 
 //Lên API lấy dữ liệu products về
 export const fetchProductsRequest=(limit, skip)=>{
+    
     return (dispatch)=>{
         let query = '?';
 

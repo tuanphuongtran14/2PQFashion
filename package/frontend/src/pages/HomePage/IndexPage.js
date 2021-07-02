@@ -15,11 +15,13 @@ class IndexPage extends Component {
         };
     }
     componentDidMount() {
+        
         this.props.fetchProductsRequest();
         this.props.getDataPage(this.state.page);
         // this.addInteraction();
     }
     componentDidUpdate() {
+       
         this.addInteraction();
     }
 

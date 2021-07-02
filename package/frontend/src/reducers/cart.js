@@ -15,10 +15,20 @@ var initialState={
     id_User:user.id_User,
     products:[]
 }
-var findProductInCart=(cart,product)=>{
+var findProductInCartByIndex=(cart,product)=>{
     var index=-1;
     cart.map((cartItem,i)=>{
         if(cartItem.index===product.index){
+            index=i;
+        }
+        return cartItem;
+    });
+    return index;
+}
+var findProductInCartBySize=(cart,product)=>{
+    var index=-1;
+    cart.map((cartItem,i)=>{
+        if(cartItem.sku===product.sku&&cartItem.size===product.size){
             index=i;
         }
         return cartItem;
@@ -39,7 +49,7 @@ const cart=(state=initialState,action)=>{
     switch(action.type){
         case types.ADD_TO_CART:
             replaceState={...state};
-            index=findProductInCart(replaceState.products,product);
+            index=findProductInCartBySize(replaceState.products,product);
             if(index===-1){
                 product.index=getMaxIndex(replaceState.products)+1;
                 replaceState.products.push(product);
@@ -55,7 +65,7 @@ const cart=(state=initialState,action)=>{
         case types.DELETE_PRODUCT_TO_CART:
             replaceState={...state};
             
-            index=findProductInCart(replaceState.products,product);
+            index=findProductInCartByIndex(replaceState.products,product);
             if(index!==-1){
                 replaceState.products.splice(index,1);
             }
@@ -63,7 +73,7 @@ const cart=(state=initialState,action)=>{
             return replaceState;
         case types.UPDATE_PRODUCT_TO_CART:
             replaceState={...state};
-            index=findProductInCart(replaceState.products,product);
+            index=findProductInCartByIndex(replaceState.products,product);
             if(index!==-1){
                 var inventory=0;
 
