@@ -8,7 +8,7 @@ class SD_breadcrumb extends Component {
                     <div className="product__details__breadcrumb">
                         <a href="./">Trang chủ</a>
                         <a href="./shop">Cửa hàng</a>
-                        <span>Chi tiết sản phẩm</span>
+                        <span>{this.props.product.name}</span>
                     </div>
                 </div>
             </div>

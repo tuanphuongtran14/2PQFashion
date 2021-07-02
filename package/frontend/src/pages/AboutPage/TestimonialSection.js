@@ -9,22 +9,21 @@ class TestimonialSection extends Component {
                         <div className="col-lg-6 p-0">
                             <div className="testimonial__text">
                                 <span className="icon_quotations" />
-                                <p>“Going out after work? Take your butane curling iron with you to the office, heat it up,
-                                    style your hair before you leave the office and you won’t have to make a trip back home.”
+                                <p>“Đi một ngày đàng, tốn năm mươi ngàn tiền xăng.”
                                 </p>
                                 <div className="testimonial__author">
                                     <div className="testimonial__author__pic">
                                         <img src="/img/about/testimonial-author.jpg" alt="" />
                                     </div>
                                     <div className="testimonial__author__text">
-                                        <h5>Augusta Schultz</h5>
-                                        <p>Fashion Design</p>
+                                        <h5>Nguyễn Hữu Phát</h5>
+                                        <p>Nhân viên dọn dẹp</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-6 p-0">
-                            <div className="testimonial__pic set-bg" data-setbg="/img/about/testimonial-pic.jpg" />
+                            <div className="testimonial__pic set-bg"  style={{backgroundImage: "url(/img/about/testimonial-pic.jpg)"}} />
                         </div>
                     </div>
                 </div>

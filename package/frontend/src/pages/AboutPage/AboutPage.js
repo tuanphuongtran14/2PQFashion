@@ -14,12 +14,12 @@ class AboutPage extends Component {
         return ( 
             <div>
                 <Helmet>
-                    <title>About us</title>
+                    <title>Về chúng tôi</title>
                 </Helmet>
 
                 {/* Breadcrumb Section Begin */}
                     <Breadcrumb breadcrumbs={
-                        [ 'Home', 'About' ]}
+                        [ 'Trang chủ', 'Về chúng tôi' ]}
                     />
                 {/* Breadcrumb Section End */}
                 {/* About Section Begin */}

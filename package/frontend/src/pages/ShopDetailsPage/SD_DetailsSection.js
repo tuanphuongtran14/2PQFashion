@@ -14,7 +14,7 @@ class SD_DetailsSection extends Component {
             <section className="shop-details"> 
                 <div className="product__details__pic">
                     <div className="container">
-                        <SDBreadcrumb/>
+                        <SDBreadcrumb product={this.props.product}/>
                         <SDPictures images={this.props.product.images}/>
                     </div>
                 </div>

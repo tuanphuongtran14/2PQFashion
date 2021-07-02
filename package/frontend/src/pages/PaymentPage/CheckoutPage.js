@@ -33,7 +33,7 @@ class CheckoutPage extends Component {
                                         <h4>Thanh toán</h4>
                                         <div className="breadcrumb__links">
                                             <a href="./index.html">Trang chủ</a>
-                                            <a href="./shop.html">Shop</a>
+                                            <a href="./shop.html">Cửa hàng</a>
                                             <span>Thanh toán</span>
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@ class CheckoutPage extends Component {
                                         <h4>Thanh toán</h4>
                                         <div className="breadcrumb__links">
                                             <a href="./index.html">Trang chủ</a>
-                                            <a href="./shop.html">Shop</a>
+                                            <a href="./shop.html">Cửa hàng</a>
                                             <span>Thanh toán</span>
                                         </div>
                                     </div>

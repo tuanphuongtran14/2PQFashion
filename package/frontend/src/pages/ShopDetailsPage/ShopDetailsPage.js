@@ -146,25 +146,14 @@ class ShopDetailsPage extends Component {
 
     render() { 
             return (
-<<<<<<< HEAD
-                <div> 
-                    <ScrollToTop />
-=======
                 <Fragment> 
->>>>>>> 9b38c51d0595b927824e3a3ed08c11686e690104
-                    <Helmet>
-                        <title>Shop Details</title> 
-                    </Helmet> 
+                    
                     {/* <!-- Shop Details Section Begin --> */} 
                         <SDDetailsSection product={this.state.product}/> 
                     {/* <!-- Shop Details Section End --> */}
 
                     {/* <!-- Related Section Begin --> */}
-<<<<<<< HEAD
-                        <SDRelatedSection listProduct={this.state.listProduct}/>
-=======
                         <SDRelatedSection listProduct={this.state.listProduct} history={this.props.history}/>
->>>>>>> 9b38c51d0595b927824e3a3ed08c11686e690104
                     {/* {/* <!-- Related Section End --> */}
                 </Fragment>
             );
