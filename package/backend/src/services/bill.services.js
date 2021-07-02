@@ -1,9 +1,9 @@
 const { Bill } = require('../models/bill.models');
 const Product = require('../models').product;
 const BillRepo = require('../repositories/bill.repo');
+const nodemailer = require('nodemailer');
 const {generateIdBill}=require('../models/Bill.models')
-exports.create = BillInput => {
-    
+exports.create = async BillInput => {
     var today = new Date();
     var time = today.getDate() + ":" + today.getMinutes() + ":" + today.getSeconds();
     BillInput.bookingDate=new Date(today.getFullYear(),today.getMonth(),today.getDate());
@@ -19,7 +19,35 @@ exports.create = BillInput => {
         
         await tmp.save();
     })
-    return BillRepo.create(BillInput);
+
+    await BillRepo.create(BillInput);
+    
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: '2pqfashion@gmail.com',
+            pass: '#123456@'
+        }
+    });
+    
+    const mailOptions = {
+        from: '2pqfashion@gmail.com',
+        to: BillInput.email,
+        subject: `[2PQFashion Shop] Đơn hàng #${BillInput.id_Bill} đã được đặt thành công`,
+        html: `
+            <h1>Đơn hàng #${BillInput.id_Bill} đã bị hủy</h1>
+            <p>Chúng tôi rất vinh dự khi thông báo rằng đơn hàng #${BillInput.id_Bill} đã được đặt thành công. Chúng tôi hy vọng sẽ tiếp tục được phục vụ quý khách trong tương lai gần.</p>
+            <p>Quý khách có thể kiểm tra thông tin và tình trạng đơn hàng <a href="http://localhost:3000/user/order-traking/${BillInput.id_Bill}">tại đây</a></p>
+        `
+    };
+    
+    transporter.sendMail(mailOptions, async function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
 }
 
 
@@ -86,6 +114,33 @@ exports.updateByID = (id, updateContent) => {
 }
 
 //hủy bỏ bill
-exports.cancelBill = (id_Bill) => {
-    return BillRepo.cancelBill(id_Bill);
+exports.cancelBill = async (id_Bill) => {
+    const customerEmail = await  BillRepo.cancelBill(id_Bill);
+
+    const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: '2pqfashion@gmail.com',
+        pass: '#123456@'
+    }
+    });
+
+    const mailOptions = {
+    from: '2pqfashion@gmail.com',
+    to: customerEmail,
+    subject: `[2PQFashion Shop] Đơn hàng #${id_Bill} đã bị hủy`,
+    html: `
+        <h1>Đơn hàng #${id_Bill} đã bị hủy</h1>
+        <p>Chúng tôi rất tiếc khi thông báo rằng đơn hàng #${id_Bill} đã bị hủy. Chúng tôi hy vọng sẽ được phục vụ quý khách trong tương lai gần.</p>
+        <p>Quý khách có thể tham khảo các sản phẩm khác của chúng tôi <a href="http://localhost:3000/shop">tại đây</a></p>
+    `
+    };
+
+    transporter.sendMail(mailOptions, async function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
 }

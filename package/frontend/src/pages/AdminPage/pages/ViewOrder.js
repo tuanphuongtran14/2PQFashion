@@ -12,7 +12,8 @@ class ViewOrder extends Component {
             loading: true,
             id: query.get('id'),
             status: 0,
-            details: []
+            details: [],
+            id_Bill: ''
         }
     }
     componentDidMount() {
@@ -23,6 +24,9 @@ class ViewOrder extends Component {
             if (res && res.status === 200) {
                 this.setState({
                     status: Number(res.data.status)
+                });
+                this.setState({
+                    id_Bill: res.data.id_Bill
                 });
                 this.setState({
                     details: res.data.products
@@ -112,6 +116,33 @@ class ViewOrder extends Component {
         }
     }
 
+    cancelBill = event => {
+        event.preventDefault();
+        axios({
+            method: 'POST',
+            url: '/api/bills/cancel-bill',
+            data: {
+                id_Bill: this.state.id_Bill
+            }
+        }).then(res => {
+            if(res && res.status === 200) {
+                this.setState({
+                    status: 4
+                })
+                this.setState({
+                    loading: false
+                });
+            }
+        }).catch(error => {
+            if(error.response) {
+                alert("Lỗi: " + error.response.data.message)
+            }
+            this.setState({
+                loading: false
+            });
+        })
+    }
+
     displayMethod = () => {
         const methods = [
             {
@@ -139,7 +170,7 @@ class ViewOrder extends Component {
     displayCancel = () =>  {
         const disabled = (this.state.status >= 3) ? true : false;
         return (
-            <button disabled={disabled} className="btn btn-danger" onClick={() => this.setStatus(4)}>Hủy đơn hàng</button>
+            <button disabled={disabled} className="btn btn-danger" onClick={this.cancelBill}>Hủy đơn hàng</button>
         )
     }
 
