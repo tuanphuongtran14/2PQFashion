@@ -75,7 +75,7 @@ class ShopDetailsPage extends Component {
             // window.location.reload();
             axios({
                 method: 'GET',
-                url: `/api/products/${this.props.match.params.sku}`
+                url: `/api/products/${this.state.sku}`
             }).then(response => {
                 if(response && response.status === 200) {
                     
@@ -136,9 +136,8 @@ class ShopDetailsPage extends Component {
             }
             $button.parent().find('input').val(newVal);
         });
-
-        
     }
+
 
     render() { 
             return (

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './../../actions'
+
+
 class SD_RelatedSection extends Component {
 
     renderStarRate(star){
@@ -42,12 +44,25 @@ class SD_RelatedSection extends Component {
             options:options,
             index:0,
 
+<<<<<<< HEAD
         }    
                         
         this.props.onAddToCart(cartItem);
         }
          
     }
+=======
+    componentDidUpdate() {
+        /*------------------
+            Background Set
+            --------------------*/
+            $('.set-bg').each(function () {
+                var bg = $(this).data('setbg');
+            });
+                
+    }
+
+>>>>>>> ad94d40074dba5041589594362840af7ce925011
     render() {
         var {listProduct} = this.props;
         

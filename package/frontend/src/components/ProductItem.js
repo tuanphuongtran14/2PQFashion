@@ -47,7 +47,7 @@ class ProductItem extends Component {
         while(options[i].remaining === 0)
             i++;
         var size=options[i].size;
-        var inventory=options[i].quantity;
+        var inventory=options[i].remaining;
         var quantity=inventory===0?0:1;
     
         const cartItem={

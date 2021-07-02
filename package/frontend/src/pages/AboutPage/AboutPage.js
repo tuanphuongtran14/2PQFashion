@@ -9,6 +9,7 @@ import {Helmet} from 'react-helmet'
 import SearchContainer from '../../containers/SearchContainer';
 
 class AboutPage extends Component {
+    
     render() {
         return ( 
             <div>

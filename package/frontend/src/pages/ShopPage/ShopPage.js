@@ -18,7 +18,7 @@ class ShopPage extends Component {
             categoriesList: [],
             tagsList: [],
             pageNumber: 1,
-            productsOnPage: 6,
+            productsOnPage: 2,
             productsNumber: 0
         };
     }
