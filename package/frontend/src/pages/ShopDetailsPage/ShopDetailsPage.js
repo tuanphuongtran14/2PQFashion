@@ -12,17 +12,18 @@ class ShopDetailsPage extends Component {
         super(props);
         this.state = {
             listProduct: [],
-            product: {}
+            product: {},
+            sku: this.props.match.params.sku || ''
         }
     }
     
     componentDidMount() {  
         // window.location.reload();
-        if(this.props.match && this.props.match.params.sku){ 
+        if(this.state.sku){ 
             // window.location.reload();
             axios({
                 method: 'GET',
-                url: `/api/products/${this.props.match.params.sku}`
+                url: `/api/products/${this.state.sku}`
             }).then(response => {
                 if(response && response.status === 200) {
                     this.setState({
@@ -74,9 +75,8 @@ class ShopDetailsPage extends Component {
             }
             $button.parent().find('input').val(newVal);
         });
-
-        
     }
+
 
     render() { 
         if(this.state.product){

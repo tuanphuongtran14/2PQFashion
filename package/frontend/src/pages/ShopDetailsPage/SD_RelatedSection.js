@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; 
 import {Link} from 'react-router-dom';
+import $ from 'jquery';
 
 class SD_RelatedSection extends Component {
     refreshPage=()=>{ 
@@ -17,6 +18,16 @@ class SD_RelatedSection extends Component {
             result.push(<i key={i+5} className="fa fa-star-o"></i>);
         }
         return result;
+    }
+
+    componentDidUpdate() {
+        /*------------------
+            Background Set
+            --------------------*/
+            $('.set-bg').each(function () {
+                var bg = $(this).data('setbg');
+            });
+                
     }
 
     render() {

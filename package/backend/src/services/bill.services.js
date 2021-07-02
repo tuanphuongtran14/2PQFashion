@@ -1,4 +1,5 @@
 const { Bill } = require('../models/bill.models');
+const Product = require('../models').product;
 const BillRepo = require('../repositories/bill.repo');
 const {generateIdBill}=require('../models/Bill.models')
 exports.create = BillInput => {
@@ -9,6 +10,14 @@ exports.create = BillInput => {
     BillInput.deliveryDate=new Date(today.getFullYear(),today.getMonth(),today.getDate()+5);
     BillInput.id_Bill=generateIdBill();
     BillInput.status=0;
+    Bill.products.forEach(async product => {
+        const tmp = await Product.findOne({ sku: product.sku });
+        tmp.options.forEach(option => {
+            if(option.size === product.size)
+                option.remaining -= product.quantity;
+        })
+        await tmp.save();
+    })
     return BillRepo.create(BillInput);
 }
 

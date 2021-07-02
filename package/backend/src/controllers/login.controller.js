@@ -11,6 +11,12 @@ exports.login = async (req, res) => {
         const checkPw = await bcrypt.compare(authorizarion.password, user.password);
         
         if(checkPw) {
+
+            if(!user.confirmedToken)
+                return res.status(403).json({
+                    message: "Account is not confirmed"
+                })
+
             const data = {
                 id_User: user.id_User,
                 username: user.username,
