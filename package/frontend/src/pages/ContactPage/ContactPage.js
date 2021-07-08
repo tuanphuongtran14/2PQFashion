@@ -8,7 +8,7 @@ class ContactPage extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>Contacts</title>
+                    <title>Thông tin liên hệ</title>
                 </Helmet>
                 {/* Map Begin */}
                 <Map />

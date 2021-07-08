@@ -82,9 +82,9 @@ const cart=(state=initialState,action)=>{
             if(index!==-1){
                 var inventory=0;
 
-                //option chứ size và quantity của sản pham
+                //option chứa size và quantity của sản pham
                 product.options.forEach(item=>{
-                    inventory=item.size===product.size?item.quantity:inventory 
+                    inventory=item.size===product.size?item.remaining:inventory 
                 })
                 product.quantity=inventory===0?0:product.quantity;
                 product.inventory=inventory;

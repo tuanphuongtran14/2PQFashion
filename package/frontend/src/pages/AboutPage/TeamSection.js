@@ -8,8 +8,8 @@ class TeamSection extends Component {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="section-title">
-                                <span>Our Team</span>
-                                <h2>Meet Our Team</h2>
+                                <span>Cửa hàng chúng tôi</span>
+                                <h2>Gặp gỡ thành viên</h2>
                             </div>
                         </div>
                     </div>

@@ -31,6 +31,7 @@ class DetailBill extends Component {
                     id_Bill:id_Bill,
                     status:4
                 })
+                this.props.fetchCartByIdUserRequest(this.props.user.id_User);
             })
         }
         
@@ -86,7 +87,8 @@ class DetailBill extends Component {
 const mapStateToProps=(state)=>{
     return {
         user:state.user,
-        list_bill:state.list_bill
+        list_bill:state.list_bill,
+        cart:state.cart,
     }
   }
   const mapDispatchToProps=(dispatch)=>{
@@ -99,7 +101,11 @@ const mapStateToProps=(state)=>{
         },
         onChangeStatusBill:(bill)=>{
             dispatch(actions.changeStatusBill(bill));
-          },
+        },
+        fetchCartByIdUserRequest:(id)=>{
+            dispatch(actions.fetchCartByIdUserRequest(id));
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DetailBill);
+

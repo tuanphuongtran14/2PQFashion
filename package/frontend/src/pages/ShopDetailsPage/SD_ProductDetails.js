@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import {Helmet } from 'react-helmet'
 
 class SD_ProductDetails extends Component {
     componentDidUpdate() {
@@ -30,6 +31,9 @@ class SD_ProductDetails extends Component {
         
         return (
             <div className="product__details__text">
+                <Helmet>
+                    <title>{product.name}</title> 
+                </Helmet> 
                 {/* <h1>{displaySize}</h1> */}
                 <h4>{product.name}</h4>
                 <div className="rating">

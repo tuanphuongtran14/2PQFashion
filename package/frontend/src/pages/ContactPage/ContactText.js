@@ -5,19 +5,18 @@ class ContactText extends Component {
         return (
             <div className="contact__text">
                 <div className="section-title">
-                    <span>Information</span>
-                    <h2>Contact Us</h2>
-                    <p>As you might expect of a company that began as a high-end interiors contractor, we pay
-                    strict attention.</p>
+                    <span>Thông tin</span>
+                    <h2>Liên hệ</h2>
+                    <p>Cửa hàng chúng tôi mở cửa từ 7 giờ đến 22 giờ hàng ngày, từ thứ 2 đến thứ 7.</p>
                 </div>
                 <ul>
                     <li>
-                        <h4>America</h4>
-                        <p>195 E Parker Square Dr, Parker, CO 801 <br />+43 982-314-0958</p>
+                        <h4>Thành phố Hồ Chí Minh</h4>
+                        <p>Song Hành, khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh <br />028 3725 2002</p>
                     </li>
                     <li>
-                        <h4>France</h4>
-                        <p>109 Avenue Léon, 63 Clermont-Ferrand <br />+12 345-423-9893</p>
+                        <h4>Bình Dương</h4>
+                        <p>Đông Hòa, Dĩ An, Bình Dương<br />0867 739 268</p>
                     </li>
                 </ul>
             </div>

@@ -11,7 +11,7 @@ class CounterSection extends Component {
                                 <div className="counter__item__number">
                                     <h2 className="cn_num">102</h2>
                                 </div>
-                                <span>Our <br />Clients</span>
+                                <span>Khách hàng <br />thân thiết</span>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
@@ -19,15 +19,15 @@ class CounterSection extends Component {
                                 <div className="counter__item__number">
                                     <h2 className="cn_num">30</h2>
                                 </div>
-                                <span>Total <br />Categories</span>
+                                <span>Danh mục <br />thời trang</span>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="counter__item">
                                 <div className="counter__item__number">
-                                    <h2 className="cn_num">102</h2>
+                                    <h2 className="cn_num">12</h2>
                                 </div>
-                                <span>In <br />Country</span>
+                                <span>Cửa hàng <br />toàn quốc</span>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
@@ -36,7 +36,7 @@ class CounterSection extends Component {
                                     <h2 className="cn_num">98</h2>
                                     <strong>%</strong>
                                 </div>
-                                <span>Happy <br />Customer</span>
+                                <span>Khách hàng <br />hài lòng</span>
                             </div>
                         </div>
                     </div>

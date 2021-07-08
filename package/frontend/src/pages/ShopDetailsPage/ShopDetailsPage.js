@@ -4,9 +4,14 @@ import SDRelatedSection from './SD_RelatedSection';
 import $ from 'jquery';
 import {Helmet } from 'react-helmet'
 import axios from 'axios'; 
+import ScrollToTop from '../../components/ScrollToTop';
 
 
 class ShopDetailsPage extends Component { 
+
+    // componentDidUpdate() {
+    //     {ScrollToTop}
+    // }
 
     constructor(props) {
         super(props);
@@ -142,9 +147,7 @@ class ShopDetailsPage extends Component {
     render() { 
             return (
                 <Fragment> 
-                    <Helmet>
-                        <title>Shop Details</title> 
-                    </Helmet> 
+                    
                     {/* <!-- Shop Details Section Begin --> */} 
                         <SDDetailsSection product={this.state.product}/> 
                     {/* <!-- Shop Details Section End --> */}

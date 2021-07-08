@@ -45,7 +45,7 @@ countPrice=(cart)=>{
 }
 renderSignin=(user)=>{
     if(!user.id_User){
-        return <Link to={"/login"}>Sign in</Link>
+        return <Link to={"/login"}>Đăng nhập</Link>
     }else{
         return <Link to={"/user"}>{user.username}</Link>
     }
@@ -61,7 +61,7 @@ renderSignin=(user)=>{
                         <div className="row">
                             <div className="col-lg-6 col-md-7">
                                 <div className="header__top__left">
-                                    <p>Free shipping, 30-day return or refund guarantee.</p>
+                                    <p>Miễn phí vận chuyển, hoàn trả trong 30 ngày hoặc đảm bảo hoàn lại tiền.</p>
                                 </div>
                             </div>
                             <div className="col-lg-6 col-md-5">
@@ -69,15 +69,7 @@ renderSignin=(user)=>{
                                     <div className="header__top__links">
                                         {this.renderSignin(this.props.user)}
                                         <a href="/">FAQs</a>
-                                    </div>
-                                    <div className="header__top__hover">
-                                        <span>Usd <i className="arrow_carrot-down"></i></span>
-                                        <ul>
-                                            <li>USD</li>
-                                            <li>EUR</li>
-                                            <li>USD</li>
-                                        </ul>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -94,7 +86,7 @@ renderSignin=(user)=>{
                             <nav className="header__menu mobile-menu">
                                 <ul>
                                     <li ><NavLink exact to="/" activeClassName="active">Trang chủ</NavLink></li>
-                                    <li><Link to={`/shop`}>Shop </Link></li>
+                                    <li><Link to={`/shop`}>Cửa hàng </Link></li>
                                     <li><NavLink exact to='/about' activeClassName="active">Về chúng tôi</NavLink></li>
                                     <li>
                                         <NavLink exact to="/contact" activeClassName="active">

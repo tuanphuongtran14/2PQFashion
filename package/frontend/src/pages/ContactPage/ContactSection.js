@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ContactText from './ContactText';
-import ContactForm from './ContactForm';
+import ContactImg from './ContactImg';
 
 class ContactSection extends Component {
     render() {
@@ -12,7 +12,7 @@ class ContactSection extends Component {
                             <ContactText />
                         </div>
                         <div className="col-lg-6 col-md-6">
-                            <ContactForm />
+                            <ContactImg />
                         </div>
                     </div>
                 </div>

@@ -66,7 +66,7 @@ class ProductItem extends Component {
                            
         this.props.onAddToCart(cartItem);
         }
-         
+
     }
     
     refreshPage=()=>{ 
@@ -79,7 +79,6 @@ class ProductItem extends Component {
         const addClass=this.renderClass(status);
         const result=onPage===1?` ${addClass} ${this.renderOption(status,onChange)}`:'';
         
-        
         return (
             <Fragment>
                 <div className={`${onPage===1?'col-lg-3':'col-lg-4'} col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${result}`} >
@@ -87,6 +86,7 @@ class ProductItem extends Component {
                         <div className="product__item__pic " style={{backgroundImage:`url(${process.env.REACT_APP_API_URL}${images[0]})`, backgroundSize: 'cover'}} >
                         <span className="label label--sales" style={{display:`${status!==2?'none':'block'}`}}>Sale</span>
                             <ul className="product__hover">
+                                <li><button type="button" className="btn--square border"><i className="fa fa-heart-o" aria-hidden="true"></i></button></li>
                                 <li><button type="button" onClick={this.onClick} className="btn--square border"><i className="fa fa-cart-plus" aria-hidden="true"></i></button></li>
                             </ul>
                         </div>

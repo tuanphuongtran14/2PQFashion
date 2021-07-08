@@ -104,7 +104,7 @@ class ShopPage extends Component {
         return (
             <Fragment>
                 <Helmet>
-                    <title>Shop</title>
+                    <title>Cửa hàng</title>
                 </Helmet>
                 
                 {/* <!-- Breadcrumb Section Begin --> */}
@@ -113,10 +113,10 @@ class ShopPage extends Component {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="breadcrumb__text">
-                                    <h4>Shop</h4>
+                                    <h4>Cửa hàng</h4>
                                     <div className="breadcrumb__links">
                                         <a href="/#" >Trang chủ</a>
-                                        <span>Shop</span>
+                                        <span>Cửa hàng</span>
                                     </div>
                                 </div>
                             </div>

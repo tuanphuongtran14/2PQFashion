@@ -8,8 +8,8 @@ class ClientSection extends Component {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="section-title">
-                                <span>Partner</span>
-                                <h2>Happy Clients</h2>
+                                <span>Các đối tác</span>
+                                <h2>----------------</h2>
                             </div>
                         </div>
                     </div>

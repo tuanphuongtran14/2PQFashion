@@ -77,8 +77,8 @@ class ProductListContainer extends Component {
                         <div className="row">
                             <div className="col-lg-12">
                                 <ul className="filter__controls">
-                                    <li className="active" data-filter="*" onClick={()=>{this.onClick(3)}}>Best Sellers</li>
-                                    <li data-filter=".new-arrivals" onClick={()=>{this.onClick(1)}}>New Arrivals</li>
+                                    <li className="active" data-filter="*" onClick={()=>{this.onClick(3)}}>Bán chạy</li>
+                                    <li data-filter=".new-arrivals" onClick={()=>{this.onClick(1)}}>Mặt hàng mới</li>
                                     <li data-filter=".hot-sales" onClick={()=>{this.onClick(2)}}>Hot Sales</li>
                                 </ul>
                             </div>

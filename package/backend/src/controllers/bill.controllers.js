@@ -9,7 +9,6 @@ exports.create = async (req, res) => {
             message: "Can'\t create an empty orders"
         })
     }
-        console.log(ordersInput);
         //Validate orders input
         validateBill(ordersInput);
 
@@ -19,6 +18,7 @@ exports.create = async (req, res) => {
             return res.status(200).json({ message:'create successfully'});
         })
         . catch ((err)=> {
+        console.log(err);
         return res.status(500).json({
             message: err.message || "Some errors occur while creating new orders"
         })
@@ -166,16 +166,17 @@ exports.deleteOne = async (req, res) => {
 //sự kiện khi người dùng hủy bill 
 exports.cancelBill = async (req, res) => {
     let id_Bill = req.body.id_Bill;
-
+    
     // Get all order from database
     BillService.cancelBill(  id_Bill )
     .then(()=>{
         return res.status(200).json({success:"cancel bill successfully"});
     })                                
     .catch((err)=>{
-    res.status(500).json({
-        message:
-          err.message || "Some error occurred while retrieving bill."
-    });
+        console.log(err);
+        res.status(500).json({
+            message:
+            err.message || "Some error occurred while retrieving bill."
+        });
 })
 }

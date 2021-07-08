@@ -43,7 +43,7 @@ class Search extends Component {
                     <div className="search-close-switch">+</div>
                     <form className="search-model-form" onSubmit={this.onSubmit}>
                         <input type="text" id="search-input"
-                         placeholder="Search here....."
+                         placeholder="Tìm kiếm tại đây ..."
                           name="keyword" value={keyword} 
                           onChange={this.onChange}/>
                         <span className="input-group-btn">

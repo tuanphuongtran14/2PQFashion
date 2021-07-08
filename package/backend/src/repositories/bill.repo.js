@@ -30,6 +30,21 @@ exports.updateByID = (id_Bill, updateContent) => {
     return Bill.updateOne({id_Bill:id_Bill}, {...updateContent});
 }
 
-exports.cancelBill = (id_Bill) => {
-    return Bill.updateOne({id_Bill:id_Bill}, {status:4});
+exports.cancelBill = async (id_Bill) => {
+    const bill = await Bill.findOne({id_Bill: id_Bill});
+
+    bill.products.forEach(async product => {
+        let tmp = await Product.findOne({ sku: product.sku });
+        tmp.options.forEach(option => {
+            if(option.size === product.size)
+                option.remaining += product.quantity;
+        });
+        
+        await tmp.save();
+    });
+
+    bill.status = 4;
+    await bill.save();
+
+    return bill.email;
 }
