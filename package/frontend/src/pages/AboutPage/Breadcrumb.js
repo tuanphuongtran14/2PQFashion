@@ -16,7 +16,7 @@ class Breadcrumb extends Component {
     
 
         return ( 
-            <section className="breadcrumb-option">
+            <section className="breadcrumb-option wow fadeInUpBig " data-wow-duration="1s">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">

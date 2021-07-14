@@ -11,9 +11,9 @@ class SD_DetailsSection extends Component {
         if (this.props.product.options)
             options = this.props.product.options; 
         return (
-            <section className="shop-details"> 
+            <section className="shop-details "> 
                 <div className="product__details__pic">
-                    <div className="container">
+                    <div className="container ">
                         <SDBreadcrumb product={this.props.product}/>
                         <SDPictures images={this.props.product.images}/>
                     </div>
@@ -21,12 +21,12 @@ class SD_DetailsSection extends Component {
                 <div className="product__details__content">
                     <div className="container">
                         <div className="row d-flex justify-content-center">
-                            <div className="col-lg-8">
+                            <div className="col-lg-8 wow fadeInUpBig " data-wow-duration="1s">
                                 <SDProductDetails  product={this.props.product} options={options}/>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-12">
+                            <div className="col-lg-12 wow fadeInUpBig " data-wow-duration="1s">
                                 <SDProductDetailsTab product={this.props.product}/>
                             </div>
                         </div>

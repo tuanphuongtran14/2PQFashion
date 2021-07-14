@@ -25,9 +25,12 @@ class ProductListContainer extends Component {
     var result=null;
     const onPage=this.props.onPage;
     if(products.length>0){
+      var count=0;
         result=products.map((product,index)=>{
           if(onPage===1){
-            if(product.status!==0){
+           
+            if(product.status!==0&&count<8){
+              count++;
                 return (<ProductItem
                     key={index}
                     index={index}
@@ -83,7 +86,7 @@ class ProductListContainer extends Component {
                                 </ul>
                             </div>
                         </div>
-                        <div className="row product__filter">
+                        <div className="row product__filter wow fadeInRightBig" data-wow-duration="2s">
                             <ProductList 
                              >
                                 {this.renderProductItems(products)}

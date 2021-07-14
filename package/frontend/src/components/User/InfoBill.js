@@ -28,8 +28,8 @@ class InfoBill extends Component {
     var {list_bill}=this.props;
     return (
         <Fragment>
-            <h4 className="text-center mb-4">Chi tiết đơn hàng của tôi</h4>
-            <div className="row">
+            <h4 className="text-center mb-4 wow fadeInUpBig" data-wow-duration="1s">Chi tiết đơn hàng của tôi</h4>
+            <div className="row wow fadeInUpBig" data-wow-duration="1s">
                 <table className="table product-table table-hover" >
                     <thead>
                         <tr>
@@ -46,7 +46,7 @@ class InfoBill extends Component {
                     </tbody>
                 </table>
             </div>
-            <div className="row mx-0">   
+            <div className="row mx-0 wow fadeInUpBig" data-wow-duration="1s">   
 
                     <div className="col-12 px-0 text-center mt-5">
                     <Link to={'/user/order-traking'} className="btn btn-info">Quay lại trang quản lý đơn hàng</Link>

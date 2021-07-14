@@ -7,7 +7,7 @@ import $ from 'jquery';
 import OwlCarousel from 'react-owl-carousel';
 import Countdown from 'react-countdown';
 import {Helmet} from 'react-helmet'
-
+import WOW from 'wowjs'
 class IndexPage extends Component {
     constructor(props) {
         super(props);
@@ -19,6 +19,9 @@ class IndexPage extends Component {
         
         this.props.fetchProductsRequest();
         this.props.getDataPage(this.state.page);
+        new WOW.WOW({
+            live: false
+        }).init(); 
         // this.addInteraction();
     }
     componentDidUpdate() {
@@ -105,7 +108,7 @@ class IndexPage extends Component {
                 <Helmet >
                     <title>Male Fashion - Cửa hàng thời trang nam 2030</title>
                 </Helmet>
-                <section className="hero">
+                <section className="hero wow fadeInUpBig " data-wow-duration="1s">
                     <OwlCarousel 
                         className='hero__slider'
                         loop 
@@ -159,10 +162,10 @@ class IndexPage extends Component {
                         </div>
                     </OwlCarousel>
                 </section>
-                <section className="banner spad">
+                <section className="banner spad hero wow fadeInUpBig " data-wow-duration="1s">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-7 offset-lg-4">
+                            <div className="col-lg-7 offset-lg-4 wow fadeInRightBig" data-wow-duration="1s">
                                 <div className="banner__item">
                                     <div className="banner__item__pic">
                                         <img src="/img/banner/banner-1.jpg" alt="" />
@@ -173,7 +176,7 @@ class IndexPage extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-5">
+                            <div className="col-lg-5 wow fadeInLeftBig" data-wow-duration="1s">
                                 <div className="banner__item banner__item--middle">
                                     <div className="banner__item__pic">
                                         <img src="/img/banner/banner-2.jpg" alt='' />
@@ -184,7 +187,7 @@ class IndexPage extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-7">
+                            <div className="col-lg-7 wow fadeInUpBig" data-wow-duration="1s">
                                 <div className="banner__item banner__item--last">
                                     <div className="banner__item__pic">
                                         <img src="/img/banner/banner-3.jpg" alt='' />
@@ -198,13 +201,13 @@ class IndexPage extends Component {
                         </div>
                     </div>
                 </section>
-                <section className="product spad">
+                <section className="product spad hero" >
                     <ProductListContainer history={this.props.history}/>
 
                 </section>
 
                 {/* <!-- Categories Section Begin --> */}
-                <section className="categories spad">
+                <section className="categories spad wow fadeInUpBig " data-wow-duration="1s">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-3">
@@ -240,10 +243,10 @@ class IndexPage extends Component {
                 {/* <!-- Categories Section End --> */}
 
                 {/* <!-- Instagram Section Begin --> */}
-                <section className="instagram spad">
+                <section className="instagram spad ">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-8">
+                            <div className="col-lg-8 hero wow fadeInLeftBig " data-wow-duration="1s">
                                 <div className="instagram__pic">
                                     <div className="instagram__pic__item set-bg" data-setbg="/img/instagram/instagram-1.jpg"></div>
                                     <div className="instagram__pic__item set-bg" data-setbg="/img/instagram/instagram-2.jpg"></div>
@@ -253,7 +256,7 @@ class IndexPage extends Component {
                                     <div className="instagram__pic__item set-bg" data-setbg="/img/instagram/instagram-6.jpg"></div>
                                 </div>
                             </div>
-                            <div className="col-lg-4">
+                            <div className="col-lg-4 hero wow fadeInRightBig " data-wow-duration="1s">
                                 <div className="instagram__text">
                                     <h2>Instagram</h2>
                                     <p>Nơi cửa hàng cập nhật những sản phẩm cùng bộ sưu tập mới nhất qua những hình ảnh vô cùng chất lượng</p>
@@ -266,7 +269,7 @@ class IndexPage extends Component {
                 {/* <!-- Instagram Section End --> */}
 
                 {/* <!-- Latest Blog Section Begin --> */}
-                <section className="latest spad">
+                <section className="latest spad hero wow fadeInUpBig " data-wow-duration="1s">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">

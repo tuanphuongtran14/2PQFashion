@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ClientSection extends Component {
     render() {
         return (
-            <section className="clients spad">
+            <section className="clients spad wow fadeInUpBig " data-wow-duration="1s">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">

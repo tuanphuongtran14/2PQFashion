@@ -2,10 +2,9 @@ import React, { Component,Fragment } from 'react';
 import SDDetailsSection from './SD_DetailsSection';
 import SDRelatedSection from './SD_RelatedSection';
 import $ from 'jquery';
-import {Helmet } from 'react-helmet'
 import axios from 'axios'; 
-import ScrollToTop from '../../components/ScrollToTop';
 
+import WOW from 'wowjs'
 
 class ShopDetailsPage extends Component { 
 
@@ -26,14 +25,16 @@ class ShopDetailsPage extends Component {
             return {sku: nextProps.match.params.sku};
             
         }
-        
+
         return null;
     }
-    
     componentDidUpdate(prevProps, prevState) {
-        
+        new WOW.WOW({
+            live: false
+        }).init(); 
         const {sku} = this.props.match.params;
         if (prevProps.match.params.sku !== sku) {
+               
             var product={};
             var listProduct=[];
             if(this.props.match && this.props.match.params.sku){ 
@@ -60,7 +61,7 @@ class ShopDetailsPage extends Component {
                                 }
                             })
                            
-                            
+                                 
                         
                     }
                 });
@@ -71,7 +72,7 @@ class ShopDetailsPage extends Component {
     }
     
     componentDidMount() { 
-
+        
         // window.location.reload();
         var product={};
         var listProduct=[];

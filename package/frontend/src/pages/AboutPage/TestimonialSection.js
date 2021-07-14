@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class TestimonialSection extends Component {
     render() {
         return (
-            <section className="testimonial">
+            <section className="testimonial  ">
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-lg-6 p-0">
+                        <div className="col-lg-6 p-0 wow fadeInLeftBig " data-wow-duration="1s">
                             <div className="testimonial__text">
                                 <span className="icon_quotations" />
                                 <p>“Đi một ngày đàng, tốn năm mươi ngàn tiền xăng.”
@@ -22,7 +22,7 @@ class TestimonialSection extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-6 p-0">
+                        <div className="col-lg-6 p-0 wow fadeInRightBig " data-wow-duration="1s">
                             <div className="testimonial__pic set-bg"  style={{backgroundImage: "url(/img/about/testimonial-pic.jpg)"}} />
                         </div>
                     </div>

@@ -129,7 +129,7 @@ class ShopPage extends Component {
                 <section className="shop spad">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-3">
+                            <div className="col-lg-3 wow fadeInLeftBig" data-wow-duration="1s">
                                 <div className="shop__sidebar">
                                     <div className="shop__sidebar__search">
                                         < FilterNameContainer history={this.props.history}/>
@@ -284,7 +284,7 @@ class ShopPage extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-9">
+                            <div className="col-lg-9 wow fadeInRightBig" data-wow-duration="1s">
                                 <div className="shop__product__option">
                                     <div className="row">
                                         <div className="col-lg-6 col-md-6 col-sm-6">
@@ -301,7 +301,7 @@ class ShopPage extends Component {
                                     < ShopContainer history={this.props.history}/>
                                 </div>
                                 
-                                <button className="btn btn-danger d-block mx-auto" id="loadMoreBtn" onClick={ this.loadMoreProducts }>
+                                <button className="btn btn-danger d-block mx-auto wow fadeInUpBig" data-wow-duration="1s" id="loadMoreBtn" onClick={ this.loadMoreProducts }>
                                         Hiển thị thêm
                                 </button>
                                 {/* <div className="row">

@@ -55,7 +55,7 @@ renderSignin=(user)=>{
         
         <Fragment>
                 {/* <!-- Header Section Begin --> */}
-            <header className="header">
+            <header className="header fadeInLeftBig " data-wow-duration="1s" > 
                 <div className="header__top">
                     <div className="container">
                         <div className="row">

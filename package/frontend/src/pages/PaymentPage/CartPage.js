@@ -21,10 +21,10 @@ class CartPage extends Component {
             return (
                 <Fragment> 
                     {/* <!-- Breadcrumb Section Begin --> */}
-                    <section className="breadcrumb-option">
+                    <section className="breadcrumb-option ">
                         <div className="container">
                             <div className="row">
-                                <div className="col-lg-12">
+                                <div className="col-lg-12 wow fadeInLeftBig" data-wow-duration="1s">
                                     <div className="breadcrumb__text">
                                         <h4>Giỏ hàng</h4>
                                         <div className="breadcrumb__links">
@@ -39,7 +39,7 @@ class CartPage extends Component {
                     </section>
                          {/* <!-- Breadcrumb Section End -->
                         <!-- Checkout Section Begin --> */}
-                     <section className="section">
+                     <section className="section wow fadeInRightBig" data-wow-duration="1s">
                         <div className="table-responsive">
                             <CartContainer />
                         </div>

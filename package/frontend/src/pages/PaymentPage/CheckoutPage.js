@@ -25,7 +25,7 @@ class CheckoutPage extends Component {
                 return (
                     <Fragment> 
                     {/* <!-- Breadcrumb Section Begin --> */}
-                    <section className="breadcrumb-option">
+                    <section className="breadcrumb-option wow fadeInUpBig" data-wow-duration="1s">
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-12">
@@ -44,7 +44,7 @@ class CheckoutPage extends Component {
                     {/* <!-- Breadcrumb Section End -->
     
                     <!-- Checkout Section Begin --> */}
-                    <section className="checkout spad">
+                    <section className="checkout spad wow fadeInUpBig" data-wow-duration="1s">
                         <div className="container">
                             <div className="checkout__form">
                             <p><span>{Message.MSG_ORDER_EMPTY} </span><Link type="button" to={`/shop`} >Tiếp tục mua sắm!!!</Link></p>
@@ -61,7 +61,7 @@ class CheckoutPage extends Component {
             return (
                 <Fragment> 
                     {/* <!-- Breadcrumb Section Begin --> */}
-                    <section className="breadcrumb-option">
+                    <section className="breadcrumb-option wow fadeInUpBig" data-wow-duration="1s">
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-12">
@@ -80,14 +80,14 @@ class CheckoutPage extends Component {
                     {/* <!-- Breadcrumb Section End -->
     
                     <!-- Checkout Section Begin --> */}
-                    <section className="checkout spad">
+                    <section className="checkout spad ">
                         <div className="container">
                             <div className="checkout__form">
                                 <div className="row">
-                                    <div className="col-lg-8 col-md-6">
+                                    <div className="col-lg-8 col-md-6 wow fadeInLeftBig" data-wow-duration="1s">
                                         <InfoUserContainer history={this.props.history}/> 
                                     </div>
-                                    <div className="col-lg-4 col-md-6">
+                                    <div className="col-lg-4 col-md-6 wow fadeInRightBig" data-wow-duration="1s">
                                         <CheckoutContainer /> 
                                     </div>
                                 </div>

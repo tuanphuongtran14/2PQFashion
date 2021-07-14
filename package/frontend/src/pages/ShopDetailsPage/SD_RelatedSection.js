@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './../../actions'
-
+import convertToMoney from './../../utils/convertMoney'
 
 class SD_RelatedSection extends Component {
 
@@ -84,11 +84,11 @@ class SD_RelatedSection extends Component {
                                     {product.name}
                                 </Link>
                             </h6>
-                            <p  onClick={()=>this.onClick(product)} className="add-cart">+ Thêm vào giỏ hàng</p>
+                            <p  onClick={()=>this.onClick(product)} className="add-cart" style={{cursor:'pointer'}}>+ Thêm vào giỏ hàng</p>
                             <div className="rating">
                                 {this.renderStarRate(star)}
                             </div>
-                            <h5>{product.price}</h5> 
+                            <h5>{convertToMoney(product.price)}VND</h5> 
                         </div>
                     </div>
                 </div>
@@ -99,10 +99,10 @@ class SD_RelatedSection extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <h3 className="related-title">Sản phẩm liên quan</h3>
+                            <h3 className="related-title  ">Sản phẩm liên quan</h3>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row  wow fadeInRightBig " data-wow-duration="2s">
                         {product}
                         
                     </div>

@@ -64,7 +64,7 @@ class LoginPage extends Component {
                     <title>Đăng nhập</title>
                 </Helmet>
                 <form className="row">
-                    <div className="col-md-6 p-4 shadow">
+                    <div className="col-md-6 p-4 shadow wow fadeInLeftBig" data-wow-duration="1s">
                         <div className="form-group">
                             <h2 className="text-center">Đăng nhập</h2>
                             <label for="username">Đăng nhập</label>
@@ -82,7 +82,7 @@ class LoginPage extends Component {
                         </div>
                     </div>
 
-                    <div className="col-md-6 p-5">
+                    <div className="col-md-6 p-5 wow fadeInRightBig" data-wow-duration="1s">
                         <h2>Người Mới? Tạo Tài Khoản</h2>
                         <p>Bằng cách tạo tài khoản với cửa hàng của chúng tôi, bạn sẽ có thể thực hiện 
                             quy trình thanh toán nhanh hơn, lưu trữ nhiều địa chỉ giao hàng, xem và 

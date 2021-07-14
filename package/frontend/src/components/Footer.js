@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
         <Fragment>
                 {/* <!-- Footer Section Begin --> */}
-            <footer className="footer">
+            <footer className="footer wow fadeInLeftBig" data-wow-duration="1s">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-3 col-md-6 col-sm-6">

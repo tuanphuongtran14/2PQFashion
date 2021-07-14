@@ -62,7 +62,7 @@ class DetailBill extends Component {
     return (
        
         <Fragment>
-            <tr > 
+            <tr className="wow fadeInUpBig" data-wow-duration="1s"> 
 
                 <th scope="row">{bill.id_Bill}</th>
                     <td>{this.convertDay(bill.bookingDate)}</td>

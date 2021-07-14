@@ -97,8 +97,8 @@ class ChangePassword extends Component {
       var {oldPassword,newPassword,confirmPassword,errConfirmPassword,errOldPassword,errNewPassword}=this.state;
     return (
         <Fragment>
-            <h4 className="text-center mb-4">Thay đổi mật khẩu</h4>
-            <form onSubmit={this.onSubmit}>
+            <h4 className="text-center mb-4 wow fadeInUpBig" data-wow-duration="1s">Thay đổi mật khẩu</h4>
+            <form onSubmit={this.onSubmit} className="wow fadeInUpBig" data-wow-duration="1s">
                 <div className="row mx-0">   
                     <div className="col-3 py-0 text-right px-0">
                         
