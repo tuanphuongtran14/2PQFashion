@@ -43,7 +43,7 @@ class DetailProductBill extends Component {
     return (
        
         <Fragment>
-            <tr>
+            <tr className="wow fadeInUpBig" data-wow-duration="2s">
                 <th scope="row">
                     <Link to={"#"} >
                         <img src={`${process.env.REACT_APP_API_URL}${product.image}`}

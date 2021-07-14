@@ -62,7 +62,8 @@ class ProductItem extends Component {
             options:options,
             index:0,
 
-        }                     
+        }  
+                           
         this.props.onAddToCart(cartItem);
         }
 

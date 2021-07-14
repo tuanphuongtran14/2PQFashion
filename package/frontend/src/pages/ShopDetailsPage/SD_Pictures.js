@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import $ from 'jquery'
-
+import WOW from 'wowjs'
 class SD_Pictures extends Component { 
     constructor(props)
     {
@@ -12,7 +12,6 @@ class SD_Pictures extends Component {
     componentDidMount() {
 
         var {images} = this.props;
-
         this.setState({
             images:images
         })
@@ -53,13 +52,13 @@ class SD_Pictures extends Component {
         return (
             <div className="row"> 
                 <div className="col-lg-3 col-md-3">
-                    <ul className="nav nav-tabs" role="tablist">
+                    <ul className="nav nav-tabs  wow fadeInLeftBig " data-wow-duration="2s"  role="tablist">
                         {navItem}
                          
                     </ul>
                 </div>
                 <div className="col-lg-6 col-md-9">
-                    <div className="tab-content">
+                    <div className="tab-content  wow fadeInRightBig " data-wow-duration="2s" >
                         {tabPane}
                          
                     </div>

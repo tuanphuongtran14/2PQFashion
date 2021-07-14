@@ -6,8 +6,9 @@ class InfoUser extends Component {
       var {user}=this.props;
     return (
         <Fragment>
-            <h2 className="text-center mb-4">Tài khoản của tôi</h2>
-                <div className="row mx-0">   
+            <h2 className="text-center mb-4 wow fadeInUpBig" data-wow-duration="1s">Tài khoản của tôi</h2>
+            <div className="wow fadeInUpBig" data-wow-duration="1s">
+            <div className="row mx-0 ">   
                     <div className="col-3 py-0 text-right px-0">
                         
                     </div> 
@@ -83,6 +84,8 @@ class InfoUser extends Component {
                     </div>
 
                 </div>
+            </div>
+                
         </Fragment>
         
     );

@@ -39,7 +39,7 @@ class RegisterPage extends Component {
     }
     render() {
         return (
-            <div className="container mt-2 mb-4">
+            <div className="container mt-2 mb-4 wow fadeInUpBig" data-wow-duration="1s">
                 <Helmet>
                     <title>Đăng ký</title>
                 </Helmet>

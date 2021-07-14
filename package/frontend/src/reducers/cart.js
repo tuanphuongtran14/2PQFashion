@@ -45,6 +45,11 @@ var getMaxIndex=(cart)=>{
 const cart=(state=initialState,action)=>{
     var replaceState;
     var index;
+
+
+
+
+    
     let {product}=action;
     switch(action.type){
         case types.ADD_TO_CART:

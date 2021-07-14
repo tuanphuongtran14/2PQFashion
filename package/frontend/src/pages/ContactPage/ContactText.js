@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ContactText extends Component {
     render() {
         return (
-            <div className="contact__text">
+            <div className="contact__text  wow fadeInLeftBig " data-wow-duration="1s">
                 <div className="section-title">
                     <span>Thông tin</span>
                     <h2>Liên hệ</h2>
