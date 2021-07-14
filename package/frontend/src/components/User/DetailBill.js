@@ -5,10 +5,17 @@ import {deleteBill} from './../../actions'
 import * as actions from './../../actions'
 import {connect} from 'react-redux'
 import convertToMoney from './../../utils/convertMoney'
+import $ from "jquery";
 // import Cart from './Cart';
 
 class DetailBill extends Component {
-
+    constructor(props)
+    {
+        super(props);
+        this.state={
+            disabled:false,
+        }
+    }
     renderName(bill){
         var name='';
         var length=bill.products.length;
@@ -36,6 +43,13 @@ class DetailBill extends Component {
         }
         
     }
+    componentDidMount(){
+        if(this.props.bill.status===4){
+        this.setState({
+            disabled:true
+        })
+        }
+    }
     renderStatus=(status)=>{
         if(status===0){
             return <span className="badge badge--custom badge-warning">Đang xử lý</span>
@@ -57,12 +71,12 @@ class DetailBill extends Component {
     }
   render(){
      const    {bill}=this.props;
-     
+     const {disabled}=this.state;
     // var {quantity, inventory,size,options}=cartItem;
     return (
        
         <Fragment>
-            <tr className="wow fadeInUpBig" data-wow-duration="1s"> 
+            <tr > 
 
                 <th scope="row">{bill.id_Bill}</th>
                     <td>{this.convertDay(bill.bookingDate)}</td>
@@ -72,7 +86,7 @@ class DetailBill extends Component {
                     <td>
                         <Link type="button" to={`/user/order-traking/${bill.id_Bill}`} className="btn btn-primary mr-3">Xem </Link>
                            
-                        <button type="button"  className="btn btn-danger "onClick={()=>this.onClick(bill.id_Bill)}>Hủy</button>
+                        <button type="button"  className="btn btn-danger "onClick={()=>this.onClick(bill.id_Bill)} disabled={disabled}>Hủy</button>
                         
                 </td>
             </tr> 
