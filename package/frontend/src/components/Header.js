@@ -122,6 +122,7 @@ const mapStateToProps = (state)=>{
     return{
         cart:state.cart,
         user:state.user,
+        products:state.products
     }
   }
   const mapDispatchToProps = (dispatch)=>{

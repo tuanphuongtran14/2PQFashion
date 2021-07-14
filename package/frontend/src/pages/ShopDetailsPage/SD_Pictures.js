@@ -16,6 +16,11 @@ class SD_Pictures extends Component {
             images:images
         })
     }
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.images!==this.props.images){
+
+        }
+    }
     render() {
         var {images} = this.props;
         if (images) {
