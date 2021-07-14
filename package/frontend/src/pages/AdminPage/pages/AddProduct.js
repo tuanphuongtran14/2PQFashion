@@ -26,16 +26,12 @@ class AddProduct extends Component {
                     value: 0
                 },
                 {
-                    label: 'Best Sellers',
+                    label: 'New Arrivals',
                     value: 1
                 },
                 {
-                    label: 'New Arrivals',
-                    value: 2
-                },
-                {
                     label: 'Hot Sales',
-                    value: 3
+                    value: 2
                 }
             ]
         }
