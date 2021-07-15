@@ -6,7 +6,11 @@ class LogOut extends Component {
         var {user,history}=this.props;
         this.props.onLogOut(user.id_User);
         this.props.logoutCart();
-        this.props.setToken('');
+        this.props.setToken(null);
+        this.props.setAdmin(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('user');
         history.replace('/');
     }
   render(){
@@ -20,7 +24,7 @@ class LogOut extends Component {
                         
                     </div> 
                     <div className="col-8 px-0 text-center">
-                        <h3 class="text-info">Xin chào: {user.username}</h3>
+                        <h3 className="text-info">Xin chào: {user.username}</h3>
                         
                     </div>
                     <div className="col-2 py-0 text-right px-0"> 
@@ -61,6 +65,9 @@ const mapStateToProps=(state)=>{
         },
         logoutCart:() => {
             dispatch(actions.logoutCart());
+        },
+        setAdmin: (isAdmin) => {
+            dispatch(actions.setAdmin(isAdmin));
         }
         
     }

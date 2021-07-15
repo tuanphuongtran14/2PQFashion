@@ -10,7 +10,7 @@ var user=localStorage.getItem('user');
      address:'',
      email:'',
 };
-
+console.log(user);
 var initialState={
     id_User:user.id_User,
     products:[]
@@ -45,11 +45,6 @@ var getMaxIndex=(cart)=>{
 const cart=(state=initialState,action)=>{
     var replaceState;
     var index;
-
-
-
-
-    
     let {product}=action;
     switch(action.type){
         case types.ADD_TO_CART:
@@ -64,9 +59,13 @@ const cart=(state=initialState,action)=>{
             }
                 
             }
-            changeCartInDTB(replaceState);
-            
+            changeCartInDTB(replaceState).then(()=>
+                {
+                    return replaceState;
+                }
+            );
             return replaceState;
+            
         case types.DELETE_PRODUCT_TO_CART:
             replaceState={...state};
             
@@ -74,7 +73,11 @@ const cart=(state=initialState,action)=>{
             if(index!==-1){
                 replaceState.products.splice(index,1);
             }
-            changeCartInDTB(replaceState);
+            changeCartInDTB(replaceState).then(()=>
+                {
+                    return replaceState;
+                }
+            );
             return replaceState;
         case types.UPDATE_PRODUCT_TO_CART:
             replaceState={...state};
@@ -91,13 +94,21 @@ const cart=(state=initialState,action)=>{
                 replaceState.products[index]=product;
             }
             
-            changeCartInDTB(replaceState);
+            changeCartInDTB(replaceState).then(()=>
+                {
+                    return replaceState;
+                }
+            );
             return replaceState;
         case types.ADD_BILL_SUCCESS:  
             replaceState={...state};
             if(action.isCheck===true){
                 replaceState.products=[]; 
-                changeCartInDTB(replaceState);
+                changeCartInDTB(replaceState).then(()=>
+                {
+                    return replaceState;
+                }
+            );
             }
             return replaceState; 
         case types.LOGOUT_CART:
@@ -110,6 +121,10 @@ const cart=(state=initialState,action)=>{
             replaceState.products=action.cart.products; 
             
         return replaceState;  
+        case types.FETCH_ID_USER_IN_CART:  
+            replaceState={...state};
+            replaceState.id_User=action.id_User;       
+        return replaceState;
         default:
             
             return state;

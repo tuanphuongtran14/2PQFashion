@@ -3,7 +3,7 @@ import {Helmet } from 'react-helmet';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from './../../actions/index';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -72,7 +72,7 @@ class RegisterPage extends Component {
                 </Helmet>
                 <form className="regForm mx-auto shadow p-4">
                     <h2 className="text-center">Đăng ký</h2>
-                    <p className="text-center"><u><a href="/login">Đã có tài khoản? Đăng nhập ngay.</a></u></p>
+                    <p className="text-center"><u><Link to="/login">Đã có tài khoản? Đăng nhập ngay.</Link></u></p>
                     <div class="form-group">
                         <label for="username">Tên tài khoản</label>
                         <input type="text" name="username" id="username" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
