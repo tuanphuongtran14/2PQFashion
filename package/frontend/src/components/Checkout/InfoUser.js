@@ -2,20 +2,19 @@ import React,{Component,Fragment} from 'react';
 // import $ from "jquery";
 import{addBillRequest} from './../../actions'
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux'
 class InfoUser extends Component {
     constructor(props)
     {
         super(props);
         this.state={
-            nameCustomer:'',
-            address:'',
-            email:'',
+            nameCustomer: this.props.user.name,
+            address: this.props.user.address,
+            email: this.props.user.email,
             orderNote:'',
             paymentMethod: 'Trả tiền khi nhận hàng',
-            phone:0,
+            phone: this.props.user.phone,
             errInformation:''
-
-
         }
     }
     onChange=(event)=>
@@ -146,4 +145,15 @@ class InfoUser extends Component {
 }
 
 
-export default InfoUser;
+const mapStateToProps=(state)=>{
+    return {
+        user:state.user,
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+
+        }
+    }
+export default connect(mapStateToProps,mapDispatchToProps)(InfoUser);
+

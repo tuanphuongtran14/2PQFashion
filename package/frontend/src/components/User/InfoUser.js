@@ -103,5 +103,5 @@ const mapStateToProps=(state)=>{
 
         }
     }
-  export default connect(mapStateToProps,mapDispatchToProps)(InfoUser);
+export default connect(mapStateToProps,mapDispatchToProps)(InfoUser);
 

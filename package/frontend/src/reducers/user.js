@@ -3,6 +3,7 @@ var result=localStorage.getItem('user');
 var init_user=result?JSON.parse(result):{
     id_User: '',
      username:'',
+     name:'',
      phone:'',
      address:'',
      email:'',
@@ -11,6 +12,7 @@ var init_user=result?JSON.parse(result):{
 var initialState={
      id_User: init_user.id_User,
      username:init_user.username,
+     name:init_user.name,
      phone:init_user.phone,
      address:init_user.address,
      email:init_user.email,
