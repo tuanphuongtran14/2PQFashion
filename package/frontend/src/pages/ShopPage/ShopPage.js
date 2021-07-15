@@ -328,7 +328,6 @@ class ShopPage extends Component {
 }
 const mapStateToProps=(state)=>{
     return {
-        products:state.products,
         page:state.page
     }
 }

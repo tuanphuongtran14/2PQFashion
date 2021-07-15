@@ -22,17 +22,31 @@ class ListOrder extends Component {
     }
     isCheckCoupon=(coupon,price)=>{
         var salePrice=0;
-        if(coupon==='quocdeptrai'){
-            salePrice=price*5/100;
-           this.setState({
-            coupon:coupon,
-            salePrice:salePrice,
-            infoCheckout:'Bạn được 5% cho hóa đơn của bạn!!!'
-            })
+        if(coupon==='quocdeptrai'||coupon==='PhatLC'){
+            if(coupon==='quocdeptrai'){
+                salePrice=price*5/100;
+                this.setState({
+                    coupon:coupon,
+                    salePrice:salePrice,
+                    infoCheckout:'Bạn được giảm 5% giá trị hóa đơn của bạn!!!'
+                    })
 
-            this.props.onAddCouponToOrder(
-                {coupon:coupon,
-                salePrice:salePrice});
+                this.props.onAddCouponToOrder(
+                    {coupon:coupon,
+                    salePrice:salePrice});
+            }else if(coupon==='PhatLC'){
+                salePrice=price*(2/100);
+                this.setState({
+                    coupon:coupon,
+                    salePrice:salePrice,
+                    infoCheckout:'Bạn được giảm 2% giá trị hóa đơn của bạn!!!'
+                    })
+
+                this.props.onAddCouponToOrder(
+                    {coupon:coupon,
+                    salePrice:salePrice});
+            }
+            
         }else{
             this.setState({
                 coupon:'',

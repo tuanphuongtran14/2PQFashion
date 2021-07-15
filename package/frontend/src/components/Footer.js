@@ -12,7 +12,7 @@ class Footer extends Component {
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="footer__about">
                                 <div className="footer__logo">
-                                    <Link to="/"><img src="img/footer-logo.png" alt=""/></Link>
+                                    <Link to="/"><img src="/img/footer-logo.png" alt=""/></Link>
                                 </div>
                                 <p>Sự hài lòng của khách hàng là ưu tiên hàng đầu của chúng tôi</p>
                                 <Link to=""><img src="img/payment.png" alt=""/></Link>

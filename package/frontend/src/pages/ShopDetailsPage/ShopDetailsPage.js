@@ -150,7 +150,7 @@ class ShopDetailsPage extends Component {
                 <Fragment> 
                     
                     {/* <!-- Shop Details Section Begin --> */} 
-                        <SDDetailsSection product={this.state.product}/> 
+                        <SDDetailsSection history={this.props.history} product={this.state.product}/> 
                     {/* <!-- Shop Details Section End --> */}
 
                     {/* <!-- Related Section Begin --> */}

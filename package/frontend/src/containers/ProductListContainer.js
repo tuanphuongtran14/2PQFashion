@@ -56,6 +56,7 @@ class ProductListContainer extends Component {
   }
   render(){
     var {products}=this.props;
+
     let query= new URLSearchParams(this.props.location.search);
     
     var search=query.get("search");

@@ -19,7 +19,7 @@ class OrderTraking extends Component {
     return (
         <Fragment>
             <h4 className="text-center mb-4">Theo dõi đơn hàng</h4>
-            <table className="table table-hover">
+            <table className="table table-hover ">
                 <thead className="table-info">
                     <tr>
                         <th className="col-2" scope="col">Mã đơn hàng</th>

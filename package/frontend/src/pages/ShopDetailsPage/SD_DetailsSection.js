@@ -22,12 +22,12 @@ class SD_DetailsSection extends Component {
                     <div className="container">
                         <div className="row d-flex justify-content-center">
                             <div className="col-lg-8 wow fadeInUpBig " data-wow-duration="1s">
-                                <SDProductDetails  product={this.props.product} options={options}/>
+                                <SDProductDetails history={this.props.history} product={this.props.product} options={options}/>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-lg-12 wow fadeInUpBig " data-wow-duration="1s">
-                                <SDProductDetailsTab product={this.props.product}/>
+                                <SDProductDetailsTab product={this.props.product} history={this.props.history}/>
                             </div>
                         </div>
                     </div>
