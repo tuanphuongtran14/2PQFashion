@@ -24,11 +24,6 @@ exports.register = async (req, res) => {
             message: "Existed email"
         })
 
-    if(checkPhoneNumber)
-        return res.status(400).json({
-            message: "Existed phone number"
-        })
-
     input.password = await bcrypt.hash(input.password, saltRounds);
 
     const newUser = new User({
@@ -57,13 +52,7 @@ exports.register = async (req, res) => {
     `
     };
 
-    transporter.sendMail(mailOptions, async function(error, info){
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-        await newUser.save();
-        return res.sendStatus(200);
-    });
+    transporter.sendMail(mailOptions);
+    await newUser.save();
+    return res.sendStatus(200);
 }

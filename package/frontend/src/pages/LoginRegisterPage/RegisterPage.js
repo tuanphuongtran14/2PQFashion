@@ -23,7 +23,10 @@ class RegisterPage extends Component {
             phone: document.getElementById('phone').value,
             address: document.getElementById('address').value, 
         }
-        if(document.getElementById("password").value === document.getElementById("passwordConfirmed").value)
+
+        if(!data.username || !data.name || !data.password || !data.email || !data.phone || !data.address) {
+            alert('Vui lòng nhập đủ thông tin!!!')
+        } else if(document.getElementById("password").value === document.getElementById("passwordConfirmed").value)
         {
             this.setState({
                 loading: true
@@ -43,6 +46,9 @@ class RegisterPage extends Component {
                     }
                 }
             }).catch(error => {
+                this.setState({
+                    loading: false
+                });
                 if(error.response) {
                     alert("Lỗi: " + error.response.data.message)
                 }
