@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Helmet} from 'react-helmet';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './../../actions/index';
 import { withRouter } from 'react-router-dom';
@@ -77,9 +78,6 @@ class LoginPage extends Component {
                         <div className="text-center">
                             <button type="submit" class="btn btn-dark" onClick={this.handleLoginSubmit}>Đăng nhập</button>
                         </div>
-                        <div className="pt-3 text-center text-secondary">
-                            <a className="text-decoration-none" href="/"><i>Quên mật khẩu?</i></a>
-                        </div>
                     </div>
 
                     <div className="col-md-6 p-5 wow fadeInRightBig" data-wow-duration="1s">
@@ -88,7 +86,7 @@ class LoginPage extends Component {
                             quy trình thanh toán nhanh hơn, lưu trữ nhiều địa chỉ giao hàng, xem và 
                             theo dõi đơn đặt hàng trong tài khoản của bạn và hơn thế nữa.
                         </p>
-                        <a href="/register"><button type="button" class="btn btn-primary">Tạo tài khoản mới</button></a>
+                        <Link to="/register"><button type="button" class="btn btn-primary">Tạo tài khoản mới</button></Link>
                     </div>
                 </form>
                 

@@ -64,10 +64,6 @@ class SD_RelatedSection extends Component {
                             style={{backgroundImage: "url("+process.env.REACT_APP_API_URL + image+")"}}
                         >
                             <span className="label">Mới</span>
-                            <ul className="product__hover">
-                                <li><a href="/"><img src="img/icon/heart.png" alt="" /></a></li> 
-                                <li><a href="/"><img src="img/icon/search.png" alt="" /></a></li>
-                            </ul>
                         </div>
                     )
                 }
