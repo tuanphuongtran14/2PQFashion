@@ -19,6 +19,7 @@ exports.login = async (req, res) => {
             const data = {
                 id_User: user.id_User,
                 username: user.username,
+                name: user.name,
                 phone: user.phone, 
                 email: user.email,
                 address: user.address,

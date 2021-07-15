@@ -9,8 +9,17 @@ import { withRouter } from 'react-router-dom';
 // chi tiết sản phẩm -- 
 // đăng nhập, đăng kí --- Phúc
 class LoginPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: false
+        }
+    }
     handleLoginSubmit = (event) => {
         event.preventDefault();
+        this.setState({
+            loading: true
+        });
         axios({
             method: 'POST',
             url: '/login',
@@ -44,6 +53,10 @@ class LoginPage extends Component {
                             loading: false
                         });
                         this.props.history.push("/");
+
+                        this.setState({
+                            loading: false
+                        });
                     }
                 });
             }
@@ -51,6 +64,9 @@ class LoginPage extends Component {
             if(error.response) {
                 alert("Lỗi: " + error.response.data.message)
             }
+            this.setState({
+                loading: false
+            });
         })
     }
 
@@ -58,6 +74,14 @@ class LoginPage extends Component {
         if (this.props.token){
             this.props.history.push("/");
         }
+        
+        let disabledSubmit = (this.state.loading === true) ? true : false;
+        let contentSubmit = (this.state.loading === false) ? 'Đăng nhập' : (
+            <div className="spinner-border text-light" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        );
+
         return (
             
             <div className='container mt-2 mb-5'> 
@@ -76,7 +100,7 @@ class LoginPage extends Component {
                             <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Mật khẩu" /> 
                         </div>
                         <div className="text-center">
-                            <button type="submit" class="btn btn-dark" onClick={this.handleLoginSubmit}>Đăng nhập</button>
+                            <button type="submit" class="btn btn-dark w-25" onClick={this.handleLoginSubmit} disabled={disabledSubmit}>{contentSubmit}</button>
                         </div>
                     </div>
 

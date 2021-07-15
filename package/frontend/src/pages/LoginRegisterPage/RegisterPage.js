@@ -6,23 +6,38 @@ import * as actions from './../../actions/index';
 import { Link, withRouter } from 'react-router-dom';
 
 class RegisterPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: false
+        }
+    }
+
     handleRegister = (event) => {
         event.preventDefault();
         const data = {
             username: document.getElementById('username').value,
+            name: document.getElementById('name').value,
             password: document.getElementById('password').value, 
             email: document.getElementById('email').value,
             phone: document.getElementById('phone').value,
             address: document.getElementById('address').value, 
         }
         if(document.getElementById("password").value === document.getElementById("passwordConfirmed").value)
-        (
+        {
+            this.setState({
+                loading: true
+            });
+
             axios({
                 method: 'POST',
                 url: '/register',
                 data
             }).then(res => {
                 if(res && res.status === 200) {
+                    this.setState({
+                        loading: false
+                    });
                     if(window.confirm('Tạo tài khoản thành công, bạn có muốn đăng nhập ngay?')) {
                         this.props.history.push('/login');
                     }
@@ -32,12 +47,18 @@ class RegisterPage extends Component {
                     alert("Lỗi: " + error.response.data.message)
                 }
             })
-        )
+        }
         else {
             alert("Mật khẩu bạn nhập không khớp nhau")
         }
     }
     render() {
+        let disabledSubmit = (this.state.loading === true) ? true : false;
+        let contentSubmit = (this.state.loading === false) ? 'Tạo tài khoản mới' : (
+            <div className="spinner-border text-light" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        );
         return (
             <div className="container mt-2 mb-4 wow fadeInUpBig" data-wow-duration="1s">
                 <Helmet>
@@ -51,10 +72,6 @@ class RegisterPage extends Component {
                         <input type="text" name="username" id="username" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
-                    </div>
-                    <div class="form-group">
                         <label for="password">Mật khẩu</label>
                         <input type="password" name="password" id="password" class="form-control" placeholder="Mật khẩu" aria-describedby="helpId" /> 
                     </div>
@@ -63,15 +80,25 @@ class RegisterPage extends Component {
                         <input type="password" name="passwordConfirmed" id="passwordConfirmed" class="form-control" placeholder="Xác nhận mật khẩu" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
+                        <label for="name">Họ & tên</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="form-control" placeholder="Tên" aria-describedby="helpId" /> 
+                    </div>
+                    <div class="form-group">
                         <label for="address">Địa chỉ</label>
                         <input type="text" name="address" id="address" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div class="form-group">
                         <label for="phone">Số điện thoại</label>
-                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
+                        <input type="number" name="phone" id="phone" class="form-control" placeholder="Số điện thoại" aria-describedby="helpId" /> 
                     </div>
                     <div className="text-center">
-                        <button class="btn btn-dark" onClick={this.handleRegister}>Tạo tài khoản mới</button>
+                        <button class="btn btn-dark w-100" onClick={this.handleRegister} disabled={disabledSubmit}>
+                            { contentSubmit }
+                        </button>
                     </div> 
                 </form>
             </div>
