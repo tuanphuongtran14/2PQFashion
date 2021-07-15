@@ -9,7 +9,7 @@ class SD_ProductDetails extends Component {
     constructor(props) {
         super(props);
         this.state={
-            size:'123',
+            size:'',
             quantitySize:0,
         }
         ;

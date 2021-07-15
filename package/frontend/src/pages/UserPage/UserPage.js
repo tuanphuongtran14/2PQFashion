@@ -32,7 +32,7 @@ import { Redirect } from 'react-router'
                         </Helmet>
                         <div className="body-user" >
                             <div className="container d-flex align-items-stretch shadow-lg px-0">
-                                <nav id="sidebar-user" class="wow fadeInLeftBig" data-wow-duration="1s">
+                                <nav id="sidebar-user" className="wow fadeInLeftBig" data-wow-duration="1s">
                                     <div className="p-4">
                                         <h2 className="text-center text-black-user"><Link to="/admin" >Tài khoản của tôi</Link></h2>
                                         <ul className="list-unstyled components mb-5">
