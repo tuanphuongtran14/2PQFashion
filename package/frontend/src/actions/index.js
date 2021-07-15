@@ -244,6 +244,12 @@ export const changeCartInDTB=(cart)=>{
     })
 }
 
+export const fetchIdUserInCart=(id_User) => {
+    return {
+        type: types.FETCH_ID_USER_IN_CART,
+        id_User
+    }
+}
 //xử lý render list sản phẩm
 export const fetchCartByIdUser=(cart)=>{
 

@@ -15,6 +15,7 @@ exports.create = async (req, res) => {
         }else{
             CartService.updateByID_User(cart.id_User,cart)
             .then(()=>{
+                console.log(cart.id_User);
                 return res.status(201).json({ message:'update successfully'});
             }).catch(err=>{
                 res.status(500).json({

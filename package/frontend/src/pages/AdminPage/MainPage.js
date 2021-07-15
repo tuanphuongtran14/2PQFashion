@@ -84,7 +84,7 @@ class MainPage extends Component {
                         this.setState({
                             username: user.username
                         })
-
+                        this.props.fetchIdUserInCart(user.id_User);
                         user = JSON.stringify(user);
                         localStorage.setItem('user', user);
                         this.setState({
@@ -278,6 +278,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setAdmin: (isAdmin) => {
             dispatch(actions.setAdmin(isAdmin));
+        },
+        fetchIdUserInCart: (id) => {
+            dispatch(actions.fetchIdUserInCart(id));
         }
     }
 }

@@ -45,6 +45,7 @@ class LoginPage extends Component {
                         };
                         this.props.fetchCartByIdUserRequest(user.id_User);
                         this.props.fetchUserByIdRequest(user.id_User);
+                        this.props.fetchIdUserInCart(user.id_User);
                         
                         user = JSON.stringify(user);
                         this.props.getUserLogin(user);
@@ -141,7 +142,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         fetchUserByIdRequest:(id)=>{
             dispatch(actions.fetchUserByIdRequest(id));
+        },
+        fetchIdUserInCart:(id)=>{
+            dispatch(actions.fetchIdUserInCart(id));
         }
+
     }
 }
 
