@@ -85,6 +85,7 @@ class MainPage extends Component {
                             username: user.username
                         })
                         this.props.fetchIdUserInCart(user.id_User);
+                        this.props.fetchIdUserInOrder(user.id_User);
                         user = JSON.stringify(user);
                         localStorage.setItem('user', user);
                         this.setState({
@@ -281,6 +282,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         fetchIdUserInCart: (id) => {
             dispatch(actions.fetchIdUserInCart(id));
+        },
+        fetchIdUserInOrder:(id)=>{
+            dispatch(actions.fetchIdUserInOrder(id));
         }
     }
 }

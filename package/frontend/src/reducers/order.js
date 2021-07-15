@@ -35,7 +35,11 @@ const order=(state=initialState,action)=>{
             newOrder={...state};
             newOrder.coupon=action.infoCoupon.coupon===''?newOrder.coupon:action.infoCoupon.coupon;
             newOrder.salePrice=action.infoCoupon.salePrice;
-            return newOrder;                
+            return newOrder;  
+        case types.FETCH_ID_USER_IN_ORDER:  
+            newOrder={...state};
+            newOrder.id_User=action.id_User;       
+        return newOrder;              
         default:
             return state;
     }

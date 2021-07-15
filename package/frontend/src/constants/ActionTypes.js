@@ -60,4 +60,8 @@ export const FETCH_CART_BY_ID_USER="FETCH_CART_BY_ID_USER";
 //fetch cart by id user
 export const FETCH_ID_USER_IN_CART="FETCH_ID_USER_IN_CART";
 
+//fetch cart by id user
+export const FETCH_ID_USER_IN_ORDER="FETCH_ID_USER_IN_ORDER";
+
+
 
