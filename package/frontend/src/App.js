@@ -36,7 +36,7 @@ class App extends Component {
       <Router>
           <div className="App">
             <ScrollToTop /> 
-            { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Header /> : '') }
+            { ((this.props.location.pathname.indexOf('/admin') === -1) ? <Route component={({ match, history }) => <Header match={match} history={history} />}/> : '') }
             <Switch>
               <Route exact path="/" component={({ match, history }) => <IndexPage match={match} history={history} />} />
               <Route path="/about">
