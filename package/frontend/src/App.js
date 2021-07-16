@@ -9,6 +9,7 @@ import Test from './pages/AdminPage/test';
 import CheckoutPage from './pages/PaymentPage/CheckoutPage';
 import UserPage from './pages/UserPage/UserPage';
 import LoginPage from './pages/LoginRegisterPage/LoginPage'
+import ForgetPwPage from './pages/LoginRegisterPage/ForgetPwPage'
 import RegisterPage from './pages/LoginRegisterPage/RegisterPage'
 import ShopDetailsPage from './pages/ShopDetailsPage/ShopDetailsPage';
 import {
@@ -54,6 +55,9 @@ class App extends Component {
               </Route>
               <Route path='/admin'>
                 <AdminPage />
+              </Route>
+              <Route path='/forget-password'>
+                <ForgetPwPage />
               </Route>
               <Route path='/login'>
                 <LoginPage />

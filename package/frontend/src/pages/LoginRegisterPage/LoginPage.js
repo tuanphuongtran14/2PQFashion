@@ -63,7 +63,23 @@ class LoginPage extends Component {
             }
         }).catch(error => {
             if(error.response) {
-                alert("Lỗi: " + error.response.data.message)
+                if(error.response.status === 403)
+                    if(window.confirm("Vui lòng xác thực tài khoản của bạn qua email trước khi đăng nhập!!! Cần gửi lại mail xác thực?")) {
+                        axios({
+                            method: 'POST',
+                            url: `resend-confirmed-email`,
+                            data: {
+                                username: document.getElementById('username').value,
+                                password: document.getElementById('password').value
+                            }
+                        }).then(res => {
+                            alert("Gửi lại mail xác nhận thành công!!! Vui lòng kiểm tra email của bạn")
+                        }).catch(err => {
+                            alert("Lỗi: " + err.response.data.message)
+                        })
+                    }   
+                else
+                    alert("Lỗi: " + error.response.data.message)
             }
             this.setState({
                 loading: false
@@ -100,6 +116,7 @@ class LoginPage extends Component {
                             <label for="password">Mật khẩu</label>
                             <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Mật khẩu" /> 
                         </div>
+                        <p className="text-center"><u><Link to="/forget-password">Quên mật khẩu?</Link></u></p>
                         <div className="text-center">
                             <button type="submit" class="btn btn-dark w-25" onClick={this.handleLoginSubmit} disabled={disabledSubmit}>{contentSubmit}</button>
                         </div>

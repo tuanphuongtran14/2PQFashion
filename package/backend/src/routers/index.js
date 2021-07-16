@@ -6,7 +6,7 @@ module.exports = (app) => {
     const CartRouter = require('./cart.routers');
     const UserRouter = require('./user.routers');
     const ConfirmRouter = require('./confirm.routers');
-    const { login, adminLogin } = require('../controllers/login.controller');
+    const { login, adminLogin, resendConfirmedEmail, forgetPassword } = require('../controllers/login.controller');
     const { register } = require('../controllers/register.controller');
 
     // Product API Routing
@@ -32,6 +32,12 @@ module.exports = (app) => {
 
     //Login Routing
     app.post('/login', login)
+
+    //resendConfirmedEmail Routing
+    app.post('/resend-confirmed-email', resendConfirmedEmail)
+
+    //resendConfirmedEmail Routing
+    app.post('/forget-password', forgetPassword)
 
     // Register Routing
     app.post('/register', register)
