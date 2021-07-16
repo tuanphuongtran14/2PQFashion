@@ -7,6 +7,7 @@ var init_user=result?JSON.parse(result):{
      phone:'',
      address:'',
      email:'',
+     isAdmin: false
 };
 
 var initialState={
@@ -16,6 +17,7 @@ var initialState={
      phone:init_user.phone,
      address:init_user.address,
      email:init_user.email,
+     isAdmin: init_user.isAdmin
 };
 
 const user=(state=initialState,action)=>{

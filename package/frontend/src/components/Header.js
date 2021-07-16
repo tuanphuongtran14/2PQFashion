@@ -47,7 +47,15 @@ renderSignin=(user)=>{
     if(!user.id_User){
         return <Link to={"/login"}>Đăng nhập</Link>
     }else{
-        return <Link to={"/user"}>{user.username}</Link>
+        if(localStorage.getItem('isAdmin') === 'true')
+            return (
+                <Fragment>
+                    <a href={"/admin"}>Quản lý Admin</a>
+                    <Link to={"/user"}>{user.username}</Link>
+                </Fragment>
+            );
+        else
+            return <Link to={"/user"}>{user.username}</Link>;
     }
 }
   render(){
