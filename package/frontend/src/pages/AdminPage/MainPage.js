@@ -187,7 +187,7 @@ class MainPage extends Component {
                         <div className="container d-flex align-items-stretch shadow-lg px-0">
                             <nav id="sidebar">
                                 <div className="p-4">
-                                    <h2 className="text-center text-white"><Link to="/">Male Fashion</Link></h2>
+                                    <h2 className="text-center text-white"><a href="/">Male Fashion</a></h2>
                                     <ul className="list-unstyled components mb-5">
                                         <li>
                                             <a href="#accountSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle "><i className="fa fa-user-circle mr-2" aria-hidden="true"></i>{ this.state.username }</a>
