@@ -43,6 +43,18 @@ countPrice=(cart)=>{
     })
     return result;
 }
+signOut=()=>{
+    var {user,history}=this.props;
+    this.props.onLogOut(user.id_User);
+    this.props.logoutCart();
+    this.props.setToken(null);
+    this.props.setAdmin(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('user');
+    history.replace('/');
+}
+
 renderSignin=(user)=>{
     if(!user.id_User){
         return <Link to={"/login"}>Đăng nhập</Link>
@@ -52,12 +64,19 @@ renderSignin=(user)=>{
                 <Fragment>
                     <a href={"/admin"}>Quản lý Admin</a>
                     <Link to={"/user"}>{user.username}</Link>
+                    <a onClick={this.signOut} className="text-white"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                 </Fragment>
             );
         else
-            return <Link to={"/user"}>{user.username}</Link>;
+            return (
+                <Fragment>
+                    <Link to={"/user"}>{user.username}</Link>
+                    <a onClick={this.signOut} className="text-white"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </Fragment>
+            );
     }
 }
+
   render(){
     return (
         
@@ -137,7 +156,19 @@ const mapStateToProps = (state)=>{
     return{
         fetchCartByIdUserRequest:(id)=>{
             dispatch(actions.fetchCartByIdUserRequest(id));
-        }
+        },
+        onLogOut:(id_User)=>{
+             dispatch(actions.logOut(id_User));
+         },
+         setToken: (token) => {
+             dispatch(actions.setToken(token));
+         },
+         logoutCart:() => {
+             dispatch(actions.logoutCart());
+         },
+         setAdmin: (isAdmin) => {
+             dispatch(actions.setAdmin(isAdmin));
+         }
     }
   }
   export default connect (mapStateToProps,mapDispatchToProps)(Header);
