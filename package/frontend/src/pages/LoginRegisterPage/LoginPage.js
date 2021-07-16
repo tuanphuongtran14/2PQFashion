@@ -62,8 +62,11 @@ class LoginPage extends Component {
                 });
             }
         }).catch(error => {
+            this.setState({
+                loading: false
+            });
             if(error.response) {
-                if(error.response.status === 403)
+                if(error.response.status === 403) {
                     if(window.confirm("Vui lòng xác thực tài khoản của bạn qua email trước khi đăng nhập!!! Cần gửi lại mail xác thực?")) {
                         axios({
                             method: 'POST',
@@ -77,13 +80,11 @@ class LoginPage extends Component {
                         }).catch(err => {
                             alert("Lỗi: " + err.response.data.message)
                         })
-                    }   
+                    }  
+                }  
                 else
                     alert("Lỗi: " + error.response.data.message)
             }
-            this.setState({
-                loading: false
-            });
         })
     }
 
