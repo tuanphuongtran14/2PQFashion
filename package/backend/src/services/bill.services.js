@@ -35,7 +35,7 @@ exports.create = async BillInput => {
         to: BillInput.email,
         subject: `[2PQFashion Shop] Đơn hàng #${BillInput.id_Bill} đã được đặt thành công`,
         html: `
-            <h1>Đơn hàng #${BillInput.id_Bill} đã bị hủy</h1>
+            <h1>Đơn hàng #${BillInput.id_Bill} đã được đặt thành công</h1>
             <p>Chúng tôi rất vinh dự khi thông báo rằng đơn hàng #${BillInput.id_Bill} đã được đặt thành công. Chúng tôi hy vọng sẽ tiếp tục được phục vụ quý khách trong tương lai gần.</p>
             <p>Quý khách có thể kiểm tra thông tin và tình trạng đơn hàng <a href="http://localhost:3000/user/order-traking/${BillInput.id_Bill}">tại đây</a></p>
         `

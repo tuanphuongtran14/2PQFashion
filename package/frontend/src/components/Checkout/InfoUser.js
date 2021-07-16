@@ -127,7 +127,7 @@ class InfoUser extends Component {
                 </div>
                 
                 <div className="checkout__input">
-                    <p>Lưu ý khi giao hàng<span>*</span></p>
+                    <p>Lưu ý khi giao hàng</p>
                     <input type="text"
                     placeholder="Chú ý khi giao hàng" 
                     onChange={this.onChange} value={orderNote} name='orderNote'/>
