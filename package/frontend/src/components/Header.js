@@ -52,7 +52,7 @@ signOut=()=>{
     localStorage.removeItem('token');
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('user');
-    history.replace('/');
+    history.push('/');
 }
 
 renderSignin=(user)=>{
