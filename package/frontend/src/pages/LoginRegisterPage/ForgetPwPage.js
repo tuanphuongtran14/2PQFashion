@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import {Helmet } from 'react-helmet';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from './../../actions/index';
 import { Link, withRouter } from 'react-router-dom';
-
+import SearchContainer from '../../containers/SearchContainer';
 class ForgetPwPage extends Component {
     constructor(props) {
         super(props);
@@ -56,6 +56,7 @@ class ForgetPwPage extends Component {
             </div>
         );
         return (
+            <Fragment> 
             <div className="container mt-2 mb-4 wow fadeInUpBig" data-wow-duration="1s">
                 <Helmet>
                     <title>Quên mật khẩu</title>
@@ -73,6 +74,8 @@ class ForgetPwPage extends Component {
                     </div> 
                 </form>
             </div>
+            <SearchContainer history={this.props.history}/>
+            </Fragment>  
         );
     }
 }

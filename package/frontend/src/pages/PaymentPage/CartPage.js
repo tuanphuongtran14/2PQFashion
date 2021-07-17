@@ -45,7 +45,7 @@ class CartPage extends Component {
                         </div>
                     </section>
                     
-                    <SearchContainer />
+                    <SearchContainer history={this.props.history}/>
                 </Fragment>
             );
         }

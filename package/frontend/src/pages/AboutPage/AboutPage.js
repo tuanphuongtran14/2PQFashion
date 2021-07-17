@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import Breadcrumb from './Breadcrumb';
 import AboutSection from './AboutSection';
 import TestimonialSection from './TestimonialSection'
@@ -11,7 +11,8 @@ import SearchContainer from '../../containers/SearchContainer';
 class AboutPage extends Component {
     
     render() {
-        return ( 
+        return (
+            <Fragment>  
             <div>
                 <Helmet>
                     <title>Về chúng tôi</title>
@@ -37,8 +38,10 @@ class AboutPage extends Component {
                 {/* Client Section Begin */}
                 <ClientSection />
                 {/* Client Section End */}
-                <SearchContainer history={this.props.history}/>
+                
             </div>
+            <SearchContainer history={this.props.history}/>
+            </Fragment> 
         );
     }
 }

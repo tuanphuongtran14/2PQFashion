@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import {Helmet} from 'react-helmet';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './../../actions/index';
 import { withRouter } from 'react-router-dom';
-
+import SearchContainer from '../../containers/SearchContainer';
 // chi tiết sản phẩm -- 
 // đăng nhập, đăng kí --- Phúc
 class LoginPage extends Component {
@@ -101,7 +101,7 @@ class LoginPage extends Component {
         );
 
         return (
-            
+            <Fragment> 
             <div className='container mt-2 mb-5'> 
                 <Helmet>
                     <title>Đăng nhập</title>
@@ -134,6 +134,9 @@ class LoginPage extends Component {
                 </form>
                 
             </div>
+            <SearchContainer history={this.props.history}/>
+            </Fragment> 
+            
         );
     }
 }

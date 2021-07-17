@@ -5,6 +5,7 @@ import ChangePassword from './../../components/User/ChangePassword'
 import LogOut from './../../components/User/LogOut'
 import InfoUser from './../../components/User/InfoUser'
 import OrderTraking from './../../components/User/OrderTraking'
+import SearchContainer from '../../containers/SearchContainer';
 import './theme/style.css'
 import InfoBill from '../../components/User/InfoBill';
 import {connect} from 'react-redux'
@@ -72,6 +73,7 @@ import { Redirect } from 'react-router'
                                 </div>
                             </div>
                         </div>
+                        <SearchContainer history={this.props.history}/>
                     </Router>
                 )
             }

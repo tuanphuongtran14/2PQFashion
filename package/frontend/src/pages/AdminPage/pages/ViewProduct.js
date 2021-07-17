@@ -120,7 +120,7 @@ export default class AddProductPage extends Component {
         const productImages = this.state.productImages.map((image, index) => {
             return (
                 <div className="image-item" key={index}>
-                    <img className="image-item__img" src={process.env.REACT_APP_API_URL + image} />
+                    <img className="image-item__img" src={process.env.REACT_APP_API_URL + image} alt=""/>
                 </div>
             )
         });

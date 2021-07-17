@@ -3,6 +3,7 @@ import SDDetailsSection from './SD_DetailsSection';
 import SDRelatedSection from './SD_RelatedSection';
 import $ from 'jquery';
 import axios from 'axios'; 
+import SearchContainer from '../../containers/SearchContainer';
 
 import WOW from 'wowjs'
 
@@ -156,6 +157,7 @@ class ShopDetailsPage extends Component {
                     {/* <!-- Related Section Begin --> */}
                         <SDRelatedSection listProduct={this.state.listProduct} history={this.props.history}/>
                     {/* {/* <!-- Related Section End --> */}
+                    <SearchContainer history={this.props.history}/>
                 </Fragment>
             );
 

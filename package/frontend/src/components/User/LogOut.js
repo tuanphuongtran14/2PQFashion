@@ -17,31 +17,23 @@ class LogOut extends Component {
       var {user}=this.props;
     return (
         <Fragment>
+            <div className="wow fadeInUpBig" data-wow-duration="1s">
             <h2 className="text-center mb-4">Đăng xuất</h2>
-            <form >
-                <div className="row mx-0">   
-                    <div className="col-2 py-0 text-right px-0">
-                        
-                    </div> 
-                    <div className="col-8 px-0 text-center">
-                        <h3 className="text-info">Xin chào: {user.username}</h3>
-                        
-                    </div>
-                    <div className="col-2 py-0 text-right px-0"> 
-                    </div> 
-                </div>
-                <div className="row mx-0">
-                    <div className="col-4 py-0 text-right px-0">
-                        
-                    </div>       
-                    <div className="col-4 py-0 text-center px-0">
-                        <button type="button" onClick={this.onClick} className="btn btn-success">Đăng xuất</button>
-                    </div>
-                    <div className="col-4 py-0 text-right px-0">
-                        
-                    </div>    
-                </div>     
-            </form>
+                <table class="table" style={{width:"70%", marginLeft:"auto",marginRight:"auto"}} >
+                    <thead> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">Họ tên</th>
+                            <td className="text-info"><b>{user.username}</b></td>
+                        </tr>
+                        <tr>
+                                <td colSpan="2"><p className="text-center"><button type="button" onClick={this.onClick} className="btn btn-success">Đăng xuất</button></p></td>
+                        </tr>
+                    </tbody>
+                </table>  
+            </div>
+            
         </Fragment>
         
     );

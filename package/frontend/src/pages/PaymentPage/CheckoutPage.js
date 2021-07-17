@@ -97,7 +97,7 @@ class CheckoutPage extends Component {
                     </section>
                     {/* <!-- Checkout Section End --> */}
                     
-                    <SearchContainer />
+                    <SearchContainer history={this.props.history}/>
                 </Fragment>
             );
         }

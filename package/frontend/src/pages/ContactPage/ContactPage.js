@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import Map from './Map';
 import ContactSection from './ContactSection'
 import {Helmet} from 'react-helmet'
 import WOW from 'wowjs'
+import SearchContainer from '../../containers/SearchContainer';
 class ContactPage extends Component {
     componentDidMount() {
         new WOW.WOW({
@@ -11,6 +12,7 @@ class ContactPage extends Component {
     }
     render() {
         return (
+            <Fragment> 
             <div>
                 <Helmet>
                     <title>Thông tin liên hệ</title>
@@ -21,7 +23,11 @@ class ContactPage extends Component {
                 {/* Contact Section Begin */}
                 <ContactSection />
                 {/* Contact Section End */}
+                
             </div>
+            <SearchContainer history={this.props.history}/>
+            </Fragment> 
+            
         );
     }
 }
