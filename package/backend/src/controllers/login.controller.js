@@ -9,7 +9,7 @@ exports.login = async (req, res) => {
     const authorizarion = req.body;
 
     const user = await User.findOne({ username: authorizarion.username}).lean();
-
+    
     if(user) {
         const checkPw = await bcrypt.compare(authorizarion.password, user.password);
         

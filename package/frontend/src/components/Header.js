@@ -43,7 +43,8 @@ countPrice=(cart)=>{
     })
     return result;
 }
-signOut=()=>{
+signOut=(e)=>{
+    e.preventDefault();
     var {user,history}=this.props;
     this.props.onLogOut(user.id_User);
     this.props.logoutCart();
@@ -64,14 +65,14 @@ renderSignin=(user)=>{
                 <Fragment>
                     <a href={"/admin"}>Quản lý Admin</a>
                     <Link to={"/user"}>{user.username}</Link>
-                    <a onClick={this.signOut} className="text-white"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    <Link onClick={this.signOut} className="text-white"><i class="fa fa-sign-out" aria-hidden="true"></i></Link>
                 </Fragment>
             );
         else
             return (
                 <Fragment>
                     <Link to={"/user"}>{user.username}</Link>
-                    <a onClick={this.signOut} className="text-white"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    <Link onClick={this.signOut} className="text-white"><i class="fa fa-sign-out" aria-hidden="true"></i></Link>
                 </Fragment>
             );
     }

@@ -6,6 +6,7 @@ module.exports = (app) => {
     const CartRouter = require('./cart.routers');
     const UserRouter = require('./user.routers');
     const ConfirmRouter = require('./confirm.routers');
+    const MomoRouter = require('./momo.routers');
     const { login, adminLogin, resendConfirmedEmail, forgetPassword } = require('../controllers/login.controller');
     const { register } = require('../controllers/register.controller');
 
@@ -29,6 +30,9 @@ module.exports = (app) => {
 
     // Confirm Routing
     app.use('/confirm', ConfirmRouter);
+
+    // // Confirm Routing
+    app.use('/api/momo', MomoRouter);
 
     //Login Routing
     app.post('/login', login)
